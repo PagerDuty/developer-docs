@@ -2,11 +2,9 @@
 tags: [webhooks]
 ---
 
-# Webhooks-Behavior
+# Webhooks Behavior
 
 Last Major Revision: November 2020
-
-import Alert from 'react-bootstrap/Alert'
 
 <!-- theme: warning -->
 > ### Note
