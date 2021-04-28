@@ -1,0 +1,69 @@
+---
+title: "Webhooks v3 Beta"
+excerpt: "Documentation of Beta features for v3 Webhooks"
+hideFromNav: true
+---
+
+import Alert from 'react-bootstrap/Alert'
+
+<Alert variant="warning">
+  <Alert.Heading>V3 Webhooks are in Early Access</Alert.Heading>
+  The v3 Webhook features described on this page are still under development.  The features are subject to change at any time.  
+  This page is for informational purposes only.
+</Alert>
+
+### Event Types
+The following outbound event types are currently in a Beta status.  A Webhook Subscription can be created with these event types for experimentation.  
+
+#### service.created
+`data.type` is [`service_reference`](#service_reference)
+
+Sent when a Service is created.
+
+#### service.updated
+`data.type` is [`service_reference`](#service_reference)
+
+Sent when a Service is updated.
+
+#### service.deleted
+`data.type` is [`service_reference`](#service_reference)
+
+Sent when a Service is deleted.
+
+### Event Data Types
+
+#### service_reference
+
+```json
+{
+    "html_url": "https://acme.pagerduty.com/services/PF9KMXH",
+    "id": "PF9KMXH",
+    "self": "https://api.pagerduty.com/services/PF9KMXH",
+    "summary": "testing service updates",
+    "type": "service_reference"
+  }
+```
+
+### Webhook Payload Sample
+
+An example webhook payload for a `service.updated` event is shown below.
+
+```json
+{
+  "event": {
+    "id": "01BRB6ZP4M6T8ZG4X6BP63ZB9O",
+    "event_type": "service.updated",
+    "resource_type": "service",
+    "occurred_at": "2021-03-02T13:35:11.682Z",
+    "agent": null,
+    "client": null,
+    "data": {
+      "html_url": "https://acme.pagerduty.com/services/PF9KMXH",
+      "id": "PF9KMXH",
+      "self": "https://api.pagerduty.com/services/PF9KMXH",
+      "summary": "testing service updates",
+      "type": "service_reference"
+    }
+  }
+}
+```

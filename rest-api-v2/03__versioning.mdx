@@ -1,0 +1,68 @@
+---
+title: "Versioning"
+excerpt: ""
+---
+
+import Alert from 'react-bootstrap/Alert'
+import Tabs from 'react-bootstrap/Tabs'
+import Tab from 'react-bootstrap/Tab'
+import TabContainer from 'react-bootstrap/TabContainer'
+
+The version of the API that responds to a given request is based on the authentication token provided as part of the request, but can be overridden with a header.
+
+### Token-based versioning
+
+By default, all new authentication tokens will be set to provide the latest version of the API. Existing authentication tokens will request the final released version of the API that was available at the time of their creation.
+
+<Alert variant="info">
+  <Alert.Heading>Accessing with a REST API v1 Token</Alert.Heading>
+    Either create a REST API v2 token or use header-based versioning (see section below) to access REST API v2. We recommend adding the header so that your code is always getting the API version it needs, regardless of token.
+
+  If you are using an old REST API v1 token and not sending the header properly, you will receive a `404 Not Found`.
+</Alert>
+
+### Header-based versioning
+
+If you're writing code that's designed to work with multiple authentication tokens or with a specific version of the API, the best way to ensure you get the right version is with [PagerDuty's `Accept` header](http://www.iana.org/assignments/media-types/application/vnd.pagerduty+json):
+
+```http
+Accept: application/vnd.pagerduty+json;version=2
+```
+
+Any request made using this header will respond with the specified API version, regardless of the authentication token used.
+
+#### Samples
+
+Here's how you can set the `Accept` header in some popular HTTP libraries:
+
+<Tabs defaultActiveKey="ruby" variant="tabs" id="api-authentication-samples">
+  <Tab eventKey="ruby" title="Ruby">
+
+```ruby
+req = Net::HTTP::Get.new('https://api.pagerduty.com/users')
+api_version = '2'
+req.add_field('Accept', 'application/vnd.pagerduty+json;version=#{api_version}')
+```
+
+  </Tab>
+  <Tab eventKey="javascript" title="JavaScript (Client-side)">
+
+```javascript
+var api_version = "2";
+$.ajax({
+  url: "https://api.pagerduty.com/users",
+  type: "GET",
+  headers: {"Accept": "application/vnd.pagerduty+json;version=" + api_version}
+});
+```
+
+  </Tab>
+  <Tab eventKey="python" title="Python">
+
+```python
+api_version = '2'
+requests.get('https://api.pagerduty.com/users', headers={'Accept': 'application/vnd.pagerduty+json;version=' + api_version})
+```
+
+  </Tab>
+</Tabs>

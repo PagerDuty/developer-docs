@@ -1,0 +1,64 @@
+---
+title: "API Picker"
+excerpt: ""
+---
+PagerDuty's Developer Platform has a lot to offer! We want to make it easy to find the right tool for the job. Browse below
+
+<table>
+    <tr>
+      <th>
+        What do you want to do?
+      </th>
+      <th>
+        PagerDuty API or Platform Feature
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <strong>Trigger incidents in PagerDuty</strong> (machine events or signals)
+        <br/><br/>
+        If you're integrating a monitoring tool with PagerDuty, this is for you!
+      </td>
+      <td>
+        Events API - <Link to="/docs/app-integration-development/events-integration/">Read this guide to publish an integration with us</Link> or get started on an internal integration.
+        <br/><br/>
+        The Events API is asynchronous, designed for high volume, and connected to PagerDuty Event Intelligence which does grouping, deduplication, and more to help reduce noise and speed up response times.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Trigger incidents in PagerDuty</strong> (human activity)
+        <br/><br/>
+        If a human action is required to trigger the incident (for instance: opening a ticket, clicking a button, typing a chat command), this is the best way to create an incident in PagerDuty.
+      </td>
+      <td>
+        <a href="https://api-reference.pagerduty.com/#!/Incidents/post_incidents"> REST API - /incidents endpoint</a>
+        <br/><br/>
+        This endpoint is synchronous (you will receive a reference to the incident created in the response) and rate limited to 1 incident per second.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Connect PagerDuty to a chat tool</strong> - interact
+      </td>
+      <td>
+        REST API via <Link to="/docs/app-integration-development/oauth-2-functionality/">OAuth 2.0</Link>
+        <br/><br/>
+        See also: <a href="https://github.com/PagerDuty/lita-pagerduty">lita-pagerduty</a>, <a href="https://github.com/hubot-scripts/hubot-pager-me">hubot library</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Place an iframe in PagerDuty</strong> - display information like runbooks, internal tools or dashboards, etc
+      </td>
+      <td>
+        <a href="https://support.pagerduty.com/docs/extensions-add-ons#section-add-ons">Addons</a> are iframes which can be placed on a PagerDuty incident (web or mobile) or as a full page on the web.
+        <br/><br/>
+        Two ways to create addons:
+        <ul>
+          <li><a href="https://support.pagerduty.com/docs/extensions-add-ons#section-add-ons">In the PagerDuty user interface</a> </li>
+          <li>Using the <a href="https://api-reference.pagerduty.com/#!/Add-ons/post_addons">/addons endpoint</a> on the REST API</li>
+        </ul>
+      </td>
+    </tr>
+</table>
