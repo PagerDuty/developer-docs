@@ -2,7 +2,7 @@
 tags: [webhooks]
 ---
 
-# Webhooks v3 Overview
+# v3 Overview
 
 V3 webhooks provide the foundation for the future of PagerDuty webhooks.  When compared with previous versions, they provide additional event types to signal changes to incident priorities and incident responders.  They also provide additional filtering capabilities.
 

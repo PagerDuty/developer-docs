@@ -2,7 +2,7 @@
 tags: [webhooks]
 ---
 
-# Verifying Webhook Signatures
+# Verifying Signatures
 
 <!-- theme: warning -->
 ### V3 Webhooks are in Early Access
@@ -59,7 +59,7 @@ type: tab
 title: Python
 -->
 
-```
+```python
 import hmac
 import hashlib
 import binascii
@@ -90,7 +90,7 @@ type: tab
 title: JavaScript
 -->
 
-```
+```javascript
 const crypto = require('crypto')
 module.exports = class PagerDutyVerifier {
 	constructor(key, version) {

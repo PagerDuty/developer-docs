@@ -2,7 +2,7 @@
 tags: [webhooks]
 ---
 
-# Webhooks Mutual TLS
+# Mutual TLS
 
 <!-- theme: info -->
 > The sample NGINX configuration has been recently updated.

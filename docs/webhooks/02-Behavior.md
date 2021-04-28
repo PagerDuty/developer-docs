@@ -2,9 +2,7 @@
 tags: [webhooks]
 ---
 
-# Webhooks Behavior
-
-Last Major Revision: November 2020
+# Behavior
 
 <!-- theme: warning -->
 > ### Note

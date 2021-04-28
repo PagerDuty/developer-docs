@@ -2,7 +2,7 @@
 tags: [webhooks]
 ---
 
-# Webhooks v1 Overview
+# v1 Overview
 
 import Alert from 'react-bootstrap/Alert'
 import Tabs from 'react-bootstrap/Tabs'

@@ -2,7 +2,7 @@
 tags: [webhooks]
 ---
 
-# Webhook Public Certificates
+# Public Certificates
 
 PagerDuty Webhooks provide client certificates when requested by a server (Mutual TLS).  
 
@@ -21,7 +21,7 @@ It is our recommendation that customers configure their servers to trust the roo
 * Expires on September 23, 2030
 * Common Name: _DigiCert TLS RSA SHA256 2020 CA1_
 
-### Root Certificate ([download]https://cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem))
+### Root Certificate ([download](https://cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem))
 
 * Expires on November 10, 2031
 * Common Name: _DigiCert Global Root CA_

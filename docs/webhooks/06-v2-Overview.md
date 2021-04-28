@@ -3,7 +3,7 @@ tags: [webhooks]
 ---
 
 
-# Webhooks v2 Overview
+# v2 Overview
 ---
 title: "Webhooks v2 Overview"
 excerpt: "Get an HTTP POST from PagerDuty when actions take place inside your PagerDuty account"
