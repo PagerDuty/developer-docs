@@ -1,0 +1,29 @@
+{
+  "items": [
+    {
+      "type": "divider",
+      "title": "Divider"
+    },
+    {
+      "type": "item",
+      "title": "Item",
+      "uri": "docs/Introduction.md"
+    },
+    {
+      "type": "group",
+      "title": "Tools & Libraries",
+      "items": [
+        {
+          "type": "item",
+          "title": "Nested Item",
+          "uri": "docs/tool-libraries/01-Client-Libraries.md"
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "title": "External Link",
+      "uri": "https://stoplight.io"
+    }
+  ]
+}
