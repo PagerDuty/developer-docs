@@ -2,7 +2,7 @@
 tags: [rest-api]
 ---
 
-# Global-Event-Rules-API
+# Global Event Rules API
 
 ## Important Note
 
