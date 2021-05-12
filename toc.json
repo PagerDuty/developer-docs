@@ -1,10 +1,6 @@
 {
   "items": [
     {
-      "type": "divider",
-      "title": "Divider"
-    },
-    {
       "type": "item",
       "title": "Item",
       "uri": "docs/Introduction.md"
@@ -15,15 +11,281 @@
       "items": [
         {
           "type": "item",
-          "title": "Nested Item",
+          "title": "API Client Libraries",
           "uri": "docs/tool-libraries/01-Client-Libraries.md"
+        },
+        {
+          "type": "item",
+          "title": "API Tools & Code Samples",
+          "uri": "docs/tool-libraries/02-API-Tools-and-Code-Samples.md"
+        },
+        {
+          "type": "item",
+          "title": "PagerDuty On-Prem Agent",
+          "uri": "docs/tool-libraries/03-On-Premise-Agent.md"
+        },
+        {
+          "type": "item",
+          "title": "Retrieving Incident Details",
+          "uri": "docs/tool-libraries/04-Retrieve-Incident-Details.md"
         }
       ]
     },
     {
-      "type": "item",
-      "title": "External Link",
-      "uri": "https://stoplight.io"
+      "type": "group",
+      "title": "Build Apps & Integrations",
+      "items": [
+        {
+          "type": "item",
+          "title": "App Overview",
+          "uri": "docs/app-integration-development/01-Overview.md"
+        },
+        {
+          "type": "item",
+          "title": "Developer Account FAQ",
+          "uri": "docs/app-integration-development/02-Developer-Account.md"
+        },
+        {
+          "type": "item",
+          "title": "Register an App",
+          "uri": "docs/app-integration-development/03-Register-an-App.md"
+        },
+        {
+          "type": "item",
+          "title": "App Functionality Overview",
+          "uri": "docs/app-integration-development/04-App-Functionality.md"
+        },
+        {
+          "type": "item",
+          "title": "API Pickers",
+          "uri": "docs/app-integration-development/05-API-Picker.md"
+        },
+        {
+          "type": "item",
+          "title": "Events Integration Functionality",
+          "uri": "docs/app-integration-development/06-Events-Integration.md"
+        },
+        {
+          "type": "item",
+          "title": "Writing App Event Transformers",
+          "uri": "docs/app-integration-development/07-Writing-App-Event-Transformers.md"
+        },
+        {
+          "type": "item",
+          "title": "OAuth 2.0 Functionality",
+          "uri": "docs/app-integration-development/08-OAuth-2-Functionality.md"
+        },
+        {
+          "type": "item",
+          "title": "OAuth 2.0 Authorization Code Grant Flow",
+          "uri": "docs/app-integration-development/09-OAuth-2-Auth-Code-Grant.md"
+        },
+        {
+          "type": "item",
+          "title": "OAuth 2.0 PKCE Flow",
+          "uri": "docs/app-integration-development/10-OAuth-2-PKCE.md"
+        },
+        {
+          "type": "item",
+          "title": "Publish an App",
+          "uri": "docs/app-integration-development/11-Publish-Your-App.md"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Build Apps & Integrations",
+      "items": [
+        {
+          "type": "item",
+          "title": "REST API Overview",
+          "uri": "docs/REST-API/01-Overview.md"
+        },
+        {
+          "type": "item",
+          "title": "Authentication",
+          "uri": "docs/REST-API/02-Authentication.md"
+        },
+        {
+          "type": "item",
+          "title": "Versioning",
+          "uri": "docs/REST-API/03-Versioning.md"
+        },
+        {
+          "type": "item",
+          "title": "Rate Limiting",
+          "uri": "docs/REST-API/04-Rate-Limiting.md"
+        },
+        {
+          "type": "item",
+          "title": "Endpoints",
+          "uri": "docs/REST-API/05-Endpoints.md"
+        },
+        {
+          "type": "item",
+          "title": "Types",
+          "uri": "docs/REST-API/06-Types.md"
+        },
+        {
+          "type": "item",
+          "title": "Filtering",
+          "uri": "docs/REST-API/07-Filtering.md"
+        },
+        {
+          "type": "item",
+          "title": "Sorting",
+          "uri": "docs/REST-API/08-Sorting.md"
+        },
+        {
+          "type": "item",
+          "title": "Pagination",
+          "uri": "docs/REST-API/09-Pagination.md"
+        },
+        {
+          "type": "item",
+          "title": "Resource Schemas",
+          "uri": "docs/REST-API/10-Resource-Schemas.md"
+        },
+        {
+          "type": "item",
+          "title": "Resource References",
+          "uri": "docs/REST-API/11-References.md"
+        },
+        {
+          "type": "item",
+          "title": "Wrapped Entities",
+          "uri": "docs/REST-API/12-Wrapped-Entities.md"
+        },
+        {
+          "type": "item",
+          "title": "Includes",
+          "uri": "docs/REST-API/13-Includes.md"
+        },
+        {
+          "type": "item",
+          "title": "Errors",
+          "uri": "docs/REST-API/14-Errors.md"
+        },
+        {
+          "type": "item",
+          "title": "Incident Creation API",
+          "uri": "docs/REST-API/15-Incident-Creation-API.md"
+        },
+        {
+          "type": "item",
+          "title": "Global Event Rules API",
+          "uri": "docs/REST-API/16-Global-Event-Rules-API.md"
+        },
+        {
+          "type": "item",
+          "title": "Audit Records API",
+          "uri": "docs/REST-API/17-Audit-Records-API.md"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Events API v2",
+      "items": [
+        {
+          "type": "item",
+          "title": "Events API v2 Overview",
+          "uri": "docs/events-API-v2/01-Overview.md"
+        },
+        {
+          "type": "item",
+          "title": "Send an Alert Event",
+          "uri": "docs/events-API-v2/02-Trigger-Events.md"
+        },
+        {
+          "type": "item",
+          "title": "Send a Change Event",
+          "uri": "docs/events-API-v2/03-Change-Events.md"
+        },
+        {
+          "type": "item",
+          "title": "Custom Change Event Transformer",
+          "uri": "docs/events-API-v2/04-Custom-Change-Event-Transformer.md"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Events API v1",
+      "items": [
+        {
+          "type": "item",
+          "title": "Events API v1 Overview",
+          "uri": "docs/events-API-v1/01-Overview.md"
+        },
+        {
+          "type": "item",
+          "title": "Send a v1 Event",
+          "uri": "docs/events-API-v1/02-Trigger-Events.md"
+        },
+        {
+          "type": "item",
+          "title": "Custom Event Transformer",
+          "uri": "docs/events-API-v1/03-Custom-Event-Transformer.md"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Webhooks",
+      "items": [
+        {
+          "type": "item",
+          "title": "v3 Overview",
+          "uri": "docs/webhooks/01-v3-Overview.md"
+        },
+        {
+          "type": "item",
+          "title": "Behaviour",
+          "uri": "docs/webhooks/02-Behavior.md"
+        },
+        {
+          "type": "item",
+          "title": "Mutual TLS",
+          "uri": "docs/webhooks/03-Mutual-TLS.md"
+        },
+        {
+          "type": "item",
+          "title": "Verifying Signatures",
+          "uri": "docs/webhooks/04-Signatures.md"
+        },
+        {
+          "type": "item",
+          "title": "v1 Overview",
+          "uri": "docs/webhooks/05-v1-Overview.md"
+        },
+        {
+          "type": "item",
+          "title": "v2 Overview",
+          "uri": "docs/webhooks/06-v2-Overview.md"
+        },
+        {
+          "type": "item",
+          "title": "Public Certificates",
+          "uri": "docs/webhooks/07-Certificates.md"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Legal",
+      "items": [
+        {
+          "type": "item",
+          "title": "Sample Code Disclaimer",
+          "uri": "docs/legal/Developer-Agreement.md"
+        },
+        {
+          "type": "item",
+          "title": "PagerDuty Developer Agreement",
+          "uri": "docs/legal/Sample-Code-Disclaimer.md"
+        }
+      ]
     }
   ]
 }
