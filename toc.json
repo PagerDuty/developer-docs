@@ -2,7 +2,7 @@
   "items": [
     {
       "type": "item",
-      "title": "Item",
+      "title": "Introduction",
       "uri": "docs/Introduction.md"
     },
     {
@@ -94,7 +94,7 @@
     },
     {
       "type": "group",
-      "title": "Build Apps & Integrations",
+      "title": "REST API",
       "items": [
         {
           "type": "item",
