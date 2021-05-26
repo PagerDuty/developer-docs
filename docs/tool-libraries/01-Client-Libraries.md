@@ -24,6 +24,6 @@ Want to get started using PagerDuty APIs quickly and easily? PagerDuty creates, 
 
 ## Get Involved
 
-Have you built a library or other wrapper for any PagerDuty APIs? Let us know in our [Developer forums](https://community.pagerduty.com/c/dev)!
+Have you built a library or other wrapper for any PagerDuty APIs? Let us know in our [Developer forums](https://community.pagerduty.com/forum/c/developer)! 
 
 We're always happy to add new projects to our directory. Please note that all submissions must support or rely on current, non-deprecated, public APIs to be included in the directory.
