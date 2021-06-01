@@ -25,3 +25,7 @@ Documentation on how `toc.json` works can be [found here.](https://meta.stopligh
 ## File Naming
 There isn't a strict file naming convention. *However*, files have broadly been organized into 'topic' folder, and file names begin with the order they appear in the Table of Contents.
 
+## Deployment
+Simply merging to the `main` branch will deploy docs to production.
+
+**There is no staging at the moment**
