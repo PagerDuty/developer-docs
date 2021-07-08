@@ -34,6 +34,7 @@ V3 webhooks are configured by creating a _webhook subscription_ which contains t
             "incident.resolved",
             "incident.responder.added",
             "incident.responder.replied",
+            "incident.status_update_published",
             "incident.triggered",
             "incident.unacknowledged"
         ],
@@ -201,6 +202,11 @@ Sent when a responder has been added to an incident.
 
 Sent when a responder replies to a request.
 
+### incident.status_update_published
+`data.type` is [`incident_status_update`](#incident_status_update)
+
+Sent when a status update is added to an incident.
+
 ### incident.triggered
 `data.type` is [`incident`](#incident)
 
@@ -289,6 +295,24 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
   "content": "I sure am glad we are using PagerDuty!",
   "trimmed": false,
   "type": "incident_note"
+}
+```
+
+### incident_status_update
+
+```json
+{
+  "incident": {
+    "html_url": "https://acme.pagerduty.com/incidents/PGR0VU2",
+    "id": "PGR0VU2",
+    "self": "https://api.pagerduty.com/incidents/PGR0VU2",
+    "summary": "A little bump in the road",
+    "type": "incident_reference"
+  },
+  "id": "P2LA89X",
+  "message": "A fix for this incident is being developed",
+  "trimmed": false,
+  "type": "incident_status_update"
 }
 ```
 
