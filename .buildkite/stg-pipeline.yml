@@ -1,8 +1,14 @@
 steps:
-  - block: "Deploy $BUILDKITE_COMMIT (PR: $BUILDKITE_PULL_REQUEST)"
+  - block: "Deploy $BUILDKITE_COMMIT (PR: $BUILDKITE_PULL_REQUEST) to Staging"
 
-  - command: "npx @stoplight/cli@5 push --ci-token d2e7126b-ce38-4227-9267-27a1dfc8054c
-"
+  - label: "Pushing to articles to staging"
+    command: "npx @stoplight/cli@5 push --ci-token d2e7126b-ce38-4227-9267-27a1dfc8054c"
+    plugins:
+      # Using the plain Node image, instead of the custom doc Dockerfile
+      # version, is way faster because we don't have to wait for Ruby gems to
+      # install.
+      - docker#v3.5.0:
+          image: "node:alpine"
 
 pd-meta: # Used by Buildkite Pipeline Manager (https://github.com/PagerDuty/buildkite-pipeline-manager)
   name: "Developer Docs Staging"
