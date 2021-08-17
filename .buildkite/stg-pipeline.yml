@@ -1,0 +1,11 @@
+steps:
+  - block: "Deploy $BUILDKITE_COMMIT (PR: $BUILDKITE_PULL_REQUEST)"
+
+  - command: "npx @stoplight/cli@5 push --ci-token d2e7126b-ce38-4227-9267-27a1dfc8054c
+"
+
+pd-meta: # Used by Buildkite Pipeline Manager (https://github.com/PagerDuty/buildkite-pipeline-manager)
+  name: "Developer Docs Staging"
+  teams:
+    - "All"
+    - "Developer Infrastructure"
