@@ -74,6 +74,8 @@ Field Name             | Type     | Description
 `event.client`         | String   | Information about where the event was triggered.
 `event.data`           | Object   | Data specific to the `event_type` that occurred.
 
+An example webhook payload for an `incident.priority_updated` event is shown below.
+
 ```json
 {
   "event": {
@@ -149,6 +151,38 @@ Field Name             | Type     | Description
 }
 ```
 
+An example webhook payload for a `service.updated` event is shown below.
+
+```json
+{
+  "event": {
+    "id": "01BRB6ZP4M6T8ZG4X6BP63ZB9O",
+    "event_type": "service.updated",
+    "resource_type": "service",
+    "occurred_at": "2021-03-02T13:35:11.682Z",
+    "agent": null,
+    "client": null,
+    "data": {
+    "html_url": "https://acme.pagerduty.com/services/PF9KMXH",
+    "id": "PF9KMXH",
+    "self": "https://api.pagerduty.com/services/PF9KMXH",
+    "summary": "testing service updates",
+    "alert_creation": "create_alerts_and_incidents",
+    "teams": [
+      {
+        "html_url": "https://acme.pagerduty.com/teams/PFCVPS0",
+        "id": "PFCVPS0",
+        "self": "https://api.pagerduty.com/teams/PFCVPS0",
+        "summary": "Engineering",
+        "type": "team_reference"
+      }
+    ],  
+    "type": "service"
+  }
+  }
+}
+```
+
 ## Event Types
 Outbound events are created when PagerDuty resources change in interesting ways. Each outbound event is usually associated with some other PagerDuty resource.  For example, the `incident.priority_updated` event is generated whenever the priority of an incident is changed.  The following event types are available to v3 webhooks.  Additional event types may be added to this list over time.
 
@@ -216,6 +250,22 @@ Sent when an incident is newly created/triggered.
 `data.type` is [`incident`](#incident)
 
 Sent when an incident is unacknowledged.
+
+### service.created
+`data.type` is [`service`](#service)
+
+Sent when a service is created.
+
+### service.deleted
+`data.type` is [`service`](#service)
+
+Sent when a service is deleted.
+
+### service.updated
+`data.type` is [`service`](#service)
+
+Sent when a service is updated.
+
 
 ## Event Data Types
 
@@ -345,4 +395,26 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
   "state": "pending",
   "type": "incident_responder"
 }
+```
+
+### service
+
+```json
+{
+    "html_url": "https://acme.pagerduty.com/services/PF9KMXH",
+    "id": "PF9KMXH",
+    "self": "https://api.pagerduty.com/services/PF9KMXH",
+    "summary": "testing service updates",
+    "alert_creation": "create_alerts_and_incidents",
+    "teams": [
+      {
+        "html_url": "https://acme.pagerduty.com/teams/PFCVPS0",
+        "id": "PFCVPS0",
+        "self": "https://api.pagerduty.com/teams/PFCVPS0",
+        "summary": "Engineering",
+        "type": "team_reference"
+      }
+    ],  
+    "type": "service"
+  }
 ```
