@@ -58,8 +58,13 @@ If the user denies authorization, PagerDuty will redirect to the specified URI w
 
 To exchange the authorization code for an access token, send a POST request to the token endpoint. The authorization code has a time to live of 10 minutes, and your POST request must be received within that time. Additionally, specify the following query parameters when making the request: `client_id`, `client_secret`, `redirect_uri`, the `code` (authorization code) received from PagerDuty, and `grant_type=authorization_code`.
 
-```http
-POST https://app.pagerduty.com/oauth/token?grant_type=authorization_code&client_id={CLIENT_ID}&client_secret={CLIENT_SECRET}&redirect_uri={REDIRECT_URI}&code={CODE}
+```
+curl -X POST https://app.pagerduty.com/oauth/token \
+  -d "grant_type=authorization_code" \
+  -d "client_id={CLIENT_ID}" \
+  -d "client_secret={CLIENT_SECRET}" \
+  -d "redirect_uri={REDIRECT_URI}" \
+  -d "code={CODE}"
 ```
 
 The access token will be included in a JSON response:

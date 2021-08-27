@@ -88,7 +88,12 @@ The authorization code has a time to live of 10 minutes, and your POST request m
 Additionally, specify the following query parameters when making the request: `client_id`,  `redirect_uri`, the `code` (authorization code) received from PagerDuty, `grant_type=authorization_code`, and finally the `code_verifier` that was generated to create the code_challenge originally.
 
 ```
-POST https://app.pagerduty.com/oauth/token?grant_type=authorization_code&client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&code={CODE}&code_verifier
+curl -X POST https://app.pagerduty.com/oauth/token \
+  -d "grant_type=authorization_code"
+  -d "client_id={CLIENT_ID}"
+  -d "redirect_uri={REDIRECT_URI}"
+  -d "code={CODE}"
+  -d "code_verifier={CODE_VERIFIER}"
 ```
 
 The access token will be included in a JSON response:
