@@ -14,7 +14,7 @@ This is the best way for monitoring tools to connect with PagerDuty in order to 
 
 1. First [create an app in PagerDuty](../../docs/app-integration-development/03-Register-an-App.md)
 
-2. In the **Functionality** section, click **Add** next to Events Integration. Then click **Save** on the Events Integration config page.
+1. In the **Functionality** section, click **Add** next to Events Integration. Then click **Save** on the Events Integration config page.
 
 ![Screenshot of Addding Events Integration to app](../../assets/images/events_integration.png)
 
@@ -28,13 +28,13 @@ The Simple Install Flow provides an interface for installing a PagerDuty integra
 
 **See it in action here:** [acme.pagerduty.dev](https://acme.pagerduty.dev)
 
-Follow these steps to leverage the simple install flow in your app:
+Follow these steps to leverage Simple Install Flow for your app:
 
-3. Add a redirect URL for your application. This is where we will redirect the browser to once the user completes the install flow. You can optionally include additional query parameters which will be passed through and returned on redirect.
+1. Add a redirect URL for your application. This is where we will redirect the browser to once the user completes the install flow. If you would like to pass through additional GET parameters or a URL fragment when redirecting back, you should URL-encode the `redirect_uri` parameter in the Integration Setup URL.
 
-![Screenshot of Simple Install Redirect URL colleciton](../../assets/images/simple-install-redirect-uri.png)
+![Screenshot of Simple Install Redirect URL collection](../../assets/images/simple-install-redirect-uri.png)
 
-4. Implement a page in your app which will receive the request. You should be prepared to handle a request in this format. Note: you will receive a collection of integration keys and should be prepared to handle more than one.
+2. Implement a page in your app which will receive the request. You should be prepared to handle a request in the format below. Note: you will receive a collection of integration keys and should be prepared to handle more than one.
 
 ```http
 GET http://<your app URL>?config=<encoded JSON>
@@ -78,11 +78,11 @@ GET http://<your app URL>?config=<encoded JSON>
 }
 ```
 
-6. Once you’ve saved, test out your flow using the **Integration Setup URL** on the page.
+3. Once you’ve saved, test out your flow using the **Integration Setup URL** on the page. If you would like to pass through additional GET parameters or a URL fragment, you should URL-encode the `redirect_uri` parameter in the Integration Setup URL.
 
 ![Screenshot of copy Simple Install URL For Your App](../../assets/images/copy-simple-install-url-for-app.png)
 
-7. Present this link to users in your application at the right time.
+4. Present this link to users in your application at the right time.
 
 ## Add An Event Transformer
 
@@ -92,7 +92,7 @@ An Event Transformer is an optional part of a PagerDuty app. It contains JavaScr
 
 **Why should I use an Event Transformer?**
 
-Use an Event Transformer when a technical service you are connecting to PagerDuty is not capable of modifying it's webhooks before they are sent to PagerDuty. An Event Transformer will allow you to connect it to PagerDuty without hosting an application or serverless function to transform the webhook payload.
+Use an Event Transformer when a technical service you are connecting to PagerDuty is not capable of modifying its payload before they are sent to PagerDuty. An Event Transformer will allow you to connect it to PagerDuty without hosting an application or serverless function to transform the webhook payload.
 
 ### Set up an Event Transformer
 
@@ -135,7 +135,6 @@ Before submitting, make sure your integration is able to trigger, acknowledge, o
 2. Send test events to the integration key for your test service
 
 ![Screenshot of integration key and endpoint for test events](../../assets/images/test-service-details.png)
-
 
 3. Click **View** to go to the service page and view incidents or check your notifications to see if they look as you expect.
 

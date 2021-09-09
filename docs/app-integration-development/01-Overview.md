@@ -10,7 +10,7 @@ tags: [app-integration-development]
 > This section is intended for developers building an app with PagerDuty. For information on how to add or remove an existing app on your PagerDuty account, visit our [Knowledge Base](https://support.pagerduty.com/docs/apps)
 
 #### What is an app?
-An app is anything that works with PagerDuty or makes PagerDuty more useful. Apps can send data to PagerDuty or receive data from PagerDuty.
+An app allows customers to set up other web-enabled businesses to work with PagerDuty or to make PagerDuty more useful. Apps can send data to PagerDuty or receive data from PagerDuty.
 
 #### What functionalities are available to apps?
 [See an overview of app functionality](../../docs/app-integration-development/04-App-Functionality.md)

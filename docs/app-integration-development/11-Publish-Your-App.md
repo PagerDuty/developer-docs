@@ -4,7 +4,7 @@ tags: [app-integration-development]
 
 # Publish your App
 
-Once you're done building an app, you can publish it! Publishing completely optional.
+Once you're done building an app, you can publish it! Publishing is completely optional.
 
 ## Manage Distribution
 
@@ -24,7 +24,7 @@ You can optionally publish your app for all PagerDuty users to discover and use.
 
 ![Screenshot of app submit](../../assets/images/publish.png)
 
-Once you submit, you will not be able to make edits to the app while it is under review. If you need to make changes after you submit, please contact apps@pagerduty.com to get your app back into an editable draft state.
+Once you submit, you will no longer be able to make updates to your app. If you need to make changes after you submit, please contact apps@pagerduty.com to get your app back into an editable draft state.
 
 You should receive a confirmation email once your app is submitted for review.
 

@@ -4,7 +4,7 @@ tags: [app-integration-development]
 
 # Developer Account FAQ
 
-All PagerDuty accounts have access to developer tools. Developer accounts are meant for those without access to PagerDuty. [Sign up for a developer account here.](/sign-up/)
+All PagerDuty accounts have access to developer tools. Developer accounts are meant for those without access to a paid PagerDuty account.  [Sign up for a developer account here.](/sign-up/)
 
 If you already have access to a PagerDuty account, [learn how to get started here.](../../docs/app-integration-development/03-Register-An-App.md)
 
@@ -15,14 +15,14 @@ If you already have access to a PagerDuty account, [learn how to get started her
 You may add 3 full users and 2 stakeholder users to your developer account.
 
 
-#### Are there any restrictions for PagerDuty developer accounts?
+#### Are there any other restrictions for PagerDuty developer accounts?
 
 Developer account users cannot receive SMS or voice/phone notifications. These cannot be enabled for any reason. If you require these notification types for testing, please purchase a paid PagerDuty account.
 
 
 #### How does my developer account differ from my regular account?
 
-Other than the limits on notifications and the user count, there are no differences - Partner Developer Accounts are meant for those without access to PagerDuty.
+Other than the limits on notifications and the user count, there are no differences - Partner Developer Accounts are meant for those without access to a paid PagerDuty account.
 
 
 #### Can I convert my developer account into a paid account?
@@ -37,7 +37,7 @@ Unfortunately, the user restrictions on developer accounts cannot be increased f
 
 #### Is there any cost for a developer account?
 
-No, PagerDuty developer accounts are free.
+No, PagerDuty developer accounts are free!
 
 
 #### I have a question that wasn’t answered here.

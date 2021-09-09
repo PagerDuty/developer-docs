@@ -7,7 +7,7 @@ tags: [app-integration-development]
 <!-- theme:warning -->
 > ### This flow is for server-side apps
 > A client_secret should be treated as a password or private_key and not be stored in public code.
-> If you're working on an a mobile app or in-browser app, please use the [PCKE flow](../../docs/app-integration-development/10-OAuth-2-PKCE.md).
+> If you're working on an a mobile app or in-browser app, please use the [PKCE flow](../../docs/app-integration-development/10-OAuth-2-PKCE.md).
 
 <Link to="/docs/app-integration-development/register-an-app/">Create an app</Link> to get access to OAuth 2.0 credentials.
 

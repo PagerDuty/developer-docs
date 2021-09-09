@@ -11,7 +11,7 @@ When you log into a developer account, you'll be taken straight to Developer Mod
 **Note:** Developer Mode is available only to users with a base role of User or Manager (Advanced Permissions) and above.
 
 1. Log in to your PagerDuty account.
-2. From the top menu, select the ![app icon in PagerDuty](../../assets/images/app_icon.png) icon to the left of the profile picture.
+2.  From the top menu, select **Integrations**.
 3. Select **Developer Mode** from the menu to navigate to the **My Apps** page.
 
 ![Screenshot of dev menu in Pagerduty](../../assets/images/dev_mode.png)
@@ -29,10 +29,10 @@ When you log into a developer account, you'll be taken straight to Developer Mod
 
 ### Editing your app configuration
 
-Once you've registered an app, it will appear on your **My Apps** page in Developer Mode. Select an app to be taken to it's configuration page where you can edit any of the details you have already entered and add more:
+Once you've registered an app, it will appear on your **My Apps** page in Developer Mode. Select an app to edit any of the details you have already entered and add more:
 
 * *Optional*: provide an **App Website URL** where users can learn more about the app.
-* *Optional*: upload an **App Icon**, an image file that will display with the app. Icons should be sized 50px by 50px. Once the image file is input, the image will display to the side and in the **Preview** box.
+* *Optional*: upload an **App Icon**, an image file that will display with the app. Icons should be sized 50px by 50px. Once the image file is uploaded, the image will display to the side and in the **Preview** box.
 
 ![Screenshot of app preview box](../../assets/images/app-preview-box.png)
 
