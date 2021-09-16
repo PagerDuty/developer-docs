@@ -78,7 +78,7 @@ Parameter       | Description
 `code_verifier` | Original one-time, random 128 byte verifier (also in Base64URLEncoded without padding) used to generate the code_challenge for the authorization code request.
 `code`          | The authorization code issued upon a successful authorization request.
 `redirect_uri`  | Registered with the app when OAuth 2.0 is added.
-`grant_type`    | Value must be set to `code`.
+`grant_type`    | Value must be set to `authorization_code`.
 
 
 To exchange the authorization code for an access token, send a POST request to the Token Endpoint.
