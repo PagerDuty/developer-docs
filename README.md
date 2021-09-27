@@ -4,11 +4,11 @@ This repo contains the docs that are hosted at: [developer.pagerduty.com/docs](h
 
 ## Contributing
 
-**Everyone** at PagerDuty encouraged to write and modify Developer Docs. Simply edit the files and open a pull request.
+**Everyone** is encouraged to write and modify Developer Docs. Simply edit the files and open a pull request.
 
-### Staging
+### Staging (for PD employees)
 
-This repository is enable to have a staging environment so you can see the changes before pushing them up to our production website. If you'd like to see the changes there first simply click the "Buildkite" step in your Pull Request and unblock the deploy step. Then visit developer-v2.pd-staging.com/docs/
+This repository is enable to have a staging environment so you can see the changes before pushing them up to our production website. If you'd like to see the changes there first simply click the "Buildkite" step in your Pull Request and unblock the deploy step.
 
 ### Ownership
 These docs are owned by the #dev-infra team and they will review and deploy any changes made- simply ask them via Slack when your open a pull request.
@@ -29,5 +29,3 @@ There isn't a strict file naming convention. *However*, files have broadly been 
 
 ## Deployment
 Simply merging to the `main` branch will deploy docs to production.
-
-**There is no staging at the moment**
