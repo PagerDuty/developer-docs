@@ -4,15 +4,6 @@ tags: [webhooks]
 
 
 # v2 Overview
----
-title: "Webhooks v2 Overview"
-excerpt: "Get an HTTP POST from PagerDuty when actions take place inside your PagerDuty account"
----
-
-
-import Tabs from 'react-bootstrap/Tabs'
-import Tab from 'react-bootstrap/Tab'
-import TabContainer from 'react-bootstrap/TabContainer'
 
 Webhooks let you receive HTTP callbacks when interesting events happen within your PagerDuty account. Details surrounding the interesting event will be sent via HTTP POST to a URL that you specify.
 
