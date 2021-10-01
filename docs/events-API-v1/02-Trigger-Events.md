@@ -27,12 +27,14 @@ Parameters                     | Type                | Description
 
 Your monitoring tools should send PagerDuty a `trigger` event to report a new or ongoing problem. When PagerDuty receives a `trigger` event, it will either open a new incident, or add a new trigger [log entry](https://api-reference.pagerduty.com/#!/Log_Entries/get_log_entries) to an existing incident, depending on the provided `incident_key`.
 
-Read more about event types and incident de-duplication in the <Link to="/docs/events-api-v1/overview/">Events API v1 Overview</Link>.
+Read more about event types and incident de-duplication in the [Events API v1 Overview](./01-Overview.md).
 
 ## Example Request Payloads
 
-<Tabs defaultActiveKey="trigger" variant="tabs" id="events-api-v1-requests">
-  <Tab eventKey="trigger" title="Trigger Event">
+<!--
+type: tab
+title: Trigger Event
+-->
 
 ```json
 /*
@@ -71,9 +73,10 @@ Read more about event types and incident de-duplication in the <Link to="/docs/e
   ]
 }
 ```
-
-  </Tab>
-  <Tab eventKey="acknowledge" title="Acknowledge Event">
+<!--
+type: tab
+title: Acknowledge EVent
+-->
 
 ```json
 /*
@@ -88,8 +91,10 @@ Read more about event types and incident de-duplication in the <Link to="/docs/e
 }
 ```
 
-  </Tab>
-  <Tab eventKey="resolve" title="Resolve Event">
+<!--
+type: tab
+title: Resolve Event
+-->
 
 ```json
 /*
@@ -104,8 +109,7 @@ Read more about event types and incident de-duplication in the <Link to="/docs/e
 }
 ```
 
-  </Tab>
-</Tabs>
+<!-- type: tab-end -->
 
 ## Response Format
 
