@@ -77,4 +77,4 @@ PagerDuty will only keep the last 90 days of Change Events, as per our data rete
 
 The Events API v2 requires a `routing_key`. You can [create an Events API v2 integration on any PagerDuty service](https://support.pagerduty.com/docs/services-and-integrations#section-events-api-v2) in order to get a routing key that will route an event to that service. Note that the same Integration Key can be used to send both alert and change events.
 
-[Try it out here](https://developer.pagerduty.com/api-reference/reference/events-v2/openapiv3.json/paths/~1change~1enqueue/post)
+[Try it out here](/send-event-form/)

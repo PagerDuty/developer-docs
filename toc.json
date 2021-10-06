@@ -210,7 +210,7 @@
         {
           "type": "item",
           "title": "Try out the API",
-          "uri": "https://developer.pagerduty.com/send-event-form/"
+          "uri": "/send-event-form/"
         }
       ]
     },

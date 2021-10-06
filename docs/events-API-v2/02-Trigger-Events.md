@@ -159,4 +159,4 @@ This property is used to attach text links to the incident. Each object in the l
 
 The Events API v2 requires a `routing_key`. You can [create an Events API v2 integration on any PagerDuty service](https://support.pagerduty.com/docs/services-and-integrations#section-events-api-v2) in order to get a routing key that will route an event to that service. You can also use an integration key from a [ruleset](https://support.pagerduty.com/docs/rulesets#section-global-rulesets) to send alert events.
 
-[Try it out here](https://developer.pagerduty.com/api-reference/reference/events-v2/openapiv3.json/paths/~1enqueue/post)
+[Try it out here](/send-event-form/)
