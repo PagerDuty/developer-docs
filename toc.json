@@ -194,18 +194,23 @@
         },
         {
           "type": "item",
-          "title": "Send an Alert Event",
+          "title": "Sending an Alert Event",
           "uri": "docs/events-API-v2/02-Trigger-Events.md"
         },
         {
           "type": "item",
-          "title": "Send a Change Event",
+          "title": "Sending a Change Event",
           "uri": "docs/events-API-v2/03-Change-Events.md"
         },
         {
           "type": "item",
           "title": "Custom Change Event Transformer",
           "uri": "docs/events-API-v2/04-Custom-Change-Event-Transformer.md"
+        },
+        {
+          "type": "item",
+          "title": "Try out the API",
+          "uri": "https://developer.pagerduty.com/send-event-form/"
         }
       ]
     },
