@@ -7,7 +7,7 @@ Whether you are looking to alter an account's configuration, pipe events from a 
 The details of how to interact with any given API are accessible in documentation guides listed in the left column navigation.
 
 ## REST API
-The [REST API](../docs/rest-api/01-Overview.md) is used for accessing and manipulating data concerning all of the entities on a PagerDuty account. It is designed around RESTful principles and provides a standard suite of CRUD actions for most entities: create, read, update, and delete.
+The [REST API](../docs/REST-API/01-Overview.md) is used for accessing and manipulating data concerning all of the entities on a PagerDuty account. It is designed around RESTful principles and provides a standard suite of CRUD actions for most entities: create, read, update, and delete.
 
 Using the REST API, you can do things like:
 - add and configure users on a PagerDuty account, including how they're notified by PagerDuty
@@ -17,12 +17,12 @@ Using the REST API, you can do things like:
 - manually create an incident without an associated monitoring tool
 
 <!-- theme:info -->
-> The REST API should not be used to create incidents originating from monitoring systems or other automated tools - for that, use the [Events API](../docs/events-api-v2/01-Overview.md) instead. [Read more](../docs/rest-api/15-Incident-Creation-API.md) about the synchronous Incident Creation API.
+> The REST API should not be used to create incidents originating from monitoring systems or other automated tools - for that, use the [Events API](../docs/events-API-v2/01-Overview.md) instead. [Read more](../docs/REST-API/15-Incident-Creation-API.md) about the synchronous Incident Creation API.
 
-Ready to dive in? Read the [REST API Overview](../docs/rest-api/01-Overview.md) to get started and consult the [API Reference](/api-reference/) for comprehensive details about each endpoint and to try it out right from the documentation.
+Ready to dive in? Read the [REST API Overview](../docs/REST-API/01-Overview.md) to get started and consult the [API Reference](/api-reference/) for comprehensive details about each endpoint and to try it out right from the documentation.
 
 ## Events API
-The Events APIs, [v2](../docs/events-api-v2/01-Overview.md) and [v1](../docs/events-api-v1/01-Overview.md) are asynchronous APIs for connecting your systems to PagerDuty via various monitoring tools. Through the Events APIs, events — which represent occurrences in the services managed by an account — are sent to PagerDuty to be processed.
+The Events APIs, [v2](../docs/events-API-v2/01-Overview.md) and [v1](../docs/events-API-v1/01-Overview.md) are asynchronous APIs for connecting your systems to PagerDuty via various monitoring tools. Through the Events APIs, events — which represent occurrences in the services managed by an account — are sent to PagerDuty to be processed.
 
 If you're looking to leverage PagerDuty's Event Management features to turn data gathered from monitoring tools into actionable incidents, the Events APIs are the gateway to doing so.
 
