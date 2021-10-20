@@ -14,7 +14,7 @@ Since monitoring systems emit events, the Events API is based around accepting e
 
 The same event-based API can also be used to integrate a PagerDuty service with ticketing systems and various other software tools.
 
-To accomplish customized integrations with PagerDuty, you may be interested in [building an app or integration with PagerDuty](../../docs/app-integration-development/03-Register-An-App.md)
+To accomplish customized integrations with PagerDuty, you may be interested in [building an app or integration with PagerDuty](../../docs/app-integration-development/03-Register-an-App.md)
 
 ## Getting Started
 

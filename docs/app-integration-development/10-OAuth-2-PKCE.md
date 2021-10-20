@@ -4,7 +4,7 @@ tags: [app-integration-development]
 
 # OAuth 2.0: PKCE Flow
 
-<Link to="/docs/app-integration-development/register-an-app/">[Create an app](../../docs/app-integration-development/03-Register-An-App.md) to get access to OAuth 2.0 credentials and access PagerDuty's REST API on behalf of a user.
+[Create an app](../../docs/app-integration-development/03-Register-an-App.md) to get access to OAuth 2.0 credentials and access PagerDuty's REST API on behalf of a user.
 
 PKCE (Proof Key for Credential Exchange) is recommended for all Single Page Apps and mobile apps and can also be used with a server side flow. PagerDuty also supports OAuth 2.0’s [Authorization Code Grant](https://oauth.net/2/grant-types/authorization-code/) with [PKCE](https://oauth.net/2/pkce/) extension flow for all third-party applications.
 

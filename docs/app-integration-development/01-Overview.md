@@ -23,7 +23,6 @@ Apps are built by PagerDuty, our partners, our customers, system integrators, an
 
 ### Getting Started
 1. Not a PagerDuty customer? [Sign up for a developer account to get access to PagerDuty](https://developer.pagerduty.com/sign-up/).
-1. [Register your app](../../docs/app-integration-development/03-Register-An-App.md)
+1. [Register your app](../../docs/app-integration-development/03-Register-an-App.md)
 1. [Add functionality to your app](../../docs/app-integration-development/04-App-Functionality.md)
 1. [Publish an app (completely optional)](../../docs/app-integration-development/11-Publish-Your-App.md)
-

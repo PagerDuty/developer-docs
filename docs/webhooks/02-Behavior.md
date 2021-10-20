@@ -73,7 +73,7 @@ We send a client TLS certificate with webhooks on request. You can use this to v
 PagerDuty's [v3 webhooks](../../docs/webhooks/Webhooks-v3-Overview.md) are sent with a signature the destination server can use to verify that the event came from the PagerDuty platform and not a third party or malicious system.  It is _strongly recommended_ that webhook consumers verify these signatures before processing each event.
 <br/>
 
-[Learn how to verify a PagerDuty webhook signature](../..//docs/webhooks/Webhook-Signatures.md)
+[Learn how to verify a PagerDuty webhook signature](../../docs/webhooks/Webhook-Signatures.md)
 
 ### IP Safelists
 

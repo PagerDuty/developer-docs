@@ -38,7 +38,7 @@ Congratulations! OAuth 2.0 is successfully configured for the app. Now you can m
 
 ## Implementing OAuth / Choosing An OAuth Flow
 
-There two options for implementing PagerDuty OAuth in your app. [PKCE (Proof Key for Code Exchange](../../docs/app-integration-development/10-AUuth-2-PKCE.md) is recommended and should work for all apps. The [Authorization Code Grant](../../docs/app-integration-development/OAuth-2-Auth-Code-Grant.md) Flow is also supported, but is only recommended for server-side applications where you have control over the entire environment.
+There two options for implementing PagerDuty OAuth in your app. [PKCE (Proof Key for Code Exchange](../../docs/app-integration-development/10-OAuth-2-PKCE.md) is recommended and should work for all apps. The [Authorization Code Grant](../../docs/app-integration-development/09-OAuth-2-Auth-Code-Grant.md) Flow is also supported, but is only recommended for server-side applications where you have control over the entire environment.
 
 
 | Choose A Flow For Your App:   |      Server-side App*      |  Client-side App** |
@@ -52,5 +52,4 @@ There two options for implementing PagerDuty OAuth in your app. [PKCE (Proof Key
 **Server-side App* - an app running on a server which can securely store secrets
 
 ## Removing OAuth 2.0 Functionality
-See [Removing Functionality From Your App](../..//docs/app-integration-development/04-Functionality.md#removing-functionality-from-your-app)
-
+See [Removing Functionality From Your App](../../docs/app-integration-development/04-App-Functionality.md#removing-functionality-from-your-app)
