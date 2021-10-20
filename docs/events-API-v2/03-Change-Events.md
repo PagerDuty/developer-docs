@@ -1,5 +1,5 @@
 ---
-tags: [events-api-v2]
+tags: [events-API-v2]
 ---
 
 # Send a Change Event
@@ -51,7 +51,7 @@ PagerDuty will process Change Events when they are received and route them to th
 
 ## Context Properties
 
-These properties can be used to attach informational assets to the incident record. Each element of these arrays is an [object.](../../docs/rest-api/06-Types.md#object)
+These properties can be used to attach informational assets to the incident record. Each element of these arrays is an [object.](../../docs/REST-API/06-Types.md#object)
 Currently, the Change Events API only supports `links` as a custom property.
 
 ### The `links` Property
@@ -66,7 +66,7 @@ Name   | Required | Description
 
 ## Responses and Limits
 
-See the [Events API v2 Overview](../../docs/events-api-v2/01-Overview.md#response-codes--retry-logic) for response codes and limits.
+See the [Events API v2 Overview](../../docs/events-API-v2/01-Overview.md#response-codes--retry-logic) for response codes and limits.
 
 
 ## Data Retention
@@ -75,6 +75,6 @@ PagerDuty will only keep the last 90 days of Change Events, as per our data rete
 
 ## Try it Out
 
-The Events API v2 requires a `routing_key`. You can [create an Events API v2 integration on any PagerDuty service](https://support.pagerduty.com/docs/services-and-integrations#section-events-api-v2) in order to get a routing key that will route an event to that service. Note that the same Integration Key can be used to send both alert and change events.
+The Events API v2 requires a `routing_key`. You can [create an Events API v2 integration on any PagerDuty service](https://support.pagerduty.com/docs/services-and-integrations#section-events-API-v2) in order to get a routing key that will route an event to that service. Note that the same Integration Key can be used to send both alert and change events.
 
 [Try it out here](/send-event-form/)

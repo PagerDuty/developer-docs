@@ -4,7 +4,7 @@ tags: [rest-api]
 
 # Includes
 
-Depending on your client's needs, you may want to have all of a resource's information available in the response of a related resource. Instead of just receiving the [references](../../docs/rest-api/11-References.md) (an abbreviated form of the related resource), including a type of resource will make all resources of that type contain their full set of fields in the response.
+Depending on your client's needs, you may want to have all of a resource's information available in the response of a related resource. Instead of just receiving the [references](../../docs/REST-API/11-References.md) (an abbreviated form of the related resource), including a type of resource will make all resources of that type contain their full set of fields in the response.
 
 Includes are specified with the `include[]` parameter. The values allowed in an `include[]` parameter vary from endpoint to endpoint, but will always be the pluralized type of a resource or the pluralized name of a resource field representing the relationship between resources.
 
@@ -17,7 +17,7 @@ Includes are specified with the `include[]` parameter. The values allowed in an 
 ### Example
 
 In the below example, the `/incidents` API is accessed with and without including `services`.
-Note how including `services` causes a full `Service` [schema](../../docs/rest-api/10-Resource-Schemas.md) (with type `service`) to be displayed in the `service` field of the incident, while without the `include[]` the `service` field contains a `ServiceReference` schema (with type `service_reference`).
+Note how including `services` causes a full `Service` [schema](../../docs/REST-API/10-Resource-Schemas.md) (with type `service`) to be displayed in the `service` field of the incident, while without the `include[]` the `service` field contains a `ServiceReference` schema (with type `service_reference`).
 
 <!--
 type: tab

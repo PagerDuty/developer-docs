@@ -16,7 +16,7 @@ Event rules are used to configure what happens to an event that is sent to Pager
 
 All requests should be made to the `/event_rules` endpoint and must specify the following headers:
 
-  * **Authorization**: All REST API calls require [Authentication](../../docs/rest-api/02-Authentication.md). In order to make successful requests to the API, you must provide a valid form of authorization.
+  * **Authorization**: All REST API calls require [Authentication](../../docs/REST-API/02-Authentication.md). In order to make successful requests to the API, you must provide a valid form of authorization.
   * **Content-Type:** `application/json`
   * **Accept**: `application/vnd.pagerduty+json;version=2`
 

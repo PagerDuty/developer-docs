@@ -32,7 +32,7 @@ https://events.pagerduty.com/generic/2010-04-15/create_event.json
 > ### Note
 > `2010-04-15` is a version identifier. Do not change the URL to today's date, or any other date.
 
-Head on over to [Create Event](../../docs/events-api-v1/02-Trigger-Events.md) to see the full details of the event body format.
+Head on over to [Create Event](../../docs/events-API-v1/02-Trigger-Events.md) to see the full details of the event body format.
 
 <!-- theme:info -->
 > ### Tip
@@ -57,7 +57,7 @@ Submitting subsequent events for the same `incident_key` will result in those ev
 
 Subsequent events for the same `incident_key` will only apply to the open incident if the events are sent via the same `service_key` as the original `trigger` event. Subsequent `acknowledge` or `resolve` events sent via a different `service_key` from the original will be dropped. Incidents created within the PagerDuty web application are inaccessible via the Events API.
 
-If a `trigger` event is sent with no `incident_key`, it will always generate a new incident because the key is a [UUID](../../docs/rest-api/06-Types.md#uuid).
+If a `trigger` event is sent with no `incident_key`, it will always generate a new incident because the key is a [UUID](../../docs/REST-API/06-Types.md#uuid).
 
 ## API Response Codes & Retry Logic
 

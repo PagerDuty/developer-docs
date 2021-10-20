@@ -4,11 +4,11 @@ tags: [rest-api]
 
 # Incident Creation API
 
-The PagerDuty Incident Creation API endpoint is part of [REST API v2](../../docs/rest-api/01-Overview.md) and is usable by third parties. With this API, one can connect to a PagerDuty account and create or edit incidents on that account. This API is not to be used for connecting your monitoring tools to send events to PagerDuty; for that, use the [Events v2](../../docs/events-api-v2/01-Overview.md)
+The PagerDuty Incident Creation API endpoint is part of [REST API v2](../../docs/REST-API/01-Overview.md) and is usable by third parties. With this API, one can connect to a PagerDuty account and create or edit incidents on that account. This API is not to be used for connecting your monitoring tools to send events to PagerDuty; for that, use the [Events v2](../../docs/events-API-v2/01-Overview.md)
 
 ## What and Where
 
-This API is designed around RESTful principles and conforms to the conventions of our other [RESTful API endpoints](../../docs/events-api-v2/05-Endpoints.md).
+This API is designed around RESTful principles and conforms to the conventions of our other [RESTful API endpoints](../../docs/events-API-v2/05-Endpoints.md).
 
 Unlike the Events APIs, the Incident Creation API is **heavily rate limited** on a per-account basis. It’s meant for the creation of events at "human speed" - in response to user action, rather than automated tooling.
 
@@ -18,7 +18,7 @@ The Incident Creation API is analogous to clicking on the **Create Incident** bu
 
 The Incident Creation API can be used to create incidents on a service. In order to create an incident the user must pass a **type** ("incident"), **title**, and the affected **service**. Some request headers must also be specified with the request:
 
-  * **Authorization**: All REST API calls require [Authentication](../../docs/rest-api/02-Authentication.md). In order to make successful requests to the API, you must provide a valid form of authorization.
+  * **Authorization**: All REST API calls require [Authentication](../../docs/REST-API/02-Authentication.md). In order to make successful requests to the API, you must provide a valid form of authorization.
   * **Content-Type:** `application/json`
   * **Accept**: `application/vnd.pagerduty+json;version=2`
   * **From**: The email address of a valid PagerDuty user on the account associated with the auth token.
@@ -147,7 +147,7 @@ title: Escalation Policy Details
 <!-- type: tab-end -->
 
 <!-- theme:warning -->
-> Data accepted by the Incident Creation API and the Events APIs is different. The Events APIs accept arbitrary JSON objects, while the Incident creation API currently only supports string Incident bodies. For added customization of these fields, refer to the [Events v2 documentation](../../docs/events-api-v2/01-Overview.md).
+> Data accepted by the Incident Creation API and the Events APIs is different. The Events APIs accept arbitrary JSON objects, while the Incident creation API currently only supports string Incident bodies. For added customization of these fields, refer to the [Events v2 documentation](../../docs/events-API-v2/01-Overview.md).
 </Alert>
 
 ## Use Case Examples

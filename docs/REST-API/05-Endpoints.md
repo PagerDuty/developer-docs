@@ -8,7 +8,7 @@ Within each resource, several types of endpoints are provided to accomplish diff
 
 ### /resources (index)
 
-Index endpoints will return a collection of the given type of resource, optionally [filtered](../../docs/rest-api/07-Filtering.md) and [sorted](../../docs/rest-api/08-Sorting.md) by parameters you provide.
+Index endpoints will return a collection of the given type of resource, optionally [filtered](../../docs/REST-API/07-Filtering.md) and [sorted](../../docs/REST-API/08-Sorting.md) by parameters you provide.
 
 The response to an index endpoint always contains a key with the plural name of the endpoint and a corresponding array of resource objects matching the query provided.
 
@@ -81,11 +81,11 @@ Delete endpoints will cause the specified resource to be removed from the accoun
 
 However, the `id` of the resource deleted, in combination with its `type`, still serve to uniquely identify the deleted resource. No resources of the same `type` will have the same `id` in the future.
 
-In addition, deleted resources may still be referenced by other resources. In these cases, the deleted resource will always be shown as a <Link to="/docs/rest-api-v2/references/">resource reference</Link>.
+In addition, deleted resources may still be referenced by other resources. In these cases, the deleted resource will always be shown as a <Link to="/docs/REST-API-v2/references/">resource reference</Link>.
 
 A `204 No content` response code is returned to a successful `delete` request.
 
-A `4xx` response code is sent if it was not possible to delete the resource. The response body will contain <Link to="/docs/rest-api-v2/errors/">more specific errors</Link> about why the delete request failed.
+A `4xx` response code is sent if it was not possible to delete the resource. The response body will contain <Link to="/docs/REST-API-v2/errors/">more specific errors</Link> about why the delete request failed.
 
 ### POST /resources/:id/{verb} (verb)
 

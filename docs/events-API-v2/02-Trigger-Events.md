@@ -1,5 +1,5 @@
 ---
-tags: [events-api-v2]
+tags: [events-API-v2]
 ---
 
 # Send an Alert Event
@@ -36,7 +36,7 @@ Submitting subsequent events with the same `dedup_key` will result in those even
 
 Subsequent events for the same `dedup_key` will only apply to the open alert if the events are sent via the same `routing_key` as the original trigger event. Subsequent acknowledge or resolve events sent via a different `routing_key` from the original will be dropped.
 
-A trigger event sent without a `dedup_key` will always generate a new alert because the automatically generated `dedup_key` will be a unique [UUID](../../docs/rest-api/06-Types.md#uuid).
+A trigger event sent without a `dedup_key` will always generate a new alert because the automatically generated `dedup_key` will be a unique [UUID](../../docs/REST-API/06-Types.md#uuid).
 
 Alerts can be further grouped into Incidents, for centralizing incident response and context. For more information on the way events, alerts, and incidents interact, please see [this knowledge base article](https://support.pagerduty.com/docs/alerts).
 
@@ -130,11 +130,11 @@ title: Resolve
 
 ### Responses and Limits
 
-See the [Events API v2 Overview page](../../docs/events-api-v2/01-Overview.md#response-codes--retry-logic) for response codes and limits.
+See the [Events API v2 Overview page](../../docs/events-API-v2/01-Overview.md#response-codes--retry-logic) for response codes and limits.
 
 ### Context Properties
 
-These properties can be used to attach informational assets to the incident record. Each element of these arrays is an [object](../../docs/rest-api/06-Types.md#object).
+These properties can be used to attach informational assets to the incident record. Each element of these arrays is an [object](../../docs/REST-API/06-Types.md#object).
 
 #### The `images` Property
 
@@ -157,6 +157,6 @@ This property is used to attach text links to the incident. Each object in the l
 
 ## Try it Out
 
-The Events API v2 requires a `routing_key`. You can [create an Events API v2 integration on any PagerDuty service](https://support.pagerduty.com/docs/services-and-integrations#section-events-api-v2) in order to get a routing key that will route an event to that service. You can also use an integration key from a [ruleset](https://support.pagerduty.com/docs/rulesets#section-global-rulesets) to send alert events.
+The Events API v2 requires a `routing_key`. You can [create an Events API v2 integration on any PagerDuty service](https://support.pagerduty.com/docs/services-and-integrations#section-events-API-v2) in order to get a routing key that will route an event to that service. You can also use an integration key from a [ruleset](https://support.pagerduty.com/docs/rulesets#section-global-rulesets) to send alert events.
 
 [Try it out here](/send-event-form/)
