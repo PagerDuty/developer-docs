@@ -81,11 +81,11 @@ Delete endpoints will cause the specified resource to be removed from the accoun
 
 However, the `id` of the resource deleted, in combination with its `type`, still serve to uniquely identify the deleted resource. No resources of the same `type` will have the same `id` in the future.
 
-In addition, deleted resources may still be referenced by other resources. In these cases, the deleted resource will always be shown as a <Link to="/docs/REST-API-v2/references/">resource reference</Link>.
+In addition, deleted resources may still be referenced by other resources. In these cases, the deleted resource will always be shown as a [resource reference](../../docs/REST-API-v2/11-References.md).
 
 A `204 No content` response code is returned to a successful `delete` request.
 
-A `4xx` response code is sent if it was not possible to delete the resource. The response body will contain <Link to="/docs/REST-API-v2/errors/">more specific errors</Link> about why the delete request failed.
+A `4xx` response code is sent if it was not possible to delete the resource. The response body will contain [more specific errors](../../docs/REST-API/14-Errors.md) about why the delete request failed.
 
 ### POST /resources/:id/{verb} (verb)
 
@@ -94,4 +94,3 @@ Verb endpoints exist where an action needs to be carried out on a resource that 
 The response follows the same format as the related `show` endpoint (above), representing the resource's new state after the action has been applied.
 
 Consult the reference documentation for specifics on any verb endpoints.
-

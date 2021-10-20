@@ -65,7 +65,7 @@ Example: `PD.fail(“Failed to parse event”)`
 
 
 ### The PagerDuty Payload
-The PagerDuty change event payload is fairly simple. It is a JSON object in the same form as <Link to="/docs/events-API-v2/send-change-events">accepted by Events API v2</Link>, with the exception that `routing_key` is not required or needed in the payload.
+The PagerDuty change event payload is fairly simple. It is a JSON object in the same form as [accepted by Events API v2](../../docs/events-API-v2/02-Trigger-Events.md), with the exception that `routing_key` is not required or needed in the payload.
 
 
 <!-- theme:info -->
@@ -153,7 +153,7 @@ var changeEvent = {
     }
   },
   links: []
- 
+
 };
 
 if (webhook.caption.text.indexOf('cute') > -1) {
@@ -165,4 +165,3 @@ changeEvent.links.push({
 
 PD.emitChangeEvents([changeEvent]);
 ```
-

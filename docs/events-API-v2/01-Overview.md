@@ -26,7 +26,7 @@ Previously, the Events API was used to create PagerDuty incidents from ticketing
 ### Alert Events
 
 * Alert events create incidents on a service in PagerDuty. The incident will be assigned to the person on-call. This will generate a notification (phone call, SMS, email, or mobile push notification dependng on the on-call responder's preferences).
-* If an alert already exists for a problem, it can be grouped into a single incident (see <Link to="/docs/events-API-v2/trigger-events/#alert-de-duplication">Alert De-Duplication</Link>)
+* If an alert already exists for a problem, it can be grouped into a single incident (see [Alert De-Duplication](../../docs/events-API-v2/02-Trigger-Events.md#alert-de-duplication))
 
 
 [Try it out here](https://developer.pagerduty.com/api-reference/reference/events-v2/openapiv3.json/paths/~1enqueue/post)
