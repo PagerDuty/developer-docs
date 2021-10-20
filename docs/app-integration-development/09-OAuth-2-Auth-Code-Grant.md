@@ -9,7 +9,7 @@ tags: [app-integration-development]
 > A client_secret should be treated as a password or private_key and not be stored in public code.
 > If you're working on an a mobile app or in-browser app, please use the [PKCE flow](../../docs/app-integration-development/10-OAuth-2-PKCE.md).
 
-<Link to="/docs/app-integration-development/register-an-app/">Create an app</Link> to get access to OAuth 2.0 credentials.
+[Create an app](../../docs/app-integration-development/03-Register-an-App.md) to get access to OAuth 2.0 credentials.
 
 PagerDuty supports OAuth 2.0’s [Authorization Code Grant](https://tools.ietf.org/html/rfc6749#section-4.1) flow for third-party applications to obtain access tokens from PagerDuty and utilizes the following endpoints:
 

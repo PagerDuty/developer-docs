@@ -6,7 +6,7 @@ tags: [app-integration-development]
 
 All PagerDuty accounts have access to developer tools. Developer accounts are meant for those without access to a paid PagerDuty account.  [Sign up for a developer account here.](/sign-up/)
 
-If you already have access to a PagerDuty account, [learn how to get started here.](../../docs/app-integration-development/03-Register-An-App.md)
+If you already have access to a PagerDuty account, [learn how to get started here.](../../docs/app-integration-development/03-Register-an-App.md)
 
 ### Frequently Asked Questions
 

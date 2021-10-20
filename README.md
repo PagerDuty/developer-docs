@@ -11,10 +11,12 @@ This repo contains the docs that are hosted at: [developer.pagerduty.com/docs](h
 This repository has a staging environment so you can see the changes before pushing them up to our production website. If you'd like to see the changes there first, simply click the "Buildkite" step in your Pull Request and unblock the deploy step.
 
 ### Ownership
-These docs are owned by the #dev-infra team and they will review and deploy any changes made- simply ask them via Slack when you open a pull request.
 
-## Markdown 
-The docs are written in simple markdown format with some flavour on top that [Stoplight](stoplight.io) provides to us. 
+These docs are owned by the #dev-foundations team and they will review and deploy any changes made- simply ask them via Slack when you open a pull request.
+
+
+## Markdown
+The docs are written in simple markdown format with some flavour on top that [Stoplight](stoplight.io) provides to us.
 
   - [Markdown Formatting](https://www.markdownguide.org/basic-syntax/)
   - [Stoplight Markdown]( https://meta.stoplight.io/docs/studio/docs/Documentation/03a-stoplight-flavored-markdown.md)

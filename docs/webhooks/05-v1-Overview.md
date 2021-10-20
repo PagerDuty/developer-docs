@@ -13,7 +13,7 @@ PagerDuty currently supports incident-based webhooks. After adding a webhook URL
 
 <!-- theme: info -->
 ### Upgrade to v2 Webhooks
-> Looking for webhooks on notes, or more details in your webhook payload? Add a new __Generic V2 Webhook__ extension to receive the [v2 webhooks payload](../../docs/webhooks/01-Webhooks-v2-Overview.md).
+> Looking for webhooks on notes, or more details in your webhook payload? Add a new __Generic V2 Webhook__ extension to receive the [v2 webhooks payload](../../docs/webhooks/06-v2-Overview.md).
 
 Webhook recipients receive a payload containing a single `messages` array that may contain multiple `message` elements if webhook firing actions occurred in quick succession. Each `message` in the array consists of four fields:
 

@@ -11,7 +11,7 @@ When you retrieve a collection over the API, the results are returned in portion
 
 ## Classic pagination
 
-Many [index endpoints](../../docs/rest-api/05-Endpoints.md#resources-index) employ the classic pagination approach. Initially, only a certain number of results will be returned at a time. The default is 25. You can override this by passing a `limit` parameter to set the maximum number of results, but cannot exceed 100. Specifying a number for `offset` sets the starting point for the result set, allowing you to fetch subsequent resources that are not in the initial set of results.
+Many [index endpoints](../../docs/REST-API/05-Endpoints.md#resources-index) employ the classic pagination approach. Initially, only a certain number of results will be returned at a time. The default is 25. You can override this by passing a `limit` parameter to set the maximum number of results, but cannot exceed 100. Specifying a number for `offset` sets the starting point for the result set, allowing you to fetch subsequent resources that are not in the initial set of results.
 
 Every response from endpoints employing this pagination approach contains additional fields, as seen in the example below:
 
@@ -32,7 +32,7 @@ The `total` field is `null` by default. This behavior will provide the fastest r
 <!-- theme:warning -->
 > Maximum upper limit of classic pagination
 > The REST API permits retrieving a maximum of 10000 records via pagination. That is to say, the sum of the `offset` and `limit` parameters cannot exceed 10000, or the REST API will respond with status 400.
-> If the `total` parameter is greater than 10000, then not all records in the set can be retrieved. As an alternative, one should constrain the results to under 10000 by [using a filter](../../docs/rest-api/07-Filtering.md) and then adjust the filter to encompass more of the target set to be retrieved.
+> If the `total` parameter is greater than 10000, then not all records in the set can be retrieved. As an alternative, one should constrain the results to under 10000 by [using a filter](../../docs/REST-API/07-Filtering.md) and then adjust the filter to encompass more of the target set to be retrieved.
 
 ## Cursor-based pagination
 

@@ -74,7 +74,7 @@ Example: `PD.fail(“Failed to parse event”)`
 
 
 ### The PagerDuty Payload
-The PagerDuty event payload is fairly simple. It is a JSON object in the same form as <Link to="/docs/events-api-v1/trigger-events/">accepted by Events API v1</Link>.
+The PagerDuty event payload is fairly simple. It is a JSON object in the same form as [accepted by Events API v1](../../docs/events-API-v1/02-Trigger-Events.md).
 
 For convenience, constants are provided for the `event_type` field: `PD.Trigger`, `PD.Acknowledge`, and `PD.Resolve`.
 
@@ -242,4 +242,3 @@ normalized_event.contexts.push({
 
 PD.emitGenericEvents([normalized_event]);
 ```
-

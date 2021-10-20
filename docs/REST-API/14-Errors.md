@@ -35,12 +35,12 @@ The HTTP response can be used to determine if the request was successful, and if
 | 201 | Created | The request was successful and a new resource was created. |
 | 204 | No Content | The request was successful. No content is returned. |
 | 400 | Bad Request | Caller provided invalid arguments. Please review the response for error details. Retrying with the same arguments will *not* work. |
-| 401 | Unauthorized | Caller did not supply credentials or did not provide the correct credentials. See [Authentication](../../docs/rest-api/02-Authentication.md). |
+| 401 | Unauthorized | Caller did not supply credentials or did not provide the correct credentials. See [Authentication](../../docs/REST-API/02-Authentication.md). |
 | 402 | Payment Required | The PagerDuty account does not have access to one or more abilities needed to complete this request. Use the [Account Abilities API](https://api-reference.pagerduty.com/#!/Abilities/get_abilities) to determine which abilities the account supports. |
 | 403 | Forbidden | Caller is not authorized to view the requested resource. |
 | 404 | Not Found | The requested resource was not found. |
 | 408 | Request Timeout | The request took too long to process. Please try again. |
-| 429 | Too Many Requests | The caller is making requests too frequently. Wait a moment before making further requests and make them at a reduced rate. See [Rate Limiting](../../docs/rest-api/04-Rate-Limiting.md). |
+| 429 | Too Many Requests | The caller is making requests too frequently. Wait a moment before making further requests and make them at a reduced rate. See [Rate Limiting](../../docs/REST-API/04-Rate-Limiting.md). |
 | 500 | Internal Server Error | Internal error occurred while processing request, likely due to transient issues. Please try again. **Tip:** We recommend adding retry logic to your client to automatically try your request again later. |
 
 ### PagerDuty Error Codes

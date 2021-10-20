@@ -17,7 +17,7 @@ References will be used to represent relationships between resources. If a resou
 
 ### `id` and `type`
 
-Every PagerDuty resource can be uniquely identified by the combination of its `id` and `type`, ignoring the distinction between a given `type` and the corresponding `type_reference`. The `type` field indicates what kind of resource it is, which is [equivalent to specify its schema](../../docs/rest-api/10-Resource-Schemas.md)
+Every PagerDuty resource can be uniquely identified by the combination of its `id` and `type`, ignoring the distinction between a given `type` and the corresponding `type_reference`. The `type` field indicates what kind of resource it is, which is [equivalent to specify its schema](../../docs/REST-API/10-Resource-Schemas.md)
 
 ### `summary`
 
@@ -25,7 +25,7 @@ The summary field contains a string that provides a brief, human-readable summar
 
 ### `self` and `html_url`
 
-These fields provide the full [API `show` URL](../../docs/rest-api/05-Endpoints.md#resourcesid-show) at which the resource can be accessed in full form, and the full URL at which the resource can be viewed and manipulated in the PagerDuty web application, if applicable.
+These fields provide the full [API `show` URL](../../docs/REST-API/05-Endpoints.md#resourcesid-show) at which the resource can be accessed in full form, and the full URL at which the resource can be viewed and manipulated in the PagerDuty web application, if applicable.
 
 If the resource cannot be accessed directly in the API or in the web application, one or both of these fields may be `null`.
 

@@ -36,7 +36,7 @@ Endpoint                                   |  Permissions Required  | Example Us
 **Resource-level**<br/>Access audit records of changes made to a single resource<br/><br/>`/{resource_type}/{id}/audit/records/` | Any API token that has Read access to the resource | Show records of changes made to Ellen's user profile
 
 ## API Access
-The Audit API is part of PagerDuty's REST API. Please see documentation for the [REST API](../../docs/rest-api/01-Overview.md) for more information about authentication, pagination, rate limiting, etc.
+The Audit API is part of PagerDuty's REST API. Please see documentation for the [REST API](../../docs/REST-API/01-Overview.md) for more information about authentication, pagination, rate limiting, etc.
 
 ## Request Format & Errors
 

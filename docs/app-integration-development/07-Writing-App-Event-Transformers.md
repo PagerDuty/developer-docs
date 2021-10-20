@@ -6,7 +6,7 @@ tags: [app-integration-development]
 
 ### What is an event transformer?
 
-An event transformer is JavaScript code (ES6) used to convert a payload sent to PagerDuty into the [Events API v2](../../docs/events-api-v2/02-Trigger-Events.md) Common Event Format. Event transformers are hosted and executed in PagerDuty.
+An event transformer is JavaScript code (ES6) used to convert a payload sent to PagerDuty into the [Events API v2](../../docs/events-API-v2/02-Trigger-Events.md) Common Event Format. Event transformers are hosted and executed in PagerDuty.
 
 Event transformers are part of [Events Integration](../../docs/app-integration-development/06-Events-Integration.md) app functionality.
 
@@ -86,6 +86,6 @@ Signature: `PD.emitEventsV2([pagerduty_events_v2_object])`
 `PD.emitEventsV2` is used to emit an event or multiple events into the PagerDuty ecosystem
 
 ### PagerDuty Events v2 Object
-The PagerDuty Events v2 object is in the [Events API v2 format](../../docs/events-api-v2/02-Trigger-Events.md).
+The PagerDuty Events v2 object is in the [Events API v2 format](../../docs/events-API-v2/02-Trigger-Events.md).
 
 After applying logic, your transformer should pass a PagerDuty Events v2 object to the `PD.emitEventsV2` method (see section above).
