@@ -2,7 +2,7 @@ steps:
   - block: "Deploy $BUILDKITE_COMMIT (PR: $BUILDKITE_PULL_REQUEST) to Staging"
 
   - label: "Pushing to articles to staging"
-    commands: 
+    commands:
       - "npm install @stoplight/cli@5"
       - "npx @stoplight/cli@5 push --ci-token $SECRET_STOPLIGHT_DEVELOPER_DOCS_CI_TOKEN_STAGING"
     plugins:
@@ -16,4 +16,4 @@ pd-meta: # Used by Buildkite Pipeline Manager (https://github.com/PagerDuty/buil
   name: "Developer Docs Staging"
   teams:
     - "All"
-    - "Developer Infrastructure"
+    - "Developer Foundations"
