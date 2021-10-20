@@ -15,7 +15,7 @@ The Events API v2 can ingest multiple types of events. Each event type is descri
 Event Type       | Description | Example Events | Notifications can be sent? |
 ---------------- | ----------- | -------------- | ---------------------------|
 [Alert](../../docs/events-API-v2/02-Trigger-Events.md)| A problem in a machine monitored system. <br/> <br/> Follow up events can be sent to acknowledge or resolve an existing alert. | High error rate <br/><br/>CPU usage exceeded limit <br/><br/>Deployment failed | Yes |
-[Change](../../docs/events-API-v2/03-Send-Change-Events.md)| A change in a system that does not represent a problem. | Pull request merged<br/><br/>Secret successfully rotated<br/><br/>Configuration update applied | No |
+[Change](../../docs/events-API-v2/03-Change-Events.md)| A change in a system that does not represent a problem. | Pull request merged<br/><br/>Secret successfully rotated<br/><br/>Configuration update applied | No |
 
 *Note on ITSM and Ticketing:*
 
@@ -49,9 +49,9 @@ To quickly start using the Events API v2 with PagerDuty services:
 1. [Create an integration on any PagerDuty service](https://support.pagerduty.com/docs/services-and-integrations#section-events-API-v2).
 2. Select **Events API v2** as the Integration Type
 3. Include the integration key for your new integration, as a `routing_key` in the event payload.
-4. Send a [change-event](../../docs/events-API-v2/03-Send-Change-Events.md) or [alert event](../../docs/events-API-v2/02-Trigger-Events.md) payload to the appropriate endpoint.
+4. Send a [change-event](../../docs/events-API-v2/03-Change-Events.md) or [alert event](../../docs/events-API-v2/02-Trigger-Events.md) payload to the appropriate endpoint.
 
-[View PagerDuty API client libraries.](../../docs/tools-libraries/01-Client-Libraries.md)
+[View PagerDuty API client libraries.](../../docs/tool-libraries/01-Client-Libraries.md)
 
 Service integration keys can be used to send any type of event. Currently, change events cannot be sent to ruleset integration keys (these keys begin with the character `R`).
 
@@ -104,6 +104,3 @@ Custom Details | Free-form details from the event                               
 For more information about PD-CEF and how it is used in PagerDuty, please see [this knowledge base article](https://support.pagerduty.com/docs/pd-cef).
 
 As a PagerDuty monitoring partner, adapting the new PD-CEF format provides your customers with a more streamlined and useful user experience within PagerDuty. Customers can see the most important details about an event front-and-center during initial triage, enabling them to rapidly determine whether a problem needs further investigation within the monitoring system, or whether action can immediately be taken. If you are a monitoring partner and interested in converting your integration to use PD-CEF, please email us at <a href="mailto:partners@pagerduty.com">partners@pagerduty.com</a>.
-
-
-

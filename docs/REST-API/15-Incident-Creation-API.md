@@ -8,7 +8,7 @@ The PagerDuty Incident Creation API endpoint is part of [REST API v2](../../docs
 
 ## What and Where
 
-This API is designed around RESTful principles and conforms to the conventions of our other [RESTful API endpoints](../../docs/events-API-v2/05-Endpoints.md).
+This API is designed around RESTful principles and conforms to the conventions of our other [RESTful API endpoints](../../docs/REST-API/05-Endpoints.md).
 
 Unlike the Events APIs, the Incident Creation API is **heavily rate limited** on a per-account basis. It’s meant for the creation of events at "human speed" - in response to user action, rather than automated tooling.
 
@@ -192,4 +192,3 @@ title: Escalation Policy Details
   }
 }
 ```
-

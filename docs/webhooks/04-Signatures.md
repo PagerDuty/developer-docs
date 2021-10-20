@@ -8,7 +8,7 @@ tags: [webhooks]
 ### V3 Webhooks are in Early Access
 > Webhook signatures are part of V3 webhooks which are still under development.  The API specification is subject to change until they are generally released.
 
-PagerDuty's [v3 webhooks](../../docs/webhooks/Webhooks-v3-Overview.md) are sent with a signature the destination server can use to verify that the event came from the PagerDuty platform and not a third party or malicious system.  It is _strongly recommended_ that webhook consumers verify these signatures before processing each event.
+PagerDuty's [v3 webhooks](../../docs/webhooks/01-v3-Overview.md) are sent with a signature the destination server can use to verify that the event came from the PagerDuty platform and not a third party or malicious system.  It is _strongly recommended_ that webhook consumers verify these signatures before processing each event.
 
 ## Obtaining the Secret
 
@@ -52,7 +52,7 @@ If at least one of the signatures matches, the webhook should be considered a tr
 <!-- theme: info -->
 > Note: When comparing signatures, be sure to use a constant-time string comparison to protect against timing attacks.
 
-## Examples of webhooks signing 
+## Examples of webhooks signing
 
 <!--
 type: tab
@@ -74,7 +74,7 @@ class PagerDutyVerifier:
     signature = hmac.new(byte_key, payload.encode(), hashlib.sha256).hexdigest()
     signatureWithVersion = self.version + "=" + signature
     signatureList = signatures.split(",")
-    
+
     if signatureWithVersion in signatureList:
       return True
     else:
@@ -94,7 +94,7 @@ title: JavaScript
 const crypto = require('crypto')
 module.exports = class PagerDutyVerifier {
 	constructor(key, version) {
-		this.key = key 
+		this.key = key
 		this.version = version
 	}
 
@@ -103,7 +103,7 @@ module.exports = class PagerDutyVerifier {
 	    	.createHmac('sha256', key)
 	    	.update(payload)
 	    	.digest('hex')
-	    
+
     var signatureWithVersion = version + "=" + signature
     var signatureList =  signatures.split(",")
 

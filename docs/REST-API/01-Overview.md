@@ -30,7 +30,7 @@ The following headers should be set as applicable when making HTTP requests to t
 * `Accept`: to optionally specify a different API version than the version of the API token; see [Versioning](../../docs/REST-API/03-Versioning.md).
 * `Authorization`: required for all requests; see [Authentication](../../docs/REST-API/02-Authentication).
 * `Content-Type`: required when making a `POST` or `PUT` request. The MIME media type should be `application/json`.
-* `From`: the email address of the user to record as having taken the action. Should be used when [creating a user](https://api-reference.pagerduty.com/#!/Users/post_users) or when performing [Incident Creation](../../docs/REST-API/15-Incident-Create-API.md) in the REST API.
+* `From`: the email address of the user to record as having taken the action. Should be used when [creating a user](https://api-reference.pagerduty.com/#!/Users/post_users) or when performing [Incident Creation](../../docs/REST-API/15-Incident-Creation-API.md) in the REST API.
 
 ### TLS
 Connecting to the PagerDuty REST API requires using [TLS (Transport Layer Security)](https://en.wikipedia.org/wiki/Transport_Layer_Security).

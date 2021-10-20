@@ -66,14 +66,14 @@ PagerDuty supports multiple methods for securing your webhooks.
 We send a client TLS certificate with webhooks on request. You can use this to verify that the webhook was sent from PagerDuty. If you specify an HTTPS endpoint, we will also verify your server certificate before sending webhooks to that endpoint.
 <br/>
 
-[Learn how to secure PagerDuty's webhooks using TLS](../../docs/webhooks/Webhooks-Mutual-TLS.md")
+[Learn how to secure PagerDuty's webhooks using TLS](../../docs/webhooks/03-Mutual-TLS.md")
 
 ### Webhook Signature Validation
 
-PagerDuty's [v3 webhooks](../../docs/webhooks/Webhooks-v3-Overview.md) are sent with a signature the destination server can use to verify that the event came from the PagerDuty platform and not a third party or malicious system.  It is _strongly recommended_ that webhook consumers verify these signatures before processing each event.
+PagerDuty's [v3 webhooks](../../docs/webhooks/01-v3-Overview.md) are sent with a signature the destination server can use to verify that the event came from the PagerDuty platform and not a third party or malicious system.  It is _strongly recommended_ that webhook consumers verify these signatures before processing each event.
 <br/>
 
-[Learn how to verify a PagerDuty webhook signature](../../docs/webhooks/Webhook-Signatures.md)
+[Learn how to verify a PagerDuty webhook signature](../../docs/webhooks/04-Signatures.md)
 
 ### IP Safelists
 
@@ -99,7 +99,7 @@ Customers wishing to de-duplicate webhooks may do so by using the `X-Webhook-Id`
 
 ## Batching
 
-PagerDuty does not currently send batches that contain more than one webhook. [V1](../../docs/webhooks/Webhooks-v1-Overview.md) and [V2 webhook payloads](../../docs/webhooks/Webhooks-v2-Overview.md) contain a `messages` array, however, each event should only contain a single webhook event. [V3 webhook payloads](../../docs/webhooks/Webhooks-v2-Overview.md) will only ever contain a single webhook event by design.
+PagerDuty does not currently send batches that contain more than one webhook. [V1](../../docs/webhooks/05-v1-Overview.md) and [V2 webhook payloads](../../docs/webhooks/06-v2-Overview.md) contain a `messages` array, however, each event should only contain a single webhook event. [V3 webhook payloads](../../docs/webhooks/01-v3-Overview.md) will only ever contain a single webhook event by design.
 
 ## Processing Webhooks
 
