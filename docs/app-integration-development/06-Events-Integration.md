@@ -116,7 +116,7 @@ Use an Event Transformer when a technical service you are connecting to PagerDut
 
 ![Screenshot of text box with Events API endpoint](../../assets/images/events-api-endpoint.png)
 
-7. Event Transformers support JavaScript (ES6). Use the editor to modify the template to transform any webhook payload into the >Events API v2 format. <br/>[View the detailed guide for writing an app Event Transformer.](../../docs/app-integration-development/07-App-Event-Transforms)
+7. Event Transformers support JavaScript (ES6). Use the editor to modify the template to transform any webhook payload into the >Events API v2 format. <br/>[View the detailed guide for writing an app Event Transformer.](../../docs/app-integration-development/07-Writing-App-Event-Transformers.md)
 
 **Note:**
 * The pre-populated template creates an event with the raw body of the POST request payload in custom details.
@@ -137,4 +137,3 @@ Before submitting, make sure your integration is able to trigger, acknowledge, o
 ![Screenshot of integration key and endpoint for test events](../../assets/images/test-service-details.png)
 
 3. Click **View** to go to the service page and view incidents or check your notifications to see if they look as you expect.
-
