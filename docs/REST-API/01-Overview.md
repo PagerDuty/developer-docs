@@ -7,7 +7,7 @@ tags: [rest-api]
 The REST API provides a way for third parties to connect to a PagerDuty account and access or manipulate configuration data on that account. It is not for connecting your monitoring tools to send events to PagerDuty; for that, use the [Events API](../../docs/events-API-v2/01-Overview.md).
 
 ### What and Where
-This API is designed around RESTful principles. It's based on managing [resources](../../docs/REST-API/10-Resource-Schema.md) via the HTTP methods `GET`, `POST`, `PUT`, and `DELETE`.
+This API is designed around RESTful principles. It's based on managing [resources](../../docs/REST-API/10-Resource-Schemas.md) via the HTTP methods `GET`, `POST`, `PUT`, and `DELETE`.
 
 All requests to the REST API are made to the same host:
 
