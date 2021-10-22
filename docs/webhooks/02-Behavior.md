@@ -66,7 +66,7 @@ PagerDuty supports multiple methods for securing your webhooks.
 We send a client TLS certificate with webhooks on request. You can use this to verify that the webhook was sent from PagerDuty. If you specify an HTTPS endpoint, we will also verify your server certificate before sending webhooks to that endpoint.
 <br/>
 
-[Learn how to secure PagerDuty's webhooks using TLS](../../docs/webhooks/03-Mutual-TLS.md")
+[Learn how to secure PagerDuty's webhooks using TLS](../../docs/webhooks/03-Mutual-TLS.md)
 
 ### Webhook Signature Validation
 
