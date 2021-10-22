@@ -62,27 +62,28 @@ title: Python
 ```python
 import hmac
 import hashlib
-import binascii
-
-class PagerDutyVerifier:
-  def __init__(self, key, version):
-    self.key = key
-    self.version = version
-
-  def verify(self, payload, signatures):
-    byte_key = self.key.encode('ASCII')
-    signature = hmac.new(byte_key, payload.encode(), hashlib.sha256).hexdigest()
-    signatureWithVersion = self.version + "=" + signature
-    signatureList = signatures.split(",")
-
-    if signatureWithVersion in signatureList:
-      return True
-    else:
-      return False
-
-
+​
+​class PagerDutyVerifier:
+    def __init__(self, key, version):
+        self.key = key
+        self.version = version
+​
+    def verify(self, payload, signatures):
+        comparisons = []
+        byte_key = self.key.encode("ASCII")
+        signature = hmac.new(byte_key, payload.encode(), hashlib.sha256).hexdigest()
+        signatureWithVersion = self.version + "=" + signature
+        signatureList = signatures.split(",")
+​
+        for _signature in signatureList:
+            comparisons.append(hmac.compare_digest(signatureWithVersion, _signature))
+​
+        return any(comparisons)
+​
+​
 pagerdutyVerifier = PagerDutyVerifier(key, version)
 pagerdutyVerifier.verify(payload, signatures)
+
 ```
 
 <!--
@@ -119,5 +120,14 @@ var PagerDutyVerifier = require('./pagerduty_verifier.js')
 var verifier = new PagerDutyVerifier(key, version)
 verifier.verify(payload, signatures)
 ```
+
+<!-- type: tab-end -->
+
+<!--
+type: tab
+title: Go
+-->
+
+Our go example can be found in our open-source [go-pagerduty client library](https://github.com/PagerDuty/go-pagerduty/blob/master/webhookv3/webhookv3.go) which also comes with a [sample webhook server](https://github.com/PagerDuty/go-pagerduty/blob/master/examples/webhooks/webhook_server.go) to test signature verification.
 
 <!-- type: tab-end -->
