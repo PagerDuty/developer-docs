@@ -121,8 +121,6 @@ var verifier = new PagerDutyVerifier(key, version)
 verifier.verify(payload, signatures)
 ```
 
-<!-- type: tab-end -->
-
 <!--
 type: tab
 title: Go
