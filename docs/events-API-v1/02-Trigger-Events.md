@@ -75,7 +75,7 @@ title: Trigger Event
 ```
 <!--
 type: tab
-title: Acknowledge EVent
+title: Acknowledge Event
 -->
 
 ```json
