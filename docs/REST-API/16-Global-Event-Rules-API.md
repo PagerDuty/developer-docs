@@ -227,4 +227,4 @@ Create a basic routing rule
 ```
 
 [Event Intelligence]: https://www.pagerduty.com/features/event-intelligence-and-automation/
-[Rulesets API]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1rulesets/post
+[Rulesets API]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODE3Mg-create-a-ruleset

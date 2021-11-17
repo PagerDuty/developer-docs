@@ -51,4 +51,4 @@ The next set of results can be obtained by providing the `next_cursor` value fro
 When a response returns a `null` value for `next_cursor` then the end of the list has been reached.
 
 ### Endpoints supporting cursor-based pagination
-* [/audit/records](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1audit~1records/get)
+* [/audit/records](https://developer.pagerduty.com/api-reference/b3A6Mjc0ODExNA-list-audit-records)

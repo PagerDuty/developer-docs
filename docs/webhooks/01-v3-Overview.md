@@ -6,7 +6,7 @@ tags: [webhooks]
 
 V3 webhooks provide the foundation for the future of PagerDuty webhooks.  When compared with previous versions, they provide additional event types to signal changes to incident priorities and incident responders.  They also provide additional filtering capabilities.
 
-To get started with v3 webhooks, create a _webhook subscription_ using the [Webhook Subscriptions API](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1webhook_subscriptions/post).
+To get started with v3 webhooks, create a _webhook subscription_ using the [Webhook Subscriptions API](https://developer.pagerduty.com/api-reference/b3A6MjkyNDc4NA-create-a-webhook-subscription).
 
 ## Webhook Subscriptions
 V3 webhooks are configured by creating a _webhook subscription_ which contains three main components:
@@ -56,7 +56,7 @@ The `filter` of a webhook subscription determines which events will match and pr
 In the case of incident events, the different filter types will only produce webhooks for the incidents that are associated with the filter object.  For example: a webhook subscription with a service filter would produce webhooks for all incidents belonging to the specified service.
 
 ### More Details
-Please see the full [Webhook Subscriptions API Reference](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1webhook_subscriptions/post) for more details.
+Please see the full [Webhook Subscriptions API Reference](https://developer.pagerduty.com/api-reference/b3A6MjkyNDc4NA-create-a-webhook-subscription) for more details.
 
 ## Webhook Payload
 V3 webhook payloads are based around the concept of [outbound events](#event-types).  V3 webhooks provide a mechanism to deliver these events to your server or application.

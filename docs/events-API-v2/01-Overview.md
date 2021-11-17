@@ -29,7 +29,7 @@ Previously, the Events API was used to create PagerDuty incidents from ticketing
 * If an alert already exists for a problem, it can be grouped into a single incident (see [Alert De-Duplication](../../docs/events-API-v2/02-Trigger-Events.md#alert-de-duplication))
 
 
-[Try it out here](https://developer.pagerduty.com/api-reference/reference/events-v2/openapiv3.json/paths/~1enqueue/post)
+[Try it out here](https://developer.pagerduty.com/api-reference/b3A6Mjc0ODI2Nw-send-an-event-to-pager-duty)
 
 ### Change Events
 
