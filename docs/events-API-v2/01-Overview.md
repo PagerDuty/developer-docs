@@ -40,7 +40,7 @@ Change events provide context to responders when triaging an incident. Currently
 
 [Learn more about utilizing change events in PagerDuty](https://support.pagerduty.com/docs/change-events#view-change-events)
 
-[Try it out here!](https://developer.pagerduty.com/api-reference/reference/events-v2/openapiv3.json/paths/~1change~1enqueue/post)
+[Try it out here!](https://developer.pagerduty.com/api-reference/b3A6Mjc0ODI2Ng-send-change-events-to-the-pager-duty-events-api)
 
 ## Getting Started
 
