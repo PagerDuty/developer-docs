@@ -283,12 +283,12 @@
         {
           "type": "item",
           "title": "Sample Code Disclaimer",
-          "uri": "docs/legal/Developer-Agreement.md"
+          "uri": "docs/legal/Sample-Code-Disclaimer.md"
         },
         {
           "type": "item",
           "title": "PagerDuty Developer Agreement",
-          "uri": "docs/legal/Sample-Code-Disclaimer.md"
+          "uri": "docs/legal/Developer-Agreement.md"
         }
       ]
     }
