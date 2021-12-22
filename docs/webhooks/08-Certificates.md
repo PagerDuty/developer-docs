@@ -38,9 +38,9 @@ PagerDuty webhook certificates are rotated yearly. The next certificate rotation
 * Expires on January 8th, 2023
 * Common Name: _webhooks.pagerduty.com_
 
-#### Intermediate Certificate ([download](https://cacerts.digicert.com/DigiCertTLSRSASHA2562020CA1.crt.pem))
+#### Intermediate Certificate ([download](https://cacerts.digicert.com/DigiCertTLSRSASHA2562020CA1-1.crt.pem))
 
-* Expires on September 23, 2030
+* Expires on April 13, 2031
 * Common Name: _DigiCert TLS RSA SHA256 2020 CA1_
 
 #### Root Certificate ([download](https://cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem))
@@ -56,9 +56,9 @@ PagerDuty webhook certificates are rotated yearly. The next certificate rotation
 * Expires on January 8th, 2023
 * Common Name: _webhooks.eu.pagerduty.com_
 
-#### Intermediate Certificate ([download](https://cacerts.digicert.com/DigiCertTLSRSASHA2562020CA1.crt.pem))
+#### Intermediate Certificate ([download](https://cacerts.digicert.com/DigiCertTLSRSASHA2562020CA1-1.crt.pem))
 
-* Expires on September 23, 2030
+* Expires on April 13, 2031
 * Common Name: _DigiCert TLS RSA SHA256 2020 CA1_
 
 #### Root Certificate ([download](https://cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem))
