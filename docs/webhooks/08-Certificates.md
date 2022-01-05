@@ -10,26 +10,6 @@ It is our recommendation that customers configure their servers to trust the roo
 
 ## Current Certificates
 
-### PagerDuty Webhooks Certificate x.509 ([download](https://developer.pagerduty.com/certificates/2021_webhooks_pagerduty_com.pem))
-
-* Current as of December 8th, 2020
-* Expires on January 8th, 2022
-* Common Name: _webhooks.pagerduty.com_
-
-### Intermediate Certificate ([download](https://cacerts.digicert.com/DigiCertTLSRSASHA2562020CA1.crt.pem))
-
-* Expires on September 23, 2030
-* Common Name: _DigiCert TLS RSA SHA256 2020 CA1_
-
-### Root Certificate ([download](https://cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem))
-
-* Expires on November 10, 2031
-* Common Name: _DigiCert Global Root CA_
-
-## New Certificates
-
-PagerDuty webhook certificates are rotated yearly. The next certificate rotation will occur on January 5th, 2022 for both the US and EU service regions. The new certificates are provided below.
-
 ### US Service Region (webhooks.pagerduty.com)
 
 #### PagerDuty Webhooks Certificate x.509 ([download](https://developer.pagerduty.com/certificates/2022_webhooks_pagerduty_com.pem))
