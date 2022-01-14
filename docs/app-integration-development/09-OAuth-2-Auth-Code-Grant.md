@@ -28,8 +28,8 @@ The following parameters will also be used in your requests or returned in the r
 |`code`|The authorization code issued upon a successful authorization request.|✓||
 |`grant_type`|The OAuth 2.0 grant type. Value must be set to `authorization_code`|✓||
 |`redirect_uri`|Registered with the app when OAuth 2.0 is added. PagerDuty will redirect here after a user grants or denies access to your app.|✓|✓|
-|`response_type`|Specifies the response type based on OAuth 2.0 flow. Value must be set to `code`.||✓|
-|`scope`|Specifies the scope being requested, must match what is configured on the OAuth application.||✓|
+|`response_type`|Specifies the response type based on OAuth 2.0 flow. Value must be set to `code`.| |✓|
+|`scope`|Specifies the scope being requested, must match what is configured on the OAuth application.| |✓|
 |`subdomain`|The subdomain of the user authorizing the app.|||
 
 ## Obtaining an Access Token
