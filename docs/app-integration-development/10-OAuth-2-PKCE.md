@@ -38,7 +38,7 @@ Required Parameters     | Description
 `code_challenge`        | Base64 URL Encoded (without padding) string containing the SHA-256 digested form of the clients one-time random 128 byte verifier (also in Base64URLEncoded form without padding). See Javascript PKCE Example Algorithm below.
 `code_challenge_method` | Specifies that we are using PKCE SHA-256 Signature.<br/> Value must be set to `S256`.
 
-The flow is initiated by sending a GET request to the Authorization Endpoint with query parameters set for `client_id`, `redirect_uri`, `response_type=code` , as well as the PKCE extension fields (`code_challenge` and `code_challenge_method`)
+The flow is initiated by sending a GET request to the Authorization Endpoint with query parameters set for `client_id`, `redirect_uri`, `scope`, `response_type=code`, as well as the PKCE extension fields (`code_challenge` and `code_challenge_method`)
 
 The user will be required to a) login with credentials and b) authorize the permissions requested by the client application.
 ```
