@@ -34,6 +34,7 @@ Required Parameters     | Description
 `client_id`             | An identifier issued when the app is created
 `redirect_uri`          | Registered with the app when OAuth 2.0 is added. PagerDuty will redirect here after a user grants or denies access to your app.
 `response_type`         | Specifies the response type based on OAuth 2.0 flow.<br/> Value must be set to `code`.
+`scope`                 | Specifies the scope being requested, must match what is configured on the OAuth application.
 `code_challenge`        | Base64 URL Encoded (without padding) string containing the SHA-256 digested form of the clients one-time random 128 byte verifier (also in Base64URLEncoded form without padding). See Javascript PKCE Example Algorithm below.
 `code_challenge_method` | Specifies that we are using PKCE SHA-256 Signature.<br/> Value must be set to `S256`.
 
@@ -41,7 +42,7 @@ The flow is initiated by sending a GET request to the Authorization Endpoint wit
 
 The user will be required to a) login with credentials and b) authorize the permissions requested by the client application.
 ```
-GET https://app.pagerduty.com/oauth/authorize?client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&response_type=code&code_challenge_method=S256&code_challenge
+GET https://app.pagerduty.com/oauth/authorize?client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&scope={SCOPE}&response_type=code&code_challenge_method=S256&code_challenge
 ```
 
 ## Obtaining an Access Grant : Leg 2 of 3
@@ -57,7 +58,7 @@ The flow ends without a valid user credential.
 The flow ends with access denied. PagerDuty will redirect to the specified URI with `error` and `error_description` parameters:
 
 ```http
-{REDIRECT_URI}?error=access_denied&error_description=The+resource+owner+or+authorization+server+denied+the+request.&subdomain={ACCOUNT_SUBDOMAIN}
+{REDIRECT_URI}?error=access_denied&error_description=The+resource+owner+or+authorization+server+denied+the+request.
 ```
 
 ### #3 User Logged In and Approves Client Application Permission (Success) ###
@@ -66,7 +67,7 @@ If the user authorizes the client application, PagerDuty will redirect to the sp
 ```
 {REDIRECT_URI}?code={AUTHORIZATION_CODE}&subdomain={ACCOUNT_SUBDOMAIN}
 ```
-The authorization code is valid for 10 minutes.
+The authorization code is valid for 30 seconds.
 
 ## Exchanging Auth Code For Access Token : Leg 3 of 3
 
@@ -83,9 +84,9 @@ Parameter       | Description
 
 To exchange the authorization code for an access token, send a POST request to the Token Endpoint.
 
-The authorization code has a time to live of 10 minutes, and your POST request must be received within that time.
+The authorization code has a time to live of 30 seconds, and your POST request must be received within that time.
 
-Additionally, specify the following query parameters when making the request: `client_id`,  `redirect_uri`, the `code` (authorization code) received from PagerDuty, `grant_type=authorization_code`, and finally the `code_verifier` that was generated to create the code_challenge originally.
+The body of the request should include the following parameters: `client_id`,  `redirect_uri`, the `code` (authorization code) received from PagerDuty, `grant_type=authorization_code`, and finally the `code_verifier` that was generated to create the code_challenge originally. The content-type should be `application/x-form-urlencoded`.
 
 ```
 curl -X POST https://app.pagerduty.com/oauth/token \
@@ -95,6 +96,8 @@ curl -X POST https://app.pagerduty.com/oauth/token \
   -d "code={CODE}"
   -d "code_verifier={CODE_VERIFIER}"
 ```
+
+Note: By default, curl uses a content type of `application/x-form-urlencoded`. 
 
 The access token will be included in a JSON response:
 
