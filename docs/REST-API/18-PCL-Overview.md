@@ -61,18 +61,18 @@ Object field names that do not conform to the identifier description above can b
 
 When a `path` is used in an expression, then it is evaluated to the value at that path in the data context before being used in the expression. If a final path doesn't exist, then `nil` is returned from the expression. The exception to this is the `exists` operation which checks whether or not the path exists in the context.
 
-```
+```json
 {
-  "data" => {
-    "payload" => {
-      "custom_details" => {
-        "system diagnosis" => {
-          "important_field" => "This is an important value",
+  "data": {
+    "payload": {
+      "custom_details": {
+        "system diagnosis": {
+          "important_field": "This is an important value",
         }
       }
     },
-    "headers" => {
-      "from" => ["first", "second", "third", 4, 5]
+    "headers": {
+      "from": ["first", "second", "third", 4, 5]
     }
   }
 }
@@ -400,11 +400,11 @@ Generally, a `path` used in an expression will evaluate to the value of the path
 
 `exists` will still return `true` if the `path` exists even if the value at that path is set to `nil`.
 
-```
+```json
 {
-  "a" => {
-    "b" => nil,
-    "c" => 5
+  "a": {
+    "b": nil,
+    "c": 5
   }
 }
   
