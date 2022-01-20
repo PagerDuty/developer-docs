@@ -24,19 +24,20 @@ The following parameters will also be used in your requests or returned in the r
 |Parameter|Description|Required for token request|Required for authorization request|
 |-|-|:-:|:-:|
 |`client_id`|An identifier issued when the app is created|✓|✓|
-|`client_secret`|A secret issued when the app is created.|✓||
-|`code`|The authorization code issued upon a successful authorization request.|✓||
-|`grant_type`|The OAuth 2.0 grant type. Value must be set to `authorization_code`|✓||
+|`client_secret`|A secret issued when the app is created.|✓| |
+|`code`|The authorization code issued upon a successful authorization request.|✓| |
+|`grant_type`|The OAuth 2.0 grant type. Value must be set to `authorization_code`|✓| |
 |`redirect_uri`|Registered with the app when OAuth 2.0 is added. PagerDuty will redirect here after a user grants or denies access to your app.|✓|✓|
-|`response_type`|Specifies the response type based on OAuth 2.0 flow. Value must be set to `code`.||✓|
-|`subdomain`|The subdomain of the user authorizing the app.|||
+|`response_type`|Specifies the response type based on OAuth 2.0 flow. Value must be set to `code`.| |✓|
+|`scope`|Specifies the scope being requested, must match what is configured on the OAuth application.| |✓|
+|`subdomain`|The subdomain of the user authorizing the app.| | |
 
 ## Obtaining an Access Token
 
-Send a GET request to authorization endpoint with query parameters set for `client_id` and `redirect_uri`, as defined in the app, and `response_type=code`
+Send a GET request to authorization endpoint with query parameters set for `client_id`, `redirect_uri` and `scope`, as defined in the app, and `response_type=code`
 
 ```
-GET https://app.pagerduty.com/oauth/authorize?client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&response_type=code
+GET https://app.pagerduty.com/oauth/authorize?client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&scope={SCOPE}&response_type=code
 ```
 
 ### Authorized Requests
@@ -51,12 +52,12 @@ If the user authorizes the app, PagerDuty will redirect to the specified URI wit
 If the user denies authorization, PagerDuty will redirect to the specified URI with `error` and `error_description` parameters:
 
 ```
-{REDIRECT_URI}?error=access_denied&error_description=The+resource+owner+or+authorization+server+denied+the+request.&subdomain={ACCOUNT_SUBDOMAIN}
+{REDIRECT_URI}?error=access_denied&error_description=The+resource+owner+or+authorization+server+denied+the+request.
 ```
 
 ## Exchanging Authorization Code
 
-To exchange the authorization code for an access token, send a POST request to the token endpoint. The authorization code has a time to live of 10 minutes, and your POST request must be received within that time. Additionally, specify the following query parameters when making the request: `client_id`, `client_secret`, `redirect_uri`, the `code` (authorization code) received from PagerDuty, and `grant_type=authorization_code`.
+To exchange the authorization code for an access token, send a POST request to the token endpoint. The authorization code has a time to live of 30 seconds, and your POST request must be received within that time. The body of the request should include the following parameters: `client_id`, `client_secret`, `redirect_uri`, the `code` (authorization code) received from PagerDuty, and `grant_type=authorization_code`. The content type should be `application/x-form-urlencoded`.
 
 ```
 curl -X POST https://app.pagerduty.com/oauth/token \
@@ -66,6 +67,8 @@ curl -X POST https://app.pagerduty.com/oauth/token \
   -d "redirect_uri={REDIRECT_URI}" \
   -d "code={CODE}"
 ```
+
+Note: By default, curl uses a content type of `application/x-form-urlencoded`. 
 
 The access token will be included in a JSON response:
 
