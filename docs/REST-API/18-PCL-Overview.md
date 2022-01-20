@@ -1,9 +1,9 @@
 # PCL Overview
 
-PCL gives Event Orchestrations the power of boolean expressions more powerful than are available with rulesets. For example, with PCL, you can now define an expression like:
+The PagerDuty Condition Language (PCL) gives Event Orchestrations the power of boolean expressions more powerful than are available with rulesets. For example, with PCL, you can now define an expression like:
 
 ```
-event.summary matches 'prod' and (event.location == 'US' or event.location == 'Canada')
+event.summary matches part 'prod' and (event.location == 'US' or event.location == 'Canada')
 ```
 
 This document will provide an overview of the PCL expression language.
@@ -14,7 +14,7 @@ This document will provide an overview of the PCL expression language.
 
 A PCL expression is made up of a combination of paths, literals, built-in operations, and custom functions. Evaluation of an expression follows the rules of precedence described below. The final PCL expression must evaluate to `true` or `false`. A sub-expression can return a different type of value, such as an integer or string. As long as this non-boolean is used in the proper context, an error will not be returned.
 
-During evaluation, any expression that returns an error will evaluate to `false` in the boolean expression in which it's contained. See [Error Handling](#error-handling) for more information on how errors are evaluated.
+During evaluation, a sub-expression might not be able to evaluate successfully. This will result in an evaluation warning but will _not_ prevent the expression from being evaluated as a whole. See [Note About Warnings During Expression Evaluation] for more details.
 
 ### Precedence
 
@@ -96,6 +96,7 @@ PCL understands these data types:
 - local datetimes
 - durations
 - schedules
+- nil
 
 Values of a certain type cannot currently be converted to another type, but some built-in operations will do conversions or handle multiple types.
 
@@ -139,7 +140,7 @@ false
 A moment in time specified with a date, time, and timezone.
 The date format is `YYYY-MM-DD`.
 The time uses a 24-hour notation in the format `HH:MM:SS`.
-The timezone must a valid entry from the [tz database](https://en.wikipedia.org/wiki/Tz_database).
+The timezone must be a valid entry from the [tz database][1].
 
 ```
 2021-12-04 19:00:42 America/Los_Angeles
@@ -152,13 +153,13 @@ A duration of time that is represented by a positive integer followed by a time 
 
 Format:
 ```
-[Y year(s)] [M month(s)] [D day(s)] [h hour(s)] [m minute(s)] [s second(s)]
+[D day(s)] [h hour(s)] [m minute(s)] [s second(s)]
 ```
-`Y`, `M`, `D`, `h`, `m`, `s` all must be integer values.
+`D`, `h`, `m`, `s` all must be integer values.
 
-1. All time units are optional, and at least one time unit is required.
-2. If more than one time unit is included, the units can be in any order as long as there is only one of each i.e. years can come before months can come before days etc: `5 days 12 hours` is valid, `4 hours 2 days` is also valid.
-3. The trailing `"s"` in the unit name is optional and does not have any semantic meaning, e.g. `"5 hour"` is the same as `"5 hours"`, `"1 day"` equivalent to `"1 days"`.
+1. At least one time unit is required.
+2. If more than one time unit is included, the units can be in any order as long as there is only one of each i.e. seconds can come before days can come before minutes, e.g. `5 seconds 3 days 12 minutes` is valid, `4 hours 2 days` is also valid.
+3. The trailing "s" in the unit name is optional and does not have any semantic meaning, e.g. `5 hour` is the same as `5 hours`, `1 day` equivalent to `1 days`.
 
 ```
 2 minutes
@@ -198,7 +199,7 @@ If the two times are the same, that indicates a 24 hour period.
 Sat,Sun 12:00:00 to 12:00:00 Africa/Cairo
 ```
 
-The allowable timezones are defined in the [tz time zone database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+The allowable timezones are defined in the [tz database][1].
 
 When doing comparisons of times, PCL compares the times according to what a clock on the wall would say in that timezone. That is, local daylight saving time is factored in. This can cause slightly unexpected behavior during the times when the clock changes from daylight saving time to standard time and vice versa.
 
@@ -206,34 +207,38 @@ For example, when daylight saving time ends, the clocks are changed from 2:00 AM
 
 **PCL Schedule: `Sun 01:30:00 to 03:15:00 America/New_York`**
 
-| Wall Clock Time | UTC Time | Matches Schedule? | Notes |
-| -- | -- | -- | -- |
-| [01:00 EDT (UTC-0400)](https://www.timeanddate.com/worldclock/converter.html?iso=20211107T050000&p1=179&p2=1440) | 05:00 UTC | ❌ No | |
-01:30 EDT (UTC-0400) | 05:30 UTC | ✅ Yes | |
-DST ends: [01:00 EST (UTC-0500)](https://www.timeanddate.com/worldclock/converter.html?iso=20211107T060000&p1=179&p2=1440) | 06:00 UTC | ❌ No | This is the gap |
-| 01:15 EST (UTC-0500) | 06:15 UTC | ❌ No | This is the gap |
-| 01:30 EST (UTC-0500) | 06:30 UTC | ✅ Yes | |
-| 02:00 EST (UTC-0500) | 07:00 UTC | ✅ Yes | |
-| 02:30 EST (UTC-0500) | 07:30 UTC | ✅ Yes | |
-| 03:00 EST (UTC-0500) | 08:00 UTC | ✅ Yes | |
-| 03:30 EST (UTC-0500) | 08:30 UTC | ❌ No | |
+Wall Clock Time | UTC Time | Matches Schedule? | Notes
+-- | -- | -- | --
+[01:00 EDT (UTC-0400)](https://www.timeanddate.com/worldclock/converter.html?iso=20211107T050000&p1=179&p2=1440) | 05:00 UTC | ❌ No |
+01:30 EDT (UTC-0400) | 05:30 UTC | ✅ Yes |
+DST ends: [01:00 EST (UTC-0500)](https://www.timeanddate.com/worldclock/converter.html?iso=20211107T060000&p1=179&p2=1440) | 06:00 UTC | ❌ No | This is the gap
+01:15 EST (UTC-0500) | 06:15 UTC | ❌ No | This is the gap
+01:30 EST (UTC-0500) | 06:30 UTC | ✅ Yes |
+02:00 EST (UTC-0500) | 07:00 UTC | ✅ Yes |
+02:30 EST (UTC-0500) | 07:30 UTC | ✅ Yes |
+03:00 EST (UTC-0500) | 08:00 UTC | ✅ Yes |
+03:30 EST (UTC-0500) | 08:30 UTC | ❌ No |
 
 Another example similar to the above, but when DST starts.
 
 **PCL Schedule: `Sun 01:30:00 to 03:15:00 America/New_York`**
 
-| Wall Clock Time | UTC Time | Matches Schedule? | Notes |
-| -- | -- | -- | -- |
-| 00:00 EST (UTC-0500) | 05:00 UTC | ❌ No | |
-| 00:30 EST (UTC-0500) | 05:30 UTC | ❌ No | |
-| 01:00 EST (UTC-0500) | 06:00 UTC | ❌ No | |
-| 01:30 EST (UTC-0500) | 6:30 UTC | ✅ Yes | |
-| 01:59 EST (UTC-0500) | 6:59 UTC | ✅ Yes | |
-| DST begins: 03:00 EDT (UTC-0400) | 07:00 UTC | ✅ Yes | 2:00 AM skipped to 3:00 AM|
-| 03:15 EDT (UTC-0400) | 07:15 UTC | ✅ Yes | |
-| 03:30 EDT (UTC-0400) | 07:30 UTC | ❌ No | |
-| 04:00 EDT (UTC-0400) | 08:00 UTC | ❌ No | |
-| 04:30 EDT (UTC-0400) | 08:30 UTC | ❌ No | |
+Wall Clock Time | UTC Time | Matches Schedule? | Notes
+-- | -- | -- | --
+00:00 EST (UTC-0500) | 05:00 UTC | ❌ No |
+00:30 EST (UTC-0500) | 05:30 UTC | ❌ No |
+01:00 EST (UTC-0500) | 06:00 UTC | ❌ No |
+01:30 EST (UTC-0500) | 06:30 UTC | ✅ Yes |
+01:59 EST (UTC-0500) | 06:59 UTC | ✅ Yes |
+DST begins: 03:00 EDT (UTC-0400) | 07:00 UTC | ✅ Yes | 2:00 AM skipped to 3:00 AM
+03:15 EDT (UTC-0400) | 07:15 UTC | ✅ Yes |
+03:30 EDT (UTC-0400) | 07:30 UTC | ❌ No |
+04:00 EDT (UTC-0400) | 08:00 UTC | ❌ No |
+04:30 EDT (UTC-0400) | 08:30 UTC | ❌ No |
+
+#### Nil
+
+A `nil` value represents the absense of any other value type.
 
 ### Built-in Operations
 
@@ -264,10 +269,24 @@ not [boolean] -> [boolean]
 Should be used in combination with the other operators.  Has higher precedence than the other boolean operators - use parentheses if you need to change the order of precdence.
 
 ```
-not data.foo matches 'tyler'
-not (data.foobar exists and data.foobar matches 'code')
-not true
-not false
+{
+  "data": {
+    "foo: "code"
+  }
+}
+
+not data.foo matches 'www' -> true
+not (data.foo exists and data.foo matches 'code') -> false
+```
+
+A `not` will also return the opposite of [Booleans with Warnings][Boolean Evaluation With Warnings] and treats [Non-Boolean Evaluations][Non-Boolean Evaluation] as `false`.
+
+```
+data.invalid_path == 'staging' -> false (Type mismatch: `==` requires the same type on both sides but got `[nil] == [string]`)
+not data.invalid_path == 'staging' -> true (Type mismatch: `==` requires the same type on both sides but got `[nil] == [string]`)
+
+1 > 'string' -> false (Type mismatch: `>` can only compare two [number] or [date] types but got `[number] > [string]`)
+not 1 > 'string' -> true (Type mismatch: `>` can only compare two [number] or [date] types but got `[number] > [string]`)
 ```
 
 ##### `and`
@@ -278,7 +297,7 @@ Returns the boolean `and` of the two arguments, i.e. returns `true` if both argu
 [boolean] and [boolean] -> [boolean]
 ```
 
-No conversions are performed; returns `false` if either arg is not a `boolean` type.  Can be used with boolean literals or be used for creating nested expressions by joining the other operators.  Has higher precedence than `or`, but lower predence than `not`.
+No conversions are performed; returns `false` if either arg is not a `boolean` type. Returns `false` if either args is a [Non-Boolean Evaluation]. Can be used with boolean literals or be used for creating nested expressions by joining the other operators. Has higher precedence than `or`, but lower predence than `not`.
 
 ##### `or`
 
@@ -288,7 +307,7 @@ Returns the boolean `or` of the two arguments, i.e. returns `false` if both argu
 [boolean] or [boolean] -> [boolean]
 ```
 
-No conversions are performed; returns `false` if either arg is not a `boolean`.  Can be used with boolean literals or be used for creating nested expressions by joining the other operators.  Has lower precedence than `and`.
+No conversions are performed; returns `false` if either arg is not a `boolean`. Treats [Non-Boolean Evaluation] as `false`. Can be used with boolean literals or be used for creating nested expressions by joining the other operators.  Has lower precedence than `and`.
 
 #### Numeric Comparison Operations
 
@@ -306,19 +325,19 @@ No conversions are performed; returns `false` if either arg is not a `boolean`. 
 [number] <= [number] -> [boolean]
 ```
 
-If both args are of type `datetime`, then evaluate the condition using datetimes. Datetimes further in the past are considered "less than" datetimes closer to the present.
+If both args are of type `datetime`, then evaluate the condition using datetimes. Datetimes further in the past are considered "less than" datetimes further in the future.
 
-If both args are of type `number`, then evaluate the condition using numbers. If both are integers or both are floats, then the numbers will compare as expected. If one number is an integer and the other is a floating point number, then the rule described in [Note About Comparing Integers and Floats](#note-about-comparing-integers-and-floats) applies.
+If both args are of type `number`, then evaluate the condition using numbers. If both are integers or both are floats, then the numbers will compare as expected. If one number is an integer and the other is a floating point number, then the rule described in [Note About Comparing Integers and Floats] applies.
 
-Otherwise, an error is returned which would be treated as `false` in subsequent evaluation.
+Otherwise, returns a [Non-Boolean Evaluation], which will be evaluated like a `false` response.
 
 #### String Comparison Operations
 
-For any of the `matches` operations, comparisons are case-insensitive by default. Use the `exactly` modifier for a case-sensitive comparison.
+For the `matches`, `matches part`, and `matches regex` operations, comparisons are case-insensitive by default. Use the `exactly` modifier for a case-sensitive comparison.
 
 For `matches` and `matches part` the following apply to both arguments. For `matches regex` the following applies to the first argument.
 
-1. If either or both args are `nil`, returns `false` with an error.
+1. If either or both args are `nil`, returns a `false` Boolean Evaluation With Warnings. See [Note About Warnings During Expression Evaluation].
 2. If either argument isn't a `string`, then it is converted to a `string` before the comparison.
    - integers - the digit by digit conversion to string is made
    - floats
@@ -335,6 +354,15 @@ If the two strings match, then `true` is returned. Otherwise, returns `false`.
 [string] matches exactly [string] -> [boolean]
 ```
 
+"Matching" means that the arguments (after conversion) are equivalent character by character in their entirety, including any leading and trailing whitespace, taking into acccount the appropriate case-sensitivity.
+
+Examples
+
+```
+'this is a test' matches 'This Is A Test' -> true
+'trailing whitespace ' matches 'trailing whitespace' -> false
+```
+
 ##### `matches part`
 
 If the second argument is a part of the first argument, then `true` is returned. Otherwise, returns `false`.
@@ -342,6 +370,14 @@ If the second argument is a part of the first argument, then `true` is returned.
 ```
 [string] matches part [string] -> [boolean]
 [string] matches part exactly [string] -> [boolean]
+```
+
+Examples
+
+```
+'[PROD] Disk space low' matches part 'prod' -> true
+'[TEST] CPU usage high' matches part 'cpu' -> true
+'[PROD] Network down' matches part 'disk' -> false
 ```
 
 ##### `matches regex`
@@ -355,7 +391,7 @@ If the second argument treated as a regex matches the first argument, then `true
 
 The second argument must be a literal string value representing a valid regular expressing using the [RE2 syntax](https://github.com/google/re2/wiki/Syntax). An error will be returned at parse time if this is not the case.
 
-Case-insensitive by default via the `i` flag - removed when the `exactly` modifier is used.  The regex is also run with the `s` and `m` flags.  If you do not want these, they can be turned off by negating them:
+Case-insensitive by default via the `i` flag - removed when the `exactly` modifier is used.  The regex is also run with [the `s` and `m` flags](https://github.com/google/re2/wiki/Syntax#user-content-flags).  The `s` flag allows `.` to match newlines (`\n`) and the `m` flag turns on multi-line mode: `^` and `$` match begin/end line in addition to begin/end text. If you do not want these, they can be turned off by negating them:
 
 ```
 (?-sm)myregex.*
@@ -375,18 +411,23 @@ Returns `true` if both arguments are equivalent and `false` otherwise.
 
 - When using `==` there will be no conversion of arguments
 - Comparisons of strings will be case sensitive
-- Comparison of non-comparable types will be considered an error and evaluate to false (with an error)
-- Floats and Integers are comparable. For example, `3.0 == 3` will result in a `true` evaluation. For more information, see the [Note About Comparing Integers and Floats](#note-about-comparing-integers-and-floats)
+- Floats and Integers are comparable. For example, `3.0 == 3` will result in a `true` evaluation. For more information, see the [Note About Comparing Integers and Floats]
+- Comparison of non-comparable types returns a `false` Boolean Evaluation With Warnings. See [Note About Warnings During Expression Evaluation].
 
 ##### `in`
 
 Returns `true` when the first argument falls within the schedule specified by the second argument. Otherwise, returns `false`.
 
 ```
-[datetime] in [schedule] -> [boolean]
+now in [schedule] -> [boolean]
 ```
 
-The `in` operator is only for creating _scheduled_ conditions.  The first arg must be a `datetime`, usually `'now'` function. See below for a description of `now`. The second arg must be a `schedule`.
+The `in` operator is only for creating _scheduled_ conditions.  The first arg must be [`now`](#now). The second arg must be a `schedule`.
+
+On Jan 3, 2022 at noon in Los Angeles:
+```
+now in Mon,Wed,Fri 08:00:00 to 18:00:00 America/Los_Angeles -> true
+```
 
 ##### `exists`
 
@@ -425,7 +466,59 @@ now > 2020-01-01 00:00:00 Etc/UTC
 now in Mon,Fri 09:00:00 to 17:00:00 America/New_York
 ```
 
+## Note About Warnings During Expression Evaluation
+
+[Note About Warnings During Expression Evaluation]:#note-about-warnings-during-expression-evaluation
+
+Evaluation of a PCL sub-expression can result in evaluation warnings. Since PCL will be used as part of the Event processing pipeline, throwing an error and giving up on the entire event evaluation isn't helpful since there is no user available to handle the error.
+
+Instead, PCL accumulates and propogates the evaluation warnings and then evalulates each sub-condition as accurately as possible given the previous warnings. The final result of the PCL evaluation will be a boolean decision along with any warning messages gathered along the way.
+
+There are two basic types of evaluation warnings: non-boolean evaluations and boolean results with evaluation warnings. 
+
+### Non-Boolean Evaluation
+
+[Non-Boolean Evaluation]:#non-boolean-evaluation
+
+These are PCL sub-expressions where the results are ambiguous / non-sensical. A classic example is an invalid type comparison like `2 > 'two'`. 
+
+PCL treats non-boolean evaluation as a `false` [boolean response with a warning][Boolean Evaluation With Warnings].
+
+Expression | Evaluates like | Result | Warning
+-- | -- | -- | --
+`2 > 'two'` | `non-boolean evaluation` | ❌ `false` | Type mismatch: `>` requires a [number] or [datetime] on both sides but got `[number] > [string]`
+`not 2 > 'two'` | `not (non-boolean evaluation)` -> `not (false)` -> | ✅ `true` | Type mismatch: `>` requires a [number] or [datetime] on both sides but got `[number] > [string]`
+`2 >= 'two' or 2 < 10` | `(non-boolean evaluation) or true` -> `false or true` | ✅ `true` | Type mismatch: `>=` requires a [number] or [datetime] on both sides but got `[number] >= [string]`
+`2 <= 'two' and 2 < 10` | `(non-boolean evaluation) and true` -> `false and true` | ❌ `false` | Type mismatch: `<=` requires a [number] or [datetime] on both sides but got `[number] <= [string]`
+
+### Boolean Evaluation With Warnings
+
+[Boolean Evaluation With Warnings]:#boolean-evaluation-with-warnings
+
+These are conditions that resolve to a boolean _and_ also record some warning information intended to help users understand why the evaluation happened the way it did. A classic example is using the `match` operator with a nil value on the left (this happens in the real world when the user uses a path on the left that doesn't match the given context). The `nil matches 'three'` expression returns a `false` response with the following warning message: "Type mismatch: `match` requires a non-nil value on the left"
+
+The `or`, `and`, and `not` operators will always return a boolean result _and_ will accumulate warnings from any evaluated sub-expressions.
+
+```json
+{
+  "a": {
+    "status": 503,
+    "env": "production"
+  }
+}
+```
+
+Expression | Evaluates like | Result | Accumulated Warnings
+-- | -- | -- | --
+`a.status >= 500` | `503 >= 500` | ✅ `true` | n/a
+`not a.expected == true` | `not (false w/ warning)` | ✅ `true` | Type mismatch: `==` requires the same type on both sides but got `[nil] == [bool]`
+`not a.expected == true and a.status >= 500` | `(not (false w/ warning)) and true`<br> -> `true and true` | ✅ `true` | Type mismatch: `==` requires the same type on both sides but got `[nil] == [bool]`
+`a.expected == true or a.status matches 'staging'` | `(false w/ warning) or (false w/ warning)`<br> -> `false or false` | ❌ `false` | (2 warnings)
+`not (a.expected == true or a.httpResponseCode < 500)` | `not((false w/ warning) or (non-boolean evaluation))`<br> -> `not(false or false)` | ✅ `true` | (2 warnings)
+
 ## Note About Comparing Integers and Floats
+
+[Note About Comparing Integers and Floats]:#note-about-comparing-integers-and-floats
 
 When comparing an integer with a float, the following rule applies: The number that has less precision is converted to the type of the other number before the comparison occurs.
 - If the floating point number is within the range `-2^53` to `2^53`, then the floating point has more precision than the integer, so the integer is converted to a float and the numbers are compared.
@@ -460,16 +553,6 @@ For more information about floating point numbers and their peculiarities:
 - [0.30000000000000004.com](https://0.30000000000000004.com)
 - [Floating Point Arithmetic: Issues and Limitations](https://docs.python.org/3/tutorial/floatingpoint.html)
 
-## Error Handling
-
-Most PCL expressions can return errors, for example if the types of the arguments are incorrect. During creation of a PCL condition, PCL will return an error so that the error can be properly fixed.
-
-During evaluation, though, PCL will be used as part of the event processing pipeline, and failing to evaluate the condition and returning an error isn't appropriate. The event is handled in an automated fashion, so there won't be anyone available to fix the evaluation error. Additionally, the event still needs to be processed and dropping the event isn't an option.
-
-Instead, PCL will propagate the error condition until it's used in a boolean context. In that context, it will be treated as `false` and evaluation will continue from there until a final boolean results. The final result will contain both the evaluation consistent with treating the error condition as `false` along with any error messages gathered along the way.
-
-The error messages gathered along the way will be logged as part of the resultant alert's log entry. This allows event processing to complete, while also enabling subsequent investigation of unexpected rule evaluation.
-
 ## Additional Functions
 
 Event Orchestration has added additional functions that can be used in PCL condtions. These functions support `threshold conditions`, which are condition that will evaluate to `true` when that particular condition is evaluated a certain number of times within a given time period. The two different threshold conditions are `trigger_count` and `resetting_trigger_count`.
@@ -503,3 +586,5 @@ trigger_count over 1 hour < 10
 ```
 resetting_trigger_count over 10 seconds > 5
 ```
+
+[1]: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones "List of TZ database timezones"
