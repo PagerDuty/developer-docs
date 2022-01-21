@@ -405,18 +405,38 @@ Case-insensitive by default via the `i` flag - removed when the `exactly` modifi
 
 If the `exactly` modifier and the `i` flag are both used, the `i` flag wins; flags in the regex have higher precdence than the `exactly` modifier.
 
-Examples
+For example, if you sent this JSON payload via the V2 Events API:
+
+```json
+{
+  "payload": {
+    "custom_details": {
+      "system diagnosis": {
+        "issue": "Low disk"
+      }
+    }
+  },
+  "links": [
+    { "href": "https://diag.test/details", "text": "Diagnosis details" }
+  ],
+  "important_field": "This is an important value",
+  "another_field": "This has a newline\nin it"
+}
 ```
-'help' matches regex 'eL'                -> true
-'help' matches regex exactly 'eL'        -> false
-'help' matches regex exactly '(?i)eL'    -> true
-'help' matches regex '(?-i)eL'           -> false
 
-'h\nelp' matches regex '.eL'             -> true
-'h\nelp' matches regex '(?-s).eL'        -> false
+this is how these regular expressions would evaluate
 
-'h\nelp' matches regex '^eL'             -> true
-'h\nelp' matches regex '(?-m)^eL'        -> false
+```
+raw_event.important_field matches regex 'this'                -> true
+raw_event.important_field matches regex exactly 'this'        -> false
+raw_event.important_field matches regex exactly '(?i)this'    -> true
+raw_event.important_field matches regex '(?-i)this'           -> false
+
+raw_event.another_field matches regex '.in it'                -> true
+raw_event.another_field matches regex '(?-s).in it'           -> false
+
+raw_event.another_field matches regex '^in it'                -> true
+raw_event.another_field matches regex '(?-m)^in it'           -> false
 ```
 
 #### Threshold Conditions
