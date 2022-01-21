@@ -1,6 +1,6 @@
 # PCL Overview
 
-The PagerDuty Condition Language (PCL) gives Event Orchestrations the power of boolean expressions more powerful than are available with rulesets. For example, with PCL, you can now define an expression like:
+The PagerDuty Condition Language (PCL) gives [Event Orchestrations](https://support.pagerduty.com/docs/event-orchestration) the power of boolean expressions, more powerful than are available with Rulesets. For example, with PCL, you can now define an expression like:
 
 ```
 event.summary matches part 'prod' and (event.location == 'US' or event.location == 'Canada')
@@ -53,7 +53,7 @@ is treated like:
 
 ### Paths
 
-A PCL expression is evaluated within a context. This context defines a set of variable bindings which PCL expressions have access to. For example, in the above precedence examples, the context contains a binding of `event` to an object which has fields named `'x'`, `'y'`, and `'z'`. Paths are used to access nested object and array structures.
+A PCL expression is evaluated within the context of an Event being evaluated by your Event Orchestration. You use a path in your PCL expression to access nested object and array structures from an Event payload. An `event` path can be used to access [PD-CEF fields](https://support.pagerduty.com/docs/pd-cef#pd-cef-fields) like `event.summary` or `event.custom_details.load`. A `raw_event` path can be used to access the values of the JSON Event payload that was originally sent to PagerDuty.
 
 Object fields can be accessed using *dot notation* (`"."`). Field names accessed using the dot notation must be a valid identifier. Valid identifiers begin with an ASCII letter (`a-zA-Z`) or an underscore (`"_"`). The following characters of the identifier can be any of those plus the numerical digits (`0-9`).
 
@@ -61,29 +61,33 @@ Object field names that do not conform to the identifier description above can b
 
 When a `path` is used in an expression, then it is evaluated to the value at that path in the data context before being used in the expression. If a final path doesn't exist, then `nil` is returned from the expression. The exception to this is the `exists` operation which checks whether or not the path exists in the context.
 
+For example, if you sent this JSON payload via the V2 Events API:
+
 ```json
 {
-  "data": {
-    "payload": {
-      "custom_details": {
-        "system diagnosis": {
-          "important_field": "This is an important value",
-        }
+  "payload": {
+    "custom_details": {
+      "system diagnosis": {
+        "important_field": "This is an important value"
       }
-    },
-    "headers": {
-      "from": ["first", "second", "third", 4, 5]
     }
-  }
+  },
+  "links": [
+    { "href": "https://diag.test/details", "text": "Diagnosis details" }
+  ]
 }
+```
 
-data.payload.custom_details['system diagnosis'].important_field
+You'd be able to access data from that event using these PCL paths:
+
+```
+event.custom_details['system diagnosis'].important_field
   -> "This is an important value"
 
-data.headers.from[0]
-  -> "first"
+raw_event.links[0].href
+  -> "https://diag.test/details"
 
-data.attachments[1]
+raw_event.images[0].src
   -> nil
 ```
 
@@ -246,6 +250,7 @@ PCL has a variety of built-in operations:
 - boolean operations: `and`, `or`, `not`
 - numeric comparison operations: `>`, `>=`, `<`, `<=`
 - string comparison operations: `matches [exactly]`, `matches part [exactly]`, `matches regex [exactly]`
+- threshold conditions: `trigger_count`, `resetting_trigger_count`
 - other operations: `==`, `in`, `exists`, `now`
 
 The operations described below will have an initial codeblock which shows the syntax of the operation. It will look something like:
@@ -268,10 +273,10 @@ not [boolean] -> [boolean]
 
 Should be used in combination with the other operators.  Has higher precedence than the other boolean operators - use parentheses if you need to change the order of precdence.
 
-```
+```json
 {
   "data": {
-    "foo: "code"
+    "foo": "code"
   }
 }
 
@@ -279,15 +284,12 @@ not data.foo matches 'www' -> true
 not (data.foo exists and data.foo matches 'code') -> false
 ```
 
-A `not` will also return the opposite of [Booleans with Warnings][Boolean Evaluation With Warnings] and treats [Non-Boolean Evaluations][Non-Boolean Evaluation] as `false`.
-
-```
-data.invalid_path == 'staging' -> false (Type mismatch: `==` requires the same type on both sides but got `[nil] == [string]`)
-not data.invalid_path == 'staging' -> true (Type mismatch: `==` requires the same type on both sides but got `[nil] == [string]`)
-
-1 > 'string' -> false (Type mismatch: `>` can only compare two [number] or [date] types but got `[number] > [string]`)
-not 1 > 'string' -> true (Type mismatch: `>` can only compare two [number] or [date] types but got `[number] > [string]`)
-```
+A `not` will also treat [Non-Boolean Evaluations][Non-Boolean Evaluation] as `false`.
+	
+Expression | Evaluates like | Result | Explanation
+-- | -- | -- | --
+`raw_event.invalid_path > 2` | `nil > 2` | ❌ `false` | `>` can only compare two `[number]` or `[date]` types but got `[nil] > [number]`
+`not raw_event.invalid_path > 2` | `not (nil > 2)` | ✅ `true` | `nil > 2` evaluates as `false` and then `not` inverts the result.
 
 ##### `and`
 
@@ -337,7 +339,7 @@ For the `matches`, `matches part`, and `matches regex` operations, comparisons a
 
 For `matches` and `matches part` the following apply to both arguments. For `matches regex` the following applies to the first argument.
 
-1. If either or both args are `nil`, returns a `false` Boolean Evaluation With Warnings. See [Note About Warnings During Expression Evaluation].
+1. If either or both args are `nil`, returns `false`
 2. If either argument isn't a `string`, then it is converted to a `string` before the comparison.
    - integers - the digit by digit conversion to string is made
    - floats
@@ -399,6 +401,48 @@ Case-insensitive by default via the `i` flag - removed when the `exactly` modifi
 
 If the `exactly` modifier and the `i` flag are both used, the `i` flag wins; flags in the regex have higher precdence than the `exactly` modifier.
 
+Examples
+```
+TODO Provide some regex examples here!
+```
+
+#### Threshold Conditions
+
+Threshold conditions will evaluate to `true` when that particular condition is evaluated a certain number of times _recently_ within a given time period.
+
+Note that the threshold conditions will never return `0` because the "current" event being evaluated is counted as part of the count.  Thus the lowest possible value is `1` and conditions like `trigger_count over 5 seconds < 1` should be avoided.
+
+##### `trigger_count`
+
+Returns a count of how many trigger events have occurred on this rule _recently_ within the giving time period
+
+
+```
+trigger_count over [duration]
+```
+
+Generally will be used in conjunction with a numerical operator like these examples:
+
+```
+trigger_count over 10 seconds > 5
+trigger_count over 1 hour < 10
+```
+
+### `resetting_trigger_count`
+
+(Legacy Threshold Behavior) Exactly the same as `trigger_count` except that once the condition is evaluated to `true`, the internal counter is reset to `0`.  Because of this, it doesn't really make sense to combine this with either of the "less than" operators (`<`, `<=`) because the count will constantly reset.
+
+```
+resetting_trigger_count over [duration]
+```
+
+Examples:
+
+```
+resetting_trigger_count over 10 seconds > 5
+resetting_trigger_count over 1 hour > 50
+```
+
 #### Other Operations
 
 ##### `==`
@@ -412,7 +456,7 @@ Returns `true` if both arguments are equivalent and `false` otherwise.
 - When using `==` there will be no conversion of arguments
 - Comparisons of strings will be case sensitive
 - Floats and Integers are comparable. For example, `3.0 == 3` will result in a `true` evaluation. For more information, see the [Note About Comparing Integers and Floats]
-- Comparison of non-comparable types returns a `false` Boolean Evaluation With Warnings. See [Note About Warnings During Expression Evaluation].
+- Comparison of non-comparable types returns `false`.
 
 ##### `in`
 
@@ -424,10 +468,14 @@ now in [schedule] -> [boolean]
 
 The `in` operator is only for creating _scheduled_ conditions.  The first arg must be [`now`](#now). The second arg must be a `schedule`.
 
-On Jan 3, 2022 at noon in Los Angeles:
+For example, if you send an Event to an Event Orchestration on Monday, January 3rd, 2022 at noon in Los Angeles (which is 20:00 UTC):
+
 ```
-now in Mon,Wed,Fri 08:00:00 to 18:00:00 America/Los_Angeles -> true
+now in Mon,Wed,Fri 01:00:00 to 15:00:00 America/Los_Angeles -> true
+now in Mon,Wed,Fri 01:00:00 to 15:00:00 Etc/Utc -> false
 ```
+
+See [the `schedule` type documentation](#schedule) to learn about the types of recurring schedules you can create in PCL.
 
 ##### `exists`
 
@@ -527,22 +575,19 @@ When comparing an integer with a float, the following rule applies: The number t
 Since the floating point representation cannot represent all integers greater than `2^53`, i.e. `9007199254740992`, this leads to some awkward behavior. This is not considered a bug, but a recognized artifact of the inaccuracy of floating point in general and beyond this limit specifically. All programming languages that support floating point numbers have similar issues. Here are some examples with explanations:
 
 ```
-iex> PCL.parse_and_evaluate("9007199254740992 == 9007199254740992.0", PCL.EvalContext.new())
-{:ok, {true, []}}
+9007199254740992 == 9007199254740992.0 -> true
 ```
 
 This is as expected the integer and the corresponding floating point number are equal.
 
 ```
-iex> PCL.parse_and_evaluate("9007199254740992 == 9007199254740993.0", PCL.EvalContext.new())
-{:ok, {true, []}}
+9007199254740992 == 9007199254740993.0 -> true
 ```
 
 What is happening here is that `9007199254740993.0` cannot be represented in the floating point representation. So, the floating point number that is chosen is the closest one that _can_ be represented. That happens to be the original number `9007199254740992.0`. The equality then just compares the two numbers which are now the same.
 
 ```
-iex> PCL.parse_and_evaluate("9007199254740992 == 9007199254740994.0", PCL.EvalContext.new())
-{:ok, {false, []}}
+9007199254740992 == 9007199254740994.0 -> false
 ```
 
 Again, as expected. `9007199254740994.0` is the next number that can be represented in floating point, so PCL can tell that they are not the same. Note that as the floats get larger, the gap between representable numbers also gets larger.
@@ -553,38 +598,5 @@ For more information about floating point numbers and their peculiarities:
 - [0.30000000000000004.com](https://0.30000000000000004.com)
 - [Floating Point Arithmetic: Issues and Limitations](https://docs.python.org/3/tutorial/floatingpoint.html)
 
-## Additional Functions
-
-Event Orchestration has added additional functions that can be used in PCL condtions. These functions support `threshold conditions`, which are condition that will evaluate to `true` when that particular condition is evaluated a certain number of times within a given time period. The two different threshold conditions are `trigger_count` and `resetting_trigger_count`.
-
-### `trigger_count`
-
-Usage:
-
-```
-trigger_count over 10 seconds
-```
-
-and returns a count of how many trigger events have occurred on this rule _recently_. Generally will be used in conjunction with a numerical operator like this:
-
-```
-trigger_count over 10 seconds > 5
-```
-
-Note that the `trigger_count` will never return `0` because the "current" event being evaluated is counted as part of the count.  Thus the lowest possible value is `1` and conditions like `trigger_count over 5 seconds < 1` should be avoided.
-
-Examples
-```
-trigger_count over 10 seconds > 5
-trigger_count over 1 hour < 10
-```
-
-### `resetting_trigger_count`
-
-(Legacy Threshold Behavior) Exactly the same as `trigger_count` except that once the condition is evaluated to `true`, the internal counter is reset to `0`.  Because of this, it doesn't really make sense to combine this with either of the "less than" operators (`<`, `<=`) because the count will constantly reset.
-
-```
-resetting_trigger_count over 10 seconds > 5
-```
 
 [1]: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones "List of TZ database timezones"
