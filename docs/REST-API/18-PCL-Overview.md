@@ -14,7 +14,7 @@ This document will provide an overview of the PCL expression language.
 
 A PCL expression is made up of a combination of paths, literals, built-in operations, and custom functions. Evaluation of an expression follows the rules of precedence described below. The final PCL expression must evaluate to `true` or `false`. A sub-expression can return a different type of value, such as an integer or string. As long as this non-boolean is used in the proper context, an error will not be returned.
 
-During evaluation, a sub-expression might not be able to evaluate successfully. This will result in an evaluation warning but will _not_ prevent the expression from being evaluated as a whole. See [Note About Warnings During Expression Evaluation] for more details.
+During evaluation, a sub-expression might not be able to evaluate successfully. This will result in an evaluation warning but will _not_ prevent the expression from being evaluated as a whole. See [Non-Boolean Evaluation] for more details.
 
 ### Precedence
 
@@ -151,6 +151,8 @@ The timezone must be a valid entry from the [tz database][1].
 2022-01-01 08:00:00 Etc/UTC
 ```
 
+When you want the current datetime, use [`now`](#now)
+
 #### Duration
 
 A duration of time that is represented by a positive integer followed by a time unit. The time unit is one of: `"second"`, `"minute"`, `"hour"`, `"day"` with an optional trailing `"s"`. You can string multiple units together as long as you only have one of each maximum.
@@ -252,6 +254,8 @@ PCL has a variety of built-in operations:
 - string comparison operations: `matches [exactly]`, `matches part [exactly]`, `matches regex [exactly]`
 - threshold conditions: `trigger_count`, `resetting_trigger_count`
 - other operations: `==`, `in`, `exists`, `now`
+
+NOTE: `now`, `trigger_count`, and `resetting_trigger_count` are only available to Event Intelligence (EI) customers. If you don't have EI, then trying to create a condition with these functions will return an error.
 
 The operations described below will have an initial codeblock which shows the syntax of the operation. It will look something like:
 
@@ -403,7 +407,16 @@ If the `exactly` modifier and the `i` flag are both used, the `i` flag wins; fla
 
 Examples
 ```
-TODO Provide some regex examples here!
+'help' matches regex 'eL'                -> true
+'help' matches regex exactly 'eL'        -> false
+'help' matches regex exactly '(?i)eL'    -> true
+'help' matches regex '(?-i)eL'           -> false
+
+'h\nelp' matches regex '.eL'             -> true
+'h\nelp' matches regex '(?-s).eL'        -> false
+
+'h\nelp' matches regex '^eL'             -> true
+'h\nelp' matches regex '(?-m)^eL'        -> false
 ```
 
 #### Threshold Conditions
@@ -514,23 +527,15 @@ now > 2020-01-01 00:00:00 Etc/UTC
 now in Mon,Fri 09:00:00 to 17:00:00 America/New_York
 ```
 
-## Note About Warnings During Expression Evaluation
-
-[Note About Warnings During Expression Evaluation]:#note-about-warnings-during-expression-evaluation
-
-Evaluation of a PCL sub-expression can result in evaluation warnings. Since PCL will be used as part of the Event processing pipeline, throwing an error and giving up on the entire event evaluation isn't helpful since there is no user available to handle the error.
-
-Instead, PCL accumulates and propogates the evaluation warnings and then evalulates each sub-condition as accurately as possible given the previous warnings. The final result of the PCL evaluation will be a boolean decision along with any warning messages gathered along the way.
-
-There are two basic types of evaluation warnings: non-boolean evaluations and boolean results with evaluation warnings. 
-
 ### Non-Boolean Evaluation
 
 [Non-Boolean Evaluation]:#non-boolean-evaluation
 
-These are PCL sub-expressions where the results are ambiguous / non-sensical. A classic example is an invalid type comparison like `2 > 'two'`. 
+Evaluation of a PCL sub-expression can produce results are ambiguous / non-sensical. A classic example is an invalid type comparison like `2 > 'two'`.
 
-PCL treats non-boolean evaluation as a `false` [boolean response with a warning][Boolean Evaluation With Warnings].
+Since PCL will be used as part of the Event processing pipeline, throwing an error and giving up on the entire event evaluation isn't helpful since there is no user available to handle the error.
+
+So PCL treats all non-boolean evaluation as a `false`, allowing the PCL expression to be evaluated consistently as a whole, without error.
 
 Expression | Evaluates like | Result | Warning
 -- | -- | -- | --
@@ -538,31 +543,6 @@ Expression | Evaluates like | Result | Warning
 `not 2 > 'two'` | `not (non-boolean evaluation)` -> `not (false)` -> | ✅ `true` | Type mismatch: `>` requires a [number] or [datetime] on both sides but got `[number] > [string]`
 `2 >= 'two' or 2 < 10` | `(non-boolean evaluation) or true` -> `false or true` | ✅ `true` | Type mismatch: `>=` requires a [number] or [datetime] on both sides but got `[number] >= [string]`
 `2 <= 'two' and 2 < 10` | `(non-boolean evaluation) and true` -> `false and true` | ❌ `false` | Type mismatch: `<=` requires a [number] or [datetime] on both sides but got `[number] <= [string]`
-
-### Boolean Evaluation With Warnings
-
-[Boolean Evaluation With Warnings]:#boolean-evaluation-with-warnings
-
-These are conditions that resolve to a boolean _and_ also record some warning information intended to help users understand why the evaluation happened the way it did. A classic example is using the `match` operator with a nil value on the left (this happens in the real world when the user uses a path on the left that doesn't match the given context). The `nil matches 'three'` expression returns a `false` response with the following warning message: "Type mismatch: `match` requires a non-nil value on the left"
-
-The `or`, `and`, and `not` operators will always return a boolean result _and_ will accumulate warnings from any evaluated sub-expressions.
-
-```json
-{
-  "a": {
-    "status": 503,
-    "env": "production"
-  }
-}
-```
-
-Expression | Evaluates like | Result | Accumulated Warnings
--- | -- | -- | --
-`a.status >= 500` | `503 >= 500` | ✅ `true` | n/a
-`not a.expected == true` | `not (false w/ warning)` | ✅ `true` | Type mismatch: `==` requires the same type on both sides but got `[nil] == [bool]`
-`not a.expected == true and a.status >= 500` | `(not (false w/ warning)) and true`<br> -> `true and true` | ✅ `true` | Type mismatch: `==` requires the same type on both sides but got `[nil] == [bool]`
-`a.expected == true or a.status matches 'staging'` | `(false w/ warning) or (false w/ warning)`<br> -> `false or false` | ❌ `false` | (2 warnings)
-`not (a.expected == true or a.httpResponseCode < 500)` | `not((false w/ warning) or (non-boolean evaluation))`<br> -> `not(false or false)` | ✅ `true` | (2 warnings)
 
 ## Note About Comparing Integers and Floats
 
