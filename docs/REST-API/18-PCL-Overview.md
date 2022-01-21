@@ -461,7 +461,7 @@ trigger_count over 10 seconds > 5
 trigger_count over 1 hour < 10
 ```
 
-### `resetting_trigger_count`
+##### `resetting_trigger_count`
 
 (Legacy Threshold Behavior) Exactly the same as `trigger_count` except that once the condition is evaluated to `true`, the internal counter is reset to `0`.  Because of this, it doesn't really make sense to combine this with either of the "less than" operators (`<`, `<=`) because the count will constantly reset.
 
