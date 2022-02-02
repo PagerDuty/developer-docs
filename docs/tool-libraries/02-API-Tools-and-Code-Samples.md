@@ -2,7 +2,7 @@
 tags: [tool-libraries]
 ---
 
-# API Tools & Code Samples"
+# API Tools & Code Samples
 
 Looking for ways to improve your workflow, or for inspiration and creative ways to use PagerDuty APIs? This directory contains all third-party open source tools and projects known to us known to us which support our current public APIs.
 
