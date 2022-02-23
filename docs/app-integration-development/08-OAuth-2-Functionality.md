@@ -100,7 +100,7 @@ This signature is created using the hash algorithm from the header, and to verif
 The contents are now validated, and can be further inspected to ensure the message is correct. The following claims can be inspected and verified;
 
  Claim       |      Description   
--------------------------------------------------
+------------ | ----------------------------------
  `acr`       |  Authentication method used should match `acr_values` request parameter
  `iss`       |  Identifier of the token sender, and must be a plain https url
  `sub`       |  Identifier of the user
