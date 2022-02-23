@@ -99,16 +99,16 @@ This signature is created using the hash algorithm from the header, and to verif
 
 The contents are now validated, and can be further inspected to ensure the message is correct. The following claims can be inspected and verified;
 
-| Claim       |      Description   
-|-------------------------------------------------
-| `acr`       |  Authentication method used should match `acr_values` request parameter
-| `iss`       |  Identifier of the token sender, and must be a plain https url
-| `sub`       |  Identifier of the user
-| `aud`       |  Expected reciever of the token which must contain a client identifier
-| `iat`       |  Time the ID Token was issued
-| `auth_time` |  Time the user was last logged in without SSO
-| `jti`       |  Unique token identifier is what was expected 
-| `nonce`     |  The nonce if passed into the token
+ Claim       |      Description   
+-------------------------------------------------
+ `acr`       |  Authentication method used should match `acr_values` request parameter
+ `iss`       |  Identifier of the token sender, and must be a plain https url
+ `sub`       |  Identifier of the user
+ `aud`       |  Expected reciever of the token which must contain a client identifier
+ `iat`       |  Time the ID Token was issued
+ `auth_time` |  Time the user was last logged in without SSO
+ `jti`       |  Unique token identifier is what was expected 
+ `nonce`     |  The nonce if passed into the token
 
 ## Full ID Token Example
 
