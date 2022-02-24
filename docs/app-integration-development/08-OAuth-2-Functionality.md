@@ -112,6 +112,57 @@ The contents are now validated, and can be further inspected to ensure the messa
 
 ## Full ID Token Example
 
+The following is a sample of a full ID token with a valid header, payload, and signature.
+
+### Header
+
+The algorithm used to encrypt and decrypt the token is a variant of SHA-256 called HS256, and is declared as the first part of the header. The next part of the header is the Key ID, which is later used for verification. The last part is the certificate (x5t) which is base64url encoded. Putting these parts together, the header is formed.
+
+    {
+      "alg": "HS256",
+      "kid": "-38074812",
+      "x5t": "MR-pGTa866RdZLjN6Vwrfay907g"
+    }
+
+Once ecrypted, the header would form the first part of the token and would be the following;
+
+`eyJhbGciOiJIUzI1NiIsImtpZCI6Ii0zODA3NDgxMiIsIng1dCI6Ik1SLXBHVGE4NjZSZFpMak42VndyZmF5OTA3ZyJ9`
+
+### Payload
+
+The second part of the token contains all the claims sent, and in this sample case only a few claims will be made, the `iss`, `acr`, `iat`, and `exp`. The `iss` field is a sample issuer, which would be a trusted issuer sending in the token. The second part of it is the `acr` which can be validated after the signature if desired, and specifies the authentication context, which in this case is a URI. The next two fields are `iat` and `exp` which indicate the time the token was sent and its expiry time, which are highly recommended to always include for validation purposes. The final part is a public claim called `purpose` which gives the payload a label, and is completely optional.
+
+Putting all these fields together would give us a token with the following fields;
+
+    {
+      "iss": "https://www.some-issuer.com/issue_token",
+      "acr": "urn:some:acr:htmlSql",
+      "iat": 1645653858,
+      "exp": 1645655061,
+      "purpose": "sample ID token"
+    }
+
+Now encrypting the payload using the algorithm specified in the header would give the following;
+
+`eyJpc3MiOiJodHRwczovL3d3dy5zb21lLWlzc3Vlci5jb20vaXNzdWVfdG9rZW4iLCJhY3IiOiJ1cm46c29tZTphY3I6aHRtbFNxbCIsImlhdCI6MTY0NTY1Mzg1OCwiZXhwIjoxNjQ1NjU1MDYxLCJwdXJwb3NlIjoic2FtcGxlIElEIHRva2VuIn0`
+
+### Signature
+
+The final part of the token is fairly different, as it isnt a full json object like the header or payload. Its made up of the encoded header and payload, again using the algorithm defined in the header, followed by a secret, and can be done like the following;
+
+    HMACSHA256(
+      base64UrlEncode(header) + "." +
+      base64UrlEncode(payload),
+      E3stb6fVlu7d7BnTLMhd7KGrbXosbtBTl2HGiEv1bSM
+    )
+
+Finally encrypting the signature would give the final piece of the ID token, and would be the following;
+
+`oLBUh8cOHHIgBlUfs1l4vQyFoT4rtaeInqlw_CvVPZY`
+
+This signature can be decrypted and compared with the payload and header recieved to ensure no tampering was done, and putting the entire ID token together gives the following.
+
+`eyJhbGciOiJIUzI1NiIsImtpZCI6Ii0zODA3NDgxMiIsIng1dCI6Ik1SLXBHVGE4NjZSZFpMak42VndyZmF5OTA3ZyJ9.eyJpc3MiOiJodHRwczovL3d3dy5zb21lLWlzc3Vlci5jb20vaXNzdWVfdG9rZW4iLCJhY3IiOiJ1cm46c29tZTphY3I6aHRtbFNxbCIsImlhdCI6MTY0NTY1Mzg1OCwiZXhwIjoxNjQ1NjU1MDYxLCJwdXJwb3NlIjoic2FtcGxlIElEIHRva2VuIn0.oLBUh8cOHHIgBlUfs1l4vQyFoT4rtaeInqlw_CvVPZY`
 
 
 ## Removing OAuth 2.0 Functionality
