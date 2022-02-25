@@ -75,7 +75,7 @@ The main purpose of the header is to determine a decoding algorithm to use for t
 `alg`             | Algoirthm used for signature of the token
 
 ### Payload
-The payload contains all claims, which are statements about the user along with any additional data needed. There are three types of claims, and are the following.
+The payload contains all claims, which are statements about the user along with any additional data needed. The three types of claims are as follows.
 
   Type            | Description
 ----------------- | -----------
@@ -104,7 +104,7 @@ The contents are now validated, and can be further inspected to ensure the messa
  `acr`       |  Authentication method used should match `acr` request parameter
  `iss`       |  Identifier of the token sender, and must be a plain https url
  `sub`       |  Identifier of the user
- `aud`       |  Expected reciever of the token which must contain a client identifier
+ `aud`       |  Expected receiver of the token which must contain a client identifier
  `iat`       |  Time the ID Token was issued, stated as [NumericDate](https://www.rfc-editor.org/rfc/rfc7519#section-2) values
  `auth_time` |  Time the user was last logged in without SSO
  `jti`       |  Unique token identifier is what was expected 
