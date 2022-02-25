@@ -53,7 +53,7 @@ There two options for implementing PagerDuty OAuth in your app. [PKCE (Proof Key
 
 ## Cracking Open an ID Token
 
-Pagerduty uses ID tokens to fetch access tokens, which are structured as [Json Web Tokens (JWT)](https://datatracker.ietf.org/doc/html/rfc7519). The token is encoded and signed, and contains claims from the OpenID Connect Provider used. 
+PagerDuty uses ID Tokens to securely provide additional details (also called claims) associated with your access token, such as the account subdomain and service region. These tokens are structured as [Json Web Tokens (JWT)](https://datatracker.ietf.org/doc/html/rfc7519). The token is encoded and signed, and contains claims from the OpenID Connect Provider used. 
 
 The main parts of the ID token are the following.
 
@@ -88,24 +88,24 @@ Each payload is Base64Url encoded.
 ### Signature
 The signature is used to verify that the message still has its original integrity and hasn't been tampered with and is sent from a trusted issuer, and will also contain a private key if the token has one.
 
-This signature is created using the hash algorithm from the header, and to verify a token, you must do the following;
+This signature is created using the hash algorithm from the header, and to verify a token, you must do the following:
 
 * Retrieve the algorithm used to hash the token from the header
 * Use the `x5t` or `kid` parameter from the header to retrieve the public key
 * Seperate the signature from the message
 * Convert the remaining parts to an ASCII array
-* Decode the signature using Base65Url
+* Decode the signature using Base64Url
 * Use the decoded signature to validate the ASCII array generated previously
 
-The contents are now validated, and can be further inspected to ensure the message is correct. The following claims can be inspected and verified;
+The contents are now validated, and can be further inspected to ensure the message is correct. The following claims can be inspected and verified:
 
  Claim       |      Description   
 ------------ | ----------------------------------
- `acr`       |  Authentication method used should match `acr_values` request parameter
+ `acr`       |  Authentication method used should match `acr` request parameter
  `iss`       |  Identifier of the token sender, and must be a plain https url
  `sub`       |  Identifier of the user
  `aud`       |  Expected reciever of the token which must contain a client identifier
- `iat`       |  Time the ID Token was issued
+ `iat`       |  Time the ID Token was issued, stated as [NumericDate](https://www.rfc-editor.org/rfc/rfc7519#section-2) values
  `auth_time` |  Time the user was last logged in without SSO
  `jti`       |  Unique token identifier is what was expected 
  `nonce`     |  The nonce if passed into the token
@@ -124,7 +124,7 @@ The algorithm used to encrypt and decrypt the token is a variant of SHA-256 call
       "x5t": "MR-pGTa866RdZLjN6Vwrfay907g"
     }
 
-Once ecrypted, the header would form the first part of the token and would be the following;
+Once ecrypted, the header would form the first part of the token and would be the following:
 
 `eyJhbGciOiJIUzI1NiIsImtpZCI6Ii0zODA3NDgxMiIsIng1dCI6Ik1SLXBHVGE4NjZSZFpMak42VndyZmF5OTA3ZyJ9`
 
@@ -132,7 +132,7 @@ Once ecrypted, the header would form the first part of the token and would be th
 
 The second part of the token contains all the claims sent, and in this sample case only a few claims will be made, the `iss`, `acr`, `iat`, and `exp`. The `iss` field is a sample issuer, which would be a trusted issuer sending in the token. The second part of it is the `acr` which can be validated after the signature if desired, and specifies the authentication context, which in this case is a URI. The next two fields are `iat` and `exp` which indicate the time the token was sent and its expiry time, which are highly recommended to always include for validation purposes. The final part is a public claim called `purpose` which gives the payload a label, and is completely optional.
 
-Putting all these fields together would give us a token with the following fields;
+Putting all these fields together would give us a token with the following fields:
 
     {
       "iss": "https://www.some-issuer.com/issue_token",
@@ -142,13 +142,13 @@ Putting all these fields together would give us a token with the following field
       "purpose": "sample ID token"
     }
 
-Now encrypting the payload using the algorithm specified in the header would give the following;
+Now encrypting the payload using the algorithm specified in the header would give the following:
 
 `eyJpc3MiOiJodHRwczovL3d3dy5zb21lLWlzc3Vlci5jb20vaXNzdWVfdG9rZW4iLCJhY3IiOiJ1cm46c29tZTphY3I6aHRtbFNxbCIsImlhdCI6MTY0NTY1Mzg1OCwiZXhwIjoxNjQ1NjU1MDYxLCJwdXJwb3NlIjoic2FtcGxlIElEIHRva2VuIn0`
 
 ### Signature
 
-The final part of the token is fairly different, as it isnt a full json object like the header or payload. Its made up of the encoded header and payload, again using the algorithm defined in the header, followed by a secret, and can be done like the following;
+The final part of the token is fairly different, as it isnt a full json object like the header or payload. Its made up of the encoded header and payload, again using the algorithm defined in the header, followed by a secret, and can be done like the following:
 
     HMACSHA256(
       base64UrlEncode(header) + "." +
@@ -156,11 +156,11 @@ The final part of the token is fairly different, as it isnt a full json object l
       E3stb6fVlu7d7BnTLMhd7KGrbXosbtBTl2HGiEv1bSM
     )
 
-Finally encrypting the signature would give the final piece of the ID token, and would be the following;
+Finally encrypting the signature would give the final piece of the ID token, and would be the following:
 
 `oLBUh8cOHHIgBlUfs1l4vQyFoT4rtaeInqlw_CvVPZY`
 
-This signature can be decrypted and compared with the payload and header recieved to ensure no tampering was done, and putting the entire ID token together gives the following.
+This signature can be decrypted and compared with the payload and header recieved to ensure no tampering was done, and putting the entire ID token together gives the following:
 
 `eyJhbGciOiJIUzI1NiIsImtpZCI6Ii0zODA3NDgxMiIsIng1dCI6Ik1SLXBHVGE4NjZSZFpMak42VndyZmF5OTA3ZyJ9.eyJpc3MiOiJodHRwczovL3d3dy5zb21lLWlzc3Vlci5jb20vaXNzdWVfdG9rZW4iLCJhY3IiOiJ1cm46c29tZTphY3I6aHRtbFNxbCIsImlhdCI6MTY0NTY1Mzg1OCwiZXhwIjoxNjQ1NjU1MDYxLCJwdXJwb3NlIjoic2FtcGxlIElEIHRva2VuIn0.oLBUh8cOHHIgBlUfs1l4vQyFoT4rtaeInqlw_CvVPZY`
 
