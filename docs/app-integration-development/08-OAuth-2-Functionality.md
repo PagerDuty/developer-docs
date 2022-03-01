@@ -104,7 +104,7 @@ The contents are now validated, and can be further inspected to ensure the messa
  `acr`       |  Authentication method used should match `acr` request parameter
  `iss`       |  Identifier of the token sender, and must be a plain https url
  `sub`       |  Identifier of the user
- `aud`       |  Expected receiver of the token which must contain a client identifier
+ `aud`       |  Expected receiver of the token which must contain a client identifier as a URL
  `iat`       |  Time the ID Token was issued, stated as [NumericDate](https://www.rfc-editor.org/rfc/rfc7519#section-2) values
  `auth_time` |  Time the user was last logged in without SSO
  `jti`       |  Unique token identifier is what was expected 
@@ -116,35 +116,74 @@ The following is a sample of a full ID token with a valid header, payload, and s
 
 ### Header
 
-The algorithm used to encrypt and decrypt the token is a variant of SHA-256 called HS256, and is declared as the first part of the header. The next part of the header is the Key ID, which is later used for verification. The last part is the certificate (x5t) which is base64url encoded. Putting these parts together, the header is formed.
+The algorithm used to encrypt and decrypt the token is a variant of SHA-256 called RS256, and is declared as the first part of the header. The next part of the header is the Key ID, which is later used for verification. The last part is the certificate (x5t) which is base64url encoded. Putting these parts together, the header is formed.
 
-    {
-      "alg": "HS256",
-      "kid": "-38074812",
-      "x5t": "MR-pGTa866RdZLjN6Vwrfay907g"
-    }
+{
+  "alg": "RS256",
+  "kid": "1787345008",
+  "x5t": "_cqnMZZPApAtWy2VmuOV8uG9Tso"
+}
 
-Once ecrypted, the header would form the first part of the token and would be the following:
+Once encrypted, the header would form the first part of the token and would be the following:
 
-`eyJhbGciOiJIUzI1NiIsImtpZCI6Ii0zODA3NDgxMiIsIng1dCI6Ik1SLXBHVGE4NjZSZFpMak42VndyZmF5OTA3ZyJ9`
+`eyJraWQiOiIxNzg3MzQ1MDA4IiwieDV0IjoiX2Nxbk1aWlBBcEF0V3kyVm11T1Y4dUc5VHNvIiwiYWxnIjoiUlMyNTYifQ`
 
 ### Payload
 
-The second part of the token contains all the claims sent, and in this sample case only a few claims will be made, the `iss`, `acr`, `iat`, and `exp`. The `iss` field is a sample issuer, which would be a trusted issuer sending in the token. The second part of it is the `acr` which can be validated after the signature if desired, and specifies the authentication context, which in this case is a URI. The next two fields are `iat` and `exp` which indicate the time the token was sent and its expiry time, which are highly recommended to always include for validation purposes. The final part is a public claim called `purpose` which gives the payload a label, and is completely optional.
+The second part of the token contains all the claims sent, and in our case, all of the standard PagerDuty ID Token claims will be made.
+
+ Claim           |      Description   
+---------------- | ----------------------------------
+ `exp`           |  Expiry time, in a Unix timestamp
+ `nbf`           |  Unix timestamp that identifies the time before the ID Token must NOT be accpeted (not before)
+ `jti`           |  Unique JWT ID
+ `iss`           |  The principal/issuer that issued the ID Token
+ `aud`           |  Intended reciever of the token (audience), which is either `https://api.pagerduty.com` or `https://api.eu.pagerduty.com` depending on service region and contains the client ID
+ `sub`           |  Subject of the ID Token
+ `auth_time`     |  Time when authentication occurred
+ `iat`           |  Time when the ID Token was issued, in a Unix timestamp
+ `purpose`       |  Purpose of the JWT, which in an ID token's case is always identification
+ `at_hash`       |  ID Token hash value
+ `acr`           |  The authentication context class reference
+ `delegation_id` |  ID Token delegation that tracks permissions of OAuth clients
+ `account_id`    |  ID of the account linked to the token
+ `user_id`       |  ID of the user linked to the token 
+ `azp`           |  The authorized party that was issued the ID Token, which is the client ID
+ `amr`           |  Authentication method references
+ `subdomain`     |  PagerDuty subdomain linked to the ID token 
+ `region`        |  User and account service region
+ `sid`           |  Session ID
 
 Putting all these fields together would give us a token with the following fields:
 
-    {
-      "iss": "https://www.some-issuer.com/issue_token",
-      "acr": "urn:some:acr:htmlSql",
-      "iat": 1645653858,
-      "exp": 1645655061,
-      "purpose": "sample ID token"
-    }
+{
+  "exp": 1646086260,
+  "nbf": 1646082660,
+  "jti": "a9fd43a4-b037-4eeb-98b0-40542e3b98ff",
+  "iss": "https://app.pagerduty.com/global/oauth/anonymous",
+  "aud": [
+    "https://api.pagerduty.com",
+    "90b153bf-cfeb-4837-8b6a-864b7ff85656"
+  ],
+  "sub": "example@pagerduty.com",
+  "auth_time": 1646082649,
+  "iat": 1646082660,
+  "purpose": "id",
+  "at_hash": "LMtFKMLYeFeziNtx9PJWHA",
+  "acr": "acr:html-form:unitedstates",
+  "delegation_id": "6566027d-7707-428f-8752-3ef971b78d1a",
+  "account_id": "P9JEHMK",
+  "user_id": "P8OGMIK",
+  "azp": "90b153bf-cfeb-4837-8b6a-864b7ff85656",
+  "amr": "acr:html-form:unitedstates",
+  "subdomain": "pdt-sample",
+  "region": "UnitedStates",
+  "sid": "Ldu2m7FqnP7cH6Gl"
+}
 
 Now encrypting the payload using the algorithm specified in the header would give the following:
 
-`eyJpc3MiOiJodHRwczovL3d3dy5zb21lLWlzc3Vlci5jb20vaXNzdWVfdG9rZW4iLCJhY3IiOiJ1cm46c29tZTphY3I6aHRtbFNxbCIsImlhdCI6MTY0NTY1Mzg1OCwiZXhwIjoxNjQ1NjU1MDYxLCJwdXJwb3NlIjoic2FtcGxlIElEIHRva2VuIn0`
+`eyJleHAiOjE2NDYwODYyNjAsIm5iZiI6MTY0NjA4MjY2MCwianRpIjoiYTlmZDQzYTQtYjAzNy00ZWViLTk4YjAtNDA1NDJlM2I5OGZmIiwiaXNzIjoiaHR0cHM6Ly9hcHAucGQtc3RhZ2luZy5jb20vZ2xvYmFsL29hdXRoL2Fub255bW91cyIsImF1ZCI6WyJodHRwczovL2FwaS5wZC1zdGFnaW5nLmNvbSIsIjkwYjE1M2JmLWNmZWItNDgzNy04YjZhLTg2NGI3ZmY4NTY1NiJdLCJzdWIiOiJmdGFudGF3aUBwYWdlcmR1dHkuY29tIiwiYXV0aF90aW1lIjoxNjQ2MDgyNjQ5LCJpYXQiOjE2NDYwODI2NjAsInB1cnBvc2UiOiJpZCIsImF0X2hhc2giOiJMTXRGS01MWWVGZXppTnR4OVBKV0hBIiwiYWNyIjoiYWNyOmh0bWwtZm9ybTp1bml0ZWRzdGF0ZXMiLCJkZWxlZ2F0aW9uX2lkIjoiNjU2NjAyN2QtNzcwNy00MjhmLTg3NTItM2VmOTcxYjc4ZDFhIiwiYWNjb3VudF9pZCI6IlA5SkVITUsiLCJ1c2VyX2lkIjoiUDhPR01JSyIsImF6cCI6IjkwYjE1M2JmLWNmZWItNDgzNy04YjZhLTg2NGI3ZmY4NTY1NiIsImFtciI6ImFjcjpodG1sLWZvcm06dW5pdGVkc3RhdGVzIiwic3ViZG9tYWluIjoicGR0LWZhcmVzIiwicmVnaW9uIjoiVW5pdGVkU3RhdGVzIiwic2lkIjoiTGR1Mm03RnFuUDdjSDZHbCJ9`
 
 ### Signature
 
@@ -158,12 +197,21 @@ The final part of the token is fairly different, as it isnt a full json object l
 
 Finally encrypting the signature would give the final piece of the ID token, and would be the following:
 
-`oLBUh8cOHHIgBlUfs1l4vQyFoT4rtaeInqlw_CvVPZY`
+`uhbXVou8raKUtx56D8pGmWn3VyX8X1ZhadKYAwftcnc5DNHvEXco8MJKle8w5a1v1f9l881eGHLCsrRUb-B0AOHsWVF0EJTGOhWKgVpx9_SrsGXa7qyVlS3fBh-Gh2IrvDHTBWfe2bQ2g_qEfvCneIBIaELVdOeCysxMShygYgd7iOWwM6m3KGNrtCM4RK0JqYSdTRFpXP-OCBVy6JenJqK3maevffi0-7Z0Q0XFuMIwRR-M3A90Wt9349AhwXNK2kL7mvI3ZltnuomoTcB6rRMUylTp7YXyFjhc4nwA8ZlBw6T8SYPvjXy7iRE0ud4TxEh0J_bfs0gOfqgvKY47aQ`
 
 This signature can be decrypted and compared with the payload and header recieved to ensure no tampering was done, and putting the entire ID token together gives the following:
 
-`eyJhbGciOiJIUzI1NiIsImtpZCI6Ii0zODA3NDgxMiIsIng1dCI6Ik1SLXBHVGE4NjZSZFpMak42VndyZmF5OTA3ZyJ9.eyJpc3MiOiJodHRwczovL3d3dy5zb21lLWlzc3Vlci5jb20vaXNzdWVfdG9rZW4iLCJhY3IiOiJ1cm46c29tZTphY3I6aHRtbFNxbCIsImlhdCI6MTY0NTY1Mzg1OCwiZXhwIjoxNjQ1NjU1MDYxLCJwdXJwb3NlIjoic2FtcGxlIElEIHRva2VuIn0.oLBUh8cOHHIgBlUfs1l4vQyFoT4rtaeInqlw_CvVPZY`
+`eyJraWQiOiIxNzg3MzQ1MDA4IiwieDV0IjoiX2Nxbk1aWlBBcEF0V3kyVm11T1Y4dUc5VHNvIiwiYWxnIjoiUlMyNTYifQ.eyJleHAiOjE2NDYwODYyNjAsIm5iZiI6MTY0NjA4MjY2MCwianRpIjoiYTlmZDQzYTQtYjAzNy00ZWViLTk4YjAtNDA1NDJlM2I5OGZmIiwiaXNzIjoiaHR0cHM6Ly9hcHAucGQtc3RhZ2luZy5jb20vZ2xvYmFsL29hdXRoL2Fub255bW91cyIsImF1ZCI6WyJodHRwczovL2FwaS5wZC1zdGFnaW5nLmNvbSIsIjkwYjE1M2JmLWNmZWItNDgzNy04YjZhLTg2NGI3ZmY4NTY1NiJdLCJzdWIiOiJmdGFudGF3aUBwYWdlcmR1dHkuY29tIiwiYXV0aF90aW1lIjoxNjQ2MDgyNjQ5LCJpYXQiOjE2NDYwODI2NjAsInB1cnBvc2UiOiJpZCIsImF0X2hhc2giOiJMTXRGS01MWWVGZXppTnR4OVBKV0hBIiwiYWNyIjoiYWNyOmh0bWwtZm9ybTp1bml0ZWRzdGF0ZXMiLCJkZWxlZ2F0aW9uX2lkIjoiNjU2NjAyN2QtNzcwNy00MjhmLTg3NTItM2VmOTcxYjc4ZDFhIiwiYWNjb3VudF9pZCI6IlA5SkVITUsiLCJ1c2VyX2lkIjoiUDhPR01JSyIsImF6cCI6IjkwYjE1M2JmLWNmZWItNDgzNy04YjZhLTg2NGI3ZmY4NTY1NiIsImFtciI6ImFjcjpodG1sLWZvcm06dW5pdGVkc3RhdGVzIiwic3ViZG9tYWluIjoicGR0LWZhcmVzIiwicmVnaW9uIjoiVW5pdGVkU3RhdGVzIiwic2lkIjoiTGR1Mm03RnFuUDdjSDZHbCJ9.uhbXVou8raKUtx56D8pGmWn3VyX8X1ZhadKYAwftcnc5DNHvEXco8MJKle8w5a1v1f9l881eGHLCsrRUb-B0AOHsWVF0EJTGOhWKgVpx9_SrsGXa7qyVlS3fBh-Gh2IrvDHTBWfe2bQ2g_qEfvCneIBIaELVdOeCysxMShygYgd7iOWwM6m3KGNrtCM4RK0JqYSdTRFpXP-OCBVy6JenJqK3maevffi0-7Z0Q0XFuMIwRR-M3A90Wt9349AhwXNK2kL7mvI3ZltnuomoTcB6rRMUylTp7YXyFjhc4nwA8ZlBw6T8SYPvjXy7iRE0ud4TxEh0J_bfs0gOfqgvKY47aQ`
 
+## Decoding an ID Token in JavaScript
+
+Once an ID token has been recieved from PagerDuty, it can be decrypted through the following function which returns the payload as an JSON object.
+
+    const parseIDToken = (token) => {
+      return JSON.parse(Buffer.from(token.split('.')[1], "base64").toString());
+    };
+
+Note that if you are on a version of NodeJS older than V6.0.0, the `Buffer.from` builtin is not supported, and must be changed to `new Buffer`.
 
 ## Removing OAuth 2.0 Functionality
 See [Removing Functionality From Your App](../../docs/app-integration-development/04-App-Functionality.md#removing-functionality-from-your-app)
