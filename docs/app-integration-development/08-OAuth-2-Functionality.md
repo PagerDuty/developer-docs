@@ -199,7 +199,7 @@ Now encrypting the payload using the algorithm specified in the header would giv
 
 ### Signature
 
-The final part of the token is fairly different, as it isnt a full json object like the header or payload. Its made up of the encoded header and payload, again using the algorithm defined in the header, followed by a secret, and can be done like the following:
+The final part of the token is fairly different, as it isnt a full json object like the header or payload. Its made up of the encoded header and payload, again using the algorithm defined in the header, followed by a secret. The secret key value pair can be taken from the endpoint at https://api.pagerduty.com/global/oauth/anonymous/.well-known/openid-configuration which also contains information about the identity server. An example signature is the following:
 
 ```json
     HMACSHA256(
