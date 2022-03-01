@@ -66,6 +66,7 @@ The main parts of the ID token are the following.
 Each part of the token is encoded using the algorithm specified in the header, split by `.`. Every part is structured in the JSON format.
 
 ### Header
+
 The main purpose of the header is to determine a decoding algorithm to use for the rest of the token and what key is used for validation. All valid header parameters can be found [here](https://datatracker.ietf.org/doc/html/rfc7515#section-4.1), but the most common ones are the following.
 
   Claim           | Description
@@ -75,6 +76,7 @@ The main purpose of the header is to determine a decoding algorithm to use for t
 `alg`             | Algoirthm used for signature of the token
 
 ### Payload
+
 The payload contains all claims, which are statements about the user along with any additional data needed. The three types of claims are as follows.
 
   Type            | Description
@@ -86,6 +88,7 @@ Private Claims    | Claims created by two parties that are not registered or pub
 Each payload is Base64Url encoded.
 
 ### Signature
+
 The signature is used to verify that the message still has its original integrity and hasn't been tampered with and is sent from a trusted issuer, and will also contain a private key if the token has one.
 
 This signature is created using the hash algorithm from the header, and to verify a token, you must do the following:
@@ -118,15 +121,20 @@ The following is a sample of a full ID token with a valid header, payload, and s
 
 The algorithm used to encrypt and decrypt the token is a variant of SHA-256 called RS256, and is declared as the first part of the header. The next part of the header is the Key ID, which is later used for verification. The last part is the certificate (x5t) which is base64url encoded. Putting these parts together, the header is formed.
 
+``` json
 {
   "alg": "RS256",
   "kid": "1787345008",
   "x5t": "_cqnMZZPApAtWy2VmuOV8uG9Tso"
 }
+```
 
 Once encrypted, the header would form the first part of the token and would be the following:
 
-    eyJraWQiOiIxNzg3MzQ1MDA4IiwieDV0IjoiX2Nxbk1aWlBBcEF0V3kyVm11T1Y4dUc5VHNvIiwiYWxnIjoiUlMyNTYifQ
+```
+eyJraWQiOiIxNzg3MzQ1MDA4IiwieDV0IjoiX2Nxbk1aWlBBcEF0V3kyVm11T1Y4dUc5VHNvIiwiYWxnIjoiUlMyNTYifQ
+```
+
 
 ### Payload
 
@@ -156,6 +164,7 @@ The second part of the token contains all the claims sent, and in our case, all 
 
 Putting all these fields together would give us a token with the following fields:
 
+```json
 {
   "exp": 1646086260,
   "nbf": 1646082660,
@@ -180,38 +189,49 @@ Putting all these fields together would give us a token with the following field
   "region": "UnitedStates",
   "sid": "Ldu2m7FqnP7cH6Gl"
 }
+```
 
 Now encrypting the payload using the algorithm specified in the header would give the following:
 
+```
     eyJleHAiOjE2NDYwODYyNjAsIm5iZiI6MTY0NjA4MjY2MCwianRpIjoiYTlmZDQzYTQtYjAzNy00ZWViLTk4YjAtNDA1NDJlM2I5OGZmIiwiaXNzIjoiaHR0cHM6Ly9hcHAucGQtc3RhZ2luZy5jb20vZ2xvYmFsL29hdXRoL2Fub255bW91cyIsImF1ZCI6WyJodHRwczovL2FwaS5wZC1zdGFnaW5nLmNvbSIsIjkwYjE1M2JmLWNmZWItNDgzNy04YjZhLTg2NGI3ZmY4NTY1NiJdLCJzdWIiOiJmdGFudGF3aUBwYWdlcmR1dHkuY29tIiwiYXV0aF90aW1lIjoxNjQ2MDgyNjQ5LCJpYXQiOjE2NDYwODI2NjAsInB1cnBvc2UiOiJpZCIsImF0X2hhc2giOiJMTXRGS01MWWVGZXppTnR4OVBKV0hBIiwiYWNyIjoiYWNyOmh0bWwtZm9ybTp1bml0ZWRzdGF0ZXMiLCJkZWxlZ2F0aW9uX2lkIjoiNjU2NjAyN2QtNzcwNy00MjhmLTg3NTItM2VmOTcxYjc4ZDFhIiwiYWNjb3VudF9pZCI6IlA5SkVITUsiLCJ1c2VyX2lkIjoiUDhPR01JSyIsImF6cCI6IjkwYjE1M2JmLWNmZWItNDgzNy04YjZhLTg2NGI3ZmY4NTY1NiIsImFtciI6ImFjcjpodG1sLWZvcm06dW5pdGVkc3RhdGVzIiwic3ViZG9tYWluIjoicGR0LWZhcmVzIiwicmVnaW9uIjoiVW5pdGVkU3RhdGVzIiwic2lkIjoiTGR1Mm03RnFuUDdjSDZHbCJ9
+```
 
 ### Signature
 
 The final part of the token is fairly different, as it isnt a full json object like the header or payload. Its made up of the encoded header and payload, again using the algorithm defined in the header, followed by a secret, and can be done like the following:
 
+```json
     HMACSHA256(
       base64UrlEncode(header) + "." +
       base64UrlEncode(payload),
       E3stb6fVlu7d7BnTLMhd7KGrbXosbtBTl2HGiEv1bSM
     )
+```
 
 Finally encrypting the signature would give the final piece of the ID token, and would be the following:
 
-`uhbXVou8raKUtx56D8pGmWn3VyX8X1ZhadKYAwftcnc5DNHvEXco8MJKle8w5a1v1f9l881eGHLCsrRUb-B0AOHsWVF0EJTGOhWKgVpx9_SrsGXa7qyVlS3fBh-Gh2IrvDHTBWfe2bQ2g_qEfvCneIBIaELVdOeCysxMShygYgd7iOWwM6m3KGNrtCM4RK0JqYSdTRFpXP-OCBVy6JenJqK3maevffi0-7Z0Q0XFuMIwRR-M3A90Wt9349AhwXNK2kL7mvI3ZltnuomoTcB6rRMUylTp7YXyFjhc4nwA8ZlBw6T8SYPvjXy7iRE0ud4TxEh0J_bfs0gOfqgvKY47aQ`
+    uhbXVou8raKUtx56D8pGmWn3VyX8X1ZhadKYAwftcnc5DNHvEXco8MJKle8w5a1v1f9l881eGHLCsrRUb-B0AOHsWVF0EJTGOhWKgVpx9_SrsGXa7qyVlS3fBh-Gh2IrvDHTBWfe2bQ2g_qEfvCneIBIaELVdOeCysxMShygYgd7iOWwM6m3KGNrtCM4RK0JqYSdTRFpXP-OCBVy6JenJqK3maevffi0-7Z0Q0XFuMIwRR-M3A90Wt9349AhwXNK2kL7mvI3ZltnuomoTcB6rRMUylTp7YXyFjhc4nwA8ZlBw6T8SYPvjXy7iRE0ud4TxEh0J_bfs0gOfqgvKY47aQ
 
 This signature can be decrypted and compared with the payload and header recieved to ensure no tampering was done, and putting the entire ID token together gives the following:
 
-    eyJraWQiOiIxNzg3MzQ1MDA4IiwieDV0IjoiX2Nxbk1aWlBBcEF0V3kyVm11T1Y4dUc5VHNvIiwiYWxnIjoiUlMyNTYifQ.eyJleHAiOjE2NDYwODYyNjAsIm5iZiI6MTY0NjA4MjY2MCwianRpIjoiYTlmZDQzYTQtYjAzNy00ZWViLTk4YjAtNDA1NDJlM2I5OGZmIiwiaXNzIjoiaHR0cHM6Ly9hcHAucGQtc3RhZ2luZy5jb20vZ2xvYmFsL29hdXRoL2Fub255bW91cyIsImF1ZCI6WyJodHRwczovL2FwaS5wZC1zdGFnaW5nLmNvbSIsIjkwYjE1M2JmLWNmZWItNDgzNy04YjZhLTg2NGI3ZmY4NTY1NiJdLCJzdWIiOiJmdGFudGF3aUBwYWdlcmR1dHkuY29tIiwiYXV0aF90aW1lIjoxNjQ2MDgyNjQ5LCJpYXQiOjE2NDYwODI2NjAsInB1cnBvc2UiOiJpZCIsImF0X2hhc2giOiJMTXRGS01MWWVGZXppTnR4OVBKV0hBIiwiYWNyIjoiYWNyOmh0bWwtZm9ybTp1bml0ZWRzdGF0ZXMiLCJkZWxlZ2F0aW9uX2lkIjoiNjU2NjAyN2QtNzcwNy00MjhmLTg3NTItM2VmOTcxYjc4ZDFhIiwiYWNjb3VudF9pZCI6IlA5SkVITUsiLCJ1c2VyX2lkIjoiUDhPR01JSyIsImF6cCI6IjkwYjE1M2JmLWNmZWItNDgzNy04YjZhLTg2NGI3ZmY4NTY1NiIsImFtciI6ImFjcjpodG1sLWZvcm06dW5pdGVkc3RhdGVzIiwic3ViZG9tYWluIjoicGR0LWZhcmVzIiwicmVnaW9uIjoiVW5pdGVkU3RhdGVzIiwic2lkIjoiTGR1Mm03RnFuUDdjSDZHbCJ9.uhbXVou8raKUtx56D8pGmWn3VyX8X1ZhadKYAwftcnc5DNHvEXco8MJKle8w5a1v1f9l881eGHLCsrRUb-B0AOHsWVF0EJTGOhWKgVpx9_SrsGXa7qyVlS3fBh-Gh2IrvDHTBWfe2bQ2g_qEfvCneIBIaELVdOeCysxMShygYgd7iOWwM6m3KGNrtCM4RK0JqYSdTRFpXP-OCBVy6JenJqK3maevffi0-7Z0Q0XFuMIwRR-M3A90Wt9349AhwXNK2kL7mvI3ZltnuomoTcB6rRMUylTp7YXyFjhc4nwA8ZlBw6T8SYPvjXy7iRE0ud4TxEh0J_bfs0gOfqgvKY47aQ
+```
+eyJraWQiOiIxNzg3MzQ1MDA4IiwieDV0IjoiX2Nxbk1aWlBBcEF0V3kyVm11T1Y4dUc5VHNvIiwiYWxnIjoiUlMyNTYifQ.eyJleHAiOjE2NDYwODYyNjAsIm5iZiI6MTY0NjA4MjY2MCwianRpIjoiYTlmZDQzYTQtYjAzNy00ZWViLTk4YjAtNDA1NDJlM2I5OGZmIiwiaXNzIjoiaHR0cHM6Ly9hcHAucGQtc3RhZ2luZy5jb20vZ2xvYmFsL29hdXRoL2Fub255bW91cyIsImF1ZCI6WyJodHRwczovL2FwaS5wZC1zdGFnaW5nLmNvbSIsIjkwYjE1M2JmLWNmZWItNDgzNy04YjZhLTg2NGI3ZmY4NTY1NiJdLCJzdWIiOiJmdGFudGF3aUBwYWdlcmR1dHkuY29tIiwiYXV0aF90aW1lIjoxNjQ2MDgyNjQ5LCJpYXQiOjE2NDYwODI2NjAsInB1cnBvc2UiOiJpZCIsImF0X2hhc2giOiJMTXRGS01MWWVGZXppTnR4OVBKV0hBIiwiYWNyIjoiYWNyOmh0bWwtZm9ybTp1bml0ZWRzdGF0ZXMiLCJkZWxlZ2F0aW9uX2lkIjoiNjU2NjAyN2QtNzcwNy00MjhmLTg3NTItM2VmOTcxYjc4ZDFhIiwiYWNjb3VudF9pZCI6IlA5SkVITUsiLCJ1c2VyX2lkIjoiUDhPR01JSyIsImF6cCI6IjkwYjE1M2JmLWNmZWItNDgzNy04YjZhLTg2NGI3ZmY4NTY1NiIsImFtciI6ImFjcjpodG1sLWZvcm06dW5pdGVkc3RhdGVzIiwic3ViZG9tYWluIjoicGR0LWZhcmVzIiwicmVnaW9uIjoiVW5pdGVkU3RhdGVzIiwic2lkIjoiTGR1Mm03RnFuUDdjSDZHbCJ9.uhbXVou8raKUtx56D8pGmWn3VyX8X1ZhadKYAwftcnc5DNHvEXco8MJKle8w5a1v1f9l881eGHLCsrRUb-B0AOHsWVF0EJTGOhWKgVpx9_SrsGXa7qyVlS3fBh-Gh2IrvDHTBWfe2bQ2g_qEfvCneIBIaELVdOeCysxMShygYgd7iOWwM6m3KGNrtCM4RK0JqYSdTRFpXP-OCBVy6JenJqK3maevffi0-7Z0Q0XFuMIwRR-M3A90Wt9349AhwXNK2kL7mvI3ZltnuomoTcB6rRMUylTp7YXyFjhc4nwA8ZlBw6T8SYPvjXy7iRE0ud4TxEh0J_bfs0gOfqgvKY47aQ
+```
+
 
 ## Decoding an ID Token in JavaScript
 
 Once an ID token has been recieved from PagerDuty, it can be decrypted through the following function which returns the payload as an JSON object.
 
-    const parseIDToken = (token) => {
-      return JSON.parse(Buffer.from(token.split('.')[1], "base64").toString());
-    };
+```
+const parseIDToken = (token) => {
+  return JSON.parse(Buffer.from(token.split('.')[1], "base64").toString());
+};
+```
 
 Note that if you are on a version of NodeJS older than V6.0.0, the `Buffer.from` builtin is not supported, and must be changed to `new Buffer`.
 
 ## Removing OAuth 2.0 Functionality
+
 See [Removing Functionality From Your App](../../docs/app-integration-development/04-App-Functionality.md#removing-functionality-from-your-app)
