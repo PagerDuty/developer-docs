@@ -85,6 +85,9 @@ This list of error codes is not exhaustive, but is representative of the kinds o
 | 2013 | User not found |
 | 2015 | Invalid operation |
 | 2016 | The request took too long to process |
+| 2017 | Too Many Contact Method Actions |
+| 2018 | Access Denied: You may have lost access to this incident if it has been resolved |
+| 2019 | Product Limit Reached |
 | 2100 | Not Found |
 | 3001 | Invalid Schedule |
 | 3004 | <ul><li>Schedule Not Found</li><li>Unknown Schedule</li></ul> |
