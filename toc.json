@@ -266,11 +266,6 @@
         },
         {
           "type": "item",
-          "title": "v1 Overview",
-          "uri": "docs/webhooks/05-v1-Overview.md"
-        },
-        {
-          "type": "item",
           "title": "v2 Overview",
           "uri": "docs/webhooks/06-v2-Overview.md"
         },
