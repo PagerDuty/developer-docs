@@ -16,7 +16,6 @@ V3 webhooks provide the foundation for the future of PagerDuty webhooks. When co
 To get started with v3 webhooks, create a _webhook subscription_ using the [Webhook Subscriptions API](https://developer.pagerduty.com/api-reference/b3A6MjkyNDc4NA-create-a-webhook-subscription).
 
 <!-- theme: info -->
-
 > ### Migrate to V3 Webhook Subscriptions now!
 >
 > If you are currently using V1/V2 webhook extensions and need to migrate them to V3 webhook subscriptions, please follow our migration guide.
@@ -219,7 +218,6 @@ An example webhook payload for a `service.updated` event is shown below.
   }
 }
 ```
->
 
 ## Event Types
 
@@ -492,7 +490,6 @@ title: v2
 # v2 Overview
 
 <!-- theme: warning -->
-
 > ### Migrate to V3 Webhook Subscriptions
 >
 > If you are currently using V1/V2 webhook extensions and need to migrate them to V3 webhook subscriptions, please follow our migration guide.
@@ -1647,7 +1644,6 @@ title: v1
 
 
 <!-- theme: warning -->
-
 > ### Migrate to V3 Webhook Subscriptions
 >
 > If you are currently using V1/V2 webhook extensions and need to migrate them to V3 webhook subscriptions, please follow our migration guide.
