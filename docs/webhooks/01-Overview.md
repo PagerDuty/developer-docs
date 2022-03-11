@@ -17,10 +17,12 @@ To get started with v3 webhooks, create a _webhook subscription_ using the [Webh
 
 <!-- theme: info -->
 
-> #### Migrate to V3 Webhook Subscriptions
+> ### Migrate to V3 Webhook Subscriptions now!
 >
 > If you are currently using V1/V2 webhook extensions and need to migrate them to V3 webhook subscriptions, please follow our migration guide.
+>
 > V1 webhook extensions became unsupported on November 13, 2021 and will lose functionality in October, 2022.
+>
 > V2 webhooks extensions will become unsupported in October, 2022 and will lose functionality in March, 2023.
 
 ## Webhook Subscriptions
@@ -490,10 +492,12 @@ title: v2
 
 <!-- theme: warning -->
 
-> ##### Migrate to V3 Webhook Subscriptions
+> #### Migrate to V3 Webhook Subscriptions
 >
 > If you are currently using V1/V2 webhook extensions and need to migrate them to V3 webhook subscriptions, please follow our migration guide.
+>
 > V2 webhooks extensions will become unsupported in October, 2022 and will lose functionality in March, 2023.
+
 
 Webhooks let you receive HTTP callbacks when interesting events happen within your PagerDuty account. Details surrounding the interesting event will be sent via HTTP POST to a URL that you specify.
 
@@ -1641,16 +1645,18 @@ title: v1
 # v1 Overview
 
 
+<!-- theme: warning -->
+
+> ### Migrate to V3 Webhook Subscriptions
+>
+> If you are currently using V1/V2 webhook extensions and need to migrate them to V3 webhook subscriptions, please follow our migration guide.
+>
+> V1 webhook extensions became unsupported on November 13, 2021 and will lose functionality in October, 2022.
+
+
 Webhooks let you receive HTTP callbacks when interesting events happen within your PagerDuty account. Details surrounding the interesting event will be sent via HTTP POST to a URL that you specify.
 
 PagerDuty currently supports incident-based webhooks. After adding a webhook URL to a PagerDuty service, the triggering of new incidents on that service will cause outgoing webhook messages to be sent to that URL. In addition, certain interesting changes to an incident's state will cause other types of incident webhook messages to be sent. Generally, any change to the `status` or `assignees` of an incident will cause an outgoing message to be sent.
-
-<!-- theme: warning -->
-
-> #### Migrate to V3 Webhook Subscriptions
->
-> If you are currently using V1/V2 webhook extensions and need to migrate them to V3 webhook subscriptions, please follow our migration guide.
-> V1 webhook extensions became unsupported on November 13, 2021 and will lose functionality in October, 2022.
 
 
 ### Webhook Payload
