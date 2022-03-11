@@ -2,10 +2,6 @@
 tags: [webhooks]
 ---
 
-<!--
-type: tab
-title: v3
--->
 
 # Overview
 
@@ -481,7 +477,6 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
 }
 ```
 
-<!--
 <!--
 type: tab
 title: v2
