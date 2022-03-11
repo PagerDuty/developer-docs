@@ -489,13 +489,12 @@ title: v2
 
 # v2 Overview
 
-<!-- theme: warning -->
+<!-- theme: warning 
 > ### Migrate to V3 Webhook Subscriptions
->
 > If you are currently using V1/V2 webhook extensions and need to migrate them to V3 webhook subscriptions, please follow our migration guide.
 >
 > V2 webhooks extensions will become unsupported in October, 2022 and will lose functionality in March, 2023.
-
+-->
 
 Webhooks let you receive HTTP callbacks when interesting events happen within your PagerDuty account. Details surrounding the interesting event will be sent via HTTP POST to a URL that you specify.
 
