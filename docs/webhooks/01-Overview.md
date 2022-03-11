@@ -482,9 +482,11 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
 ```
 
 <!--
+<!--
 type: tab
 title: v2
 -->
+
 
 # v2 Overview
 
