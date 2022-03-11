@@ -463,7 +463,7 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
 
 <!--
 type: tab
-title: v2 [End-Of-Support]
+title: v2
 -->
 
 # v2 Overview
@@ -569,10 +569,7 @@ More webhook types may be added in the future.
 
 ### Examples
 
-<!--
-type: tab
-title: incident.trigger
--->
+### incident.trigger
 
 ```json
 {
@@ -816,10 +813,7 @@ title: incident.trigger
 }
 ```
 
-<!--
-type: tab
-title: incident.acknowledge
--->
+### incident.acknowledge
 
 ```json
 {
@@ -1090,11 +1084,7 @@ title: incident.acknowledge
 }
 ```
 
-<!--
-type: tab
-title: incident.resolve
--->
-
+### incident.resolve
 
 ```json
 {
@@ -1345,10 +1335,7 @@ title: incident.resolve
 }
 ```
 
-<!--
-type: tab
-title: incident.assign
--->
+### incident.assign
 
 ```json
 {
@@ -1611,18 +1598,10 @@ title: incident.assign
 }
 ```
 
-<!-- type: tab-end -->
-
-
-
 <!--
 type: tab
-title: v1 [End-Of-Life]
+title: v1
 -->
-
----
-tags: [webhooks]
----
 
 # v1 Overview
 
@@ -1690,10 +1669,7 @@ Type                     | Description
 
 ### Examples
 
-<!--
-type: tab
-title: incident.trigger
--->
+### incident.trigger
 
 ```json
 {
@@ -1766,10 +1742,7 @@ title: incident.trigger
 }
 ```
 
-<!--
-type: tab
-title: incident.acknowledge
--->
+### incident.acknowledge
 
 ```json
 {
@@ -1869,10 +1842,7 @@ title: incident.acknowledge
 }
 ```
 
-<!--
-type: tab
-title: incident.unacknowledge
--->
+### incident.unacknowledge
 
 ```json
 {
@@ -1951,10 +1921,7 @@ title: incident.unacknowledge
 }
 ```
 
-<!--
-type: tab
-title: incident.resolve
--->
+### incident.resolve
 
 ```json
 {
@@ -2013,10 +1980,7 @@ title: incident.resolve
 }
 ```
 
-<!--
-type: tab
-title: incident.assign
--->
+### incident.assign
 
 ```json
 {
@@ -2116,10 +2080,7 @@ title: incident.assign
 }
 ```
 
-<!--
-type: tab
-title: incident.escalate
--->
+### incident.escalate
 
 ```json
 {
@@ -2188,10 +2149,7 @@ title: incident.escalate
 }
 ```
 
-<!--
-type: tab
-title: incident.delegate
--->
+### incident.delegate
 
 ```json
 {
