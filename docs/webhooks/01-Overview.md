@@ -4,7 +4,7 @@ tags: [webhooks]
 
 <!--
 type: tab
-title: Overview
+title: v3
 -->
 
 # Overview
@@ -17,7 +17,6 @@ To get started with v3 webhooks, create a _webhook subscription_ using the [Webh
 
 <!-- theme: info -->
 > ### Migrate to V3 Webhook Subscriptions now!
->
 > If you are currently using V1/V2 webhook extensions and need to migrate them to V3 webhook subscriptions, please follow our migration guide.
 >
 > V1 webhook extensions became unsupported on November 13, 2021 and will lose functionality in October, 2022.
@@ -481,6 +480,7 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
   "type": "service"
 }
 ```
+<!-- type: tab-end -->
 
 <!--
 type: tab
@@ -489,12 +489,11 @@ title: v2
 
 # v2 Overview
 
-<!-- theme: warning 
+<!-- theme: warning -->
 > ### Migrate to V3 Webhook Subscriptions
 > If you are currently using V1/V2 webhook extensions and need to migrate them to V3 webhook subscriptions, please follow our migration guide.
 >
 > V2 webhooks extensions will become unsupported in October, 2022 and will lose functionality in March, 2023.
--->
 
 Webhooks let you receive HTTP callbacks when interesting events happen within your PagerDuty account. Details surrounding the interesting event will be sent via HTTP POST to a URL that you specify.
 
@@ -1633,6 +1632,7 @@ More webhook types may be added in the future.
   ]
 }
 ```
+<!-- type: tab-end -->
 
 <!--
 type: tab
@@ -1644,7 +1644,6 @@ title: v1
 
 <!-- theme: warning -->
 > ### Migrate to V3 Webhook Subscriptions
->
 > If you are currently using V1/V2 webhook extensions and need to migrate them to V3 webhook subscriptions, please follow our migration guide.
 >
 > V1 webhook extensions became unsupported on November 13, 2021 and will lose functionality in October, 2022.
