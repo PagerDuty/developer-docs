@@ -73,6 +73,7 @@ V3 webhooks are configured by creating a _webhook subscription_ which contains t
 }
 ```
 
+
 ### Custom Headers
 
 The `custom_headers` of a webhook subscription define any optional headers that will be passed along with the payload to the destination URL. The header values are redacted in GET requests, but are not redacted on the webhook when delivered to the webhook's endpoint. All header names must be unique within a webhook subscription.
@@ -218,7 +219,7 @@ An example webhook payload for a `service.updated` event is shown below.
   }
 }
 ```
-
+>
 
 ## Event Types
 
@@ -492,7 +493,7 @@ title: v2
 
 <!-- theme: warning -->
 
-> #### Migrate to V3 Webhook Subscriptions
+> ### Migrate to V3 Webhook Subscriptions
 >
 > If you are currently using V1/V2 webhook extensions and need to migrate them to V3 webhook subscriptions, please follow our migration guide.
 >
