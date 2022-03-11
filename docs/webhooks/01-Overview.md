@@ -480,7 +480,6 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
   "type": "service"
 }
 ```
-<!-- type: tab-end -->
 
 <!--
 type: tab
@@ -499,7 +498,7 @@ Webhooks let you receive HTTP callbacks when interesting events happen within yo
 
 PagerDuty currently supports incident-based webhooks. After adding a webhook URL to a PagerDuty service, the triggering of new incidents on that service will cause outgoing webhook messages to be sent to that URL. In addition, certain interesting changes to an incident's state will cause other types of incident webhook messages to be sent. Generally, any change to the `status` or `assignees` of an incident will cause an outgoing message to be sent.
 
-### Webhook Payload
+### V2 Webhook Payload
 
 Webhook recipients receive a payload containing a single `messages` array that may contain multiple `message` elements if webhook firing actions occurred in quick succession. Each `message` in the array consists of four fields:
 
@@ -595,7 +594,7 @@ Type                     | Description
 More webhook types may be added in the future.
 
 
-### Examples
+### V2.Examples
 
 
 ### incident.trigger
@@ -1632,7 +1631,6 @@ More webhook types may be added in the future.
   ]
 }
 ```
-<!-- type: tab-end -->
 
 <!--
 type: tab
@@ -1707,7 +1705,7 @@ Type                     | Description
 `incident.delegate`      | Sent when an incident has been reassigned to another escalation policy.
 
 
-### Examples
+### V1.Examples
 
 
 ### incident.trigger
