@@ -246,8 +246,8 @@
       "items": [
         {
           "type": "item",
-          "title": "v3 Overview",
-          "uri": "docs/webhooks/01-v3-Overview.md"
+          "title": "Overview",
+          "uri": "docs/webhooks/01-Overview.md"
         },
         {
           "type": "item",
@@ -263,16 +263,6 @@
           "type": "item",
           "title": "Verifying Signatures",
           "uri": "docs/webhooks/04-Signatures.md"
-        },
-        {
-          "type": "item",
-          "title": "v1 Overview",
-          "uri": "docs/webhooks/05-v1-Overview.md"
-        },
-        {
-          "type": "item",
-          "title": "v2 Overview",
-          "uri": "docs/webhooks/06-v2-Overview.md"
         },
         {
           "type": "item",

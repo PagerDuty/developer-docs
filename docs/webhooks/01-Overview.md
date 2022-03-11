@@ -20,7 +20,9 @@ To get started with v3 webhooks, create a _webhook subscription_ using the [Webh
 > #### Migrate to V3 Webhook Subscriptions
 >
 > If you are currently using V1/V2 webhook extensions and need to migrate them to V3 webhook subscriptions, please follow our migration guide.
+>
 > V1 webhook extensions became unsupported on November 13, 2021 and will lose functionality in October, 2022.
+>
 > V2 webhooks extensions will become unsupported in October, 2022 and will lose functionality in March, 2023.
 
 ## Webhook Subscriptions
