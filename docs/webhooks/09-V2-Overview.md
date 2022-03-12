@@ -1147,3 +1147,6 @@ More webhook types may be added in the future.
   ]
 }
 ```
+
+### Latest Version
+Please go to [V3 webhook](../webhooks/01-Overview.md)
