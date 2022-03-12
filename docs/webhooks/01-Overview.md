@@ -478,4 +478,5 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
 ```
 
 ## Deprecated Versions
-Reference link to ['v2'](../webhooks/09-V2-Overview.md) and ['v1'](../webhooks/10-V1-Overview.md)
+ .[v2 Webhooks](../webhooks/09-V2-Overview.md) 
+ .[v1 Webhooks](../webhooks/10-V1-Overview.md)

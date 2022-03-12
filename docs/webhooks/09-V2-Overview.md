@@ -6,7 +6,7 @@ tags: [webhooks]
 
 <!-- theme: warning -->
 > ### Migrate to V3 Webhook Subscriptions
-> If you are currently using V1/V2 webhook extensions and need to migrate them to V3 webhook subscriptions, please follow our migration guide.
+> If you are currently using V1/V2 webhook extensions and need to migrate them to [V3 webhook](../webhooks/01-Overview.md)  subscriptions, please follow our migration guide.
 >
 > V2 webhooks extensions will become unsupported in October, 2022 and will lose functionality in March, 2023.
 
