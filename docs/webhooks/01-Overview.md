@@ -65,7 +65,7 @@ V3 webhooks are configured by creating a _webhook subscription_ which contains t
   }
 }
 ```
- 
+  
 ### Custom Headers
 
 The `custom_headers` of a webhook subscription define any optional headers that will be passed along with the payload to the destination URL. The header values are redacted in GET requests, but are not redacted on the webhook when delivered to the webhook's endpoint. All header names must be unique within a webhook subscription.
@@ -211,7 +211,7 @@ An example webhook payload for a `service.updated` event is shown below.
   }
 }
 ```
- 
+  
 ## Event Types
 
 Outbound events are created when PagerDuty resources change in interesting ways. Each outbound event is usually associated with some other PagerDuty resource. For example, the `incident.priority_updated` event is generated whenever the priority of an incident is changed. The following event types are available to v3 webhooks. Additional event types may be added to this list over time.
@@ -376,9 +376,9 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
   "resolve_reason": null
 }
 ```
- 
+    
 ### incident_note
- 
+  
 ```json
 {
   "incident": {
@@ -394,9 +394,9 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
   "type": "incident_note"
 }
 ```
- 
+  
 ### incident_status_update
- 
+  
 ```json
 {
   "incident": {
@@ -412,9 +412,9 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
   "type": "incident_status_update"
 }
 ```
- 
+  
 ### incident_responder
- 
+  
 ```json
 {
   "incident": {
@@ -443,9 +443,9 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
   "type": "incident_responder"
 }
 ```
- 
+  
 ### service
- 
+  
 ```json
 {
   "html_url": "https://acme.pagerduty.com/services/PF9KMXH",
@@ -465,7 +465,7 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
   "type": "service"
 }
 ```
- 
+  
 ## Deprecated Versions
    [v2 Webhooks](../webhooks/09-V2-Overview.md):
    V2 will be reaching End-Of-Support(EOS) by October 2022. EOS means PagerDuty will not support any additional bug fixes or entertain new feature requests.
