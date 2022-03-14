@@ -376,7 +376,7 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
   "resolve_reason": null
 }
 ```
-  &nbsp;
+&nbsp;
 ### incident_note
   
 ```json
@@ -467,9 +467,10 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
 ```
 &nbsp;
 ## Deprecated Versions
-   [v2 Webhooks](../webhooks/09-V2-Overview.md):
-   V2 will be reaching End-Of-Support(EOS) by October 2022. EOS means PagerDuty will not support any additional bug fixes or entertain new feature requests.
+   [V2 Webhooks](../webhooks/09-V2-Overview.md):
+   V2 will be reaching End-Of-Support(EOS) by October 2022.<br>
+   EOS means PagerDuty will not support any additional bug fixes or entertain new feature requests.
 
-   [v1 Webhooks](../webhooks/10-V1-Overview.md):
-   V1 will be reaching End-Of-Life(EOL) by October 2022. EOL means PagerDuty will pull the plug on V1 and customers, developers will not be able to access or use V1 webhooks - generic or through integration apps.
-   V1 has already reached End-Of-Support in November 2021.
+   [V1 Webhooks](../webhooks/10-V1-Overview.md):
+   V1 has already reached End-Of-Support(EOS) in November 2021.V1 will be reaching End-Of-Life(EOL) by October 2022.<br>
+   EOL means PagerDuty will pull the plug on V1 and customers, developers will not be able to access or use V1 webhooks - generic or through integration apps.
