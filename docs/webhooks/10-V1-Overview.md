@@ -2,8 +2,7 @@
 tags: [webhooks]
 ---
 
-# v1 Overview
-
+# Overview - V1 Webhooks
 
 <!-- theme: warning -->
 > ### Migrate to V3 Webhook Subscriptions
@@ -11,11 +10,9 @@ tags: [webhooks]
 >
 > V1 webhook extensions became unsupported on November 13, 2021 and will lose functionality in October, 2022.
 
-
 Webhooks let you receive HTTP callbacks when interesting events happen within your PagerDuty account. Details surrounding the interesting event will be sent via HTTP POST to a URL that you specify.
 
 PagerDuty currently supports incident-based webhooks. After adding a webhook URL to a PagerDuty service, the triggering of new incidents on that service will cause outgoing webhook messages to be sent to that URL. In addition, certain interesting changes to an incident's state will cause other types of incident webhook messages to be sent. Generally, any change to the `status` or `assignees` of an incident will cause an outgoing message to be sent.
-
 
 ### Webhook Payload
 
@@ -70,7 +67,7 @@ Type                     | Description
 `incident.delegate`      | Sent when an incident has been reassigned to another escalation policy.
 
 &nbsp;
-### V1.Examples
+### Examples
 &nbsp;
 ### incident.trigger
 ```json
@@ -616,4 +613,4 @@ Type                     | Description
 &nbsp;
 ### Latest Version
 
-Please go to [V3 webhook](../webhooks/01-Overview.md)
+Please see [V3 Webhooks](../webhooks/01-Overview.md)

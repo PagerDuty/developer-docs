@@ -2,11 +2,11 @@
 tags: [webhooks]
 ---
 
-# v2 Overview
+# Overview - V2 Webhooks
 
 <!-- theme: warning -->
 > ### Migrate to V3 Webhook Subscriptions
-> If you are currently using V1/V2 webhook extensions and need to migrate them to [V3 webhook](../webhooks/01-Overview.md)  subscriptions, please follow our migration guide.
+> If you are currently using V1/V2 webhook extensions and need to migrate them to [V3 webhook](../webhooks/01-Overview.md) subscriptions, please follow our migration guide.
 >
 > V2 webhooks extensions will become unsupported in October, 2022 and will lose functionality in March, 2023.
 
@@ -14,7 +14,7 @@ Webhooks let you receive HTTP callbacks when interesting events happen within yo
 
 PagerDuty currently supports incident-based webhooks. After adding a webhook URL to a PagerDuty service, the triggering of new incidents on that service will cause outgoing webhook messages to be sent to that URL. In addition, certain interesting changes to an incident's state will cause other types of incident webhook messages to be sent. Generally, any change to the `status` or `assignees` of an incident will cause an outgoing message to be sent.
 
-### V2 Webhook Payload
+### Webhook Payload
 
 Webhook recipients receive a payload containing a single `messages` array that may contain multiple `message` elements if webhook firing actions occurred in quick succession. Each `message` in the array consists of four fields:
 
@@ -26,7 +26,6 @@ Field Name    | Type     | Description
 `incident`    | Object   | The incident details at the time of the state change.
 `webhook`     | Object   | The webhook configuration which resulted in this message.
 `log_entries` | Array    | Log entries (see below) that correspond to the action this Webhook is reporting. There will be only one `log_entry` type object in the array for `incident.trigger`, `incident.acknowledge` and `incident.resolve` type webhooks. For `incident.escalate` webhooks where there were more than one target, there will be one entry in this array for each escalation target.
-
 
 
 ### Incident Details
@@ -110,7 +109,7 @@ Type                     | Description
 More webhook types may be added in the future.
 
 
-### V2.Examples
+### Examples
 &nbsp;
 ### incident.trigger
 ```json
@@ -1139,4 +1138,4 @@ More webhook types may be added in the future.
 &nbsp;
 ### Latest Version
 
-Please go to [V3 webhook](../webhooks/01-Overview.md)
+Please see [V3 Webhooks](../webhooks/01-Overview.md)
