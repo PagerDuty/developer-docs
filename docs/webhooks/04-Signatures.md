@@ -4,7 +4,7 @@ tags: [webhooks]
 
 # Verifying Signatures
 
-PagerDuty's [v3 webhooks](../../docs/webhooks/01-v3-Overview.md) are sent with a signature the destination server can use to verify that the event came from the PagerDuty platform and not a third party or malicious system.  It is _strongly recommended_ that webhook consumers verify these signatures before processing each event.
+PagerDuty's [v3 webhooks](../../docs/webhooks/01-Overview.md) are sent with a signature the destination server can use to verify that the event came from the PagerDuty platform and not a third party or malicious system.  It is _strongly recommended_ that webhook consumers verify these signatures before processing each event.
 
 ## Obtaining the Secret
 
