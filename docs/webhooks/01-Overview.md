@@ -483,4 +483,4 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
    > E.g. After October 2022, App integrations built on V2 Webhooks will still continue to work, but any feature requests on V2 will not be entertained.
    >
    > EOL means PagerDuty will end the functionality and it won't be available for anyone to use.<br>
-   > E.g. After October 2022, the App integrations built on V1 Webhooks will stop working and will need to be updated to use V3 Webhooks, immediately to avoid any business impact.
+   > E.g. After October 2022, the App integrations built on V1 Webhooks will stop working and will need to be updated to use V3 Webhooks immediately, to avoid any business impact.
