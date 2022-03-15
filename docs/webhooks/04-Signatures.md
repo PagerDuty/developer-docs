@@ -4,10 +4,6 @@ tags: [webhooks]
 
 # Verifying Signatures
 
-<!-- theme: warning -->
-### V3 Webhooks are in Early Access
-> Webhook signatures are part of V3 webhooks which are still under development.  The API specification is subject to change until they are generally released.
-
 PagerDuty's [v3 webhooks](../../docs/webhooks/01-v3-Overview.md) are sent with a signature the destination server can use to verify that the event came from the PagerDuty platform and not a third party or malicious system.  It is _strongly recommended_ that webhook consumers verify these signatures before processing each event.
 
 ## Obtaining the Secret
