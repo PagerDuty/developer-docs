@@ -465,7 +465,7 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
   "type": "service"
 }
 ```
-
+&nbsp;
 ## Deprecated Versions
 &nbsp;
    ### V2 Reaching End Of Support
@@ -476,5 +476,6 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
 
    ### V1 Reached End Of Support
    [V1 Webhooks](../webhooks/10-V1-Overview.md):
-   V1 has already reached End-Of-Support(EOS) in November 2021.V1 will be reaching End-Of-Life(EOL) by October 2022.<br>
+   V1 has already reached End-Of-Support(EOS) in November 2021.<br>
+   V1 will be reaching End-Of-Life(EOL) by October 2022.<br>
    EOL means PagerDuty will pull the plug on V1 and customers, developers will not be able to access or use V1 webhooks - generic or through integration apps.
