@@ -467,7 +467,7 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
 ```
 &nbsp;
 ## Deprecated Versions
-&nbsp;
+
    ### V2 Reaching End Of Support
    [V2 Webhooks](../webhooks/09-V2-Overview.md):
    V2 will be reaching End-Of-Support(EOS) by October 2022.<br>

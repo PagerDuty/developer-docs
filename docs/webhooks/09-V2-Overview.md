@@ -111,11 +111,8 @@ More webhook types may be added in the future.
 
 
 ### V2.Examples
-
-
+&nbsp;
 ### incident.trigger
-
-
 ```json
 {
   "messages": [
@@ -357,11 +354,8 @@ More webhook types may be added in the future.
   ]
 }
 ```
-
-
+&nbsp;
 ### incident.acknowledge
-
-
 ```json
 {
   "messages": [
@@ -630,10 +624,8 @@ More webhook types may be added in the future.
   ]
 }
 ```
-
-
+&nbsp;
 ### incident.resolve
-
 ```json
 {
   "messages": [
@@ -882,11 +874,8 @@ More webhook types may be added in the future.
   ]
 }
 ```
-
-
+&nbsp;
 ### incident.assign
-
-
 ```json
 {
   "messages": [
@@ -1147,6 +1136,7 @@ More webhook types may be added in the future.
   ]
 }
 ```
-
+&nbsp;
 ### Latest Version
+
 Please go to [V3 webhook](../webhooks/01-Overview.md)

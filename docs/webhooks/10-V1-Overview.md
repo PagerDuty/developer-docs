@@ -69,13 +69,10 @@ Type                     | Description
 `incident.escalate`      | Sent when an incident has been escalated to another user in the same escalation chain.
 `incident.delegate`      | Sent when an incident has been reassigned to another escalation policy.
 
-
+&nbsp;
 ### V1.Examples
-
-
+&nbsp;
 ### incident.trigger
-
-
 ```json
 {
   "messages": [
@@ -146,11 +143,8 @@ Type                     | Description
   ]
 }
 ```
-
-
+&nbsp;
 ### incident.acknowledge
-
-
 ```json
 {
   "messages": [
@@ -248,11 +242,8 @@ Type                     | Description
   ]
 }
 ```
-
-
+&nbsp;
 ### incident.unacknowledge
-
-
 ```json
 {
   "messages": [
@@ -329,11 +320,8 @@ Type                     | Description
   ]
 }
 ```
-
-
+&nbsp;
 ### incident.resolve
-
-
 ```json
 {
   "messages": [
@@ -390,11 +378,8 @@ Type                     | Description
   ]
 }
 ```
-
-
+&nbsp;
 ### incident.assign
-
-
 ```json
 {
   "messages": [
@@ -492,11 +477,8 @@ Type                     | Description
   ]
 }
 ```
-
-
+&nbsp;
 ### incident.escalate
-
-
 ```json
 {
   "messages": [
@@ -563,11 +545,8 @@ Type                     | Description
   ]
 }
 ```
-
-
+&nbsp;
 ### incident.delegate
-
-
 ```json
 {
   "messages": [
@@ -634,6 +613,7 @@ Type                     | Description
   ]
 }
 ```
-
+&nbsp;
 ### Latest Version
+
 Please go to [V3 webhook](../webhooks/01-Overview.md)
