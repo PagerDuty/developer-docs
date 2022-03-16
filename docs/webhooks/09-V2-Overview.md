@@ -2,8 +2,13 @@
 tags: [webhooks]
 ---
 
+# Overview - V2 Webhooks
 
-# v2 Overview
+<!-- theme: warning -->
+> ### Migrate to V3 Webhook Subscriptions
+> If you are currently using V1/V2 webhook extensions and need to migrate them to [V3 webhook](../webhooks/01-Overview.md) subscriptions, please follow our migration guide.
+>
+> V2 webhooks extensions will become unsupported in October, 2022 and will lose functionality in March, 2023.
 
 Webhooks let you receive HTTP callbacks when interesting events happen within your PagerDuty account. Details surrounding the interesting event will be sent via HTTP POST to a URL that you specify.
 
@@ -21,7 +26,6 @@ Field Name    | Type     | Description
 `incident`    | Object   | The incident details at the time of the state change.
 `webhook`     | Object   | The webhook configuration which resulted in this message.
 `log_entries` | Array    | Log entries (see below) that correspond to the action this Webhook is reporting. There will be only one `log_entry` type object in the array for `incident.trigger`, `incident.acknowledge` and `incident.resolve` type webhooks. For `incident.escalate` webhooks where there were more than one target, there will be one entry in this array for each escalation target.
-
 
 
 ### Incident Details
@@ -104,13 +108,10 @@ Type                     | Description
 
 More webhook types may be added in the future.
 
+
 ### Examples
-
-<!--
-type: tab
-title: incident.trigger
--->
-
+&nbsp;
+### incident.trigger
 ```json
 {
   "messages": [
@@ -352,12 +353,8 @@ title: incident.trigger
   ]
 }
 ```
-
-<!--
-type: tab
-title: incident.acknowledge
--->
-
+&nbsp;
+### incident.acknowledge
 ```json
 {
   "messages": [
@@ -626,13 +623,8 @@ title: incident.acknowledge
   ]
 }
 ```
-
-<!--
-type: tab
-title: incident.resolve
--->
-
-
+&nbsp;
+### incident.resolve
 ```json
 {
   "messages": [
@@ -881,12 +873,8 @@ title: incident.resolve
   ]
 }
 ```
-
-<!--
-type: tab
-title: incident.assign
--->
-
+&nbsp;
+### incident.assign
 ```json
 {
   "messages": [
@@ -1147,6 +1135,7 @@ title: incident.assign
   ]
 }
 ```
+&nbsp;
+### Latest Version
 
-<!-- type: tab-end -->
-
+Please see [V3 Webhooks](../webhooks/01-Overview.md)

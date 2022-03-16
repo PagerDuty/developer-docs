@@ -4,9 +4,6 @@ tags: [webhooks]
 
 # Mutual TLS
 
-<!-- theme: info -->
-> The sample NGINX configuration has been recently updated.
-
 
 ## Why use Mutual TLS with webhooks?
 

@@ -35,6 +35,6 @@ However, Events API v2 provides a direct interface to set [PD-CEF fields](https:
 Hence, if you are creating a new or custom integration, we strongly recommend using the Events API v2.
 
 ## Webhooks
-Via [Webhooks](../docs/webhooks/01-v3-Overview.md), PagerDuty will send information about actions taking place within PagerDuty to any software of your choice that can accept an HTTP request.
+Via [Webhooks](../docs/webhooks/01-Overview.md), PagerDuty will send information about actions taking place within PagerDuty to any software of your choice that can accept an HTTP request.
 
-Check out the [Webhooks Overview](../docs/webhooks/01-v3-Overview.md) to learn how to parse and interpret webhooks that are sent to your software, as well as the different types of webhooks that your software can receive.
+Check out the [Webhooks Overview](../docs/webhooks/01-Overview.md) to learn how to parse and interpret webhooks that are sent to your software, as well as the different types of webhooks that your software can receive.

@@ -2,18 +2,19 @@
 tags: [webhooks]
 ---
 
-# v1 Overview
+# Overview - V1 Webhooks
 
+<!-- theme: warning -->
+> ### Migrate to V3 Webhook Subscriptions
+> If you are currently using V1/V2 webhook extensions and need to migrate them to [V3 webhook](../webhooks/01-Overview.md) subscriptions, please follow our migration guide.
+>
+> V1 webhook extensions became unsupported on November 13, 2021 and will lose functionality in October, 2022.
 
 Webhooks let you receive HTTP callbacks when interesting events happen within your PagerDuty account. Details surrounding the interesting event will be sent via HTTP POST to a URL that you specify.
 
 PagerDuty currently supports incident-based webhooks. After adding a webhook URL to a PagerDuty service, the triggering of new incidents on that service will cause outgoing webhook messages to be sent to that URL. In addition, certain interesting changes to an incident's state will cause other types of incident webhook messages to be sent. Generally, any change to the `status` or `assignees` of an incident will cause an outgoing message to be sent.
 
 ### Webhook Payload
-
-<!-- theme: info -->
-### Upgrade to v2 Webhooks
-> Looking for webhooks on notes, or more details in your webhook payload? Add a new __Generic V2 Webhook__ extension to receive the [v2 webhooks payload](../../docs/webhooks/06-v2-Overview.md).
 
 Webhook recipients receive a payload containing a single `messages` array that may contain multiple `message` elements if webhook firing actions occurred in quick succession. Each `message` in the array consists of four fields:
 
@@ -65,14 +66,10 @@ Type                     | Description
 `incident.escalate`      | Sent when an incident has been escalated to another user in the same escalation chain.
 `incident.delegate`      | Sent when an incident has been reassigned to another escalation policy.
 
-
+&nbsp;
 ### Examples
-
-<!--
-type: tab
-title: incident.trigger
--->
-
+&nbsp;
+### incident.trigger
 ```json
 {
   "messages": [
@@ -143,12 +140,8 @@ title: incident.trigger
   ]
 }
 ```
-
-<!--
-type: tab
-title: incident.acknowledge
--->
-
+&nbsp;
+### incident.acknowledge
 ```json
 {
   "messages": [
@@ -246,12 +239,8 @@ title: incident.acknowledge
   ]
 }
 ```
-
-<!--
-type: tab
-title: incident.unacknowledge
--->
-
+&nbsp;
+### incident.unacknowledge
 ```json
 {
   "messages": [
@@ -328,12 +317,8 @@ title: incident.unacknowledge
   ]
 }
 ```
-
-<!--
-type: tab
-title: incident.resolve
--->
-
+&nbsp;
+### incident.resolve
 ```json
 {
   "messages": [
@@ -390,12 +375,8 @@ title: incident.resolve
   ]
 }
 ```
-
-<!--
-type: tab
-title: incident.assign
--->
-
+&nbsp;
+### incident.assign
 ```json
 {
   "messages": [
@@ -493,12 +474,8 @@ title: incident.assign
   ]
 }
 ```
-
-<!--
-type: tab
-title: incident.escalate
--->
-
+&nbsp;
+### incident.escalate
 ```json
 {
   "messages": [
@@ -565,12 +542,8 @@ title: incident.escalate
   ]
 }
 ```
-
-<!--
-type: tab
-title: incident.delegate
--->
-
+&nbsp;
+### incident.delegate
 ```json
 {
   "messages": [
@@ -637,5 +610,7 @@ title: incident.delegate
   ]
 }
 ```
+&nbsp;
+### Latest Version
 
-<!-- type: tab-end -->
+Please see [V3 Webhooks](../webhooks/01-Overview.md)
