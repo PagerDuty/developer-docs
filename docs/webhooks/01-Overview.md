@@ -317,7 +317,7 @@ Sent when a service is updated.
 Depending on the `event.event_type`, of the webhook payload, the `event.data` field will contain one of the objects described in this section.
 
 ### incident
- 
+
 ```json
 {
   "id": "PGR0VU2",
@@ -378,7 +378,7 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
 ```
 &nbsp;
 ### incident_note
-  
+
 ```json
 {
   "incident": {
@@ -396,7 +396,7 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
 ```
 &nbsp;
 ### incident_status_update
-  
+
 ```json
 {
   "incident": {
@@ -445,7 +445,7 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
 ```
 &nbsp;
 ### service
-  
+
 ```json
 {
   "html_url": "https://acme.pagerduty.com/services/PF9KMXH",
@@ -468,19 +468,19 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
 &nbsp;
 ## Deprecated Versions
 &nbsp;
-   ### [V2 Webhooks](../webhooks/09-V2-Overview.md) Reaching End Of Support
-   * V2 will be reaching End-Of-Support (EOS) by October 2022.<br>
-   * V2 will be reaching End-Of-Life (EOL) by March 2023.<br>
-   
+### [V2 Webhooks](../webhooks/09-V2-Overview.md) Reaching End Of Support
+* V2 will be reaching End-Of-Support (EOS) by October 2022.<br>
+* V2 will be reaching End-Of-Life (EOL) by March 2023.<br>
 
-   ### [V1 Webhooks](../webhooks/10-V1-Overview.md) Reached End Of Support
-   * V1 has already reached End-Of-Support (EOS) in November 2021.<br>
-   * V1 will be reaching End-Of-Life (EOL) by October 2022.<br>
-   
-   <!-- theme: info -->
-   > ### What is EOS & EOL?
-   > EOS means PagerDuty will not support any additional bug fixes or entertain new feature requests.<br>
-   > E.g. After October 2022, App integrations built on V2 Webhooks will still continue to work, but any feature requests on V2 will not be entertained.
-   >
-   > EOL means PagerDuty will end the functionality and it won't be available for anyone to use.<br>
-   > E.g. After October 2022, the App integrations built on V1 Webhooks will stop working and will need to be updated to use V3 Webhooks immediately, to avoid any business impact.
+
+### [V1 Webhooks](../webhooks/10-V1-Overview.md) Reached End Of Support
+* V1 has already reached End-Of-Support (EOS) in November 2021.<br>
+* V1 will be reaching End-Of-Life (EOL) by October 2022.<br>
+
+<!-- theme: info -->
+> ### What is EOS & EOL?
+> EOS means PagerDuty will not support any additional bug fixes or entertain new feature requests.<br>
+> E.g. After October 2022, App integrations built on V2 Webhooks will still continue to work, but any feature requests on V2 will not be entertained.
+>
+> EOL means PagerDuty will end the functionality and it won't be available for anyone to use.<br>
+> E.g. After October 2022, the App integrations built on V1 Webhooks will stop working and will need to be updated to use V3 Webhooks immediately, to avoid any business impact.
