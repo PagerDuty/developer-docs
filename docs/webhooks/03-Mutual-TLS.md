@@ -23,7 +23,7 @@ In general, there are five steps needed to turn on client authentication for you
 
 1. Download the PEM version of the [DigiCert Global Root CA](https://cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem) certificate.
 2. Turn on client certificate verification.
-Specify the CA certificate from 1 as trusted.
+Specify the CA certificate from step 1 as trusted.
 3. Set the verification depth to 2 since our PagerDuty certificate is actually signed by the [DigiCert SHA2 Secure Server CA](https://dl.cacerts.digicert.com/DigiCertSHA2SecureServerCA.crt) which is an intermediate CA under DigiCert Global Root CA.
 4. Verify the client certificate is actually from PagerDuty by inspecting its Subject Domain Name.
 
