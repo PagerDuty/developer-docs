@@ -51,75 +51,45 @@ There two options for implementing PagerDuty OAuth in your app. [PKCE (Proof Key
 
 **Server-side App* - an app running on a server which can securely store secrets
 
-## Cracking Open an ID Token
+## Cracking Open the PagerDuty ID Token
 
-PagerDuty uses ID Tokens to securely provide additional details (also called claims) associated with your access token, such as the account subdomain and service region. These tokens are structured as [Json Web Tokens (JWT)](https://datatracker.ietf.org/doc/html/rfc7519). The token is encoded and signed, and contains claims from the OpenID Connect Provider used. 
+PagerDuty uses ID Tokens [as defined by the OpenID specification][openid] to securely provide additional details (also called claims) associated with your access token, such as the account subdomain and service region. These tokens are structured as [Json Web Tokens (JWT)](https://datatracker.ietf.org/doc/html/rfc7519). The token is encoded and signed by PagerDuty. 
+
+  [openid]: https://openid.net/specs/openid-connect-core-1_0.html#IDToken
+
+The following is a sample of a full ID token:
+
+```
+eyJraWQiOiIxNzg3MzQ1MDA4IiwieDV0IjoiX2Nxbk1aWlBBcEF0V3kyVm11T1Y4dUc5VHNvIiwiYWxnIjoiUlMyNTYifQ.eyJleHAiOjE2NDYwODYyNjAsIm5iZiI6MTY0NjA4MjY2MCwianRpIjoiYTlmZDQzYTQtYjAzNy00ZWViLTk4YjAtNDA1NDJlM2I5OGZmIiwiaXNzIjoiaHR0cHM6Ly9hcHAucGQtc3RhZ2luZy5jb20vZ2xvYmFsL29hdXRoL2Fub255bW91cyIsImF1ZCI6WyJodHRwczovL2FwaS5wZC1zdGFnaW5nLmNvbSIsIjkwYjE1M2JmLWNmZWItNDgzNy04YjZhLTg2NGI3ZmY4NTY1NiJdLCJzdWIiOiJmdGFudGF3aUBwYWdlcmR1dHkuY29tIiwiYXV0aF90aW1lIjoxNjQ2MDgyNjQ5LCJpYXQiOjE2NDYwODI2NjAsInB1cnBvc2UiOiJpZCIsImF0X2hhc2giOiJMTXRGS01MWWVGZXppTnR4OVBKV0hBIiwiYWNyIjoiYWNyOmh0bWwtZm9ybTp1bml0ZWRzdGF0ZXMiLCJkZWxlZ2F0aW9uX2lkIjoiNjU2NjAyN2QtNzcwNy00MjhmLTg3NTItM2VmOTcxYjc4ZDFhIiwiYWNjb3VudF9pZCI6IlA5SkVITUsiLCJ1c2VyX2lkIjoiUDhPR01JSyIsImF6cCI6IjkwYjE1M2JmLWNmZWItNDgzNy04YjZhLTg2NGI3ZmY4NTY1NiIsImFtciI6ImFjcjpodG1sLWZvcm06dW5pdGVkc3RhdGVzIiwic3ViZG9tYWluIjoicGR0LWZhcmVzIiwicmVnaW9uIjoiVW5pdGVkU3RhdGVzIiwic2lkIjoiTGR1Mm03RnFuUDdjSDZHbCJ9.uhbXVou8raKUtx56D8pGmWn3VyX8X1ZhadKYAwftcnc5DNHvEXco8MJKle8w5a1v1f9l881eGHLCsrRUb-B0AOHsWVF0EJTGOhWKgVpx9_SrsGXa7qyVlS3fBh-Gh2IrvDHTBWfe2bQ2g_qEfvCneIBIaELVdOeCysxMShygYgd7iOWwM6m3KGNrtCM4RK0JqYSdTRFpXP-OCBVy6JenJqK3maevffi0-7Z0Q0XFuMIwRR-M3A90Wt9349AhwXNK2kL7mvI3ZltnuomoTcB6rRMUylTp7YXyFjhc4nwA8ZlBw6T8SYPvjXy7iRE0ud4TxEh0J_bfs0gOfqgvKY47aQ
+```
 
 The main parts of the ID token are the following.
 
   Name            | Description
 ----------------- | -----------
 `Header`          | Contains token metadata such as the type of token and hash used
-`Payload`         | Contains user, authorization, and claims
+`Payload`         | Contains the user, authorization, and claims
 `Signature`       | Used to verify the token and check for tampering
 
 Each part of the token is encoded using the algorithm specified in the header, split by `.`. Every part is structured in the JSON format.
 
 ### Header
 
+The header includes three fields. The algorithm used to encrypt and decrypt the token is a variant of SHA-256 called RS256, and is declared as the first part of the header. The next part of the header is the Key ID, which is later used for verification. The last part is the certificate (x5t) which is base64url encoded. Putting these parts together, the header is formed.
+
 The main purpose of the header is to determine a decoding algorithm to use for the rest of the token and what key is used for validation. All valid header parameters can be found [here](https://datatracker.ietf.org/doc/html/rfc7515#section-4.1), but the most common ones are the following.
 
   Claim           | Description
 ----------------- | -----------
+`alg`             | Algorithm used for signature of the token
 `kid`             | Key ID found on the JWKS endpoint of the issuer
 `x5t`             | Fingerprint of the certificate used
-`alg`             | Algoirthm used for signature of the token
 
-### Payload
+In the sample ID token above, the header portion is the first section:
 
-The payload contains all claims, which are statements about the user along with any additional data needed. The three types of claims are as follows.
+```eyJraWQiOiIxNzg3MzQ1MDA4IiwieDV0IjoiX2Nxbk1aWlBBcEF0V3kyVm11T1Y4dUc5VHNvIiwiYWxnIjoiUlMyNTYifQ```
 
-  Type            | Description
------------------ | -----------
-Registered Claims | Predefined recommended claims that are inoperable. The most common ones used are `iss` (issuer), `aud` (audience), `sub` (subject), `exp` (expiration time). Some of the less common ones are `nbf` (not before), `iat` (issued at), and `jti` (JWT ID)
-Public Claims     | Claims created and defined by users which are publicly available, typically on the [JSON Web Token Registry](https://www.iana.org/assignments/jwt/jwt.xhtml)
-Private Claims    | Claims created by two parties that are not registered or public
-
-Each payload is Base64Url encoded.
-
-### Signature
-
-The signature is used to verify that the message still has its original integrity and hasn't been tampered with and is sent from a trusted issuer, and will also contain a private key if the token has one.
-
-This signature is created using the hash algorithm from the header, and to verify a token, you must do the following:
-
-* Retrieve the algorithm used to hash the token from the header
-* Use the `x5t` or `kid` parameter from the header to retrieve the public key
-* Seperate the signature from the message
-* Convert the remaining parts to an ASCII array
-* Decode the signature using Base64Url
-* Use the decoded signature to validate the ASCII array generated previously
-
-The contents are now validated, and can be further inspected to ensure the message is correct. The following claims can be inspected and verified:
-
- Claim       |      Description   
------------- | ----------------------------------
- `acr`       |  Authentication method used should match `acr` request parameter
- `iss`       |  Identifier of the token sender, and must be a plain https url
- `sub`       |  Identifier of the user
- `aud`       |  Expected receiver of the token which must contain a client identifier as a URL
- `iat`       |  Time the ID Token was issued, stated as [NumericDate](https://www.rfc-editor.org/rfc/rfc7519#section-2) values
- `auth_time` |  Time the user was last logged in without SSO
- `jti`       |  Unique token identifier is what was expected 
- `nonce`     |  The nonce if passed into the token
-
-## Full ID Token Example
-
-The following is a sample of a full ID token with a valid header, payload, and signature.
-
-### Header
-
-The algorithm used to encrypt and decrypt the token is a variant of SHA-256 called RS256, and is declared as the first part of the header. The next part of the header is the Key ID, which is later used for verification. The last part is the certificate (x5t) which is base64url encoded. Putting these parts together, the header is formed.
+After being base64 decoded, the sample JSON header looks something like this:
 
 ``` json
 {
@@ -129,40 +99,40 @@ The algorithm used to encrypt and decrypt the token is a variant of SHA-256 call
 }
 ```
 
-Once encrypted, the header would form the first part of the token and would be the following:
-
-```
-eyJraWQiOiIxNzg3MzQ1MDA4IiwieDV0IjoiX2Nxbk1aWlBBcEF0V3kyVm11T1Y4dUc5VHNvIiwiYWxnIjoiUlMyNTYifQ
-```
-
-
 ### Payload
 
-The second part of the token contains all the claims sent, and in our case, all of the standard PagerDuty ID Token claims will be made.
+The payload contains claims about the access token, which are statements about the user along with any additional data needed. PagerDuty uses two types of claims:
+
+  Type            | Description
+----------------- | -----------
+Registered Claims | Predefined recommended claims that are reserved by [the JWT standard](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1). The most common ones used are `iss` (issuer), `aud` (audience), `sub` (subject), `exp` (expiration time). Some of the less common ones are `nbf` (not before), `iat` (issued at), and `jti` (JWT ID).
+Private Claims    | PagerDuty includes a number of private claims related to the user and account for convenience.
+
+The claims included in the PagerDuty ID Token are described here in detail:
 
  Claim           |      Description   
 ---------------- | ----------------------------------
  `exp`           |  Expiry time, in a Unix timestamp
  `nbf`           |  Unix timestamp that identifies the time before the ID Token must NOT be accpeted (not before)
  `jti`           |  Unique JWT ID
- `iss`           |  The principal/issuer that issued the ID Token
- `aud`           |  Intended reciever of the token (audience), which is either `https://api.pagerduty.com` or `https://api.eu.pagerduty.com` depending on service region and contains the client ID
- `sub`           |  Subject of the ID Token
- `auth_time`     |  Time when authentication occurred
+ `iss`           |  The principal/issuer that issued the ID Token. This should always be `https://app.pagerduty.com/global/oauth/anonymous`.
+ `aud`           |  Intended reciever of the token (audience). For PagerDuty ID Tokens, this will include a URL specific to the account's service region, either `https://api.pagerduty.com` or `https://api.eu.pagerduty.com`, as well as the client ID.
+ `sub`           |  Subject of the ID Token. For PagerDuty ID tokens, this is the user's email address that authenticated the oauth client.
+ `auth_time`     |  Time when authentication occurred, in a Unix timestamp
  `iat`           |  Time when the ID Token was issued, in a Unix timestamp
- `purpose`       |  Purpose of the JWT, which in an ID token's case is always identification
+ `purpose`       |  Purpose of the JWT. For PagerDuty ID tokens, this is always identification.
  `at_hash`       |  ID Token hash value
- `acr`           |  The authentication context class reference
- `delegation_id` |  ID Token delegation that tracks permissions of OAuth clients
- `account_id`    |  ID of the account linked to the token
- `user_id`       |  ID of the user linked to the token 
+ `acr`           |  The authentication context class reference, which gives context about how the user authenticated the oauth client.
+ `delegation_id` |  ID Token delegation that tracks permissions of OAuth clients, and the history of access tokens and refresh tokens used.
+ `account_id`    |  PagerDuty account ID linked to the token
+ `user_id`       |  PagerDuty user ID linked to the token 
  `azp`           |  The authorized party that was issued the ID Token, which is the client ID
- `amr`           |  Authentication method references
+ `amr`           |  Authentication method references. Similar to the `acr` field, this gives context about how the user authenticated the oauth client.
  `subdomain`     |  PagerDuty subdomain linked to the ID token 
  `region`        |  User and account service region
  `sid`           |  Session ID
 
-Putting all these fields together would give us a token with the following fields:
+Here is a sample decrypted payload for a PagerDuty ID token:
 
 ```json
 {
@@ -191,46 +161,76 @@ Putting all these fields together would give us a token with the following field
 }
 ```
 
-Now encrypting the payload using the algorithm specified in the header would give the following:
-
-```
-    eyJleHAiOjE2NDYwODYyNjAsIm5iZiI6MTY0NjA4MjY2MCwianRpIjoiYTlmZDQzYTQtYjAzNy00ZWViLTk4YjAtNDA1NDJlM2I5OGZmIiwiaXNzIjoiaHR0cHM6Ly9hcHAucGQtc3RhZ2luZy5jb20vZ2xvYmFsL29hdXRoL2Fub255bW91cyIsImF1ZCI6WyJodHRwczovL2FwaS5wZC1zdGFnaW5nLmNvbSIsIjkwYjE1M2JmLWNmZWItNDgzNy04YjZhLTg2NGI3ZmY4NTY1NiJdLCJzdWIiOiJmdGFudGF3aUBwYWdlcmR1dHkuY29tIiwiYXV0aF90aW1lIjoxNjQ2MDgyNjQ5LCJpYXQiOjE2NDYwODI2NjAsInB1cnBvc2UiOiJpZCIsImF0X2hhc2giOiJMTXRGS01MWWVGZXppTnR4OVBKV0hBIiwiYWNyIjoiYWNyOmh0bWwtZm9ybTp1bml0ZWRzdGF0ZXMiLCJkZWxlZ2F0aW9uX2lkIjoiNjU2NjAyN2QtNzcwNy00MjhmLTg3NTItM2VmOTcxYjc4ZDFhIiwiYWNjb3VudF9pZCI6IlA5SkVITUsiLCJ1c2VyX2lkIjoiUDhPR01JSyIsImF6cCI6IjkwYjE1M2JmLWNmZWItNDgzNy04YjZhLTg2NGI3ZmY4NTY1NiIsImFtciI6ImFjcjpodG1sLWZvcm06dW5pdGVkc3RhdGVzIiwic3ViZG9tYWluIjoicGR0LWZhcmVzIiwicmVnaW9uIjoiVW5pdGVkU3RhdGVzIiwic2lkIjoiTGR1Mm03RnFuUDdjSDZHbCJ9
-```
-
 ### Signature
 
-The final part of the token is fairly different, as it isnt a full json object like the header or payload. Its made up of the encoded header and payload, again using the algorithm defined in the header, followed by a secret. The secret key value pair can be taken from the endpoint at https://api.pagerduty.com/global/oauth/anonymous/.well-known/openid-configuration which also contains information about the identity server. An example signature is the following:
+The signature is used to verify that the message still has its original integrity and hasn't been tampered with and is sent from a trusted issuer.
 
-```json
-    HMACSHA256(
-      base64UrlEncode(header) + "." +
-      base64UrlEncode(payload),
-      E3stb6fVlu7d7BnTLMhd7KGrbXosbtBTl2HGiEv1bSM
-    )
-```
+You can find the public key that PagerDuty uses to sign the token at the following URL: https://app.pagerduty.com/global/oauth/anonymous/jwks Please note however that the signing key could be rotated at any time, so we would recommend fetching the signing key from PagerDuty on each use instead of storing it locally.
 
-Finally encrypting the signature would give the final piece of the ID token, and would be the following:
+This signature is created using the hash algorithm from the header, and to verify a token, you must do the following:
 
-    uhbXVou8raKUtx56D8pGmWn3VyX8X1ZhadKYAwftcnc5DNHvEXco8MJKle8w5a1v1f9l881eGHLCsrRUb-B0AOHsWVF0EJTGOhWKgVpx9_SrsGXa7qyVlS3fBh-Gh2IrvDHTBWfe2bQ2g_qEfvCneIBIaELVdOeCysxMShygYgd7iOWwM6m3KGNrtCM4RK0JqYSdTRFpXP-OCBVy6JenJqK3maevffi0-7Z0Q0XFuMIwRR-M3A90Wt9349AhwXNK2kL7mvI3ZltnuomoTcB6rRMUylTp7YXyFjhc4nwA8ZlBw6T8SYPvjXy7iRE0ud4TxEh0J_bfs0gOfqgvKY47aQ
+* Retrieve the algorithm used to hash the token from the header
+* Use the `x5t` or `kid` parameter from the header to retrieve the public key
+* Seperate the signature from the message
+* Convert the remaining parts to an ASCII array
+* Decode the signature using Base64Url
+* Use the decoded signature to validate the ASCII array generated previously
 
-This signature can be decrypted and compared with the payload and header recieved to ensure no tampering was done, and putting the entire ID token together gives the following:
+## Decoding the full ID token with Node and Javascript
 
-```
-eyJraWQiOiIxNzg3MzQ1MDA4IiwieDV0IjoiX2Nxbk1aWlBBcEF0V3kyVm11T1Y4dUc5VHNvIiwiYWxnIjoiUlMyNTYifQ.eyJleHAiOjE2NDYwODYyNjAsIm5iZiI6MTY0NjA4MjY2MCwianRpIjoiYTlmZDQzYTQtYjAzNy00ZWViLTk4YjAtNDA1NDJlM2I5OGZmIiwiaXNzIjoiaHR0cHM6Ly9hcHAucGQtc3RhZ2luZy5jb20vZ2xvYmFsL29hdXRoL2Fub255bW91cyIsImF1ZCI6WyJodHRwczovL2FwaS5wZC1zdGFnaW5nLmNvbSIsIjkwYjE1M2JmLWNmZWItNDgzNy04YjZhLTg2NGI3ZmY4NTY1NiJdLCJzdWIiOiJmdGFudGF3aUBwYWdlcmR1dHkuY29tIiwiYXV0aF90aW1lIjoxNjQ2MDgyNjQ5LCJpYXQiOjE2NDYwODI2NjAsInB1cnBvc2UiOiJpZCIsImF0X2hhc2giOiJMTXRGS01MWWVGZXppTnR4OVBKV0hBIiwiYWNyIjoiYWNyOmh0bWwtZm9ybTp1bml0ZWRzdGF0ZXMiLCJkZWxlZ2F0aW9uX2lkIjoiNjU2NjAyN2QtNzcwNy00MjhmLTg3NTItM2VmOTcxYjc4ZDFhIiwiYWNjb3VudF9pZCI6IlA5SkVITUsiLCJ1c2VyX2lkIjoiUDhPR01JSyIsImF6cCI6IjkwYjE1M2JmLWNmZWItNDgzNy04YjZhLTg2NGI3ZmY4NTY1NiIsImFtciI6ImFjcjpodG1sLWZvcm06dW5pdGVkc3RhdGVzIiwic3ViZG9tYWluIjoicGR0LWZhcmVzIiwicmVnaW9uIjoiVW5pdGVkU3RhdGVzIiwic2lkIjoiTGR1Mm03RnFuUDdjSDZHbCJ9.uhbXVou8raKUtx56D8pGmWn3VyX8X1ZhadKYAwftcnc5DNHvEXco8MJKle8w5a1v1f9l881eGHLCsrRUb-B0AOHsWVF0EJTGOhWKgVpx9_SrsGXa7qyVlS3fBh-Gh2IrvDHTBWfe2bQ2g_qEfvCneIBIaELVdOeCysxMShygYgd7iOWwM6m3KGNrtCM4RK0JqYSdTRFpXP-OCBVy6JenJqK3maevffi0-7Z0Q0XFuMIwRR-M3A90Wt9349AhwXNK2kL7mvI3ZltnuomoTcB6rRMUylTp7YXyFjhc4nwA8ZlBw6T8SYPvjXy7iRE0ud4TxEh0J_bfs0gOfqgvKY47aQ
-```
+Once an ID token has been received from PagerDuty, it can be decrypted. The following code sample uses [jsonwebtoken], [jwks-rsa], and 
+[node https] to fetch the public PagerDuty key, verify the signature on the ID Token, and returns a Promise that contains the extracted
+payload details.
 
-
-## Decoding an ID Token in JavaScript
-
-Once an ID token has been recieved from PagerDuty, it can be decrypted through the following function which returns the payload as an JSON object.
+  [jsonwebtoken]: https://www.npmjs.com/package/jsonwebtoken
+  [jwks-rsa]: https://www.npmjs.com/package/jwks-rsa
+  [node https]: https://nodejs.org/api/https.html
 
 ```
-const parseIDToken = (token) => {
-  return JSON.parse(Buffer.from(token.split('.')[1], "base64").toString());
-};
-```
+function verifyAndExtractIdTokenPayload(oauthTokenResponseJson) {
+  const jwt = require('jsonwebtoken');
+  const jwksClient = require('jwks-rsa');
+  const https = require('https');
 
-Note that if you are on a version of NodeJS older than V6.0.0, the `Buffer.from` builtin is not supported, and must be changed to `new Buffer`.
+  const { idToken, domain, jwtIssuer } = oauthTokenResponseJson;
+
+  return new Promise((resolve, reject) => {
+    https.get('https://app.pagerduty.com/global/oauth/anonymous/jwks', (jwksResponse) => {
+      let jwksData = '';
+
+      jwksResponse.on('data', (chunk) => {
+        jwksData += chunk;
+      });
+
+      jwksResponse.on('end', () => {
+        const client = jwksClient({
+          jwksUri: JSON.parse(jwksData).jwks_uri
+        });
+
+        jwt.verify(
+          idToken,
+          async (header, cb) => {
+            const key = await client.getSigningKey(header.kid);
+            const signingKey = key.getPublicKey();
+            cb(null, signingKey);
+          },
+          { algorithms: ['RS256'], issuer: jwtIssuer },
+          (err, decodedToken) => {
+            if (err) {
+              reject(`ID Token signature validation failed due to ${err}`);
+            } else {
+              resolve(decodedToken);
+            }
+          }
+        );
+      }).on('error', (err) => {
+        reject(`Fetching the PagerDuty public key failed due to ${err}`);
+      });
+    });
+  };
+}
+
+```
 
 ## Removing OAuth 2.0 Functionality
 
