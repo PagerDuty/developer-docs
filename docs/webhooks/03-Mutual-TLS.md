@@ -21,7 +21,7 @@ These steps assume you already have server authentication setup.
 
 In general, there are five steps needed to turn on client authentication for your server:
 
-1. Download the PEM version of the [DigiCert Global Root CA](https://www.websecurity.symantec.com/content/dam/websitesecurity/support/digicert/symantec/root/DigiCert_Global_Root_CA.pem) certificate.
+1. Download the PEM version of the [DigiCert Global Root CA](https://cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem) certificate.
 2. Turn on client certificate verification.
 Specify the CA certificate from 1 as trusted.
 3. Set the verification depth to 2 since our PagerDuty certificate is actually signed by the [DigiCert SHA2 Secure Server CA](https://dl.cacerts.digicert.com/DigiCertSHA2SecureServerCA.crt) which is an intermediate CA under DigiCert Global Root CA.
