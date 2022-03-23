@@ -186,7 +186,7 @@ payload details.
   [jwks-rsa]: https://www.npmjs.com/package/jwks-rsa
   [node https]: https://nodejs.org/api/https.html
 
-```
+```javascript
 function verifyAndExtractIdTokenPayload(oauthTokenResponseJson) {
   const jwt = require('jsonwebtoken');
   const jwksClient = require('jwks-rsa');
@@ -229,7 +229,6 @@ function verifyAndExtractIdTokenPayload(oauthTokenResponseJson) {
     });
   };
 }
-
 ```
 
 ## Removing OAuth 2.0 Functionality
