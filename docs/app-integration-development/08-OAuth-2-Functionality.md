@@ -129,7 +129,7 @@ The claims included in the PagerDuty ID Token are described here in detail:
  `purpose`       |  Purpose of the JWT. For PagerDuty ID tokens, this is always identification.
  `at_hash`       |  ID Token hash value
  `acr`           |  The authentication context class reference, which gives context about how the user authenticated the oauth client.
- `delegation_id` |  ID Token delegation that tracks permissions of OAuth clients, and the history of access tokens and refresh tokens used.
+ `delegation_id` |  A delegation represents that authorization was granted by a user to your oauth client, similar to a session. It will be consistent across the history of all access tokens and refresh tokens for that authorization.
  `account_id`    |  PagerDuty account ID linked to the token
  `user_id`       |  PagerDuty user ID linked to the token 
  `azp`           |  The authorized party that was issued the ID Token, which is the client ID
