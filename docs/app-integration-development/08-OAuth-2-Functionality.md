@@ -82,7 +82,7 @@ The main purpose of the header is to determine a decoding algorithm to use for t
   Claim           | Description
 ----------------- | -----------
 `alg`             | Algorithm used for signature of the token
-`kid`             | Key ID found on the JWKS endpoint of the issuer
+`kid`             | At a given point, PagerDuty may support multiple signing keys. This id identifies which signing key was used for this token.
 `x5t`             | Fingerprint of the certificate used
 
 In the sample ID token above, the header portion is the first section:
