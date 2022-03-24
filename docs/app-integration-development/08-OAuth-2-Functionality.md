@@ -41,15 +41,15 @@ Congratulations! OAuth 2.0 is successfully configured for the app. Now you can m
 There two options for implementing PagerDuty OAuth in your app. [PKCE (Proof Key for Code Exchange](../../docs/app-integration-development/10-OAuth-2-PKCE.md) is recommended and should work for all apps. The [Authorization Code Grant](../../docs/app-integration-development/09-OAuth-2-Auth-Code-Grant.md) Flow is also supported, but is only recommended for server-side applications where you have control over the entire environment.
 
 
-| Choose A Flow For Your App:   |      Server-side App*      |  Client-side App** |
+| Choose A Flow For Your App   |      Server-side App*      |  Client-side App** |
 |:---------------------------------------------------------------------------------------|:-----|:----|
 | PKCE - Proof Key for Code Exchange **(Recommended)** |  Yes | Yes |
 | Authorization Code Grant |  Yes | No  |
 
 
-**Client-side App* - an app which runs in the browser or a native mobile app
+**Client-side App* - an app which runs in the browser or a native mobile app, also known as a public client
 
-**Server-side App* - an app running on a server which can securely store secrets
+**Server-side App* - an app running on a server which can securely store secrets, also known as a confidential client
 
 ## Cracking Open the PagerDuty ID Token
 
@@ -57,7 +57,13 @@ PagerDuty uses ID Tokens [as defined by the OpenID specification][openid] to sec
 
   [openid]: https://openid.net/specs/openid-connect-core-1_0.html#IDToken
 
-The following is a sample of a full ID token:
+
+ URL Name           | URL  | Description
+----------------|------|------------
+ Public Key URL | https://app.pagerduty.com/global/oauth/anonymous/jwks | Use the public key to verify that the token is unmodified and sent by PagerDuty
+ Open ID Configuration | https://app.pagerduty.com/global/oauth/anonymous/.well-known/openid-configuration | Additional details on OpenID features supported by PagerDuty
+
+The ID token will be returned with the access token on a successful call to `oauth/token`:
 
 ```
 eyJraWQiOiIxNzg3MzQ1MDA4IiwieDV0IjoiX2Nxbk1aWlBBcEF0V3kyVm11T1Y4dUc5VHNvIiwiYWxnIjoiUlMyNTYifQ.eyJleHAiOjE2NDYwODYyNjAsIm5iZiI6MTY0NjA4MjY2MCwianRpIjoiYTlmZDQzYTQtYjAzNy00ZWViLTk4YjAtNDA1NDJlM2I5OGZmIiwiaXNzIjoiaHR0cHM6Ly9hcHAucGQtc3RhZ2luZy5jb20vZ2xvYmFsL29hdXRoL2Fub255bW91cyIsImF1ZCI6WyJodHRwczovL2FwaS5wZC1zdGFnaW5nLmNvbSIsIjkwYjE1M2JmLWNmZWItNDgzNy04YjZhLTg2NGI3ZmY4NTY1NiJdLCJzdWIiOiJmdGFudGF3aUBwYWdlcmR1dHkuY29tIiwiYXV0aF90aW1lIjoxNjQ2MDgyNjQ5LCJpYXQiOjE2NDYwODI2NjAsInB1cnBvc2UiOiJpZCIsImF0X2hhc2giOiJMTXRGS01MWWVGZXppTnR4OVBKV0hBIiwiYWNyIjoiYWNyOmh0bWwtZm9ybTp1bml0ZWRzdGF0ZXMiLCJkZWxlZ2F0aW9uX2lkIjoiNjU2NjAyN2QtNzcwNy00MjhmLTg3NTItM2VmOTcxYjc4ZDFhIiwiYWNjb3VudF9pZCI6IlA5SkVITUsiLCJ1c2VyX2lkIjoiUDhPR01JSyIsImF6cCI6IjkwYjE1M2JmLWNmZWItNDgzNy04YjZhLTg2NGI3ZmY4NTY1NiIsImFtciI6ImFjcjpodG1sLWZvcm06dW5pdGVkc3RhdGVzIiwic3ViZG9tYWluIjoicGR0LWZhcmVzIiwicmVnaW9uIjoiVW5pdGVkU3RhdGVzIiwic2lkIjoiTGR1Mm03RnFuUDdjSDZHbCJ9.uhbXVou8raKUtx56D8pGmWn3VyX8X1ZhadKYAwftcnc5DNHvEXco8MJKle8w5a1v1f9l881eGHLCsrRUb-B0AOHsWVF0EJTGOhWKgVpx9_SrsGXa7qyVlS3fBh-Gh2IrvDHTBWfe2bQ2g_qEfvCneIBIaELVdOeCysxMShygYgd7iOWwM6m3KGNrtCM4RK0JqYSdTRFpXP-OCBVy6JenJqK3maevffi0-7Z0Q0XFuMIwRR-M3A90Wt9349AhwXNK2kL7mvI3ZltnuomoTcB6rRMUylTp7YXyFjhc4nwA8ZlBw6T8SYPvjXy7iRE0ud4TxEh0J_bfs0gOfqgvKY47aQ
