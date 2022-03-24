@@ -119,11 +119,11 @@ The claims included in the PagerDuty ID Token are described here in detail:
  Claim           |      Description   
 ---------------- | ----------------------------------
  `exp`           |  Expiry time, in a Unix timestamp
- `nbf`           |  Unix timestamp that identifies the time before the ID Token must NOT be accpeted (not before)
+ `nbf`           |  Unix timestamp that identifies the time before the ID Token must NOT be accepted (not before)
  `jti`           |  Unique JWT ID
  `iss`           |  The principal/issuer that issued the ID Token. This should always be `https://app.pagerduty.com/global/oauth/anonymous`.
  `aud`           |  Intended reciever of the token (audience). For PagerDuty ID Tokens, this will include a URL specific to the account's service region, either `https://api.pagerduty.com` or `https://api.eu.pagerduty.com`, as well as the client ID.
- `sub`           |  Subject of the ID Token. For PagerDuty ID tokens, this is the user's email address that authenticated the oauth client.
+ `sub`           |  Subject of the ID Token. For PagerDuty ID tokens, this can be used to uniquely identify the user that authorized the oauth client.
  `auth_time`     |  Time when authentication occurred, in a Unix timestamp
  `iat`           |  Time when the ID Token was issued, in a Unix timestamp
  `purpose`       |  Purpose of the JWT. For PagerDuty ID tokens, this is always identification.
