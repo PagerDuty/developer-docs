@@ -286,7 +286,7 @@ Should be used in combination with the other operators.  Has higher precedence t
 
 not data.foo matches 'www' -> true
 not data.missing exists and data.foo matches 'www' -> false
- not (data.missing exists and data.foo matches 'www') -> true
+not (data.missing exists and data.foo matches 'www') -> true
 not (data.foo exists and data.foo matches 'code') -> false
 ```
 
