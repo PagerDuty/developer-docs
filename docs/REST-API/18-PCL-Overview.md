@@ -127,7 +127,7 @@ A number can be an integer or a float. A number can be positive or negative.
 42
 0.7
 -12
-4.5e10 
+4.5e10
 ```
 
 #### Boolean
@@ -285,11 +285,13 @@ Should be used in combination with the other operators.  Has higher precedence t
 }
 
 not data.foo matches 'www' -> true
+not data.missing exists and data.foo matches 'www' -> false
+ not (data.missing exists and data.foo matches 'www') -> true
 not (data.foo exists and data.foo matches 'code') -> false
 ```
 
 A `not` will also treat [Non-Boolean Evaluations][Non-Boolean Evaluation] as `false`.
-	
+
 Expression | Evaluates like | Result | Explanation
 -- | -- | -- | --
 `raw_event.invalid_path > 2` | `nil > 2` | ❌ `false` | `>` can only compare two `[number]` or `[date]` types but got `[nil] > [number]`
@@ -303,7 +305,19 @@ Returns the boolean `and` of the two arguments, i.e. returns `true` if both argu
 [boolean] and [boolean] -> [boolean]
 ```
 
-No conversions are performed; returns `false` if either arg is not a `boolean` type. Returns `false` if either args is a [Non-Boolean Evaluation]. Can be used with boolean literals or be used for creating nested expressions by joining the other operators. Has higher precedence than `or`, but lower predence than `not`.
+No conversions are performed; returns `false` if either arg is not a `boolean` type. Returns `false` if either args is a [Non-Boolean Evaluation]. Can be used with boolean literals or be used for creating nested expressions by joining the other operators. Has higher precedence than `or`, but lower predence than `not`. If the first argument evaluates to `false`, the second argument is not evaluated (short-cicuiting). Note that when short-cicuiting takes place, any errors or warnings that may have occurred in the evaluation of the second argument will not be returned.
+
+ ```json
+ {
+   "data": {
+     "foo": "code"
+   }
+ }
+
+ data.foo matches 'www' and data.missing matches 'hello' -> false (no warnings)
+ data.missing matches 'hello' and data.foo matches 'www' -> false (type mismatch warning)
+ data.foo matches 'code' and not data.missing exists -> true (no warnings)
+ ```
 
 ##### `or`
 
@@ -313,7 +327,19 @@ Returns the boolean `or` of the two arguments, i.e. returns `false` if both argu
 [boolean] or [boolean] -> [boolean]
 ```
 
-No conversions are performed; returns `false` if either arg is not a `boolean`. Treats [Non-Boolean Evaluation] as `false`. Can be used with boolean literals or be used for creating nested expressions by joining the other operators.  Has lower precedence than `and`.
+No conversions are performed; returns `false` if either arg is not a `boolean`. Treats [Non-Boolean Evaluation] as `false`. Can be used with boolean literals or be used for creating nested expressions by joining the other operators.  Has lower precedence than `and`. If the first argument evaluates to `true`, the second argument is not evaluated (short-cicuiting). Note that when short-cicuiting takes place, any errors or warnings that may have occurred in the evaluation of the second argument will not be returned.
+
+ ```json
+ {
+   "data": {
+     "foo": "code"
+   }
+ }
+
+ data.foo matches 'code' or data.missing matches 'hello' -> true (no warnings)
+ data.missing matches 'hello' or data.foo matches 'code' -> true (type mismatch warning)
+ data.foo matches 'www' or data.missing exists -> false (no warnings)
+ ```
 
 #### Numeric Comparison Operations
 
@@ -529,7 +555,7 @@ Generally, a `path` used in an expression will evaluate to the value of the path
     "c": 5
   }
 }
-  
+
 a.b exists -> true
 a.b -> nil
 a.c exists -> true
