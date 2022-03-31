@@ -72,7 +72,7 @@ Example: `PD.fail(“Failed to parse event”)`
   * `PD.emitGenericEvents` is used to emit an event or multiple events into the PagerDuty ecosystem
   * Signature: `PD.emitGenericEvents([the_pagerduty_payload])`
   * PagerDuty imposes a limit on the number of events emitted by the `PD.emitGenericEvents` method that will be processed.
-    * Though the number of invocations of the `PD.emitGenericEvents` method is unconstrained, only the first 40 events emitted will be processed.
+    * Though the `PD.emitGenericEvents` method may be invoked any number of times, only the first 40 events emitted will be processed.
     * Any events emitted in excess of the 40 event limit will be dropped and a single event will be generated indicating that the 40 event fanout limit was exceeded.
 
 
