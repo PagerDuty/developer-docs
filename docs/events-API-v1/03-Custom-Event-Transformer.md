@@ -76,7 +76,8 @@ Example: `PD.fail(“Failed to parse event”)`
   * Signature: `PD.emitGenericEvents([the_pagerduty_payload])`
   * PagerDuty imposes a limit on the number of events emitted by the `PD.emitGenericEvents` method that will be processed.
     * Though the `PD.emitGenericEvents` method may be invoked any number of times, only the first 40 events emitted will be processed.
-    * Any events emitted in excess of the 40 event limit will be dropped and a single event will be generated indicating that the 40 event fanout limit was exceeded.
+    * Any events emitted in excess of the 40 event limit will be dropped and a single event will be generated saying "Event {{incoming event ID}} was transformed into {{total count}} fanout events. The first 40 were successfully processed. The remaining {{excess count}} excess fanout events were dropped."
+
 
 
 
