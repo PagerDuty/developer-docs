@@ -83,7 +83,10 @@ Example:
 #### PD.emitEventsV2
 Signature: `PD.emitEventsV2([pagerduty_events_v2_object])`
 
-`PD.emitEventsV2` is used to emit an event or multiple events into the PagerDuty ecosystem
+`PD.emitEventsV2` is used to emit an event or multiple events into the PagerDuty ecosystem.
+  * Each invocation of `PD.emitEventsV2` emits one additional event to the set of events that the incoming event is being transformed into.
+  * For example, two invocations of `PD.emitEventsV2` would mean the incoming event is transformed into two events.
+  * An incoming event can be transformed into one or more events, but no more than 40.
 
 PagerDuty imposes a limit on the number of events emitted by the `PD.emitEventsV2` method that will be processed.
 Though the `PD.emitEventsV2` method may be invoked any number of times, only the first 40 events emitted will be processed. Any events emitted in excess of the 40 event limit will be dropped and a single event will be generated indicating that the 40 event fanout limit was exceeded.
