@@ -69,8 +69,16 @@ Examples:
 Example: `PD.fail(“Failed to parse event”)`
 
 #### PD.emitGenericEvents
-  * `PD.emitGenericEvents` is used to emit an event or multiple events into the PagerDuty ecosystem
+  * `PD.emitGenericEvents` is used to emit an event or multiple events into the PagerDuty ecosystem.
+    * Each invocation of `PD.emitGenericEvents` emits one additional event to the set of events that the incoming event is being transformed into.
+    * For example, two invocations of `PD.emitGenericEvents` would mean the incoming event is transformed into two events.
+    * An incoming event can be transformed into one or more events, but no more than 40.
   * Signature: `PD.emitGenericEvents([the_pagerduty_payload])`
+  * PagerDuty imposes a limit on the number of events emitted by the `PD.emitGenericEvents` method that will be processed.
+    * Though the `PD.emitGenericEvents` method may be invoked any number of times, only the first 40 events emitted will be processed.
+    * Any events emitted in excess of the 40 event limit will be dropped and a single event will be generated saying "Event {{incoming event ID}} was transformed into {{total count}} fanout events. The first 40 were successfully processed. The remaining {{excess count}} excess fanout events were dropped."
+
+
 
 
 ### The PagerDuty Payload
