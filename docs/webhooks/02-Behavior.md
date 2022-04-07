@@ -77,7 +77,7 @@ PagerDuty's [v3 webhooks](../../docs/webhooks/01-Overview.md) are sent with a si
 
 ### IP Safelists
 
-You can configure your network or server to only accept inbound connections from certain IP addresses. See our [knowledge base article](https://support.pagerduty.com/docs/whitelisting-ips#section-webhooks) for information on obtaining the list of IPs webhooks may come from.  (Previously called IP whitelisting, [see why we changed the name here.](https://twitter.com/secnerdette/status/898314208097427457))
+You can configure your network or server to only accept inbound connections from certain IP addresses. See our [Webhook IPs page](../../docs/webhooks/11-Webhook-IPs.md) for information on obtaining the list of IPs webhooks may come from.  (Previously called IP whitelisting, [see why we changed the name here.](https://twitter.com/secnerdette/status/898314208097427457))
 
 ### Basic Authentication
 
