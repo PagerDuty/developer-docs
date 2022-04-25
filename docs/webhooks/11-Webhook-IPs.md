@@ -9,8 +9,10 @@ This page lists the IP addresses that PagerDuty uses to send webhooks in each of
 
 The full list of IP addresses that our webhook notifications may come from is:
 
-### US Service Region ([download](https://developer.pagerduty.com/ip-safelists/webhooks-us-service-region.txt))
+### US Service Region
 
+download: [plain](https://developer.pagerduty.com/ip-safelists/webhooks-us-service-region) | [json](https://developer.pagerduty.com/ip-safelists/webhooks-us-service-region-json)
+    
     44.242.69.192
     52.89.71.166
     54.213.187.133
@@ -29,8 +31,10 @@ The full list of IP addresses that our webhook notifications may come from is:
     34.231.45.166
 
 
-### EU Service Region ([download](https://developer.pagerduty.com/ip-safelists/webhooks-eu-service-region.txt))
+### EU Service Region
 
+download: [plain](https://developer.pagerduty.com/ip-safelists/webhooks-eu-service-region) | [json](https://developer.pagerduty.com/ip-safelists/webhooks-eu-service-region-json)
+    
     18.192.91.93
     18.158.120.237
     18.194.177.30
