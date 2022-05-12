@@ -1,7 +1,7 @@
 ---
 tags: [webhooks]
 ---
-> Notice: This safelist of IP addresses has taken effect May 5th, 2022 - 14:00 UTC
+> Notice: This safelist of IP addresses will take effect May 5th, 2022 - 14:00 UTC
 
 # Webhook IPs
 
