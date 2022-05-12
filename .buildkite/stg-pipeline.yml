@@ -4,7 +4,7 @@ steps:
   - label: "Pushing to articles to staging"
     commands:
       - "npm install @stoplight/cli@5"
-      - "npx @stoplight/cli@5 push --ci-token $SECRET_STOPLIGHT_DEVELOPER_DOCS_CI_TOKEN_STAGING"
+      - "npx --yes @stoplight/cli@5 push --ci-token $SECRET_STOPLIGHT_DEVELOPER_DOCS_CI_TOKEN_STAGING"
     plugins:
       # Using the plain Node image, instead of the custom doc Dockerfile
       # version, is way faster because we don't have to wait for Ruby gems to
