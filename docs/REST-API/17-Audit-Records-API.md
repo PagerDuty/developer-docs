@@ -56,7 +56,7 @@ Each record describes an `ACTION` executed on an aggregate (identified by the ag
          "action":"update",                     # <-- The action (from the aggregate point of view)
          "actors": [
             {
-              "id": "USERID",                   
+              "id": "USERID",
               "type": "user_reference"
             }
           ],
@@ -80,12 +80,12 @@ Each record describes an `ACTION` executed on an aggregate (identified by the ag
    ]
 }
 ```
-- The details of the action are captured in the `details` object. Changes can be made to the root resource or any other resource in the aggregate. 
-The `details` object provides the `resource` reference that identifies the resource that changes were made to. 
+- The details of the action are captured in the `details` object. Changes can be made to the root resource or any other resource in the aggregate.
+The `details` object provides the `resource` reference that identifies the resource that changes were made to.
 If the change was made to the root resource itself, the `details.resource` reference will be the same as the `root_resource` reference.
 
 <!-- theme:info -->
-> Actions can be split across multiple records, but records produced by a single API request will share the `execution_context.request_id` 
+> Actions can be split across multiple records, but records produced by a single API request will share the `execution_context.request_id`
 
 ### Change Details
 The record `details` object describes the changes made to the resource. It may describe changes made to the resource's `fields`, `references` or both.
@@ -148,7 +148,7 @@ The record `details` object describes the changes made to the resource. It may d
 
 ## Data Retention
 
-Audit records are accessible for up to 18 months after they are created. You may fetch and store records if you wish to access them after 18 months.
+Audit records are accessible for up to 12 months after they are created. You may fetch and store records if you wish to access them after 12 months.
 
 
 <!-- theme:warning -->
