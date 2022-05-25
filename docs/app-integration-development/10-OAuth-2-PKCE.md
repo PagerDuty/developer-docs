@@ -13,8 +13,8 @@ The following endpoints conform to the OAuth 2.0 protocol for Authorization Code
 
 |||
 |-|-|
-|Authorization Endpoint|`https://app.pagerduty.com/oauth/authorize`|
-|Token Endpoint        |`https://app.pagerduty.com/oauth/token`|
+|Authorization Endpoint|`https://identity.pagerduty.com/oauth/authorize`|
+|Token Endpoint        |`https://identity.pagerduty.com/oauth/token`|
 
 ### What is PKCE?
 
@@ -42,7 +42,7 @@ The flow is initiated by sending a GET request to the Authorization Endpoint wit
 
 The user will be required to a) login with credentials and b) authorize the permissions requested by the client application.
 ```
-GET https://app.pagerduty.com/oauth/authorize?client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&scope={SCOPE}&response_type=code&code_challenge_method=S256&code_challenge
+GET https://identity.pagerduty.com/oauth/authorize?client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&scope={SCOPE}&response_type=code&code_challenge_method=S256&code_challenge
 ```
 
 ## Obtaining an Access Grant : Leg 2 of 3
@@ -89,7 +89,7 @@ The authorization code has a time to live of 30 seconds, and your POST request m
 The body of the request should include the following parameters: `client_id`,  `redirect_uri`, the `code` (authorization code) received from PagerDuty, `grant_type=authorization_code`, and finally the `code_verifier` that was generated to create the code_challenge originally. The content-type should be `application/x-form-urlencoded`.
 
 ```
-curl -X POST https://app.pagerduty.com/oauth/token \
+curl -X POST https://identity.pagerduty.com/oauth/token \
   -d "grant_type=authorization_code"
   -d "client_id={CLIENT_ID}"
   -d "redirect_uri={REDIRECT_URI}"
