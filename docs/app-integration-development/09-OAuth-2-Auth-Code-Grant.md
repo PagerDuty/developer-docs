@@ -15,8 +15,8 @@ PagerDuty supports OAuth 2.0’s [Authorization Code Grant](https://tools.ietf.o
 
 |||
 |-|-|
-|Authorization Endpoint|`https://app.pagerduty.com/oauth/authorize`|
-|Token Endpoint        |`https://app.pagerduty.com/oauth/token`|
+|Authorization Endpoint|`https://identity.pagerduty.com/oauth/authorize`|
+|Token Endpoint        |`https://identity.pagerduty.com/oauth/token`|
 
 
 The following parameters will also be used in your requests or returned in the response:
@@ -37,7 +37,7 @@ The following parameters will also be used in your requests or returned in the r
 Send a GET request to authorization endpoint with query parameters set for `client_id`, `redirect_uri` and `scope`, as defined in the app, and `response_type=code`
 
 ```
-GET https://app.pagerduty.com/oauth/authorize?client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&scope={SCOPE}&response_type=code
+GET https://identity.pagerduty.com/oauth/authorize?client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&scope={SCOPE}&response_type=code
 ```
 
 ### Authorized Requests
@@ -60,7 +60,7 @@ If the user denies authorization, PagerDuty will redirect to the specified URI w
 To exchange the authorization code for an access token, send a POST request to the token endpoint. The authorization code has a time to live of 30 seconds, and your POST request must be received within that time. The body of the request should include the following parameters: `client_id`, `client_secret`, `redirect_uri`, the `code` (authorization code) received from PagerDuty, and `grant_type=authorization_code`. The content type should be `application/x-form-urlencoded`.
 
 ```
-curl -X POST https://app.pagerduty.com/oauth/token \
+curl -X POST https://identity.pagerduty.com/oauth/token \
   -d "grant_type=authorization_code" \
   -d "client_id={CLIENT_ID}" \
   -d "client_secret={CLIENT_SECRET}" \

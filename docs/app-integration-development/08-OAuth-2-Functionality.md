@@ -60,8 +60,8 @@ PagerDuty uses ID Tokens [as defined by the OpenID specification][openid] to sec
 
  URL Name           | URL  | Description
 ----------------|------|------------
- Public Key URL | https://app.pagerduty.com/global/oauth/anonymous/jwks | Use the public key to verify that the token is unmodified and sent by PagerDuty
- Open ID Configuration | https://app.pagerduty.com/global/oauth/anonymous/.well-known/openid-configuration | Additional details on OpenID features supported by PagerDuty
+ Public Key URL | https://identity.pagerduty.com/global/oauth/anonymous/jwks | Use the public key to verify that the token is unmodified and sent by PagerDuty
+ Open ID Configuration | https://identity.pagerduty.com/global/oauth/anonymous/.well-known/openid-configuration | Additional details on OpenID features supported by PagerDuty
 
 The ID token will be returned with the access token on a successful call to `oauth/token`:
 
@@ -121,7 +121,7 @@ The claims included in the PagerDuty ID Token are described here in detail:
  `exp`           |  Expiry time, in a Unix timestamp
  `nbf`           |  Unix timestamp that identifies the time before the ID Token must NOT be accepted (not before)
  `jti`           |  Unique JWT ID
- `iss`           |  The principal/issuer that issued the ID Token. This should always be `https://app.pagerduty.com/global/oauth/anonymous`.
+ `iss`           |  The principal/issuer that issued the ID Token. This should always be `https://identity.pagerduty.com/global/oauth/anonymous`.
  `aud`           |  Intended reciever of the token (audience). For PagerDuty ID Tokens, this will include a URL specific to the account's service region, either `https://api.pagerduty.com` or `https://api.eu.pagerduty.com`, as well as the client ID.
  `sub`           |  Subject of the ID Token. For PagerDuty ID tokens, this can be used to uniquely identify the user that authorized the oauth client.
  `auth_time`     |  Time when authentication occurred, in a Unix timestamp
@@ -145,7 +145,7 @@ Here is a sample decrypted payload for a PagerDuty ID token:
   "exp": 1646086260,
   "nbf": 1646082660,
   "jti": "a9fd43a4-b037-4eeb-98b0-40542e3b98ff",
-  "iss": "https://app.pagerduty.com/global/oauth/anonymous",
+  "iss": "https://identity.pagerduty.com/global/oauth/anonymous",
   "aud": [
     "https://api.pagerduty.com",
     "90b153bf-cfeb-4837-8b6a-864b7ff85656"
@@ -171,7 +171,7 @@ Here is a sample decrypted payload for a PagerDuty ID token:
 
 The signature is used to verify that the message still has its original integrity and hasn't been tampered with and is sent from a trusted issuer.
 
-You can find the public key that PagerDuty uses to sign the token at the following URL: https://app.pagerduty.com/global/oauth/anonymous/jwks Please note however that the signing key could be rotated at any time, so we would recommend fetching the signing key from PagerDuty on each use instead of storing it locally.
+You can find the public key that PagerDuty uses to sign the token at the following URL: https://identity.pagerduty.com/global/oauth/anonymous/jwks Please note however that the signing key could be rotated at any time, so we would recommend fetching the signing key from PagerDuty on each use instead of storing it locally.
 
 This signature is created using the hash algorithm from the header, and to verify a token, you must do the following:
 
@@ -201,7 +201,7 @@ function verifyAndExtractIdTokenPayload(oauthTokenResponseJson) {
   const { idToken, domain, jwtIssuer } = oauthTokenResponseJson;
 
   return new Promise((resolve, reject) => {
-    https.get('https://app.pagerduty.com/global/oauth/anonymous/jwks', (jwksResponse) => {
+    https.get('https://identity.pagerduty.com/global/oauth/anonymous/jwks', (jwksResponse) => {
       let jwksData = '';
 
       jwksResponse.on('data', (chunk) => {
