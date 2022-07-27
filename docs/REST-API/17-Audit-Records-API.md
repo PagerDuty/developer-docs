@@ -32,7 +32,7 @@ More resource types may be added to this list over time. If you don't see a reso
 
 Endpoint                                   |  Permissions Required  | Example Usage
 ------------------------------------------ | ---------------------- | -------------
-**Admin (account-wide)**<br/>Access all audit records<br/><br/> [`/audit/records/` View API Reference](/api-reference/reference/REST/openapiv3.json/paths/~1audit~1records/get) | Admin (global API token or user / OAuth token for an admin user) | Show records of all users deleted between May and July
+**Admin (account-wide)**<br/>Access all audit records<br/><br/> [`/audit/records/` View API Reference](https://developer.pagerduty.com/api-reference/116868b0e9772-list-audit-records) | Admin (global API token or user / OAuth token for an admin user) | Show records of all users deleted between May and July
 **Resource-level**<br/>Access audit records of changes made to a single resource<br/><br/>`/{resource_type}/{id}/audit/records/` | Any API token that has Read access to the resource | Show records of changes made to Ellen's user profile
 
 ## API Access
@@ -40,9 +40,9 @@ The Audit API is part of PagerDuty's REST API. Please see documentation for the 
 
 ## Request Format & Errors
 
-Please see the [API Reference](/api-reference/reference/REST/openapiv3.json/paths/~1audit~1records/get) for detailed information about the request format (including filtering query parameters), the response format, and possible error codes. You can also make a request directly from the API Reference.
+Please see the [API Reference](https://developer.pagerduty.com/api-reference/116868b0e9772-list-audit-records) for detailed information about the request format (including filtering query parameters), the response format, and possible error codes. You can also make a request directly from the API Reference.
 
-The Admin audit endpoint is under **Audit** in the side navigation. Resource-level endpoints are labeled **List audit records for a...** under each resource type. For example, you can [view the audit records for a single service](/api-reference/reference/REST/openapiv3.json/paths/~1services~1%7Bid%7D~1audit~1records/get).
+The Admin audit endpoint is under **Audit** in the side navigation. Resource-level endpoints are labeled **List audit records for a...** under each resource type. For example, you can [view the audit records for a single service](https://developer.pagerduty.com/api-reference/06a91b36ed81a-list-audit-records-for-a-service).
 
 ## Record Format
 Each record describes an `ACTION` executed on an aggregate (identified by the aggregate "root_resource") by `ACTOR`s using a `METHOD`.
