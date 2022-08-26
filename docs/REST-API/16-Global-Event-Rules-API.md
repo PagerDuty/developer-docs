@@ -86,7 +86,7 @@ None.
 ```
 
 ### Displayed in the UI
-![Screenshot of PagerDuty event rules interface](event-rules-interface.jpg)
+![Screenshot of PagerDuty event rules interface](../../assets/images/event-rules-interface.jpg)
 
 ### Other Fields
 
@@ -122,7 +122,7 @@ The `condition` field contains a list of conditions. The first field in the list
 
 #### Displayed in the UI
 
-![Screenshot of rule created in the PagerDuty event rules interface](created-event-rule.jpg)
+![Screenshot of rule created in the PagerDuty event rules interface](../../assets/images/created-event-rule.jpg)
 
 #### Operators
 
