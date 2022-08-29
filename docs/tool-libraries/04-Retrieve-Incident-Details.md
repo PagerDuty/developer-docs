@@ -23,7 +23,7 @@ Log entry data includes details about the event(s) that affected the incident th
 
 ### How to obtain the data
 
-To obtain the event data sent through the integration, we'll be retrieving a specific type of log entry called the trigger log entry. For this, you will need the ID (a string of alphanumeric characters that starts with `P`) or the number of the incident that the event triggered.
+To obtain the event data sent through the integration, we'll be retrieving a specific type of log entry called the trigger log entry. For this, you will need the ID (a string of alphanumeric characters that starts with `P` or `Q`) or the number of the incident that the event triggered.
 
 In both cases, we'll be making requests to the log entries API. We will need to append the `channels` value to the array-type URL parameter `include[]` when obtaining log entries. In other words, the query part of the URL (after `?`) will contain `include[]=channels`, to enable including this feature in the response.
 
