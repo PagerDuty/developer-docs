@@ -36,7 +36,7 @@ The HTTP response can be used to determine if the request was successful, and if
 | 204 | No Content | The request was successful. No content is returned. |
 | 400 | Bad Request | Caller provided invalid arguments. Please review the response for error details. Retrying with the same arguments will *not* work. |
 | 401 | Unauthorized | Caller did not supply credentials or did not provide the correct credentials. See [Authentication](../../docs/REST-API/02-Authentication.md). |
-| 402 | Payment Required | The PagerDuty account does not have access to one or more abilities needed to complete this request. Use the [Account Abilities API](https://api-reference.pagerduty.com/#!/Abilities/get_abilities) to determine which abilities the account supports. |
+| 402 | Payment Required | The PagerDuty account does not have access to one or more abilities needed to complete this request. Use the [Account Abilities API](https://developer.pagerduty.com/api-reference/9def78ed82b74-list-abilities) to determine which abilities the account supports. |
 | 403 | Forbidden | Caller is not authorized to view the requested resource. |
 | 404 | Not Found | The requested resource was not found. |
 | 408 | Request Timeout | The request took too long to process. Please try again. |
@@ -83,6 +83,7 @@ This list of error codes is not exhaustive, but is representative of the kinds o
 | 2011 | You must specify a requester_id to perform this action |
 | 2012 | Your account is expired and cannot use the API |
 | 2013 | User not found |
+| 2014 | Missing Account Ability |
 | 2015 | Invalid operation |
 | 2016 | The request took too long to process |
 | 2017 | Too Many Contact Method Actions |
