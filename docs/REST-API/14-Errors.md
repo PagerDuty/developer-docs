@@ -83,6 +83,7 @@ This list of error codes is not exhaustive, but is representative of the kinds o
 | 2011 | You must specify a requester_id to perform this action |
 | 2012 | Your account is expired and cannot use the API |
 | 2013 | User not found |
+| 2014 | Missing Account Ability |
 | 2015 | Invalid operation |
 | 2016 | The request took too long to process |
 | 2017 | Too Many Contact Method Actions |
