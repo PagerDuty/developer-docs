@@ -13,7 +13,7 @@ Once you have [registered your app](../../docs/app-integration-development/03-Re
 |:--------------------|:----------------------------------------|
 | [Events Integration](../../docs/app-integration-development/06-Events-Integration.md) |  Send machine events **from** your tool **to** PagerDuty over our asynchronous [Events API](../../docs/events-API-v2/01-Overview.md). This is the best way for monitoring tools to connect with PagerDuty in order to trigger incidents. |
 | [Simple Install Flow](../../docs/app-integration-development/06-Events-Integration.md#simple-install-flow-optional-but-recommended)|  If you're using the Events API, your users can quickly connect to PagerDuty directly from your tool with the Simple Install Flow! [See Demo](https://acme.pagerduty.dev) |
-| [Events Integration](../../docs/app-integration-development/08-OAuth-2-Functionality.md)|  Connect to our [REST API](https://api-reference.pagerduty.com/) as a PagerDuty user (not full account access) to administer PagerDuty or get data (create an on-call schedule, get a list of team members, etc). |
+| [OAuth 2.0](../../docs/app-integration-development/08-OAuth-2-Functionality.md)|  Connect to our [REST API](https://api-reference.pagerduty.com/) as a PagerDuty user (not full account access) to administer PagerDuty or get data (create an on-call schedule, get a list of team members, etc). |
 
 ### More Ways To Connect With PagerDuty
 
