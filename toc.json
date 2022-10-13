@@ -266,6 +266,12 @@
         },
         {
           "type": "item",
+          "title": "Early Access",
+          "slug": "webhooks/early-access",
+          "uri": "docs/webhooks/07-Webhooks-Beta.md"
+        },
+        {
+          "type": "item",
           "title": "Public Certificates",
           "uri": "docs/webhooks/08-Certificates.md"
         },
