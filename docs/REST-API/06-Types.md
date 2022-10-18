@@ -81,7 +81,7 @@ A string representing a recognized time zone. Time zones are specified in the fo
 
 ### URL
 
-A URL is string that conforms to the [RFC 3986 syntax](https://tools.ietf.org/html/rfc3986). URLs are fully-qualified URIs that [provide a means of locating the resource](https://tools.ietf.org/html/rfc3986#section-1.1.3), and will never have only a subset of the URL, such as just a hostname or path.
+A URL is a string that conforms to the [RFC 3986 syntax](https://tools.ietf.org/html/rfc3986). URLs are fully-qualified URIs that [provide a means of locating the resource](https://tools.ietf.org/html/rfc3986#section-1.1.3), and will never have only a subset of the URL, such as just a hostname or path.
 
 A number of URL validation libraries are available; any that conform to the spec should be able to correctly validate a URL field.
 
