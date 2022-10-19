@@ -88,7 +88,7 @@
         {
           "type": "item",
           "title": "PagerDuty OpenID ID tokens",
-          "uri": "docs/app-integration-development/11-OAuth2-Id-token.md"
+          "uri": "docs/app-integration-development/11-OAuth-2-Id-token.md"
         },
         {
           "type": "item",
