@@ -133,6 +133,11 @@ Note however, that our access tokens do expire after a defined period of time --
 
 ## Getting a new Access Token with a Refresh Token
 
+<!-- theme:warning -->
+> ### Securing credentials for public clients
+> Note that we do not recommend storing OAuth client secrets for a public OAuth client in a browser or mobile app, although it is required to provide your credentials when implementing OAuth refresh (including the client secret).
+> Long-term, we would currently recommend using a [Backend-for-Frontend](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-browser-based-apps#section-6.2) to store your OAuth client credentials securely.
+
 As mentioned, all of our current access tokens have an expiration date defined, so, it would be to your benefit to implement OAuth refresh to prevent your users from logging in unnecessarily.
 
 Exchanging the refresh token for the access token is similar to using an authorization code: send a POST request to the token endpoint, but using the `refresh_token` grant type instead.
