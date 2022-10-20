@@ -85,9 +85,9 @@ The access token will be included in a JSON response, and you may also want to t
 }
 ```
 
-Note however, that our access tokens do expire after a defined period of time -- so you may want to make sure that you implement OAuth refresh to prevent users needing to re-authorize your app.
+Note however, that our access tokens do expire after a defined period of time -- so you may want to make sure that you implement OAuth refresh to prevent users needing to re-authorize your app. See more information about token expiries at the bottom of this page.
 
-For additional information about the user and account where your app is now authorized, you can look at [cracking open our PagerDuty-signed ID token](../../docs/app-integration-development/11-OAuth-2-Id-token.md).
+For additional information about the user, account, and PagerDuty service region where your app is now authorized, you can look at [cracking open our PagerDuty-signed ID token](../../docs/app-integration-development/11-OAuth-2-Id-token.md). For example, the `aud` field will help your integration with data residency and processing guarantees if you have customers located in Europe.
 
 ## Sample Code
 
