@@ -71,7 +71,7 @@ curl -X POST https://identity.pagerduty.com/oauth/token \
 
 Note: By default, curl uses a content type of `application/x-form-urlencoded`.
 
-The access token will be included in a JSON response, and you may also want to take note of the id token and the refresh token:
+The access token will be included in a JSON response. You may also want to take note of the id token and the refresh token:
 
 ```json
 {
@@ -109,7 +109,7 @@ Accept: application/vnd.pagerduty+json;version=2
 
 ## Getting a new Access Token with a Refresh Token
 
-All of our current access tokens have an expiration date defined -- prior to October 30th 2022, access tokens lasted for a year, but after October 30th 2022, access tokens for new OAuth clients will only last for one hour. In April 2023, all new access tokens for all OAuth clients will start using the new expiry settings. So, it would be to your benefit to implement OAuth refresh.
+As mentioned, all of our current access tokens have an expiration date defined, so, it would be to your benefit to implement OAuth refresh to prevent your users from logging in unnecessarily.
 
 Exchanging the refresh token for the access token is similar to using an authorization code: send a POST request to the token endpoint, but using the `refresh_token` grant type instead.
 
@@ -146,8 +146,8 @@ Prior to October 30th 2022, all registered OAuth clients have the following sett
 
 After October 30th 2022, all newly registered OAuth clients will have the following settings:
 
- - access token expiry of one day
- - refresh token expiry of 30 days
+ - access token expiry of 30 days
+ - refresh token expiry of 210 days
  - rolling refresh window of 3 years
 
 After April 30th 2023, we will apply the new expiry settings to all OAuth clients.
