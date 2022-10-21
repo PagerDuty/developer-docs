@@ -168,7 +168,7 @@ A successful response will include a new access token and a new refresh token:
 
 We've noted above that access tokens have an expiry date -- so do refresh tokens, and so does the lifetime of the user's authorization.
 
-Prior to October 30th 2022, all registered OAuth clients have the following settings:
+All OAuth clients registered prior to October 30th 2022 will have the following settings:
 
  - access token expiry of one year
  - refresh token expiry of one year
