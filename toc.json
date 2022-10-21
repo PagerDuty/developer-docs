@@ -87,6 +87,11 @@
         },
         {
           "type": "item",
+          "title": "PagerDuty OpenID ID tokens",
+          "uri": "docs/app-integration-development/11-OAuth-2-Id-token.md"
+        },
+        {
+          "type": "item",
           "title": "Publish an App",
           "uri": "docs/app-integration-development/11-Publish-Your-App.md"
         }
