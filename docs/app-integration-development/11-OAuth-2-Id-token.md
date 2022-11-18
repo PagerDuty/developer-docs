@@ -74,7 +74,7 @@ The claims included in the PagerDuty ID Token are described here in detail:
  `auth_time`     |  Time when authentication occurred, in a Unix timestamp
  `iat`           |  Time when the ID Token was issued, in a Unix timestamp
  `purpose`       |  Purpose of the JWT. For PagerDuty ID tokens, this is always identification.
- `at_hash`       |  ID Token hash value
+ `at_hash`       |  Hash value of corresponding access token issued
  `acr`           |  The authentication context class reference, which gives context about how the user authenticated the oauth client.
  `delegation_id` |  A delegation represents that authorization was granted by a user to your oauth client, similar to a session. It will be consistent across the history of all access tokens and refresh tokens for that authorization.
  `account_id`    |  PagerDuty account ID linked to the token
