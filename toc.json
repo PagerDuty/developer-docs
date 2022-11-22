@@ -277,8 +277,7 @@
         {
           "type": "item",
           "title": "Webhook IPs",
-          "uri": "docs/webhooks/11-Webhook-IPs.md",
-          "slug": "webhook-ips"
+          "uri": "docs/webhooks/11-Webhook-IPs.md"
         }
       ]
     },
