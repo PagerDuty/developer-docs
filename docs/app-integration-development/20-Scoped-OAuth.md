@@ -2,7 +2,7 @@
 tags: [app-integration-development]
 ---
 
-# Extended OAuth
+# Scoped OAuth
 
 <!-- theme: warning -->
 > ### Early Access
@@ -12,20 +12,20 @@ tags: [app-integration-development]
 > need support.
 
 ## Register an App
-Extended OAuth Clients allow your application to act on a PagerDuty Account as a PagerDuty App. The access your application has to the PagerDuty Account is controlled by the scopes it is granted. Before you start building, you first need to register a PagerDuty App with an Extended OAuth Client. This is done via the Developer Mode UI in your PagerDuty Account.
+Scoped OAuth clients allow your application to act on a PagerDuty Account as a PagerDuty App. Your application's access to the PagerDuty Account is controlled by the scopes it is granted. Before you start building, you first need to [register a PagerDuty App](03-Register-an-App.md), then [add Scoped OAuth functionality](04-App-Functionality.md). This is done via the Developer Mode UI in your PagerDuty Account.
 
-The `client_id`, `client_secret` and all selected scopes will be used to obtain an access token.
+The `client_id`, `client_secret`, and all selected scopes will be used to obtain an access token.
 
 ## Obtaining an Access Token
 
-A scoped account token is obtained by making a client credentials request to the token endpoint.
+A scoped access token is obtained by making a client credentials request to the token endpoint.
 
 |Parameter|Description|
 |-|-|
 |`grant_type`|The OAuth 2.0 grant type. Value must be set to `client_credentials`|
 |`client_id`|An identifier issued when the client was added to a PagerDuty App|
 |`client_secret`|A secret issued when the client was added to a PagerDuty App|
-|`scope`|A space separated list of scopes available to the client. Must contain the `as_account-` scope that specifies the PagerDuty Account the token is being requested for using a `{REGION}.{SUBDOMAIN}` format.|
+|`scope`|A space separated list of scopes available to the client. Must contain the `as_account-` scope that specifies the PagerDuty Account the token is being requested for using a `{REGION}.{SUBDOMAIN}` format. Currently accepted region: `us`|
 
 
 ```bash
@@ -35,7 +35,7 @@ curl -i --request POST \
   --data-urlencode "grant_type=client_credentials" \
   --data-urlencode "client_id={CLIENT_ID}" \
   --data-urlencode "client_secret={CLIENT_SECRET}" \
-  --data-urlencode "scope=as_account-{REGION}.{SUBDOMAIN} incidents.read services.read"
+  --data-urlencode "scope=as_account-us.companysubdomain incidents.read services.read"
 ```
 
 The access token will be included in a JSON response along with the scopes that were actually issued to the token.
@@ -43,9 +43,9 @@ The access token will be included in a JSON response along with the scopes that 
 ```json
 {
   "access_token": "pdus+_0XBPWQQ_dfd3c718-4a46-400d-a8ec-45bab1fd417e",
-  "scope": "as_account-us.pdt-sample incidents.read services.read",
+  "scope": "as_account-us.companysubdomain incidents.read services.read",
   "token_type": "bearer",
-  "expires_in": 86400
+  "expires_in": 2592000
 }
 ```
 
