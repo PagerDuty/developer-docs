@@ -94,11 +94,6 @@
           "type": "item",
           "title": "Publish an App",
           "uri": "docs/app-integration-development/11-Publish-Your-App.md"
-        },
-        {
-          "type": "item",
-          "title": "Scoped OAuth",
-          "uri": "docs/app-integration-development/20-Scoped-OAuth.md"
         }
       ]
     },
