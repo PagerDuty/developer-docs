@@ -12,7 +12,7 @@ tags: [app-integration-development]
 > need support.
 
 ## Register an App
-Scoped OAuth clients allow your application to act on a PagerDuty Account as a PagerDuty App. Your application's access to the PagerDuty Account is controlled by the scopes it is granted. Before you start building, you first need to [register a PagerDuty App](https://developer.pagerduty.com/docs/ZG9jOjExMDI5NTY5-register-an-app), then [add Scoped OAuth functionality](https://developer.pagerduty.com/docs/b25fd1b8acb1b-app-functionality). This is done via the Developer Mode UI in your PagerDuty Account.
+Scoped OAuth clients allow your application to act on a PagerDuty Account as a PagerDuty App. Your application's access to the PagerDuty Account is controlled by the scopes it is granted. Before you start building, you first need to [register a PagerDuty App](03-Register-an-App.md), then [add Scoped OAuth functionality](04-App-Functionality.md). This is done via the Developer Mode UI in your PagerDuty Account.
 
 The `client_id`, `client_secret`, and all selected scopes will be used to obtain an access token.
 
@@ -25,7 +25,7 @@ A scoped access token is obtained by making a client credentials request to the 
 |`grant_type`|The OAuth 2.0 grant type. Value must be set to `client_credentials`|
 |`client_id`|An identifier issued when the client was added to a PagerDuty App|
 |`client_secret`|A secret issued when the client was added to a PagerDuty App|
-|`scope`|A space separated list of scopes available to the client. Must contain the `as_account-` scope that specifies the PagerDuty Account the token is being requested for using a `{REGION}.{SUBDOMAIN}` format. Accepted regions: `us`, `eu`.|
+|`scope`|A space separated list of scopes available to the client. Must contain the `as_account-` scope that specifies the PagerDuty Account the token is being requested for using a `{REGION}.{SUBDOMAIN}` format. Currently accepted region: `us`|
 
 
 ```bash
