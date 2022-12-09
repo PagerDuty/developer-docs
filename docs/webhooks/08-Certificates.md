@@ -6,42 +6,38 @@ tags: [webhooks]
 
 PagerDuty Webhooks provide client certificates when requested by a server (Mutual TLS).  
 
-It is our recommendation that customers configure their servers to trust the root certificate listed below. Customers choosing to rely on the PagerDuty leaf certificate are responsible for rotating to the [new certificate](#new-certificates) at the appropriate time in order to avoid interrupted connectivity.
+It is our recommendation that customers configure their servers to trust the root certificate listed below. Customers choosing to rely on the PagerDuty client certificate are responsible for rotating to the new certificates at the appropriate time in order to avoid interrupted connectivity. PagerDuty webhook certificates are rotated yearly. The next certificate rotation will occur on **January 6th, 2023** for both the US and EU service regions. The [new certificates](#new-certificates) are provided below. 
 
 ## Current Certificates
 
-### US Service Region (webhooks.pagerduty.com)
+#### US Service Region (webhooks.pagerduty.com)
+| Certificate Type                                                                                                             | Common Name                      | Valid Until         |
+|:-----------------------------------------------------------------------------------------------------------------------------|:---------------------------------|:--------------------|
+| PagerDuty Webhooks Certificate ([download](https://developer.pagerduty.com/certificates/2022_webhooks_pagerduty_com.pem))    | webhooks.pagerduty.com           | January 8th, 2023   |
+| Intermediate Certificate ([download](https://cacerts.digicert.com/DigiCertTLSRSASHA2562020CA1-1.crt.pem))                    | DigiCert TLS RSA SHA256 2020 CA1 | April 13th, 2031    |
+| Root Certificate ([download](https://cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem))                                     | DigiCert Global Root CA          | November 10th, 2031 |
 
-#### PagerDuty Webhooks Certificate x.509 ([download](https://developer.pagerduty.com/certificates/2022_webhooks_pagerduty_com.pem))
+#### EU Service Region (webhooks.eu.pagerduty.com)
 
-* Current as of December 8th, 2021
-* Expires on January 8th, 2023
-* Common Name: _webhooks.pagerduty.com_
+| Certificate Type                                                                                                             | Common Name                         | Valid Until         |
+|:-----------------------------------------------------------------------------------------------------------------------------|:------------------------------------|:--------------------|
+| PagerDuty Webhooks Certificate ([download](https://developer.pagerduty.com/certificates/2022_webhooks_eu_pagerduty_com.pem)) | webhooks.eu.pagerduty.com           | January 8th, 2023   |
+| Intermediate Certificate ([download](https://cacerts.digicert.com/DigiCertTLSRSASHA2562020CA1-1.crt.pem))                    | DigiCert TLS RSA SHA256 2020 CA1    | April 13th, 2031    |
+| Root Certificate ([download](https://cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem))                                     | DigiCert Global Root CA             | November 10th, 2031 |
 
-#### Intermediate Certificate ([download](https://cacerts.digicert.com/DigiCertTLSRSASHA2562020CA1-1.crt.pem))
+## New Certificates
 
-* Expires on April 13, 2031
-* Common Name: _DigiCert TLS RSA SHA256 2020 CA1_
+#### US Service Region (webhooks.pagerduty.com)
+| Certificate Type                                                                                                             | Common Name                      | Valid Until         |
+|:-----------------------------------------------------------------------------------------------------------------------------|:---------------------------------|:--------------------|
+| PagerDuty Webhooks Certificate ([download](https://developer.pagerduty.com/certificates/2023_webhooks_pagerduty_com.pem))    | webhooks.pagerduty.com           | January 5th, 2024   |
+| Intermediate Certificate ([download](https://cacerts.digicert.com/DigiCertTLSRSASHA2562020CA1-1.crt.pem))                    | DigiCert TLS RSA SHA256 2020 CA1 | April 13th, 2031    |
+| Root Certificate ([download](https://cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem))                                     | DigiCert Global Root CA          | November 10th, 2031 |
 
-#### Root Certificate ([download](https://cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem))
+#### EU Service Region (webhooks.eu.pagerduty.com)
 
-* Expires on November 10, 2031
-* Common Name: _DigiCert Global Root CA_
-
-### EU Service Region (webhooks.eu.pagerduty.com)
-
-#### PagerDuty Webhooks EU Certificate x.509 ([download](https://developer.pagerduty.com/certificates/2022_webhooks_eu_pagerduty_com.pem))
-
-* Current as of December 8th, 2021
-* Expires on January 8th, 2023
-* Common Name: _webhooks.eu.pagerduty.com_
-
-#### Intermediate Certificate ([download](https://cacerts.digicert.com/DigiCertTLSRSASHA2562020CA1-1.crt.pem))
-
-* Expires on April 13, 2031
-* Common Name: _DigiCert TLS RSA SHA256 2020 CA1_
-
-#### Root Certificate ([download](https://cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem))
-
-* Expires on November 10, 2031
-* Common Name: _DigiCert Global Root CA_
+| Certificate Type                                                                                                             | Common Name                      | Valid Until         |
+|:-----------------------------------------------------------------------------------------------------------------------------|:---------------------------------|:--------------------|
+| PagerDuty Webhooks Certificate ([download](https://developer.pagerduty.com/certificates/2023_webhooks_eu_pagerduty_com.pem)) | webhooks.eu.pagerduty.com        | January 5th, 2024   |
+| Intermediate Certificate ([download](https://cacerts.digicert.com/DigiCertTLSRSASHA2562020CA1-1.crt.pem))                    | DigiCert TLS RSA SHA256 2020 CA1 | April 13th, 2031    |
+| Root Certificate ([download](https://cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem))                                     | DigiCert Global Root CA          | November 10th, 2031 |
