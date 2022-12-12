@@ -6,9 +6,9 @@ tags: [app-integration-development]
 
 <!-- theme: warning -->
 > ### Early Access
-> 
-> The features described on this page are in an Early Access state and are subject to change. Your PagerDuty Account may 
-> require a feature flag before this functionality is available to you. Please reach out to us if you have any questions or 
+>
+> The features described on this page are in an Early Access state and are subject to change. Your PagerDuty Account may
+> require a feature flag before this functionality is available to you. Please reach out to us if you have any questions or
 > need support.
 
 ## Register an App
@@ -30,7 +30,7 @@ A scoped access token is obtained by making a client credentials request to the 
 
 ```bash
 curl -i --request POST \
-  https://identity.pagerduty.com/global/oauth/token \
+  https://identity.pagerduty.com/oauth/token \
   --header "Content-Type: application/x-www-form-urlencoded" \
   --data-urlencode "grant_type=client_credentials" \
   --data-urlencode "client_id={CLIENT_ID}" \
@@ -63,5 +63,10 @@ Accept: application/vnd.pagerduty+json;version=2
 ```
 
 A `403 - Forbidden` response will be returned if the token does not contain the scope required to access a particular API endpoint
-or the API endpoint does not yet support API Scopes. When the token expires a `401 - Unauthorized` response will be returned 
+or the API endpoint does not yet support API Scopes. When the token expires a `401 - Unauthorized` response will be returned
 and a new token must be obtained.
+
+## Which APIs support Scoped OAuth?
+
+Each endpoint that supports Scoped OAuth indicates the required scope in its description in our [API Reference](https://developer.pagerduty.com/api-reference/). For example, the list incidents endpoint requires the `incidents.read` scope.
+![List incidents required scope](../../assets/images/list-incidents-required-scope.png)
