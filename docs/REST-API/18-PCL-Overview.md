@@ -590,12 +590,6 @@ Expression | Evaluates like | Result | Warning
 `2 >= 'two' or 2 < 10` | `(non-boolean evaluation) or true` -> `false or true` | ✅ `true` | Type mismatch: `>=` requires a [number] or [datetime] on both sides but got `[number] >= [string]`
 `2 <= 'two' and 2 < 10` | `(non-boolean evaluation) and true` -> `false and true` | ❌ `false` | Type mismatch: `<=` requires a [number] or [datetime] on both sides but got `[number] <= [string]`
 
-## Reserved Words
-
-Below is a list of reserved words in PCL. In order to use one of these words in a PCL condition it needs to be wrapped in quotes, ex: `event.custom_details['namespace']`
-
-`at`, `do`, `as`, `break`, `const`, `continue`, `def`, `else`, `end`, `eq`, `for`, `function`, `gte`, `gt`, `if`, `import`, `is`, `let`, `lte`, `lt`, `loop`, `namespace`, `package`, `require`, `return`, `var`, `void`, `when`, `while`
-
 ## Note About Comparing Integers and Floats
 
 [Note About Comparing Integers and Floats]:#note-about-comparing-integers-and-floats
@@ -630,9 +624,17 @@ For more information about floating point numbers and their peculiarities:
 - [0.30000000000000004.com](https://0.30000000000000004.com)
 - [Floating Point Arithmetic: Issues and Limitations](https://docs.python.org/3/tutorial/floatingpoint.html)
 
+## Reserved Words
+
+Below is a list of reserved words in PCL. In order to use one of these words in a PCL condition it needs to be wrapped in quotes, ex: `event.custom_details['namespace']`
+
+```
+at, do, as, break, const, continue, def, else, end, eq, for, function, gte, gt, if, import, is, let, lte, lt, loop, namespace, package, require, return, var, void, when, while
+```
+
 ## Limits
 
-Below are the limits built-in to PCL, exceeding these limits will result in an error response when configuring conditions.
+Below are the limits built-in to PCL, exceeding these limits will result in an error response.
 
 limit name | limit | description
 --|--|--
