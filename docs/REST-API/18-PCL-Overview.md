@@ -1,6 +1,6 @@
 # PCL Overview
 
-The PagerDuty Condition Language (PCL) gives [Event Orchestrations](https://support.pagerduty.com/docs/event-orchestration) the power of boolean expressions, more powerful than are available with Rulesets. For example, with PCL, you can now define an expression like:
+The PagerDuty Condition Language (PCL) gives [Event Orchestrations](https://support.pagerduty.com/docs/event-orchestration) the power of boolean expressions, more powerful than are available with Rulesets. For example, with PCL, you can now define an expression(s) like:
 
 ```
 event.summary matches part 'prod' and (event.location == 'US' or event.location == 'Canada')
