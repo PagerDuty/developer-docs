@@ -91,7 +91,7 @@ raw_event.images[0].src
   -> nil
 ```
 
-### Types
+<!-- ### Types -->
 
 PCL understands these data types:
 - strings
@@ -246,7 +246,7 @@ DST begins: 03:00 EDT (UTC-0400) | 07:00 UTC | ✅ Yes | 2:00 AM skipped to 3:00
 
 A `nil` value represents the absense of any other value type.
 
-### Built-in Operations
+<!-- ### Built-in Operations -->
 
 PCL has a variety of built-in operations:
 - boolean operations: `and`, `or`, `not`
@@ -573,7 +573,7 @@ now > 2020-01-01 00:00:00 Etc/UTC
 now in Mon,Fri 09:00:00 to 17:00:00 America/New_York
 ```
 
-### Non-Boolean Evaluation
+<!-- ### Non-Boolean Evaluation -->
 
 [Non-Boolean Evaluation]:#non-boolean-evaluation
 
@@ -590,7 +590,7 @@ Expression | Evaluates like | Result | Warning
 `2 >= 'two' or 2 < 10` | `(non-boolean evaluation) or true` -> `false or true` | ✅ `true` | Type mismatch: `>=` requires a [number] or [datetime] on both sides but got `[number] >= [string]`
 `2 <= 'two' and 2 < 10` | `(non-boolean evaluation) and true` -> `false and true` | ❌ `false` | Type mismatch: `<=` requires a [number] or [datetime] on both sides but got `[number] <= [string]`
 
-## Note About Comparing Integers and Floats
+<!-- ## Note About Comparing Integers and Floats -->
 
 [Note About Comparing Integers and Floats]:#note-about-comparing-integers-and-floats
 
