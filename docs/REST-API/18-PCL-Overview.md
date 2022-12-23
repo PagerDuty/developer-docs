@@ -91,7 +91,7 @@ raw_event.images[0].src
   -> nil
 ```
 
-<!-- ### Types -->
+
 
 PCL understands these data types:
 - strings
@@ -122,7 +122,7 @@ A number can be an integer or a float. A number can be positive or negative.
 
 - Integers are 64-bit signed integers between `-2^63` and `2^63 - 1`
 - Floats are double precision (64-bit) IEEE floating point numbers. They must begin with a digit and must have a decimal point. Scientific notation of floats is also supported using a lowercase `e`.
-
+### Types
 ```
 42
 0.7
@@ -573,7 +573,7 @@ now > 2020-01-01 00:00:00 Etc/UTC
 now in Mon,Fri 09:00:00 to 17:00:00 America/New_York
 ```
 
-<!-- ### Non-Boolean Evaluation -->
+<!-- ### Non-Boolean Evaluation
 
 [Non-Boolean Evaluation]:#non-boolean-evaluation
 
@@ -588,9 +588,9 @@ Expression | Evaluates like | Result | Warning
 `2 > 'two'` | `non-boolean evaluation` | ❌ `false` | Type mismatch: `>` requires a [number] or [datetime] on both sides but got `[number] > [string]`
 `not 2 > 'two'` | `not (non-boolean evaluation)` -> `not (false)` -> | ✅ `true` | Type mismatch: `>` requires a [number] or [datetime] on both sides but got `[number] > [string]`
 `2 >= 'two' or 2 < 10` | `(non-boolean evaluation) or true` -> `false or true` | ✅ `true` | Type mismatch: `>=` requires a [number] or [datetime] on both sides but got `[number] >= [string]`
-`2 <= 'two' and 2 < 10` | `(non-boolean evaluation) and true` -> `false and true` | ❌ `false` | Type mismatch: `<=` requires a [number] or [datetime] on both sides but got `[number] <= [string]`
+`2 <= 'two' and 2 < 10` | `(non-boolean evaluation) and true` -> `false and true` | ❌ `false` | Type mismatch: `<=` requires a [number] or [datetime] on both sides but got `[number] <= [string]` -->
 
-<!-- ## Note About Comparing Integers and Floats -->
+<!-- ## Note About Comparing Integers and Floats
 
 [Note About Comparing Integers and Floats]:#note-about-comparing-integers-and-floats
 
@@ -625,4 +625,4 @@ For more information about floating point numbers and their peculiarities:
 - [Floating Point Arithmetic: Issues and Limitations](https://docs.python.org/3/tutorial/floatingpoint.html)
 
 
-[1]: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones "List of TZ database timezones"
+[1]: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones "List of TZ database timezones" -->
