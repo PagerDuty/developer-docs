@@ -624,5 +624,28 @@ For more information about floating point numbers and their peculiarities:
 - [0.30000000000000004.com](https://0.30000000000000004.com)
 - [Floating Point Arithmetic: Issues and Limitations](https://docs.python.org/3/tutorial/floatingpoint.html)
 
+## Reserved Words
+
+Below is a list of reserved words in PCL. In order to use one of these words in a PCL condition it needs to be wrapped in quotes, ex: `event.custom_details['namespace']`
+
+```
+at, do, as, break, const, continue, def, else, end, eq, for, function, gte, gt, if, import, is, let, lte, lt, loop, namespace, package, require, return, var, void, when, while
+```
+
+## Limits
+
+Below are the limits built-in to PCL, exceeding these limits will result in an error response.
+
+limit name | limit | description
+--|--|--
+condition length | 2048 bytes | a single PCL condition cannot be longer than 2048 bytes
+data length for matches operator | 65536 bytes (64K) | the left side of any of the matches operators will be truncated to 64K before the match operation executes
+levels of parenthesized nesting | 32 | a valid PCL condition will never go deeper than 32 levels of parentheses
+number of factors | 64 | only up to 64 factors combined with `and` or `or` are allowed
+literal integer range | 64-bit signed int | integers must fall between $-2^{63}$ to $2^{63}-1$
+literal float range | 64-bit double precision float | floating point numbers follow the [IEEE 754 spec](https://en.wikipedia.org/wiki/IEEE_754)
+literal string length | 1024 bytes | a literal string can only be up to 1024 bytes
+number of path elements | 32 | a path can only contain up to 32 elements, e.g. `x.y.z[5]` has four elements
+
 
 [1]: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones "List of TZ database timezones"
