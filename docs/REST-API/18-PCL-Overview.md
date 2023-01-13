@@ -642,7 +642,7 @@ condition length | 2048 bytes | a single PCL condition cannot be longer than 204
 data length for matches operator | 65536 bytes (64K) | the left side of any of the matches operators will be truncated to 64K before the match operation executes
 levels of parenthesized nesting | 32 | a valid PCL condition will never go deeper than 32 levels of parentheses
 number of factors | 64 | only up to 64 factors combined with `and` or `or` are allowed
-literal integer range | 64-bit signed int | integers must fall between -2^<sup>63</sup> to 2<sup>63</sup> - 1
+literal integer range | 64-bit signed int | integers must fall between -2<sup>63</sup> to 2<sup>63</sup> - 1
 literal float range | 64-bit double precision float | floating point numbers follow the [IEEE 754 spec](https://en.wikipedia.org/wiki/IEEE_754)
 literal string length | 1024 bytes | a literal string can only be up to 1024 bytes
 number of path elements | 32 | a path can only contain up to 32 elements, e.g. `x.y.z[5]` has four elements
