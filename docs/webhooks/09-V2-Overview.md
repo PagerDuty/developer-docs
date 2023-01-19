@@ -6,9 +6,11 @@ tags: [webhooks]
 
 <!-- theme: warning -->
 > ### Migrate to V3 Webhook Subscriptions
-> If you are currently using V1/V2 webhook extensions and need to migrate them to [V3 webhook](../webhooks/01-Overview.md) subscriptions, please follow our migration guide.
+> If you are currently using [V1/V2 webhook extensions](https://support.pagerduty.com/docs/v1v2-webhook-extensions) and need to migrate them to V3 webhook subscriptions, please follow our [migration guide](https://support.pagerduty.com/docs/webhooks#migration-guide) or use our [migration script](https://github.com/PagerDuty/public-support-scripts/tree/master/migrate_webhooks_to_v3) (provided as is).
 >
-> V2 webhooks extensions will become unsupported in October, 2022 and will lose functionality in March, 2023.
+> An end-of-life date for V2 webhooks has not been set. However, end-of-support for V2 webhooks began on October 31, 2022. This means existing integrations based on V2 webhooks will continue to work, however PagerDuty cannot accept any new feature requests or implement bug fixes.
+> 
+> V1 webhook extensions became unsupported on November 13, 2021 and lost functionality on October 31, 2022. Please see [Webhook V1 Alternatives](https://support.pagerduty.com/docs/v1-webhook-alternatives) for a list of affected integrations and alternative solutions.
 
 Webhooks let you receive HTTP callbacks when interesting events happen within your PagerDuty account. Details surrounding the interesting event will be sent via HTTP POST to a URL that you specify.
 
