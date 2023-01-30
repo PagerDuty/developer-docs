@@ -15,15 +15,13 @@ Early Access webhook events are provided here for informational purposes, but ar
 (may be removed) and design (contents and shape of response may change). They can be created via the
  `/webhook_subscriptions` REST API endpoint.
 
- ## Events
+## Action Invocation Events
 
- ### `incident.action_invocation.*`
+The early access events are:
 
-The three early access events of this form are:
-
-* incident.action_invocation.updated
-* incident.action_invocation.created
-* incident.action_invocation.terminated
+* `incident.action_invocation.updated`
+* `incident.action_invocation.created`
+* `incident.action_invocation.terminated`
 
 The webhooks look like:
 
@@ -66,12 +64,12 @@ The webhooks look like:
 
 ```
 
-### `incident.workflow.*`
+## Incident Workflow Events
 
-The early access events of this form are:
+The early access events are:
 
-* incident.workflow.started
-* incident.workflow.completed
+* `incident.workflow.started`
+* `incident.workflow.completed`
 
 The webhooks look like:
 
