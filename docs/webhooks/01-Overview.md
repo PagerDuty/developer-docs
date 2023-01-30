@@ -463,6 +463,12 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
 }
 ```
 &nbsp;
+
+## Early Access Events
+In addition to the events detailed on this page, we may occasionally have [Early Access events](20-Early-Access-Webhooks.md).
+These are subject to change at any moment, without notice.
+
+&nbsp;
 ## Deprecated Versions
 &nbsp;
 ### [V1 Webhooks](../webhooks/10-V1-Overview.md) Reached End Of Support
