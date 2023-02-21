@@ -216,101 +216,23 @@ An example webhook payload for a `service.updated` event is shown below.
 
 Outbound events are created when PagerDuty resources change in interesting ways. Each outbound event is usually associated with some other PagerDuty resource. For example, the `incident.priority_updated` event is generated whenever the priority of an incident is changed. The following event types are available to v3 webhooks. Additional event types may be added to this list over time.
 
-### incident.acknowledged
-
-`data.type` is [`incident`](#incident)
-
-Sent when an incident is acknowledged.
-
-### incident.annotated
-
-`data.type` is [`incident_note`](#incident_note)
-
-Sent when a note is added to an incident.
-
-### incident.delegated
-
-`data.type` is [`incident`](#incident)
-
-Sent when an incident has been reassigned to another escalation policy.
-
-### incident.escalated
-
-`data.type` is [`incident`](#incident)
-
-Sent when an incident has been escalated to another user in the same escalation level.
-
-### incident.priority_updated
-
-`data.type` is [`incident`](#incident)
-
-Sent when the priority of an incident has changed.
-
-### incident.reassigned
-
-`data.type` is [`incident`](#incident)
-
-Sent when an incident has been reassigned to another user.
-
-### incident.reopened
-
-`data.type` is [`incident`](#incident)
-
-Sent when an incident is reopened.
-
-### incident.resolved
-
-`data.type` is [`incident`](#incident)
-
-Sent when an incident has been resolved.
-
-### incident.responder.added
-
-`data.type` is [`incident_responder`](#incident_responder)
-
-Sent when a responder has been added to an incident.
-
-### incident.responder.replied
-
-`data.type` is [`incident_responder`](#incident_responder)
-
-Sent when a responder replies to a request.
-
-### incident.status_update_published
-
-`data.type` is [`incident_status_update`](#incident_status_update)
-
-Sent when a status update is added to an incident.
-
-### incident.triggered
-
-`data.type` is [`incident`](#incident)
-
-Sent when an incident is newly created/triggered.
-
-### incident.unacknowledged
-
-`data.type` is [`incident`](#incident)
-
-Sent when an incident is unacknowledged.
-
-### service.created
-
-`data.type` is [`service`](#service)
-
-Sent when a service is created.
-
-### service.deleted
-
-`data.type` is [`service`](#service)
-
-Sent when a service is deleted.
-
-### service.updated
-
-`data.type` is [`service`](#service)
-
-Sent when a service is updated.
+| Event Type                       | `data.type`              | Description                                                                            | Scoped OAuth requires   |
+|----------------------------------|--------------------------|----------------------------------------------------------------------------------------|------------------|
+| incident.acknowledged            | `incident`               | Sent when an incident is acknowledged.                                                 | `incidents.read` |
+| incident.annotated               | `incident`               | Sent when a note is added to an incident.                                              | `incidents.read` |
+| incident.delegated               | `incident`               | Sent when an incident has been reassigned to another escalation policy.                | `incidents.read` |
+| incident.escalated               | `incident`               | Sent when an incident has been escalated to another user in the same escalation level. | `incidents.read` |
+| incident.priority_updated        | `incident`               | Sent when the priority of an incident has changed.                                     | `incidents.read` |
+| incident.reassigned              | `incident`               | Sent when an incident has been reassigned to another user.                             | `incidents.read` |
+| incident.reopened                | `incident`               | Sent when an incident is reopened.                                                     | `incidents.read` |
+| incident.responder.added         | `incident_responder`     | Sent when a responder has been added to an incident.                                   | `incidents.read` |
+| incident.responder.replied       | `incident_responder`     | Sent when a responder replies to a request.                                            | `incidents.read` |
+| incident.status_update_published | `incident_status_update` | Sent when a status update is added to an incident.                                     | `incidents.read` |
+| incident.triggered               | `incident`               | Sent when an incident is newly created/triggered.                                      | `incidents.read` |
+| incident.unacknowledged          | `incident`               | Sent when an incident is unacknowledged.                                               | `incidents.read` |
+| service.created                  | `service`                | Sent when a service is created.                                                        | `services.read`  |
+| service.deleted                  | `service`                | Sent when a service is deleted.                                                        | `services.read`  |
+| service.updated                  | `service`                | Sent when a service is updated.                                                        | `services.read`  |
 
 ## Event Data Types
 
