@@ -46,6 +46,12 @@ Sent when an incident workflow is started.
 
 Sent when an incident workflow is completed.
 
+### incident.custom_field_values.updated
+
+`data.type` is [`incident_field_values`](#incident_field_values)
+
+Sent when an incident's custom fields values are updated.
+
 ## Event Data Types
 
 Depending on the `event.event_type`, of the webhook payload, the `event.data` field will contain one of the objects described in this section.
@@ -111,5 +117,51 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
     "summary": "A service",
     "type": "service_reference"
   }
+}
+```
+
+### incident_field_values
+
+```json
+{
+  "incident": {
+    "html_url": "https://acme.pagerduty.com/incidents/PBAZLIU",
+    "id": "PBAZLIU",
+    "self": "https://api.pagerduty.com/incidents/PBAZLIU",
+    "summary": null,
+    "type": "incident_reference"
+  },
+  "field_values": [
+    {
+      "datatype": "string",
+      "id": "PICFVXX",
+      "multi_value": false,
+      "name": "environment",
+      "namespace": "incidents",
+      "type": "field_value",
+      "value": "production"
+    },
+    {
+      "datatype": "string",
+      "id": "PF3UUI7",
+      "multi_value": false,
+      "name": "region",
+      "namespace": "incidents",
+      "type": "field_value",
+      "value": "US"
+    }
+  ],
+  "changed_field_values": [
+    {
+      "datatype": "string",
+      "id": "PICFVXX",
+      "multi_value": false,
+      "name": "environment",
+      "namespace": "incidents",
+      "type": "field_value",
+      "value": "staging"
+    }
+  ],
+  "type": "incident_field_values"
 }
 ```
