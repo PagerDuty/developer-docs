@@ -12,7 +12,7 @@ The full list of IP addresses that our webhook notifications may come from is:
 ### US Service Region
 
 download: [plain](https://developer.pagerduty.com/ip-safelists/webhooks-us-service-region) | [json](https://developer.pagerduty.com/ip-safelists/webhooks-us-service-region-json)
-    
+
     44.242.69.192
     52.89.71.166
     54.213.187.133
@@ -26,15 +26,12 @@ download: [plain](https://developer.pagerduty.com/ip-safelists/webhooks-us-servi
     34.210.57.30
     34.210.242.134
     52.34.208.156
-    34.202.21.89
-    34.239.229.93
-    34.231.45.166
 
 
 ### EU Service Region
 
 download: [plain](https://developer.pagerduty.com/ip-safelists/webhooks-eu-service-region) | [json](https://developer.pagerduty.com/ip-safelists/webhooks-eu-service-region-json)
-    
+
     18.192.91.93
     18.158.120.237
     18.194.177.30
