@@ -4,11 +4,11 @@ tags: [app-integration-development]
 
 # Publish your App
 
-Once you're done building an app, you can publish it! Publishing is completely optional.
+Once you're done building an app, you can publish it publically, to share with all PagerDuty customers, or internally to share with others in your PagerDuty account. Publishing is completely optional.
 
 ## Manage Distribution
 
-On your app's configuration page, scroll down to the **Distribution** section and click the **Manage** button.
+On your app's configuration page, scroll down to the **Distribution** section, choose your method of distribution, and click the **Manage** button.
 
 ![Screenshot of app distribution management](../../assets/images/manage_distribution.png)
 

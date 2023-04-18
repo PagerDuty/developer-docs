@@ -2,14 +2,14 @@
 tags: [app-integration-development]
 ---
 
-# OAuth 2.0: Authorization Code Grant Flow
+# Classic User OAuth: Authorization Code Grant Flow
 
 <!-- theme:warning -->
 > ### This flow is for server-side apps
 > A client_secret should be treated as a password or private_key and not be stored in public code.
-> If you're working on an a mobile app or in-browser app, please use the [PKCE flow](../../docs/app-integration-development/10-OAuth-2-PKCE.md).
+> If you're working on an a mobile app or in-browser app, please use the [PKCE flow](../../docs/app-integration-development/10-Classic-User-OAuth-PKCE.md).
 
-[Create an app](../../docs/app-integration-development/03-Register-an-App.md) to get access to OAuth 2.0 credentials.
+[Create an app](../../docs/app-integration-development/03-Register-an-App.md) to get access to Classic User OAuth credentials.
 
 PagerDuty supports OAuth 2.0’s [Authorization Code Grant](https://tools.ietf.org/html/rfc6749#section-4.1) flow for third-party applications to obtain access tokens from PagerDuty and utilizes the following endpoints:
 
@@ -87,7 +87,7 @@ The access token will be included in a JSON response. You may also want to take 
 
 Note however, that our access tokens do expire after a defined period of time -- so you may want to make sure that you implement OAuth refresh to prevent users needing to re-authorize your app. See more information about token expiries at the bottom of this page.
 
-For additional information about the user, account, and PagerDuty service region where your app is now authorized, you can look at [cracking open our PagerDuty-signed ID token](../../docs/app-integration-development/11-OAuth-2-Id-token.md). For example, the `aud` field will help your integration with data residency and processing guarantees if you have customers located in Europe.
+For additional information about the user, account, and PagerDuty service region where your app is now authorized, you can look at [cracking open our PagerDuty-signed ID token](../../docs/app-integration-development/11-Classic-User-OAuth-2-Id-token.md). For example, the `aud` field will help your integration with data residency and processing guarantees if you have customers located in Europe.
 
 ## Sample Code
 

@@ -2,7 +2,7 @@
 tags: [app-integration-development]
 ---
 
-# OAuth 2.0: PKCE Flow
+# Classic User OAuth: PKCE Flow
 
 [Create an app](../../docs/app-integration-development/03-Register-an-App.md) to get access to OAuth 2.0 credentials and access PagerDuty's REST API on behalf of a user.
 
