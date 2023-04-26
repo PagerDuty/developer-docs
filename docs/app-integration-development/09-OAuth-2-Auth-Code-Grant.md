@@ -107,7 +107,7 @@ Authorization: Bearer pdus+_0XBPWQQ_b2b2060b-e7af-44a1-8ddf-9c56fedd8d4f
 Accept: application/vnd.pagerduty+json;version=2
 ```
 
-### API Call results in 403
+### Troubleshooting: API Call results in 403
 
 This means that although the OAuth credentials are valid, the token does not have access to that particular resource. For example, if you have a token with the read scope and try to write to a resource, it will result in 403.
 
