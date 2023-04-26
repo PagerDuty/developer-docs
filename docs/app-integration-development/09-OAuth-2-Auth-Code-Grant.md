@@ -29,7 +29,7 @@ The following parameters will also be used in your requests or returned in the r
 |`grant_type`|The OAuth 2.0 grant type. Value must be set to `authorization_code` or `refresh_token`|✓| |✓|
 |`redirect_uri`|Registered with the app when OAuth 2.0 is added. PagerDuty will redirect here after a user grants or denies access to your app.|✓|✓| |
 |`response_type`|Specifies the response type based on OAuth 2.0 flow. Value must be set to `code`.| |✓| |
-|`scope`|Specifies the scope being requested, must match what is configured on the OAuth application.| |✓| |
+|`scope`|Specifies the scope being requested, must match what is configured on the OAuth application. Should be either `read` or `write`.| |✓| |
 |`access_token`|The token you will use to access the API after successful authorization.| | | |
 |`refresh_token`|The token you will use to get a new access token after the current access token has expired.| | |✓|
 
@@ -106,6 +106,16 @@ When making an API request, include the version of the API in the `Accept` heade
 Authorization: Bearer pdus+_0XBPWQQ_b2b2060b-e7af-44a1-8ddf-9c56fedd8d4f
 Accept: application/vnd.pagerduty+json;version=2
 ```
+
+### API Call results in 403
+
+This means that although the OAuth credentials are valid, the token does not have access to that particular resource. For example, if you have a token with the read scope and try to write to a resource, it will result in 403.
+
+If you think you requested the correct scope and should have access to the resource, double check the `scope` field in the POST Token Endpoint response. If an invalid scope is requested, we currently do not return an error. Instead, we grant partial scopes which will only be the `openid` scope automatically attached to all tokens.
+
+Valid Scopes:
+- `Read` access should request the `read` scope (case sensitive)
+- `Read/Write` should request the `write` scope (case sensitive)
 
 ## Getting a new Access Token with a Refresh Token
 

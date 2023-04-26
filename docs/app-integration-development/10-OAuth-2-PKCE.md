@@ -34,7 +34,7 @@ Required Parameters     | Description
 `client_id`             | An identifier issued when the app is created
 `redirect_uri`          | Registered with the app when OAuth 2.0 is added. PagerDuty will redirect here after a user grants or denies access to your app.
 `response_type`         | Specifies the response type based on OAuth 2.0 flow.<br/> Value must be set to `code`.
-`scope`                 | Specifies the scope being requested, must match what is configured on the OAuth application.
+`scope`                 | Specifies the scope being requested, must match what is configured on the OAuth application. Should be either `read` or `write`. 
 `code_challenge`        | Base64 URL Encoded (without padding) string containing the SHA-256 digested form of the clients one-time random 128 byte verifier (also in Base64URLEncoded form without padding). See Javascript PKCE Example Algorithm below.
 `code_challenge_method` | Specifies that we are using PKCE SHA-256 Signature.<br/> Value must be set to `S256`.
 
@@ -129,7 +129,15 @@ Authorization: Bearer pdus+_0XBPWQQ_39435d07-9232-4bc2-9dc9-c4a8fccc94ad
 Accept: application/vnd.pagerduty+json;version=2
 ```
 
-Note however, that our access tokens do expire after a defined period of time -- so you may want to make sure that you implement OAuth refresh to prevent users needing to re-authorize your app. See more information about token expiries at the bottom of this page.
+### API Call results in 403
+
+This means that although the OAuth credentials are valid, the token does not have access to that particular resource. For example, if you have a token with the read scope and try to write to a resource, it will result in 403.
+
+If you think you requested the correct scope and should have access to the resource, double check the `scope` field in the POST Token Endpoint response. If an invalid scope is requested, we currently do not return an error. Instead, we grant partial scopes which will only be the `openid` scope automatically attached to all tokens.
+
+Valid Scopes:
+- `Read` access should request the `read` scope (case sensitive)
+- `Read/Write` should request the `write` scope (case sensitive)
 
 ## Getting a new Access Token with a Refresh Token
 
