@@ -30,7 +30,7 @@ After saving to register your new app, you will be directed to the **Configure A
 Immediately after registering a new app, or by selecting an app from the **My Apps** page, you will be directed to the **Configure App** page. From this page you can:
 - Edit the app name and description.
 - [Add API and/or OAuth functionality](../../docs/app-integration-development/04-App-Functionality.md).
-- [Distribute/publish your app](../../docs/app-integration-development/11-Publish-Your-App.md) to share with all PagerDuty customers or internally with others in your PagerDuty account.
+- [Distribute/publish your app](../../docs/app-integration-development/11-Publish-Your-App.md) to share with all PagerDuty customers.
 - Provide an **App Website URL** where users can learn more about the app.
 - Upload an **App Icon**, an image file that will display with the app. Icons should be sized 50px by 50px. Once the image file is uploaded, the image will display to the side and in the **Preview** box.
 
