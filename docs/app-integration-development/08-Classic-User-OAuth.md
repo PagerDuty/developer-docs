@@ -2,13 +2,13 @@
 tags: [app-integration-development]
 ---
 
-# OAuth 2.0 Functionality
+# Classic User OAuth
 
-## What is OAuth 2.0 functionality?
-OAuth 2 allows your app to connect to our [REST API](/api-reference/) as a PagerDuty user (not full account access) to administer PagerDuty or get data (create an on-call schedule, get a list of team members, etc).
+## What is Classic User OAuth?
+Classic User OAuth allows your app to connect to our [REST API](/api-reference/) as a PagerDuty user (not full account access) to administer PagerDuty or get data (create an on-call schedule, get a list of team members, etc).
 
-## Why should I use OAuth 2.0?
-With OAuth 2.0, you can present a user with a prompt to log in with their PagerDuty account and authorize your app to access their PagerDuty data.
+## Why should I use Classic User OAuth?
+With Classic User OAuth, you can present a user with a prompt to log in with their PagerDuty account and authorize your app to access their PagerDuty data.
 
 This is a simple and seamless process for the user and more secure because as an app developer you can:
 * Limit your access to read-only
@@ -17,11 +17,11 @@ This is a simple and seamless process for the user and more secure because as an
 * Eliminate copying and pasting API tokens which could lead to the token falling into the wrong hands
 ![Authorize an OAuth application](../../assets/images/oauth-authorize.png)
 
-## Add OAuth 2.0 functionality to your app
+## Add Classic User OAuth functionality to your app
 1. [Create an app in PagerDuty](../../docs/app-integration-development/03-Register-an-App.md)
 
-2. In the **Functionality** section, click **Add** on the OAuth 2.0 card.
-![Add OAuth Functionality](../../assets/images/add-oauth-functionality.png)
+2. In the **Functionality** section, click **Add** on the Classic User OAuth card.
+![Add OAuth Functionality](../../assets/images/add-classic-user-oauth-functionality.png)
 
 3. On the next page, enter a **Redirect URL**. PagerDuty will only redirect users to a URL saved to your OAuth configuration. Click **Save**. You can edit or add redirect URLs later.
 ![Specify a redirect URL](../../assets/images/specify-redirect-url.png)
@@ -34,11 +34,11 @@ This is a simple and seamless process for the user and more secure because as an
 
 ![Select OAuth Scopes](../../assets/images/select-oauth-scopes.png)
 
-Congratulations! OAuth 2.0 is successfully configured for the app. Now you can move on to implementing one of the authorization flows below.
+Congratulations! Classic User OAuth is successfully configured for the app. Now you can move on to implementing one of the authorization flows below.
 
-## Implementing OAuth / Choosing An OAuth Flow
+## Implementing OAuth / Choosing an OAuth Flow
 
-There two options for implementing PagerDuty OAuth in your app. [PKCE (Proof Key for Code Exchange](../../docs/app-integration-development/10-OAuth-2-PKCE.md) is recommended and should work for all apps. The [Authorization Code Grant](../../docs/app-integration-development/09-OAuth-2-Auth-Code-Grant.md) Flow is also supported, but is only recommended for server-side applications where you have control over the entire environment.
+There two options for implementing PagerDuty OAuth in your app. [PKCE (Proof Key for Code Exchange](../../docs/app-integration-development/10-Classic-User-OAuth-PKCE.md) is recommended and should work for all apps. The [Authorization Code Grant](../../docs/app-integration-development/09-Classic-User-OAuth-Auth-Code-Grant.md) Flow is also supported, but is only recommended for server-side applications where you have control over the entire environment.
 
 
 | Choose A Flow For Your App   |      Server-side App*      |  Client-side App** |
@@ -51,6 +51,6 @@ There two options for implementing PagerDuty OAuth in your app. [PKCE (Proof Key
 
 **Server-side App* - an app running on a server which can securely store secrets, also known as a confidential client
 
-## Removing OAuth 2.0 Functionality
+## Removing Classic User OAuth Functionality
 
 See [Removing Functionality From Your App](../../docs/app-integration-development/04-App-Functionality.md#removing-functionality-from-your-app)

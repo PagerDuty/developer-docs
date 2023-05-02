@@ -72,23 +72,23 @@
         },
         {
           "type": "item",
-          "title": "OAuth 2.0 Functionality",
-          "uri": "docs/app-integration-development/08-OAuth-2-Functionality.md"
+          "title": "Classic User OAuth",
+          "uri": "docs/app-integration-development/08-Classic-User-OAuth-Functionality.md"
         },
         {
           "type": "item",
-          "title": "OAuth 2.0 Authorization Code Grant Flow",
-          "uri": "docs/app-integration-development/09-OAuth-2-Auth-Code-Grant.md"
+          "title": "Classic User OAuth Authorization Code Grant Flow",
+          "uri": "docs/app-integration-development/09-Classic-User-OAuth-Auth-Code-Grant.md"
         },
         {
           "type": "item",
-          "title": "OAuth 2.0 PKCE Flow",
-          "uri": "docs/app-integration-development/10-OAuth-2-PKCE.md"
+          "title": "Classic User OAuth PKCE Flow",
+          "uri": "docs/app-integration-development/10-Classic-User-OAuth-PKCE.md"
         },
         {
           "type": "item",
           "title": "PagerDuty OpenID ID tokens",
-          "uri": "docs/app-integration-development/11-OAuth-2-Id-token.md"
+          "uri": "docs/app-integration-development/11-Classic-User-OAuth-Id-token.md"
         },
         {
           "type": "item",
