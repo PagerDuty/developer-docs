@@ -131,35 +131,32 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
     "summary": null,
     "type": "incident_reference"
   },
-  "field_values": [
+  "custom_fields": [
     {
-      "datatype": "string",
+      "data_type": "string",
       "id": "PICFVXX",
-      "multi_value": false,
       "name": "environment",
-      "namespace": "incidents",
       "type": "field_value",
-      "value": "production"
+      "value": "production",
+      "field_type": "single_value"
     },
     {
-      "datatype": "string",
+      "data_type": "string",
       "id": "PF3UUI7",
-      "multi_value": false,
       "name": "region",
-      "namespace": "incidents",
       "type": "field_value",
-      "value": "US"
+      "value": ["US"],
+      "field_type": "multi_value_fixed"
     }
   ],
-  "changed_field_values": [
+  "changed_custom_fields": [
     {
-      "datatype": "string",
+      "data_type": "string",
       "id": "PICFVXX",
-      "multi_value": false,
       "name": "environment",
-      "namespace": "incidents",
       "type": "field_value",
-      "value": "staging"
+      "value": "staging",
+      "field_type": "single_value_fixed"
     }
   ],
   "type": "incident_field_values"
