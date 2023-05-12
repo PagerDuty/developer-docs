@@ -145,7 +145,7 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
       "id": "PF3UUI7",
       "name": "region",
       "type": "field_value",
-      "value": "US",
+      "value": ["US"],
       "field_type": "multi_value_fixed"
     }
   ],
