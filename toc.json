@@ -72,18 +72,23 @@
         },
         {
           "type": "item",
-          "title": "Classic User OAuth",
-          "uri": "docs/app-integration-development/08-Classic-User-OAuth.md"
+          "title": "OAuth Functionality",
+          "uri": "docs/app-integration-development/08-OAuth-Functionality.md"
         },
         {
           "type": "item",
-          "title": "Classic User OAuth Authorization Code Grant Flow",
-          "uri": "docs/app-integration-development/09-Classic-User-OAuth-Auth-Code-Grant.md"
+          "title": "Act as User Tokens via Code Grant",
+          "uri": "docs/app-integration-development/09-Act-as-User-OAuth-Code-Grant.md"
         },
         {
           "type": "item",
-          "title": "Classic User OAuth PKCE Flow",
-          "uri": "docs/app-integration-development/10-Classic-User-OAuth-PKCE.md"
+          "title": "Act as User Tokens via PKCE",
+          "uri": "docs/app-integration-development/10-Act-as-User-OAuth-PKCE.md"
+        },
+        {
+          "type": "item",
+          "title": "Act as App Tokens",
+          "uri": "docs/app-integration-development/12-Act-as-App-Token.md"
         },
         {
           "type": "item",

@@ -2,7 +2,7 @@
 tags: [app-integration-development]
 ---
 
-# Scoped OAuth
+# Act as App Tokens
 
 <!-- theme: warning -->
 > ### Early Access
@@ -11,23 +11,30 @@ tags: [app-integration-development]
 > require a feature flag before this functionality is available to you. Please reach out to us if you have any questions or
 > need support.
 
-## Register an App
-Scoped OAuth clients allow your application to act on a PagerDuty Account as a PagerDuty App. Your application's access to the PagerDuty Account is controlled by the scopes it is granted. Before you start building, you first need to [register a PagerDuty App](03-Register-an-App.md), then [add Scoped OAuth functionality](04-App-Functionality.md). This is done via the Developer Mode UI in your PagerDuty Account.
+<!-- theme:warning -->
+> ### This flow is only for server-side apps with Scoped OAuth functionality
+> A client_secret should be treated as a password and stored securely. It should never be stored in public code.
 
-The `client_id`, `client_secret`, and all selected scopes will be used to obtain an access token.
+## About Acting as a PagerDuty App
+
+To act on a PagerDuty Account as a PagerDuty App, you must obtain an app access token for that account. A token is only issued if the application has been previously granted access to that account. Applications are implictly granted access to the account that created it.
+
+Before proceeding you should [register a PagerDuty App](03-Register-an-App.md) with Scoped OAuth functionality to obtain the `client_id`, `client_secret`, and scopes.
 
 ## Obtaining an Access Token
 
-A scoped access token is obtained by making a client credentials request to the token endpoint.
+A scoped app access token is obtained by making an OAuth 2.0 client credentials request.
+
+Send a `POST` request to `https://identity.pagerduty.com/oauth/token` with a `Content-Type` of `application/x-www-form-urlencoded` and the following form parameters:
 
 |Parameter|Description|
 |-|-|
 |`grant_type`|The OAuth 2.0 grant type. Value must be set to `client_credentials`|
-|`client_id`|An identifier issued when the client was added to a PagerDuty App|
-|`client_secret`|A secret issued when the client was added to a PagerDuty App|
-|`scope`|A space separated list of scopes available to the client. Must contain the `as_account-` scope that specifies the PagerDuty Account the token is being requested for using a `{REGION}.{SUBDOMAIN}` format. Currently accepted region: `us`|
+|`client_id`|An identifier issued when the Scoped OAuth client was added to a PagerDuty App|
+|`client_secret`|A secret issued when the Scoped OAuth client was added to a PagerDuty App|
+|`scope`|A space separated list of scopes available to the client. Must contain the `as_account-` scope that specifies the PagerDuty Account the token is being requested for using a `{REGION}.{SUBDOMAIN}` format. Currently accepted service regions are `us` or `eu`.|
 
-
+The following curl request could be used to obtain an access token for the `companysubdomain` account in the `us` service region:
 ```bash
 curl -i --request POST \
   https://identity.pagerduty.com/oauth/token \
@@ -38,7 +45,7 @@ curl -i --request POST \
   --data-urlencode "scope=as_account-us.companysubdomain incidents.read services.read"
 ```
 
-The access token will be included in a JSON response along with the scopes that were actually issued to the token.
+The JSON response includes the access token, the scopes that were actually issued to the token, and the number of seconds before the token expires.
 
 ```json
 {
@@ -49,7 +56,7 @@ The access token will be included in a JSON response along with the scopes that 
 }
 ```
 
-The token is valid for the number of seconds specified `expires_in` in the response.
+In the client credentials OAuth flow, it is not necessary to refresh an access token. When a particular access token expires, the application should simply request a new token.
 
 ## Using an Access Token
 

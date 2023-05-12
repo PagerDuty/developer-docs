@@ -4,7 +4,7 @@ tags: [app-integration-development]
 
 # Publish your App
 
-Once you're done building an app, you can publish it publically, to share with all PagerDuty customers. Publishing is completely optional.
+Once you are done building an app, you can publish it to share with all PagerDuty customers. Publishing is completely optional.
 
 ## Manage Distribution
 
