@@ -17,13 +17,13 @@ tags: [app-integration-development]
 
 ## About App OAuth Tokens
 
-To act on a PagerDuty Account as a PagerDuty App, you must obtain an app access token for that account. A token is only issued if the application has been previously granted access to that account. Applications are implictly granted access to the account that created it.
+To act on a PagerDuty Account as a PagerDuty App, you must obtain an app token for that account. A token is only issued if the application has been previously granted access to that account. Applications are implictly granted access to the account that created it.
 
 Before proceeding you should [register a PagerDuty App](03-Register-an-App.md) with Scoped OAuth functionality to obtain the `client_id`, `client_secret`, and scopes.
 
 ## Obtaining an Access Token
 
-A scoped app access token is obtained by making an OAuth 2.0 client credentials request.
+A scoped app token is obtained by making an OAuth 2.0 client credentials request.
 
 Send a `POST` request to `https://identity.pagerduty.com/oauth/token` with a `Content-Type` of `application/x-www-form-urlencoded` and the following form parameters:
 
