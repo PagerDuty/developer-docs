@@ -53,7 +53,7 @@ If you are building an integration on top of PagerDuty with the intention of pub
 #### Scoped OAuth applications must be able to securely store the client secret
 All Scoped OAuth applications have a `client_id` and `client_secret` that can be used to obtain act as app tokens without the involvement of a user. Applications using Scoped OAuth functionality must have a server-side component where the `client_secret` is properly secured. The `client_secret` should never be stored in the browser or passed in an insecure manner.
 
-#### Code Grant or PKCE?
+#### When to use the PKCE flow for user tokens
 For Classic User OAuth, there two options for obtaining an act as user token with your app. [PKCE (Proof Key for Code Exchange)](12-Act-as-App-Token.md) is recommended and should work for all apps. The [Authorization Code Grant](09-Act-as-User-OAuth-Code-Grant.md) flow is also supported, but is only recommended for server-side applications where you have control over the entire environment.
 
 
