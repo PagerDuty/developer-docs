@@ -2,14 +2,14 @@
 tags: [app-integration-development]
 ---
 
-# Act as User Tokens via Code Grant
+# Obtaining a User OAuth Token via Code Grant
 
 <!-- theme:warning -->
 > ### This flow is for server-side apps
 > A client_secret should be treated as a password and stored securely. It should never be stored in public code.
 > If you're working on an a mobile app or in-browser app, please use the [PKCE flow](../../docs/app-integration-development/10-Classic-User-OAuth-PKCE.md).
 
-## About Acting as User With Code Grant
+## About User OAuth Tokens via Code Grant
 
 Before proceeding you should [register a PagerDuty App](03-Register-an-App.md) with Scoped OAuth or Classic User OAuth functionality to obtain the `client_id`, `client_secret`, and scopes.
 
@@ -91,7 +91,7 @@ The access token will be included in a JSON response. You may also want to take 
 
 Note however, that our access tokens do expire after a defined period of time -- so you may want to make sure that you implement OAuth refresh to prevent users needing to re-authorize your app. See more information about token expiries at the bottom of this page.
 
-For additional information about the user, account, and PagerDuty service region where your app is now authorized, you can look at [cracking open our PagerDuty-signed ID token](../../docs/app-integration-development/11-Classic-User-OAuth-Id-token.md). For example, the `aud` field will help your integration with data residency and processing guarantees if you have customers located in Europe.
+For additional information about the user, account, and PagerDuty service region where your app is now authorized, you can look at [cracking open our PagerDuty-signed ID token](../../docs/app-integration-development/11-PagerDuty-OpenId-Token.md). For example, the `aud` field will help your integration with data residency and processing guarantees if you have customers located in Europe.
 
 ## Sample Code
 

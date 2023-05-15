@@ -2,7 +2,7 @@
 tags: [app-integration-development]
 ---
 
-# Act as App Tokens
+# Obtaining an App OAuth Token
 
 <!-- theme: warning -->
 > ### Early Access
@@ -15,7 +15,7 @@ tags: [app-integration-development]
 > ### This flow is only for server-side apps with Scoped OAuth functionality
 > A client_secret should be treated as a password and stored securely. It should never be stored in public code.
 
-## About Acting as a PagerDuty App
+## About App OAuth Tokens
 
 To act on a PagerDuty Account as a PagerDuty App, you must obtain an app access token for that account. A token is only issued if the application has been previously granted access to that account. Applications are implictly granted access to the account that created it.
 

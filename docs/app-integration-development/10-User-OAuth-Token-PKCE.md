@@ -2,9 +2,9 @@
 tags: [app-integration-development]
 ---
 
-# Act as User Tokens via PKCE
+# Obtaining a User OAuth Token via PKCE
 
-## About Acting as a User With PKCE
+## About User OAuth Tokens via PKCE
 
 To act as a PagerDuty User in an application where the OAuth client cannot be completely secured [a public client], the PKCE flow should be used.
 

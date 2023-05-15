@@ -21,7 +21,7 @@ User API Keys are useful for scripts and personal projects but are also tied to 
 
 ### Classic User OAuth
 
-With Classic User OAuth the application is always acting as a PagerDuty User. The application must take the user through an OAuth 2.0 code flow to obtain their authorization and consent before being granted an act as user access token. See [Act as User Tokens via Code Grant](09-Act-as-User-OAuth-Code-Grant.md) and [Act as User Tokens via PKCE](10-Act-as-User-OAuth-PKCE.md) for the two methods of obtaining these tokens. See below for a discussion of the differences between these two methods.
+With Classic User OAuth the application is always acting as a PagerDuty User. The application must take the user through an OAuth 2.0 code flow to obtain their authorization and consent before being granted a user OAuth token. See [Obtaining a User OAuth Token via Code Grant](09-User-OAuth-Token-Code-Grant.md) and [Obtaining a User OAuth Token via PKCE](10-User-OAuth-Token-PKCE.md) for the two methods of obtaining these tokens. See below for a discussion of the differences between these two methods.
 
 The access available to an application using Classic User OAuth is the intersection of the scopes granted to the application and the permissions of the user the application is acting on behalf of. Scopes in Classic User OAuth are limited to either `read` which allows read-only access to all resources available to the authorizing user, or `write` which allows read/write access to all resources available to the authorizing user.
 
@@ -29,11 +29,11 @@ PagerDuty Apps with Classic User OAuth can be published for use with other Pager
 
 ### Scoped OAuth
 
-Scoped OAuth allows an application to act to outside the context of a user by obtaining an act as app access token using an OAuth 2.0 client credentials flow. Optionally, it can also obtain act as user tokens after obtaining their authorization and consent. See [Act as App Tokens](12-Act-as-App-Token.md), [Act as User Tokens via Code Grant](09-Act-as-User-OAuth-Code-Grant.md) and [Act as User Tokens via PKCE](10-Act-as-User-OAuth-PKCE.md) for the details of obtaining each type of token.
+Scoped OAuth allows an application to act as the PagerDuty App itself by obtaining an app token using an OAuth 2.0 client credentials flow. Optionally, it can also act as a user after obtaining their authorization and consent. See [Obtaining an App OAuth Token](12-App-OAuth-Token.md), [Obtaining a User OAuth Token via Code Grant](09-User-OAuth-Token-Code-Grant.md) and [Obtaining a User OAuth Token via PKCE](10-User-OAuth-Token-PKCE.md) for the details of obtaining each type of token.
 
 The access available to an application using Scoped OAuth differs by token type:
-* When using an act as app token, access is only limited by the scopes granted to the application. If the application has the `incidents.read` scope, it will be able to read all incidents on the account.
-* When using an act as user token, access is the intersection of the scopes granted to the application and the permissions of the user. If an application has the `incidents.read` scope and is acting as user Pagey, it will only be able to read incidents that user Pagey has permission to see.
+* With an app token, access is only limited by the scopes granted to the application. If the application has the `incidents.read` scope, it will be able to read all incidents on the account.
+* With a user token, access is the intersection of the scopes granted to the application and the permissions of the user. If an application has the `incidents.read` scope and is acting as user Pagey, it will only be able to read incidents that user Pagey has permission to see.
 
 If a [REST API](/api-reference/) endpoint works with Scoped OAuth, the documentation for that endpoint will say "Scoped OAuth requires:" and list the required scope to access the endpoint.
 
@@ -45,16 +45,16 @@ PagerDuty Apps with Scoped OAuth cannot currently be published to allow use with
 Scoped OAuth improves on Classic User OAuth by offering a set of scopes that individually grant access to read or write a single type of resource. For example, the `incidents.read` scope is only able to read incidents on an account. The `incidents.write` scope is able to create, update, or delete an incident but is not able to read existing incidents.
 
 #### Scoped OAuth can act as an app or as a user
-Scoped OAuth has the ability to act outside the context of a user as a PagerDuty App. This is useful in server-to-server flows where a user may not be involved. It also eliminates the need to manage service or bot user accounts. When configured with a redirect URI, Scoped OAuth applications can also obtain act as user tokens with the [Act as User Tokens via Code Grant](09-Act-as-User-OAuth-Code-Grant.md) flow to obtain a user's authorization and consent.
+Scoped OAuth has the ability to act outside the context of a user as a PagerDuty App. This is useful in server-to-server flows where a user may not be involved. It also eliminates the need to manage service or bot user accounts. When configured with a redirect URI, Scoped OAuth applications can also obtain act as user tokens with the [Obtaining a User OAuth Token via Code Grant](09-User-OAuth-Token-Code-Grant.md) flow to obtain a user's authorization and consent.
 
 #### Only Classic User OAuth can be used with other PagerDuty accounts
 If you are building an integration on top of PagerDuty with the intention of publishing it for use with many PagerDuty accounts, then Classic User OAuth continues to be the right choice.
 
 #### Scoped OAuth applications must be able to securely store the client secret
-All Scoped OAuth applications have a `client_id` and `client_secret` that can be used to obtain act as app tokens without the involvement of a user. Applications using Scoped OAuth functionality must have a server-side component where the `client_secret` is properly secured. The `client_secret` should never be stored in the browser or passed in an insecure manner.
+All Scoped OAuth applications have a `client_id` and `client_secret` that can be used to app tokens without the involvement of a user. Applications using Scoped OAuth functionality must have a server-side component where the `client_secret` is properly secured. The `client_secret` should never be stored in the browser or passed in an insecure manner.
 
 #### When to use the PKCE flow for user tokens
-For Classic User OAuth, there two options for obtaining an act as user token with your app. [PKCE (Proof Key for Code Exchange)](12-Act-as-App-Token.md) is recommended and should work for all apps. The [Authorization Code Grant](09-Act-as-User-OAuth-Code-Grant.md) flow is also supported, but is only recommended for server-side applications where you have control over the entire environment.
+For Classic User OAuth, there are two options for obtaining a user OAuth token with your app. [PKCE (Proof Key for Code Exchange)](12-App-OAuth-Token.md) is recommended and should work for all apps. The [authorization code grant](09-User-OAuth-Token-Code-Grant.md) flow is also supported, but is only recommended for server-side applications where you have control over the entire environment.
 
 
 | Choose A Flow For Your App   |      Server-side App*      |  Client-side App** |
@@ -66,4 +66,4 @@ For Classic User OAuth, there two options for obtaining an act as user token wit
 
 ***Client-side App* - an app which runs in the browser or a native mobile app, also known as a public client
 
-PagerDuty Apps with Scoped OAuth are able to obtain act as user tokens [via Code Grant](09-Act-as-User-OAuth-Code-Grant.md) or [via PKCE](10-Act-as-User-OAuth-PKCE.md). The PKCE flow is preferred and adds additional security. However, Scoped OAuth should never be used in a public client architecture.
+PagerDuty Apps with Scoped OAuth are able to obtain user tokens [via authorization code grant](09-User-OAuth-Token-Code-Grant.md) or [via PKCE](10-User-OAuth-Token-PKCE.md). The PKCE flow is preferred and adds additional security. However, Scoped OAuth should never be used in a public client architecture.

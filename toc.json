@@ -77,23 +77,23 @@
         },
         {
           "type": "item",
-          "title": "Act as User Tokens via Code Grant",
-          "uri": "docs/app-integration-development/09-Act-as-User-OAuth-Code-Grant.md"
+          "title": "User OAuth Token via Code Grant",
+          "uri": "docs/app-integration-development/09-User-OAuth-Token-Code-Grant.md"
         },
         {
           "type": "item",
-          "title": "Act as User Tokens via PKCE",
-          "uri": "docs/app-integration-development/10-Act-as-User-OAuth-PKCE.md"
+          "title": "User OAuth Token via PKCE",
+          "uri": "docs/app-integration-development/10-User-OAuth-Token-PKCE.md"
         },
         {
           "type": "item",
-          "title": "Act as App Tokens",
-          "uri": "docs/app-integration-development/12-Act-as-App-Token.md"
+          "title": "App OAuth Token",
+          "uri": "docs/app-integration-development/12-App-OAuth-Token.md"
         },
         {
           "type": "item",
-          "title": "PagerDuty OpenID ID tokens",
-          "uri": "docs/app-integration-development/11-Classic-User-OAuth-Id-token.md"
+          "title": "PagerDuty OpenID ID Token",
+          "uri": "docs/app-integration-development/11-PagerDuty-OpenId-Token.md"
         },
         {
           "type": "item",
