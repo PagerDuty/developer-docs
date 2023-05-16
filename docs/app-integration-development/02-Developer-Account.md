@@ -4,11 +4,9 @@ tags: [app-integration-development]
 
 # Developer Account FAQ
 
-All PagerDuty accounts have access to developer tools. Developer accounts are meant for those without access to a paid PagerDuty account.  [Sign up for a developer account here.](/sign-up/)
-
-If you already have access to a PagerDuty account, [learn how to get started here.](../../docs/app-integration-development/03-Register-an-App.md)
-
-### Frequently Asked Questions
+#### Do I need a developer account?
+If you already have a PagerDuty account, no. All PagerDuty accounts have access to our developer tools and you can get started [here](../../docs/app-integration-development/03-Register-an-App.md). 
+If you do not have a PagerDuty account then you can sign up for a Developer account [here](/sign-up/).
 
 #### How many users can I add to my developer account?
 

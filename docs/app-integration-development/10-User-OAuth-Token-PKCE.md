@@ -2,14 +2,17 @@
 tags: [app-integration-development]
 ---
 
-# Classic User OAuth: PKCE Flow
+# Obtaining a User OAuth Token via PKCE
 
-[Create an app](../../docs/app-integration-development/03-Register-an-App.md) to get access to OAuth 2.0 credentials and access PagerDuty's REST API on behalf of a user.
+## About User OAuth Tokens via PKCE
+
+To act as a PagerDuty User in an application where the OAuth client cannot be completely secured [a public client], the PKCE flow should be used.
 
 PKCE (Proof Key for Credential Exchange) is recommended for all Single Page Apps and mobile apps and can also be used with a server side flow. PagerDuty also supports OAuth 2.0’s [Authorization Code Grant](https://oauth.net/2/grant-types/authorization-code/) with [PKCE](https://oauth.net/2/pkce/) extension flow for all third-party applications.
 
-### Endpoints for Authorization Code Grant with PKCE:
-The following endpoints conform to the OAuth 2.0 protocol for Authorization Code Grant with PKCE.
+Before proceeding you should [register a PagerDuty App](03-Register-an-App.md) with Scoped OAuth or Classic User OAuth functionality to obtain the `client_id`, `client_secret` [required for Scoped OAuth] and scopes.
+
+The following endpoints conform to the OAuth 2.0 protocol for Authorization Code Grant with PKCE:
 
 |||
 |-|-|
@@ -34,9 +37,12 @@ Required Parameters     | Description
 `client_id`             | An identifier issued when the app is created
 `redirect_uri`          | Registered with the app when OAuth 2.0 is added. PagerDuty will redirect here after a user grants or denies access to your app.
 `response_type`         | Specifies the response type based on OAuth 2.0 flow.<br/> Value must be set to `code`.
-`scope`                 | Specifies the scope being requested, must match what is configured on the OAuth application. Should be either `read` or `write`. 
+`scope`                 | Specifies the scope being requested, must match [or be a subset of] what is configured for the OAuth functionality. Should be either `read` or `write` for Classic User OAuth or a space separated set of scopes for Scoped OAuth. 
 `code_challenge`        | Base64 URL Encoded (without padding) string containing the SHA-256 digested form of the clients one-time random 128 byte verifier (also in Base64URLEncoded form without padding). See Javascript PKCE Example Algorithm below.
 `code_challenge_method` | Specifies that we are using PKCE SHA-256 Signature.<br/> Value must be set to `S256`.
+
+<!-- theme:warning -->
+> Never send your `client_secret` as a query parameter or over a non-https connection.
 
 The flow is initiated by sending a GET request to the Authorization Endpoint with query parameters set for `client_id`, `redirect_uri`, `scope`, `response_type=code`, as well as the PKCE extension fields (`code_challenge` and `code_challenge_method`)
 
@@ -76,6 +82,7 @@ All of these parameters are required to get an access token from the Token Endpo
 Parameter       | Description
 --------------- | -----------
 `client_id`     | An identifier issued when the app is created.
+`client_secret` | [Scoped OAuth only] A secret issued when the app is created.
 `code_verifier` | Original one-time, random 128 byte verifier (also in Base64URLEncoded without padding) used to generate the code_challenge for the authorization code request.
 `code`          | The authorization code issued upon a successful authorization request.
 `redirect_uri`  | Registered with the app when OAuth 2.0 is added.
@@ -88,16 +95,15 @@ The authorization code has a time to live of 30 seconds, and your POST request m
 
 The body of the request should include the following parameters: `client_id`,  `redirect_uri`, the `code` (authorization code) received from PagerDuty, `grant_type=authorization_code`, and finally the `code_verifier` that was generated to create the code_challenge originally. The content-type should be `application/x-form-urlencoded`.
 
-```
+```bash
 curl -X POST https://identity.pagerduty.com/oauth/token \
+  --header "Content-Type: application/x-www-form-urlencoded" \
   -d "grant_type=authorization_code"
   -d "client_id={CLIENT_ID}"
   -d "redirect_uri={REDIRECT_URI}"
   -d "code={CODE}"
   -d "code_verifier={CODE_VERIFIER}"
 ```
-
-Note: By default, curl uses a content type of `application/x-form-urlencoded`.
 
 The access token will be included in a JSON response. You may also want to take note of the id token and the refresh token:
 
@@ -152,8 +158,9 @@ Exchanging the refresh token for the access token is similar to using an authori
 
 The body of the request should include the following parameters: `client_id`, `client_secret`, the `refresh_token` previously received from PagerDuty, and `grant_type=refresh_token`. The content type should still be `application/x-form-urlencoded`.
 
-```
+```bash
 curl -X POST https://identity.pagerduty.com/oauth/token \
+  --header "Content-Type: application/x-www-form-urlencoded" \
   -d "grant_type=refresh_token" \
   -d "client_id={CLIENT_ID}" \
   -d "client_secret={CLIENT_SECRET}" \

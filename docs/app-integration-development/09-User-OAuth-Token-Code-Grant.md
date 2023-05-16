@@ -2,14 +2,16 @@
 tags: [app-integration-development]
 ---
 
-# Classic User OAuth: Authorization Code Grant Flow
+# Obtaining a User OAuth Token via Code Grant
 
 <!-- theme:warning -->
 > ### This flow is for server-side apps
-> A client_secret should be treated as a password or private_key and not be stored in public code.
+> A client_secret should be treated as a password and stored securely. It should never be stored in public code.
 > If you're working on an a mobile app or in-browser app, please use the [PKCE flow](../../docs/app-integration-development/10-Classic-User-OAuth-PKCE.md).
 
-[Create an app](../../docs/app-integration-development/03-Register-an-App.md) to get access to Classic User OAuth credentials.
+## About User OAuth Tokens via Code Grant
+
+Before proceeding you should [register a PagerDuty App](03-Register-an-App.md) with Scoped OAuth or Classic User OAuth functionality to obtain the `client_id`, `client_secret`, and scopes.
 
 PagerDuty supports OAuth 2.0’s [Authorization Code Grant](https://tools.ietf.org/html/rfc6749#section-4.1) flow for third-party applications to obtain access tokens from PagerDuty and utilizes the following endpoints:
 
@@ -29,9 +31,12 @@ The following parameters will also be used in your requests or returned in the r
 |`grant_type`|The OAuth 2.0 grant type. Value must be set to `authorization_code` or `refresh_token`|✓| |✓|
 |`redirect_uri`|Registered with the app when OAuth 2.0 is added. PagerDuty will redirect here after a user grants or denies access to your app.|✓|✓| |
 |`response_type`|Specifies the response type based on OAuth 2.0 flow. Value must be set to `code`.| |✓| |
-|`scope`|Specifies the scope being requested, must match what is configured on the OAuth application. Should be either `read` or `write`.| |✓| |
+|`scope`|Specifies the scope being requested, must match [or be a subset of] what is configured for the OAuth functionality. Should be either `read` or `write` for Classic User OAuth or a space separated set of scopes for Scoped OAuth.| |✓| |
 |`access_token`|The token you will use to access the API after successful authorization.| | | |
 |`refresh_token`|The token you will use to get a new access token after the current access token has expired.| | |✓|
+
+<!-- theme:warning -->
+> Never send your `client_secret` as a query parameter or over a non-https connection.
 
 ## Obtaining an Access Token
 
@@ -60,16 +65,15 @@ If the user denies authorization, PagerDuty will redirect to the specified URI w
 
 To exchange the authorization code for an access token, send a POST request to the token endpoint. The authorization code has a time to live of 30 seconds, and your POST request must be received within that time. The body of the request should include the following parameters: `client_id`, `client_secret`, `redirect_uri`, the `code` (authorization code) received from PagerDuty, and `grant_type=authorization_code`. The content type should be `application/x-form-urlencoded`.
 
-```
+```bash
 curl -X POST https://identity.pagerduty.com/oauth/token \
+  --header "Content-Type: application/x-www-form-urlencoded" \
   -d "grant_type=authorization_code" \
   -d "client_id={CLIENT_ID}" \
   -d "client_secret={CLIENT_SECRET}" \
   -d "redirect_uri={REDIRECT_URI}" \
   -d "code={CODE}"
 ```
-
-Note: By default, curl uses a content type of `application/x-form-urlencoded`.
 
 The access token will be included in a JSON response. You may also want to take note of the id token and the refresh token:
 
@@ -87,7 +91,7 @@ The access token will be included in a JSON response. You may also want to take 
 
 Note however, that our access tokens do expire after a defined period of time -- so you may want to make sure that you implement OAuth refresh to prevent users needing to re-authorize your app. See more information about token expiries at the bottom of this page.
 
-For additional information about the user, account, and PagerDuty service region where your app is now authorized, you can look at [cracking open our PagerDuty-signed ID token](../../docs/app-integration-development/11-Classic-User-OAuth-Id-token.md). For example, the `aud` field will help your integration with data residency and processing guarantees if you have customers located in Europe.
+For additional information about the user, account, and PagerDuty service region where your app is now authorized, you can look at [cracking open our PagerDuty-signed ID token](../../docs/app-integration-development/11-PagerDuty-OpenId-Token.md). For example, the `aud` field will help your integration with data residency and processing guarantees if you have customers located in Europe.
 
 ## Sample Code
 
@@ -125,8 +129,9 @@ Exchanging the refresh token for the access token is similar to using an authori
 
 The body of the request should include the following parameters: `client_id`, `client_secret`, the `refresh_token` previously received from PagerDuty, and `grant_type=refresh_token`. The content type should still be `application/x-form-urlencoded`.
 
-```
+```bash
 curl -X POST https://identity.pagerduty.com/oauth/token \
+  --header "Content-Type: application/x-www-form-urlencoded" \
   -d "grant_type=refresh_token" \
   -d "client_id={CLIENT_ID}" \
   -d "client_secret={CLIENT_SECRET}" \
