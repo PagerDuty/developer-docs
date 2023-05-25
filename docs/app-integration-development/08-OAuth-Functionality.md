@@ -107,3 +107,7 @@ The following options are available on the OAuth functionality screen of a Pager
 ![Screenshot of OAuth functionality danger zone](../../assets/images/oauth-danger-zone.png)
 
 The "Revoke all tokens" operation will invalidate all OAuth tokens for the current application. In the event you believe your application's `client_secret` to be compromised, you may choose to delete OAuth functionality from the application and recreate it.
+
+<!-- theme:info -->
+> Deleting the OAuth functionality _does not_ automatically revoke existing tokens. If you wish to perform both operations, you must revoke
+> all tokens _before_ deleting the OAuth functionality.
