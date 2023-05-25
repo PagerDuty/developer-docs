@@ -161,10 +161,10 @@ The body of the request should include the following parameters: `client_id`, `c
 ```bash
 curl -X POST https://identity.pagerduty.com/oauth/token \
   --header "Content-Type: application/x-www-form-urlencoded" \
-  -d "grant_type=refresh_token" \
-  -d "client_id={CLIENT_ID}" \
-  -d "client_secret={CLIENT_SECRET}" \
-  -d "refresh_token=pdus+_1XBPWQQ_f85dd2f1-b906-478a-a9e6-678952529e4e"
+  --data-urlencode "grant_type=refresh_token" \
+  --data-urlencode "client_id={CLIENT_ID}" \
+  --data-urlencode "client_secret={CLIENT_SECRET}" \
+  --data-urlencode "refresh_token=pdus+_1XBPWQQ_f85dd2f1-b906-478a-a9e6-678952529e4e"
 ```
 
 A successful response will include a new access token and a new refresh token:
@@ -178,26 +178,6 @@ A successful response will include a new access token and a new refresh token:
     "expires_in": 864000
 }
 ```
-
-## Token Expiries
-
-We've noted above that access tokens have an expiry date -- so do refresh tokens, and so does the lifetime of the user's authorization.
-
-All OAuth clients registered prior to October 30th 2022 will have the following settings:
-
- - access token expiry of one year
- - refresh token expiry of one year
-
-After October 30th 2022, all newly registered OAuth clients will have the following settings:
-
- - access token expiry of 30 days
- - refresh token expiry of 210 days
- - rolling refresh window of 3 years
-
-After April 30th 2023, we will apply the new expiry settings to all OAuth clients.
-
-Once you have implemented the refresh token flow, this will allow your customers to use your OAuth app continuously for three years, as long as
-they use it at least once every 30 days.
 
 ## Sample Code
 

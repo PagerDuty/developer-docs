@@ -52,7 +52,7 @@ The JSON response includes the access token, the scopes that were actually issue
   "access_token": "pdus+_0XBPWQQ_dfd3c718-4a46-400d-a8ec-45bab1fd417e",
   "scope": "as_account-us.companysubdomain incidents.read services.read",
   "token_type": "bearer",
-  "expires_in": 2592000
+  "expires_in": 86400
 }
 ```
 
