@@ -98,3 +98,12 @@ All Scoped OAuth clients have the following settings:
 Refresh tokens only apply to user tokens. When an app token expires, the application can simply request a new token.
 
 Scoped OAuth applications that implement the refresh token flow for user tokens will allow your customers to use your application continuously for one year, as long as they use it at least once every 30 days.
+
+## Revoking Tokens
+In the event you believe your application's OAuth tokens to be compromised, you may choose to revoke all tokens currently issued to the application via the [App Registration](03-Register-an-App.md) UI.
+
+The following options are available on the OAuth functionality screen of a PagerDuty App:
+
+![Screenshot of OAuth functionality danger zone](../../assets/images/oauth-danger-zone.png)
+
+The "Revoke all tokens" operation will invalidate all OAuth tokens for the current application. In the event you believe your application's `client_secret` to be compromised, you may choose to delete OAuth functionality from the application and recreate it.
