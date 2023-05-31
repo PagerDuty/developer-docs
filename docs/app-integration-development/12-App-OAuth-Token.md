@@ -4,13 +4,6 @@ tags: [app-integration-development]
 
 # Obtaining an App OAuth Token
 
-<!-- theme: warning -->
-> ### Early Access
->
-> The features described on this page are in an Early Access state and are subject to change. Your PagerDuty Account may
-> require a feature flag before this functionality is available to you. Please reach out to us if you have any questions or
-> need support.
-
 <!-- theme:warning -->
 > ### This flow is only for server-side apps with Scoped OAuth functionality
 > A client_secret should be treated as a password and stored securely. It should never be stored in public code.
