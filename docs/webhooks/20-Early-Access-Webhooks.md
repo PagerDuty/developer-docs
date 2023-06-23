@@ -82,44 +82,6 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
 }
 ```
 
-### incident_workflow_instance
-
-```json
-{
-  "id": "P3SNKQS",
-  "type": "incident_workflow_instance",
-  "summary": "A Workflow Instance Name",
-  "incident_workflow": {
-    "html_url": "https://acme.pagerduty.com/incident_workflows/PSFEVL7",
-    "id": "PSFEVL7",
-    "self": "https://api.pagerduty.com/incident_workflows/PSFEVL7",
-    "summary": "A Workflow Name",
-    "type": "incident_workflow_reference"
-  },
-  "workflow_trigger": {
-    "html_url": null,
-    "id": "4ad696eb-bb48-422a-8bd0-6efad6befa29",
-    "self": "https://api.pagerduty.com/incident_workflows/triggers/4ad696eb-bb48-422a-8bd0-6efad6befa29",
-    "summary": "Trigger Name",
-    "type": "workflow_trigger_reference"
-  },
-  "incident": {
-    "html_url": "https://acme.pagerduty.com/incidents/PBAZLIU",
-    "id": "PBAZLIU",
-    "self": "https://api.pagerduty.com/incidents/PBAZLIU",
-    "summary": "A little bump in the road",
-    "type": "incident_reference"
-  },
-  "service": {
-    "html_url": "https://acme.pagerduty.com/services/PF9KMXH",
-    "id": "PF9KMXH",
-    "self": "https://api.pagerduty.com/services/PF9KMXH",
-    "summary": "A service",
-    "type": "service_reference"
-  }
-}
-```
-
 ### incident_field_values
 
 ```json
