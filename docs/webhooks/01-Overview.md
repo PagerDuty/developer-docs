@@ -216,23 +216,25 @@ An example webhook payload for a `service.updated` event is shown below.
 
 Outbound events are created when PagerDuty resources change in interesting ways. Each outbound event is usually associated with some other PagerDuty resource. For example, the `incident.priority_updated` event is generated whenever the priority of an incident is changed. The following event types are available to v3 webhooks. Additional event types may be added to this list over time.
 
-| Event Type                       | `data.type`              | Description                                                                            | Scoped OAuth requires   |
-|----------------------------------|--------------------------|----------------------------------------------------------------------------------------|------------------|
-| incident.acknowledged            | `incident`               | Sent when an incident is acknowledged.                                                 | `incidents.read` |
-| incident.annotated               | `incident`               | Sent when a note is added to an incident.                                              | `incidents.read` |
-| incident.delegated               | `incident`               | Sent when an incident has been reassigned to another escalation policy.                | `incidents.read` |
-| incident.escalated               | `incident`               | Sent when an incident has been escalated to another user in the same escalation level. | `incidents.read` |
-| incident.priority_updated        | `incident`               | Sent when the priority of an incident has changed.                                     | `incidents.read` |
-| incident.reassigned              | `incident`               | Sent when an incident has been reassigned to another user.                             | `incidents.read` |
-| incident.reopened                | `incident`               | Sent when an incident is reopened.                                                     | `incidents.read` |
-| incident.responder.added         | `incident_responder`     | Sent when a responder has been added to an incident.                                   | `incidents.read` |
-| incident.responder.replied       | `incident_responder`     | Sent when a responder replies to a request.                                            | `incidents.read` |
-| incident.status_update_published | `incident_status_update` | Sent when a status update is added to an incident.                                     | `incidents.read` |
-| incident.triggered               | `incident`               | Sent when an incident is newly created/triggered.                                      | `incidents.read` |
-| incident.unacknowledged          | `incident`               | Sent when an incident is unacknowledged.                                               | `incidents.read` |
-| service.created                  | `service`                | Sent when a service is created.                                                        | `services.read`  |
-| service.deleted                  | `service`                | Sent when a service is deleted.                                                        | `services.read`  |
-| service.updated                  | `service`                | Sent when a service is updated.                                                        | `services.read`  |
+| Event Type                       | `data.type`                  | Description                                                                            | Scoped OAuth requires     |
+| -------------------------------- | ---------------------------- | -------------------------------------------------------------------------------------- | ------------------------- |
+| incident.acknowledged            | `incident`                   | Sent when an incident is acknowledged.                                                 | `incidents.read`          |
+| incident.annotated               | `incident`                   | Sent when a note is added to an incident.                                              | `incidents.read`          |
+| incident.delegated               | `incident`                   | Sent when an incident has been reassigned to another escalation policy.                | `incidents.read`          |
+| incident.escalated               | `incident`                   | Sent when an incident has been escalated to another user in the same escalation level. | `incidents.read`          |
+| incident.priority_updated        | `incident`                   | Sent when the priority of an incident has changed.                                     | `incidents.read`          |
+| incident.reassigned              | `incident`                   | Sent when an incident has been reassigned to another user.                             | `incidents.read`          |
+| incident.reopened                | `incident`                   | Sent when an incident is reopened.                                                     | `incidents.read`          |
+| incident.responder.added         | `incident_responder`         | Sent when a responder has been added to an incident.                                   | `incidents.read`          |
+| incident.responder.replied       | `incident_responder`         | Sent when a responder replies to a request.                                            | `incidents.read`          |
+| incident.status_update_published | `incident_status_update`     | Sent when a status update is added to an incident.                                     | `incidents.read`          |
+| incident.triggered               | `incident`                   | Sent when an incident is newly created/triggered.                                      | `incidents.read`          |
+| incident.unacknowledged          | `incident`                   | Sent when an incident is unacknowledged.                                               | `incidents.read`          |
+| incident.workflow.started        | `incident_workflow_instance` | Sent when an incident workflow starts.                                                 | `incident_workflows.read` |
+| incident.workflow.completed      | `incident_workflow_instance` | Sent when an incident workflow completes.                                              | `incident_workflows.read` |
+| service.created                  | `service`                    | Sent when a service is created.                                                        | `services.read`           |
+| service.deleted                  | `service`                    | Sent when a service is deleted.                                                        | `services.read`           |
+| service.updated                  | `service`                    | Sent when a service is updated.                                                        | `services.read`           |
 
 ## Event Data Types
 
@@ -363,6 +365,44 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
   "message": "Please help me make the tests pass",
   "state": "pending",
   "type": "incident_responder"
+}
+```
+&nbsp;
+### incident_workflow_instance
+
+```json
+{
+  "id": "P3SNKQS",
+  "type": "incident_workflow_instance",
+  "summary": "A Workflow Instance Name",
+  "incident_workflow": {
+    "html_url": "https://acme.pagerduty.com/incident-workflows/workflows/PSFEVL7",
+    "id": "PSFEVL7",
+    "self": "https://api.pagerduty.com/incident_workflows/PSFEVL7",
+    "summary": "A Workflow Name",
+    "type": "incident_workflow_reference"
+  },
+  "workflow_trigger": {
+    "html_url": null,
+    "id": "4ad696eb-bb48-422a-8bd0-6efad6befa29",
+    "self": "https://api.pagerduty.com/incident_workflows/triggers/4ad696eb-bb48-422a-8bd0-6efad6befa29",
+    "summary": "Trigger Name",
+    "type": "workflow_trigger_reference"
+  },
+  "incident": {
+    "html_url": "https://acme.pagerduty.com/incidents/PBAZLIU",
+    "id": "PBAZLIU",
+    "self": "https://api.pagerduty.com/incidents/PBAZLIU",
+    "summary": "A little bump in the road",
+    "type": "incident_reference"
+  },
+  "service": {
+    "html_url": "https://acme.pagerduty.com/services/PF9KMXH",
+    "id": "PF9KMXH",
+    "self": "https://api.pagerduty.com/services/PF9KMXH",
+    "summary": "A service",
+    "type": "service_reference"
+  }
 }
 ```
 &nbsp;
