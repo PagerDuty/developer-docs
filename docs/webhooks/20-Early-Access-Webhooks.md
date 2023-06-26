@@ -34,18 +34,6 @@ Sent when an incident action invocation is updated.
 
 Sent when an incident action invocation is terminated.
 
-### incident.workflow.started
-
-`data.type` is [`incident_workflow_instance`](#incident_workflow_instance)
-
-Sent when an incident workflow is started.
-
-### incident.workflow.completed
-
-`data.type` is [`incident_workflow_instance`](#incident_workflow_instance)
-
-Sent when an incident workflow is completed.
-
 ### incident.custom_field_values.updated
 
 `data.type` is [`incident_field_values`](#incident_field_values)
