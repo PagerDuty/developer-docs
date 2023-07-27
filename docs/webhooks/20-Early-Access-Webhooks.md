@@ -40,6 +40,12 @@ Sent when an incident action invocation is terminated.
 
 Sent when an incident's custom fields values are updated.
 
+### incident.conference_bridge.updated
+
+`data.type` is [`incident_conference_bridge`](#incident_conference_bridge)
+
+Sent when an incident's conference bridge number and/or conference bridge url is updated.
+
 ## Event Data Types
 
 Depending on the `event.event_type`, of the webhook payload, the `event.data` field will contain one of the objects described in this section.
@@ -110,5 +116,27 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
     }
   ],
   "type": "incident_field_values"
+}
+```
+
+### incident_conference_bridge
+
+```json
+{
+  "incident": {
+    "html_url": "https://acme.pagerduty.com/incidents/PGR0VU2",
+    "id": "PGR0VU2",
+    "self": "https://api.pagerduty.com/incidents/PGR0VU2",
+    "summary": "Major incident - customer shopping cart screen",
+    "type": "incident_reference"
+  },
+  "conference_numbers": [
+    {
+      "label": "",
+      "number": "+1-555-555-5555"
+    }
+  ],
+  "conference_url": "https://example.com",
+  "type": "incident_conference_bridge"
 }
 ```
