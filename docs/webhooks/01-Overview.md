@@ -339,29 +339,32 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
   "custom_fields": [
     {
       "data_type": "string",
+      "field_type": "single_value",
       "id": "PICFVXX",
       "name": "environment",
+      "namespace": "incidents",
       "type": "field_value",
-      "value": "production",
-      "field_type": "single_value"
+      "value": "production"
     },
     {
       "data_type": "string",
+      "field_type": "single_value",
       "id": "PF3UUI7",
       "name": "region",
+      "namespace": "incidents",
       "type": "field_value",
-      "value": ["US"],
-      "field_type": "multi_value_fixed"
+      "value": "US"
     }
   ],
   "changed_custom_fields": [
     {
       "data_type": "string",
+      "field_type": "single_value",
       "id": "PICFVXX",
       "name": "environment",
+      "namespace": "incidents",
       "type": "field_value",
-      "value": "staging",
-      "field_type": "single_value_fixed"
+      "value": "staging"
     }
   ],
   "type": "incident_field_values"
