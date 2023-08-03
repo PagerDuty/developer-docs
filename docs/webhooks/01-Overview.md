@@ -15,7 +15,7 @@ To get started with v3 webhooks, create a _webhook subscription_ using the [Webh
 > If you are currently using [V1/V2 webhook extensions](https://support.pagerduty.com/docs/v1v2-webhook-extensions) and need to migrate them to V3 webhook subscriptions, please follow our [migration guide](https://support.pagerduty.com/docs/webhooks#migration-guide) or use our [migration script](https://github.com/PagerDuty/public-support-scripts/tree/master/migrate_webhooks_to_v3) (provided as is).
 >
 > An end-of-life date for V2 webhooks has not been set. However, end-of-support for V2 webhooks began on October 31, 2022. This means existing integrations based on V2 webhooks will continue to work, however PagerDuty cannot accept any new feature requests or implement bug fixes.
-> 
+>
 > V1 webhook extensions became unsupported on November 13, 2021 and lost functionality on October 31, 2022. Please see [Webhook V1 Alternatives](https://support.pagerduty.com/docs/v1-webhook-alternatives) for a list of affected integrations and alternative solutions.
 
 ## Webhook Subscriptions
@@ -216,25 +216,27 @@ An example webhook payload for a `service.updated` event is shown below.
 
 Outbound events are created when PagerDuty resources change in interesting ways. Each outbound event is usually associated with some other PagerDuty resource. For example, the `incident.priority_updated` event is generated whenever the priority of an incident is changed. The following event types are available to v3 webhooks. Additional event types may be added to this list over time.
 
-| Event Type                       | `data.type`                  | Description                                                                            | Scoped OAuth requires     |
-| -------------------------------- | ---------------------------- | -------------------------------------------------------------------------------------- | ------------------------- |
-| incident.acknowledged            | `incident`                   | Sent when an incident is acknowledged.                                                 | `incidents.read`          |
-| incident.annotated               | `incident`                   | Sent when a note is added to an incident.                                              | `incidents.read`          |
-| incident.delegated               | `incident`                   | Sent when an incident has been reassigned to another escalation policy.                | `incidents.read`          |
-| incident.escalated               | `incident`                   | Sent when an incident has been escalated to another user in the same escalation level. | `incidents.read`          |
-| incident.priority_updated        | `incident`                   | Sent when the priority of an incident has changed.                                     | `incidents.read`          |
-| incident.reassigned              | `incident`                   | Sent when an incident has been reassigned to another user.                             | `incidents.read`          |
-| incident.reopened                | `incident`                   | Sent when an incident is reopened.                                                     | `incidents.read`          |
-| incident.responder.added         | `incident_responder`         | Sent when a responder has been added to an incident.                                   | `incidents.read`          |
-| incident.responder.replied       | `incident_responder`         | Sent when a responder replies to a request.                                            | `incidents.read`          |
-| incident.status_update_published | `incident_status_update`     | Sent when a status update is added to an incident.                                     | `incidents.read`          |
-| incident.triggered               | `incident`                   | Sent when an incident is newly created/triggered.                                      | `incidents.read`          |
-| incident.unacknowledged          | `incident`                   | Sent when an incident is unacknowledged.                                               | `incidents.read`          |
-| incident.workflow.started        | `incident_workflow_instance` | Sent when an incident workflow starts.                                                 | `incident_workflows.read` |
-| incident.workflow.completed      | `incident_workflow_instance` | Sent when an incident workflow completes.                                              | `incident_workflows.read` |
-| service.created                  | `service`                    | Sent when a service is created.                                                        | `services.read`           |
-| service.deleted                  | `service`                    | Sent when a service is deleted.                                                        | `services.read`           |
-| service.updated                  | `service`                    | Sent when a service is updated.                                                        | `services.read`           |
+| Event Type                           | `data.type`                  | Description                                                                               | Scoped OAuth requires     |
+| ------------------------------------ | ---------------------------- | ----------------------------------------------------------------------------------------- | ------------------------- |
+| incident.acknowledged                | `incident`                   | Sent when an incident is acknowledged.                                                    | `incidents.read`          |
+| incident.annotated                   | `incident`                   | Sent when a note is added to an incident.                                                 | `incidents.read`          |
+| incident.conference_bridge.updated   | `incident_conference_bridge` | Sent when an incident's conference bridge number and/or conference bridge url is updated. | `incidents.read`          |
+| incident.custom_field_values.updated | `incident_field_values`      | Sent when an incident's custom fields values are updated.                                 | `incidents.read`          |
+| incident.delegated                   | `incident`                   | Sent when an incident has been reassigned to another escalation policy.                   | `incidents.read`          |
+| incident.escalated                   | `incident`                   | Sent when an incident has been escalated to another user in the same escalation level.    | `incidents.read`          |
+| incident.priority_updated            | `incident`                   | Sent when the priority of an incident has changed.                                        | `incidents.read`          |
+| incident.reassigned                  | `incident`                   | Sent when an incident has been reassigned to another user.                                | `incidents.read`          |
+| incident.reopened                    | `incident`                   | Sent when an incident is reopened.                                                        | `incidents.read`          |
+| incident.responder.added             | `incident_responder`         | Sent when a responder has been added to an incident.                                      | `incidents.read`          |
+| incident.responder.replied           | `incident_responder`         | Sent when a responder replies to a request.                                               | `incidents.read`          |
+| incident.status_update_published     | `incident_status_update`     | Sent when a status update is added to an incident.                                        | `incidents.read`          |
+| incident.triggered                   | `incident`                   | Sent when an incident is newly created/triggered.                                         | `incidents.read`          |
+| incident.unacknowledged              | `incident`                   | Sent when an incident is unacknowledged.                                                  | `incidents.read`          |
+| incident.workflow.started            | `incident_workflow_instance` | Sent when an incident workflow starts.                                                    | `incident_workflows.read` |
+| incident.workflow.completed          | `incident_workflow_instance` | Sent when an incident workflow completes.                                                 | `incident_workflows.read` |
+| service.created                      | `service`                    | Sent when a service is created.                                                           | `services.read`           |
+| service.deleted                      | `service`                    | Sent when a service is deleted.                                                           | `services.read`           |
+| service.updated                      | `service`                    | Sent when a service is updated.                                                           | `services.read`           |
 
 ## Event Data Types
 
@@ -298,6 +300,71 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
     "conference_url": "https://example.com"
   },
   "resolve_reason": null
+}
+```
+&nbsp;
+### incident_conference_bridge
+
+```json
+{
+  "incident": {
+    "html_url": "https://acme.pagerduty.com/incidents/PGR0VU2",
+    "id": "PGR0VU2",
+    "self": "https://api.pagerduty.com/incidents/PGR0VU2",
+    "summary": "Major incident - customer shopping cart screen",
+    "type": "incident_reference"
+  },
+  "conference_numbers": [
+    {
+      "label": "",
+      "number": "+1-555-555-5555"
+    }
+  ],
+  "conference_url": "https://example.com",
+  "type": "incident_conference_bridge"
+}
+```
+&nbsp;
+### incident_field_values
+
+```json
+{
+  "incident": {
+    "html_url": "https://acme.pagerduty.com/incidents/PBAZLIU",
+    "id": "PBAZLIU",
+    "self": "https://api.pagerduty.com/incidents/PBAZLIU",
+    "summary": null,
+    "type": "incident_reference"
+  },
+  "custom_fields": [
+    {
+      "data_type": "string",
+      "id": "PICFVXX",
+      "name": "environment",
+      "type": "field_value",
+      "value": "production",
+      "field_type": "single_value"
+    },
+    {
+      "data_type": "string",
+      "id": "PF3UUI7",
+      "name": "region",
+      "type": "field_value",
+      "value": ["US"],
+      "field_type": "multi_value_fixed"
+    }
+  ],
+  "changed_custom_fields": [
+    {
+      "data_type": "string",
+      "id": "PICFVXX",
+      "name": "environment",
+      "type": "field_value",
+      "value": "staging",
+      "field_type": "single_value_fixed"
+    }
+  ],
+  "type": "incident_field_values"
 }
 ```
 &nbsp;
