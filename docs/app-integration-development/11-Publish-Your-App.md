@@ -8,7 +8,7 @@ Once you are done building an app, you can publish it to share with all PagerDut
 
 ## Manage Distribution
 
-On your app's configuration page, scroll down to the **Distribution** section and click the **Manage** button.
+On your app's configuration page, scroll down to the **App Type** section and select the Public option and click on the Distribution Form button. Before the App can be made public the Distribution Form needs to be completed.
 
 ![Screenshot of app distribution management](../../assets/images/manage_distribution.png)
 
@@ -16,11 +16,11 @@ On your app's configuration page, scroll down to the **Distribution** section an
 
 You can optionally publish your app for all PagerDuty users to discover and use. Follow these steps to submit your app for review.
 
-1. On the **Distribution** page (see above), enter information for your app listing (like documentation and support contact) and provide instructions for testing your app.
+1. On the **Distribution Form** page (see above), enter information for your app listing (like documentation and support contact) and provide instructions for testing your app.
 
 ![Screenshot of app distribution management](../../assets/images/app-distribution-management.png)
 
-2. At the bottom of the **Distribution** page under **Submit for Review**, click the **Publish** button and confirm that you would like to submit.
+2. At the bottom of the **Distribution Form** page click the **Save** button. Upon returning to the Edit App page, click **Save** and confirm that you want to submit the app for review.
 
 ![Screenshot of app submit](../../assets/images/publish.png)
 

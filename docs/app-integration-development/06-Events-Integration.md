@@ -128,7 +128,7 @@ Use an Event Transformer when a technical service you are connecting to PagerDut
 
 Before submitting, make sure your integration is able to trigger, acknowledge, or resolve events in PagerDuty as you expect.
 
-1. Create a test service on the Events Integration page. When you click Create, a schedule and escalation policy will also be created and added to the service.
+1. Create a test service on the Events Integration page. When you click Save, a schedule and escalation policy will also be created and added to the service.
 
 ![Screenshot of create test service button](../../assets/images/create-test-service.png)
 

@@ -46,8 +46,10 @@ Use our [API Picker](../../docs/app-integration-development/05-API-Picker.md) re
 
 1. Go to your app's configuration page. [See how to register or edit an app](../../docs/app-integration-development/03-Register-an-App.md)
 2. Scroll down the the **Functionality** section of the page and click the **Manage** button on the card which represents the functionality you would like to remove.
-3. Scroll to the **Danger Zone** at the bottom of the page and click **Delete**
-![Screenshot of delete functionality section](../../assets/images/delete_functionality.png)
+3. To remove Events Integration Functionality scroll to the **Danger Zone** at the bottom of the page and click **Delete**
+![Screenshot of delete functionality section](../../assets/images/delete_events_integration.png)
+To remove OAuth functionality, navigate to the Client tab and click Delete.
+![Screenshot of delete functionality section](../../assets/images/delete_oauth.png)
 4. Confirm that you would like to remove app functionality
 ![Screenshot of delete confirmation modal](../../assets/images/delete_confirm.png)
 
