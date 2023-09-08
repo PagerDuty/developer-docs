@@ -102,11 +102,11 @@ Scoped OAuth applications that implement the refresh token flow for user tokens 
 ## Revoking Tokens
 In the event you believe your application's OAuth tokens to be compromised, you may choose to revoke all tokens currently issued to the application via the [App Registration](03-Register-an-App.md) UI.
 
-The following options are available on the OAuth functionality screen of a PagerDuty App:
+The following options are available on the OAuth functionality Client screen of a PagerDuty App:
 
 ![Screenshot of OAuth functionality danger zone](../../assets/images/oauth-danger-zone.png)
 
-The "Revoke all tokens" operation will invalidate all OAuth tokens for the current application. In the event you believe your application's `client_secret` to be compromised, you may choose to delete OAuth functionality from the application and recreate it.
+The "Revoke All Tokens" operation will invalidate all OAuth tokens for the current application. In the event you believe your application's `client_secret` to be compromised, you may choose to delete OAuth functionality from the application and recreate it.
 
 <!-- theme:info -->
 > Deleting the OAuth functionality _does not_ automatically revoke existing tokens. If you wish to perform both operations, you must revoke
