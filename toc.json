@@ -195,6 +195,11 @@
           "type": "item",
           "title": "PagerDuty Condition Language (PCL)",
           "uri": "docs/REST-API/18-PCL-Overview.md"
+        },
+        {
+          "type": "item",
+          "title": "REST API IPs",
+          "uri": "docs/REST-API/19-REST-API-IPs.md"
         }
       ]
     },
