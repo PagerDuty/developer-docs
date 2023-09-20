@@ -19,6 +19,9 @@ download: [plain](https://developer.pagerduty.com/ip-safelists/rest-api-us-servi
     34.212.97.30
     44.226.85.110
     52.24.121.31
+    44.227.224.80
+    44.232.118.253
+    35.162.7.45
 
 
 ### EU Service Region
@@ -31,6 +34,9 @@ download: [plain](https://developer.pagerduty.com/ip-safelists/rest-api-eu-servi
     3.79.82.135
     3.66.104.172
     3.73.115.116
+    18.158.168.35
+    18.156.39.226
+    18.157.174.159
 
 
 After October 25th, 2023 - this page should be used for all safelist updates.
