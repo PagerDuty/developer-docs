@@ -41,4 +41,4 @@ download: [plain](https://developer.pagerduty.com/ip-safelists/rest-api-eu-servi
 
 After October 25th, 2023 - this page should be used for all safelist updates.
 
-Please review the list and update your firewall settings where necessary every 30 days to avoid any distributions to your integrations with PagerDuty.
+Please review the list and update your firewall settings where necessary every 30 days to avoid any disruptions to your integrations with PagerDuty.
