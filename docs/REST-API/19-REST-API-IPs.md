@@ -1,7 +1,7 @@
 ---
 tags: [rest-api]
 ---
-> Notice: This safelist of IP addresses will take effect October 25th, 2023
+> Notice: This safelist of IP addresses will take effect October 31st, 2023
 
 # REST API IPs
 
@@ -39,6 +39,6 @@ download: [plain](https://developer.pagerduty.com/ip-safelists/rest-api-eu-servi
     18.157.174.159
 
 
-After October 25th, 2023 - this page should be used for all safelist updates.
+After October 31st, 2023 - this page should be used for all safelist updates.
 
 Please review the list and update your firewall settings where necessary every 30 days to avoid any disruptions to your integrations with PagerDuty.
