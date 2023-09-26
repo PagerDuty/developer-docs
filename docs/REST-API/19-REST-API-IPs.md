@@ -9,7 +9,7 @@ This page lists the IP addresses that your system must be able to make outbound 
 
 The full list of IP addresses that our REST API may use is (separated between the old IP addresses and the new IP addresses):
 
-### US Service Region
+## US Service Region
 
 ### New IP Addresses
 
@@ -31,7 +31,7 @@ download: [plain](https://developer.pagerduty.com/ip-safelists/rest-api-us-servi
     35.162.7.45
 
 
-### EU Service Region
+## EU Service Region
 
 ### New IP Addresses
 
