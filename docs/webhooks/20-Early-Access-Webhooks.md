@@ -5,6 +5,7 @@ tags: [webhooks]
 # Early Access Webhook Events
 
 <!-- theme: warning -->
+
 > ### Early Access
 >
 > The features described on this page are in an Early Access state and are subject to change. Please reach out to
@@ -12,7 +13,7 @@ tags: [webhooks]
 
 Early Access webhook events are provided here for informational purposes, but are subject to change in availability
 (may be removed) and design (contents and shape of response may change). They can be created via the
- `/webhook_subscriptions` REST API endpoint.
+`/webhook_subscriptions` REST API endpoint.
 
 ## Event Types
 
@@ -33,6 +34,24 @@ Sent when an incident action invocation is updated.
 `data.type` is [`incident_action_invocation`](#incident_action_invocation)
 
 Sent when an incident action invocation is terminated.
+
+### incident.task.created
+
+`data.type` is [`incident_task`](#incident_task)
+
+Sent when an incident task is created.
+
+### incident.task.updated
+
+`data.type` is [`incident_task`](#incident_task)
+
+Sent when an incident task is updated.
+
+### incident.task.completed
+
+`data.type` is [`incident_task`](#incident_task)
+
+Sent when an incident task is completed.
 
 ## Event Data Types
 
@@ -61,5 +80,34 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
   },
   "state": "created",
   "type": "incident_action_invocation"
+}
+```
+
+### incident_task
+
+```json
+{
+  "name": "A thing that needs to be done",
+  "description": null,
+  "id": "PGR0VU2",
+  "summary": "A thing that needs to be done",
+  "type": "incident_task",
+  "status": "todo",
+  "assignees": [
+    {
+      "html_url": "https://acme.pagerduty.com/users/PIV35G6",
+      "id": "PIV35G6",
+      "self": "https://api.pagerduty.com/users/PIV35G6",
+      "summary": "User 661768438",
+      "type": "user_reference"
+    }
+  ],
+  "incident": {
+    "html_url": "https://acme.pagerduty.com/incidents/Q0SDD3HB6SGFTI",
+    "id": "Q0SDD3HB6SGFTI",
+    "self": "https://api.pagerduty.com/incidents/Q0SDD3HB6SGFTI",
+    "summary": null,
+    "type": "incident_reference"
+  }
 }
 ```
