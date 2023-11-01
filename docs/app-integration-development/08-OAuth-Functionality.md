@@ -72,21 +72,13 @@ PagerDuty Apps with Scoped OAuth are able to obtain user tokens [via authorizati
 The tokens and user authorization involved in PagerDuty OAuth have a finite lifetime. This section describes the expiration of the various tokens for each type of PagerDuty OAuth.
 
 ### Classic User OAuth
-All Classic User OAuth clients registered prior to October 30th 2022 have the following settings:
-
- - access token expiry of one year
- - refresh token expiry of one year
-
-After October 30th 2022, all newly registered Classic User OAuth clients will have the following settings:
+All Classic User OAuth clients have the following expiry settings:
 
  - access token expiry of 30 days
  - refresh token expiry of 210 days
  - rolling refresh window of 3 years
 
-After April 30th 2023, we will apply the new expiry settings to all Classic User OAuth clients.
-
-Classic User OAuth applications that implement the refresh token flow will allow your customers to use your application continuously for three years, as long as
-they use it at least once every 210 days.
+This means that if your Classic User OAuth app implements the refresh token flow, your customers will be able to use that app continuosly with PagerDuty for three years, as long as there is some kind of activity with PagerDuty at least once every 210 days.
 
 ### Scoped OAuth
 All Scoped OAuth clients have the following settings:
