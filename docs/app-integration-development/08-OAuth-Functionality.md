@@ -78,7 +78,7 @@ All Classic User OAuth clients have the following expiry settings:
  - refresh token expiry of 210 days
  - rolling refresh window of 3 years
 
-This means that if your Classic User OAuth app implements the refresh token flow, your customers will be able to use that app continuosly with PagerDuty for three years, as long as there is some kind of activity with PagerDuty at least once every 210 days.
+This means that if your Classic User OAuth app implements the refresh token flow, your customers will be able to use that app continuously with PagerDuty for three years, as long as there is some kind of activity with PagerDuty at least once every 210 days.
 
 ### Scoped OAuth
 All Scoped OAuth clients have the following settings:
