@@ -40,7 +40,7 @@ The HTTP response can be used to determine if the request was successful, and if
 | 403 | Forbidden | Caller is not authorized to view the requested resource. |
 | 404 | Not Found | The requested resource was not found. |
 | 408 | Request Timeout | The request took too long to process. Please try again. |
-| 429 | Too Many Requests | The caller is making requests too frequently. Wait a moment before making further requests and make them at a reduced rate. See [Rate Limiting](../../docs/REST-API/04-Rate-Limiting.md). |
+| 429 | Too Many Requests | The caller is making requests too frequently. Wait a moment before making further requests and make them at a reduced rate. See the [REST API Rate Limits](../../docs/REST-API/04-Rate-Limits.md) and [Events API Rate Limits](../../docs/events-API-v2/05-Rate-Limits.md) pages for more detail. |
 | 500 | Internal Server Error | Internal error occurred while processing request, likely due to transient issues. Please try again. **Tip:** We recommend adding retry logic to your client to automatically try your request again later. |
 
 ### PagerDuty Error Codes
@@ -89,6 +89,7 @@ This list of error codes is not exhaustive, but is representative of the kinds o
 | 2017 | Too Many Contact Method Actions |
 | 2018 | Access Denied: You may have lost access to this incident if it has been resolved |
 | 2019 | Product Limit Reached |
+| 2020 | Rate Limit Exceeded |
 | 2100 | Not Found |
 | 3001 | Invalid Schedule |
 | 3004 | <ul><li>Schedule Not Found</li><li>Unknown Schedule</li></ul> |

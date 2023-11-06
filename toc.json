@@ -123,8 +123,8 @@
         },
         {
           "type": "item",
-          "title": "Rate Limiting",
-          "uri": "docs/REST-API/04-Rate-Limiting.md"
+          "title": "Rate Limits",
+          "uri": "docs/REST-API/04-Rate-Limits.md"
         },
         {
           "type": "item",
@@ -226,6 +226,11 @@
           "type": "item",
           "title": "Custom Change Event Transformer",
           "uri": "docs/events-API-v2/04-Custom-Change-Event-Transformer.md"
+        },
+        {
+          "type": "item",
+          "title": "Rate Limits",
+          "uri": "docs/events-API-v2/05-Rate-Limits.md"
         },
         {
           "type": "item",
