@@ -5,7 +5,7 @@ tags: [rest-api]
 # REST API v2 Overview
 
 <!-- theme: warning -->
-> ### Importing Pagerduty OpenAPI Specs into Postamn
+> ### Importing Pagerduty OpenAPI Specs into Postman
 >
 > * The "Run in Postman" Button was removed in favor of this more concrete workflow
 > * See Postman's [documentation](https://learning.postman.com/docs/integrations/available-integrations/working-with-openAPI/) on integrating Postman with OpenAPI
