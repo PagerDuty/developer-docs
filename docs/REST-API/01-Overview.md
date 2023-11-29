@@ -7,9 +7,9 @@ tags: [rest-api]
 <!-- theme: warning -->
 > ### Importing Pagerduty OpenAPI Specs into Postamn
 >
-> The "Run in Postman" Button was removed in favor of this more concrete workflow
-> See Postman's [documentation](https://learning.postman.com/docs/integrations/available-integrations/working-with-openAPI/) on integrating Postman with OpenAPI
-> Use [this URL](https://raw.githubusercontent.com/PagerDuty/api-schema/main/reference/REST/openapiv3.json) in the OpenAPI import tool
+> * The "Run in Postman" Button was removed in favor of this more concrete workflow
+> * See Postman's [documentation](https://learning.postman.com/docs/integrations/available-integrations/working-with-openAPI/) on integrating Postman with OpenAPI
+> * Use [this URL](https://raw.githubusercontent.com/PagerDuty/api-schema/main/reference/REST/openapiv3.json) in the OpenAPI import tool
 
 
 The REST API provides a way for third parties to connect to a PagerDuty account and access or manipulate configuration data on that account. It is not for connecting your monitoring tools to send events to PagerDuty; for that, use the [Events API](../../docs/events-API-v2/01-Overview.md).
