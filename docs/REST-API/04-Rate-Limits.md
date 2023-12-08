@@ -8,12 +8,6 @@ tags: [rest-api]
 > This page describes the rate limits for the PagerDuty REST API. The rate limits for the 
 > PagerDuty Events API are described [here](../../docs/events-API-v2/05-Rate-Limits.md).
 
-<!-- theme: warning -->
-> ### Upcoming Changes to REST API Rate Limits
->
-> Previously this page read: _The rate limits on our REST API are currently 900 requests per minute across an entire organization._ The actual rate limits were closer to 900 requests per minute per token.
-> The behavior now described on this page is being rolled out during November and December 2023. See the [changelog](https://developer.pagerduty.com/api-reference/f1a95bb9397ba-changelog) for more details.
-
 ## What are the limits?
 
 The PagerDuty REST API uses rate limits to provide a consistent experience for all of our customers. The limits depend on the type of authorization token being used. Each PagerDuty App has its own set of limits that are separate from both API keys and other apps.
