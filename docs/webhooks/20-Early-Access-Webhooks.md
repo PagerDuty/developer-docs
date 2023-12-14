@@ -141,7 +141,7 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
         },
         "old_assignee": null,
         "role": {
-          "id": "abcd1234",
+          "id": "P8PQO4R",
           "summary": "test role",
           "type": "role_reference"
         },
