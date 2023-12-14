@@ -121,19 +121,6 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
 ### incident_role_assignment
 ```json
 {
-  "id": "cc7f4cc9-02be-47c9-b826-72c7976d84f3",
-  "event_type": "incident.role.assigned",
-  "resource_type": "incident",
-  "occurred_at": "2021-02-08T18:35:57Z",
-  "agent": {
-    "html_url": "https://acme.pagerduty.com/users/PDJKATD",
-    "id": "PDJKATD",
-    "self": "https://api.pagerduty.com/users/PDJKATD",
-    "summary": "User 22",
-    "type": "user_reference"
-  },
-  "client": null,
-  "data": {
     "type": "incident_role_assignment",
     "incident_role_assignments": [
       {
@@ -144,7 +131,7 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
           "summary": "User 1810194",
           "type": "user_reference"
         },
-        "id": "abcd1234",
+        "id": "af64b84c-137e-40c6-875c-5dd30a2afaaa",
         "incident": {
           "html_url": "https://acme.pagerduty.com/incidents/PBAZLIU",
           "id": "PBAZLIU",
@@ -163,5 +150,4 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
       }
     ]
   }
-}
 ```
