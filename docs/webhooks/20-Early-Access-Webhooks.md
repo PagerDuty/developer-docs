@@ -53,6 +53,12 @@ Sent when an incident task is updated.
 
 Sent when an incident task is completed.
 
+### incident.role.assigned
+
+`data.type` is [`incident_role_assignment`](#incident_role_assignment)
+
+Sent when an incident role is assigned or unassigned.
+
 ## Event Data Types
 
 Depending on the `event.event_type`, of the webhook payload, the `event.data` field will contain one of the objects described in this section.
@@ -110,4 +116,38 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
     "type": "incident_reference"
   }
 }
+```
+
+### incident_role_assignment
+```json
+{
+    "type": "incident_role_assignment",
+    "incident_role_assignments": [
+      {
+        "assignee": {
+          "html_url": "https://acme.pagerduty.com/users/P75B6QD",
+          "id": "P75B6QD",
+          "self": "https://api.pagerduty.com/users/P75B6QD",
+          "summary": "User 1810194",
+          "type": "user_reference"
+        },
+        "id": "af64b84c-137e-40c6-875c-5dd30a2afaaa",
+        "incident": {
+          "html_url": "https://acme.pagerduty.com/incidents/PBAZLIU",
+          "id": "PBAZLIU",
+          "self": "https://api.pagerduty.com/incidents/PBAZLIU",
+          "summary": null,
+          "type": "incident_reference"
+        },
+        "old_assignee": null,
+        "role": {
+          "id": "P8PQO4R",
+          "summary": "test role",
+          "type": "role_reference"
+        },
+        "status": "active",
+        "type": "role_assignment_reference"
+      }
+    ]
+  }
 ```
