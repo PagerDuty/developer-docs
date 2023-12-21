@@ -100,9 +100,9 @@ Use an Event Transformer when a technical service you are connecting to PagerDut
 
 ![Screenshot of dropdown to add an Event Transformer to an app](../../assets/images/add-event-transformer.png)
 
-2. If you haven't yet, create a test service (see [Test your integration](#test-your-integration) below)
-
 3. Click **Save** at the bottom of the page to deploy the default transform.
+
+2. Create a test service and follow the instructions [here](#test-your-integration) to test your integration.
 
 ![Screenshot of Save button](../../assets/images/save-events-integration.png)
 

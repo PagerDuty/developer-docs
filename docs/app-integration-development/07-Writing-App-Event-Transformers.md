@@ -27,7 +27,7 @@ The [Events Integration](../../docs/app-integration-development/06-Events-Integr
 * The editor will highlight syntax errors for you to address.
 * You will not be able to save and deploy a transformer until syntax errors are addressed.
 
-### Runtime Errors / Debugging Your Transformer
+### Testing Your Transformer
 * [Create a test service](../../docs/app-integration-development/06-Events-Integration.dm#test-your-integration).
 * Send test webhooks to the test service endpoint.
 
