@@ -102,21 +102,17 @@ Use an Event Transformer when a technical service you are connecting to PagerDut
 
 2. If you haven't yet, create a test service (see [Test your integration](#test-your-integration) below)
 
-3. Turn on **Debug Mode** just below the code editor to trigger an incident on your test service when a runtime error occurs during your testing. This allows you to debug your transformer code.
-
-![Screenshot of dropdown to enable Event Transformer debug mode](../../assets/images/enable-debug-mode.png)
-
-4. Click **Save** at the bottom of the page to deploy the default transform.
+3. Click **Save** at the bottom of the page to deploy the default transform.
 
 ![Screenshot of Save button](../../assets/images/save-events-integration.png)
 
-5. On the Apps Configuration page. scroll down to **Events Integration** and click **Manage** to revisit the Events Transformer editor.
+4. On the Apps Configuration page. scroll down to **Events Integration** and click **Manage** to revisit the Events Transformer editor.
 
-6. To test your Event Transformer, send a test webhook payload via HTTP POST to the **Events API Endpoint** shown in the **Events Integration Test** section of the page
+5. To test your Event Transformer, send a test webhook payload via HTTP POST to the **Events API Endpoint** shown in the **Events Integration Test** section of the page
 
 ![Screenshot of text box with Events API endpoint](../../assets/images/events-api-endpoint.png)
 
-7. Event Transformers support JavaScript (ES6). Use the editor to modify the template to transform any webhook payload into the >Events API v2 format. <br/>[View the detailed guide for writing an app Event Transformer.](../../docs/app-integration-development/07-Writing-App-Event-Transformers.md)
+6. Event Transformers support JavaScript (ES6). Use the editor to modify the template to transform any webhook payload into the >Events API v2 format. <br/>[View the detailed guide for writing an app Event Transformer.](../../docs/app-integration-development/07-Writing-App-Event-Transformers.md)
 
 **Note:**
 * The pre-populated template creates an event with the raw body of the POST request payload in custom details.
