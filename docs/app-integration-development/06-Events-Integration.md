@@ -14,7 +14,7 @@ This is the best way for monitoring tools to connect with PagerDuty in order to 
 
 1. First [create an app in PagerDuty](../../docs/app-integration-development/03-Register-an-App.md)
 
-1. In the **Functionality** section, click **Add** next to Events Integration. Then click **Save** on the Events Integration config page.
+2. In the **Functionality** section, click **Add** next to Events Integration. Then click **Save** on the Events Integration config page.
 
 ![Screenshot of Addding Events Integration to app](../../assets/images/events_integration.png)
 
@@ -100,29 +100,16 @@ Use an Event Transformer when a technical service you are connecting to PagerDut
 
 ![Screenshot of dropdown to add an Event Transformer to an app](../../assets/images/add-event-transformer.png)
 
-2. If you haven't yet, create a test service (see [Test your integration](#test-your-integration) below)
+2. Event Transformers support JavaScript (ES6). Use the editor to modify the template to transform any webhook payload into the >Events API v2 format. <br/>[View the detailed guide for writing an app Event Transformer.](../../docs/app-integration-development/07-Writing-App-Event-Transformers.md)
 
-3. Turn on **Debug Mode** just below the code editor to trigger an incident on your test service when a runtime error occurs during your testing. This allows you to debug your transformer code.
-
-![Screenshot of dropdown to enable Event Transformer debug mode](../../assets/images/enable-debug-mode.png)
-
-4. Click **Save** at the bottom of the page to deploy the default transform.
+3. After making necessary code changes, click **Save** at the bottom of the page to deploy the transform.
 
 ![Screenshot of Save button](../../assets/images/save-events-integration.png)
-
-5. On the Apps Configuration page. scroll down to **Events Integration** and click **Manage** to revisit the Events Transformer editor.
-
-6. To test your Event Transformer, send a test webhook payload via HTTP POST to the **Events API Endpoint** shown in the **Events Integration Test** section of the page
-
-![Screenshot of text box with Events API endpoint](../../assets/images/events-api-endpoint.png)
-
-7. Event Transformers support JavaScript (ES6). Use the editor to modify the template to transform any webhook payload into the >Events API v2 format. <br/>[View the detailed guide for writing an app Event Transformer.](../../docs/app-integration-development/07-Writing-App-Event-Transformers.md)
 
 **Note:**
 * The pre-populated template creates an event with the raw body of the POST request payload in custom details.
 * You must **Save** to redeploy your transformer code.
 * After saving, your transform may take several minutes to deploy. **During this time, events will not be processed.**
-
 
 ## Test your integration
 
@@ -135,3 +122,6 @@ Before submitting, make sure your integration is able to trigger, acknowledge, o
 ![Screenshot of integration key and endpoint for test events](../../assets/images/test-service-details.png)
 
 3. Click on Activity to view incidents or check your notifications to see if they look as you expect.
+
+**Note:**
+* You will need to re create your integration for it to pick up any new transform changes you make.

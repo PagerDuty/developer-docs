@@ -27,13 +27,9 @@ The [Events Integration](../../docs/app-integration-development/06-Events-Integr
 * The editor will highlight syntax errors for you to address.
 * You will not be able to save and deploy a transformer until syntax errors are addressed.
 
-### Runtime Errors / Debugging Your Transformer
-* [Create a test service](../../docs/app-integration-development/06-Events-Integration.dm#test-your-integration), and then enable debug mode to have an incident triggered on your service when a runtime error occurs during development.
+### Testing Your Transformer
+* [Create a test service](../../docs/app-integration-development/06-Events-Integration.dm#test-your-integration).
 * Send test webhooks to the test service endpoint.
-* **Note:** enabling debug mode will only alert you of runtime errors on this particular service. You will not be notified when others leverage your app event transformer once it is published.
-
-![Screenshot of dropdown to enable event transformer debug mode](../../assets/images/enable-debug-mode.png)
-
 
 ## The PD Object
 
