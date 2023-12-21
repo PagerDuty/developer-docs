@@ -26,6 +26,7 @@ A Custom Event Transform allows users to reliably convert a payload sent by inte
   * You have some pre-populated code which would create an event with the raw body of the request in the body.
 3. Send a test payload via HTTP POST to the integration URL.
 4. Once you have sent the test alert, an incident will be triggered. The details in your incident contains the body of the request that was sent, which demonstrates the structure of data available to you within the scope of the JavaScript.
+5. Note the option **Debug mode**. This can be disabled once you are done designing your Custom Event Transform to ignore events that are incompatible with your transform, which includes people accidentally opening the integration URL in their web browser.
 
 ![Screenshot of viewing a Custom Event Transformer](../../assets/images/cet-view-page.png)
 
@@ -84,6 +85,11 @@ Example: `PD.fail(“Failed to parse event”)`
 The PagerDuty event payload is fairly simple. It is a JSON object in the same form as [accepted by Events API v1](../../docs/events-API-v1/02-Trigger-Events.md).
 
 For convenience, constants are provided for the `event_type` field: `PD.Trigger`, `PD.Acknowledge`, and `PD.Resolve`.
+
+<Alert variant="info">
+  <Alert.Heading>Debug Mode</Alert.Heading>
+  Setting your Custom Event Transform to debug mode allows you to test your universal transform as you write it. If there are any errors in your code, you will still receive a triggered incident with a brief description of the error.<br/><br/>You can set the integration to debug mode by changing the configuration of the integration the service.
+</Alert>
 
 ## Examples
 

@@ -25,6 +25,7 @@ A Custom Change Event Transform allows users to reliably convert a payload sent 
   * You have some pre-populated code which would create an event with the raw body of the request in the body.
 3. Send a test payload via HTTP POST to the integration URL.
 4. Once you have sent the test payload, a change event will be created on that service. The custom details in your change event contains the body of the request that was sent, which demonstrates the structure of data available to you within the scope of the JavaScript.
+5. Note the option **Debug mode**. This can be disabled once you are done designing your Custom Change Event Transform to ignore events that are incompatible with your transform, which includes people accidentally opening the integration URL in their web browser.
 
 ![Screenshot of viewing a Custom Change Event Transformer](../../assets/images/change-event-et-view-page.png)
 
@@ -65,6 +66,12 @@ Example: `PD.fail(“Failed to parse event”)`
 
 ### The PagerDuty Payload
 The PagerDuty change event payload is fairly simple. It is a JSON object in the same form as [accepted by Events API v2](../../docs/events-API-v2/02-Trigger-Events.md), with the exception that `routing_key` is not required or needed in the payload.
+
+
+<!-- theme:info -->
+> ### Debug Mode
+> Setting your Custom Change Event Transform to debug mode allows you to test your universal transform as you write it. If there are any errors in your code, you will still receive a triggered incident with a brief description of the error.
+> You can set the integration to debug mode by changing the configuration of the integration the service.
 
 ## Examples
 
