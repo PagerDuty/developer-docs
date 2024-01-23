@@ -19,8 +19,8 @@ With Global Alert Grouping - Content Based, there will be a **limit of 250 servi
 
 ### When can I use only the new [Alert Grouping Settings API] endpoints?
 
-In the future, you will be able to set **all** alert grouping via the `/alert_grouping_settings` endpoints, including: 
-- Create or update Single or Multi-Service (Global) Alert Grouping settings for all types (e.g., `content_based_intelligent` alert grouping type with a flexible time window).
+In the future, you will be able to use the `/alert_grouping_settings` endpoints exclusively to set **any** alert grouping types, including: 
+- Create or update Single or Multi-Service (Global) Alert Grouping settings.
 - Get and list Alert Grouping settings for all your services.
 
 
@@ -28,7 +28,7 @@ In the future, you will be able to set **all** alert grouping via the `/alert_gr
 
 - That service will be removed from the Global Alert Grouping setting and updated with the new specific settings if you provide any update in the `alert_grouping_parameters` field in the `/services` endpoint.
 - For example, if you have Service A, Service B, and Service C as part of one Global Alert Grouping setting, but then use the `/services` endpoint to set Service A to with `type="intelligent"` then this will remove Service A from the Global Alert Grouping setting. Service B and Service C will remain in the Global Alert Grouping setting unchanged. 
-    - Similarly, If you have only 2 services in your Global Alert Grouping setting (Service A and Service B), and then update you Service A with`type="intelligent"` via the `/services` endpoint, this will enable Service A to use Intelligent Alert Grouping and Service B will maintain the prior alert grouping settings using Content Based Alert Grouping.
+    - Similarly, If you have only 2 services in your Global Alert Grouping setting (Service A and Service B), and then update Service A with`aggregate="any"` (or **any** other alert grouping setting) via the `/services` endpoint, this will create a new single-service alert grouping setting for Service A and Service B will maintain the prior alert grouping settings.
 - Due to this, please make sure to exclude the `alert_group_parameters` field from any routine Terraform updates sent to `/services`. This will prevent unintended modifications to services configured under a Global Alert Grouping setting.
 
 [Services API]: https://developer.pagerduty.com/api-reference/7062f2631b397-create-a-service
