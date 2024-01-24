@@ -142,8 +142,8 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
         "old_assignee": null,
         "role": {
           "id": "P8PQO4R",
-          "summary": "test role",
-          "display_name": "test role",
+          "summary": "Role Display Name",
+          "name": "unique_role_name",
           "type": "role_reference"
         },
         "status": "active",
