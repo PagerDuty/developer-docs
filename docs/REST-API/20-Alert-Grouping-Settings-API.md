@@ -17,9 +17,9 @@ With Global Alert Grouping - Content Based, there will be a **limit of 250 servi
 - Single Service Time and Single Intelligent Grouping types can still be set using the `/services` endpoints.
 
 
-### When can I use only the new [Alert Grouping Settings API] endpoints?
+### Can I use only the new [Alert Grouping Settings API] endpoints?
 
-In the future, you will be able to use the `/alert_grouping_settings` endpoints exclusively to set **any** alert grouping types, including: 
+Later in this year 2024, you will be able to use the `/alert_grouping_settings` endpoints **exclusively** to set **any** alert grouping types, including: 
 - Create or update Single or Multi-Service (Global) Alert Grouping settings.
 - Get and list Alert Grouping settings for all your services.
 
