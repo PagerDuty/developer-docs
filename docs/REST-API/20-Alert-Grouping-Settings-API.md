@@ -7,7 +7,7 @@ tags: [rest-api]
 
 ### What is the maximum number of services for a Global Alert Grouping setting?
 
-With Global Alert Grouping - Content Based, there will be a **limit of 250 services maximum per alert grouping settin.**
+With Global Alert Grouping - Content Based, there will be a **limit of 250 services maximum per alert grouping setting.**
 
 
 ### What is the difference between the [Services API] endpoints where I set the alert grouping parameters for a given service vs. the [Alert Grouping Settings API] endpoints?
