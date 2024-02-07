@@ -143,7 +143,6 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
         "role": {
           "id": "P8PQO4R",
           "summary": "Role Display Name",
-          "name": "unique_role_name",
           "type": "role_reference"
         },
         "status": "active",
