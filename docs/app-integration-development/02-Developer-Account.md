@@ -40,4 +40,4 @@ No, PagerDuty developer accounts are free!
 
 #### I have a question that wasn’t answered here.
 
-See our knowledge base at [support.pagerduty.com](https://support.pagerduty.com) or contact our support team.
+If you have questions about this process or your submission, please email apps@pagerduty.com as is mentioned here: https://developer.pagerduty.com/docs/251b5b1305fca-publish-your-app
