@@ -48,6 +48,14 @@ If at least one of the signatures matches, the webhook should be considered a tr
 <!-- theme: info -->
 > Note: When comparing signatures, be sure to use a constant-time string comparison to protect against timing attacks.
 
+<!-- theme: warning -->
+> Verifying PagerDuty webhook signatures requires the unaltered raw body of the request sent to you.
+> Ensure that any frameworks or middleware you are using have not manipulated or formatted the request body.
+
+<!-- theme: warning -->
+> PagerDuty webhook payloads support unicode characters. If your implementation is converting the request body
+> from string to bytes [or vice-versa], ensure that you are using the proper UTF-8 character encoding.
+
 ## Examples of webhooks signing
 
 <!--
