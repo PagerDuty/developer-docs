@@ -54,7 +54,7 @@ If at least one of the signatures matches, the webhook should be considered a tr
 
 <!-- theme: warning -->
 > PagerDuty webhook payloads support unicode characters. If your implementation is converting the request body
-> from string to bytes [or vice-versa]; ensure that you are using the proper UTF-8 character encoding.
+> from string to bytes [or vice-versa], ensure that you are using the proper UTF-8 character encoding.
 
 ## Examples of webhooks signing
 
