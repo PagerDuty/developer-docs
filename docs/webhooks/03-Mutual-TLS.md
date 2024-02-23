@@ -21,10 +21,10 @@ These steps assume you already have server authentication setup.
 
 In general, there are five steps needed to turn on client authentication for your server:
 
-1. Download the PEM version of the [DigiCert Global Root G2](https://cacerts.digicert.com/DigiCertGlobalRootG2.crt.pem) certificate.
+1. Download the PEM version of the DigiCert Global Root G2 certificate from our [Public Certificates Page](../../docs/webhooks/08-Certificates.md).
 2. Turn on client certificate verification. 
 3. Specify the CA certificate from step 1 as trusted.
-4. Set the verification depth to 2 since our PagerDuty certificate is actually signed by the [DigiCert Global G2 TLS RSA SHA256 2020 CA1](https://cacerts.digicert.com/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crt.pem) which is an intermediate CA under DigiCert Global Root CA.
+4. Set the verification depth to 2 since our PagerDuty certificate is actually signed by the intermediate CA under DigiCert Global Root G2.
 5. Verify the client certificate is actually from PagerDuty by inspecting its Subject Domain Name.
 
 Now we will go over sample server configurations for NGINX and Apache.
