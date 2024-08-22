@@ -16,4 +16,4 @@ pd-meta: # Used by Buildkite Pipeline Manager (https://github.com/PagerDuty/buil
   name: "Developer Docs Staging"
   teams:
     - "All"
-    - "Developer Foundations"
+    - "SHAF Shared"
