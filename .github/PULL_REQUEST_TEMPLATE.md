@@ -9,4 +9,4 @@
 ## Before Merging!
 
  - [ ] Check [staging environment](https://developer-v2.pd-staging.com/docs) to ensure changes look as intended.
- - [ ] Ensure there is a review from DevFoundations and from Community.
+ - [ ] Ensure there is a review from SHAF Shared and from Community.
