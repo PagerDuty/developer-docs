@@ -19,7 +19,7 @@ Want to get started using PagerDuty APIs quickly and easily? PagerDuty creates, 
 | PagerDuty Event Client (Gradle) | Java | [comodal/pagerduty-client](https://github.com/comodal/pagerduty-client) | Events v2 | Community |
 | PHP PagerDuty Events | PHP | [adilbaig/pagerduty](https://github.com/adilbaig/pagerduty) | Events v2 | Community |
 | PagerDuty::Connection | Ruby | [technicalpickles/pager_duty-connection](https://github.com/technicalpickles/pager_duty-connection) | REST | Community |
-| pagerduty gem | Ruby | [envato/pagerduty](https://github.com/envato/pagerduty) | Events v1 | Community |
+| pagerduty gem | Ruby | [envato/pagerduty](https://github.com/envato/pagerduty) | Events v1, Events v2 | Community |
 
 
 ## Get Involved
