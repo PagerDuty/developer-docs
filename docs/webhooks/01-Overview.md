@@ -219,14 +219,16 @@ Outbound events are created when PagerDuty resources change in interesting ways.
 | Event Type                           | `data.type`                  | Description                                                                               | Scoped OAuth requires     |
 | ------------------------------------ | ---------------------------- | ----------------------------------------------------------------------------------------- | ------------------------- |
 | incident.acknowledged                | `incident`                   | Sent when an incident is acknowledged.                                                    | `incidents.read`          |
-| incident.annotated                   | `incident`                   | Sent when a note is added to an incident.                                                 | `incidents.read`          |
+| incident.annotated                   | `incident_note`              | Sent when a note is added to an incident.                                                 | `incidents.read`          |
 | incident.conference_bridge.updated   | `incident_conference_bridge` | Sent when an incident's conference bridge number and/or conference bridge url is updated. | `incidents.read`          |
 | incident.custom_field_values.updated | `incident_field_values`      | Sent when an incident's custom fields values are updated.                                 | `incidents.read`          |
 | incident.delegated                   | `incident`                   | Sent when an incident has been reassigned to another escalation policy.                   | `incidents.read`          |
 | incident.escalated                   | `incident`                   | Sent when an incident has been escalated to another user in the same escalation level.    | `incidents.read`          |
+| incident.incident_type.changed       | `incident`                   | Sent when an incident has changed it’s incident type.                                     | `incidents.read`          |
 | incident.priority_updated            | `incident`                   | Sent when the priority of an incident has changed.                                        | `incidents.read`          |
 | incident.reassigned                  | `incident`                   | Sent when an incident has been reassigned to another user.                                | `incidents.read`          |
 | incident.reopened                    | `incident`                   | Sent when an incident is reopened.                                                        | `incidents.read`          |
+| incident.resolved                    | `incident`                   | Sent when an incident is resolved.                                                        | `incidents.read`          |
 | incident.responder.added             | `incident_responder`         | Sent when a responder has been added to an incident.                                      | `incidents.read`          |
 | incident.responder.replied           | `incident_responder`         | Sent when a responder replies to a request.                                               | `incidents.read`          |
 | incident.status_update_published     | `incident_status_update`     | Sent when a status update is added to an incident.                                        | `incidents.read`          |
@@ -255,6 +257,9 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
   "incident_key": "d3640fbd41094207a1c11e58e46b1662",
   "created_at": "2020-04-09T15:16:27Z",
   "title": "A little bump in the road",
+  "incident_type": {
+    "name": "major"
+  },
   "service": {
     "html_url": "https://acme.pagerduty.com/services/PF9KMXH",
     "id": "PF9KMXH",
