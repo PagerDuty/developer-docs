@@ -7,7 +7,7 @@ tags: [rest-api]
 
 This page lists the IP addresses that your system must be able to make outbound connections to on TCP port 443 to access our REST API in each of our service regions.
 
-The full list of IP addresses that our REST API may use is (separated between the old IP addresses and the new IP addresses):
+The full list of IP addresses that our REST API may use is:
 
 ## US Service Region
 
