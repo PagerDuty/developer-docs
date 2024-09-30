@@ -30,6 +30,10 @@ PagerDuty expects a 2xx response within 5 seconds for Generic Webhooks and withi
 
 ### Retries (Server and Network Errors)
 
+<!-- theme: warning -->
+> ### Note
+>  Webhooks may not be retried for certain integrations.
+
 PagerDuty will retry sending a webhook in these cases:
   * No response / timeout
   * 5XX (server error) response
