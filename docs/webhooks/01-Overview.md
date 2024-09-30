@@ -216,29 +216,30 @@ An example webhook payload for a `service.updated` event is shown below.
 
 Outbound events are created when PagerDuty resources change in interesting ways. Each outbound event is usually associated with some other PagerDuty resource. For example, the `incident.priority_updated` event is generated whenever the priority of an incident is changed. The following event types are available to v3 webhooks. Additional event types may be added to this list over time.
 
-| Event Type                           | `data.type`                  | Description                                                                               | Scoped OAuth requires     |
-| ------------------------------------ | ---------------------------- | ----------------------------------------------------------------------------------------- | ------------------------- |
-| incident.acknowledged                | `incident`                   | Sent when an incident is acknowledged.                                                    | `incidents.read`          |
-| incident.annotated                   | `incident_note`              | Sent when a note is added to an incident.                                                 | `incidents.read`          |
-| incident.conference_bridge.updated   | `incident_conference_bridge` | Sent when an incident's conference bridge number and/or conference bridge url is updated. | `incidents.read`          |
-| incident.custom_field_values.updated | `incident_field_values`      | Sent when an incident's custom fields values are updated.                                 | `incidents.read`          |
-| incident.delegated                   | `incident`                   | Sent when an incident has been reassigned to another escalation policy.                   | `incidents.read`          |
-| incident.escalated                   | `incident`                   | Sent when an incident has been escalated to another user in the same escalation level.    | `incidents.read`          |
-| incident.incident_type.changed       | `incident`                   | Sent when an incident has changed it’s incident type.                                     | `incidents.read`          |
-| incident.priority_updated            | `incident`                   | Sent when the priority of an incident has changed.                                        | `incidents.read`          |
-| incident.reassigned                  | `incident`                   | Sent when an incident has been reassigned to another user.                                | `incidents.read`          |
-| incident.reopened                    | `incident`                   | Sent when an incident is reopened.                                                        | `incidents.read`          |
-| incident.resolved                    | `incident`                   | Sent when an incident is resolved.                                                        | `incidents.read`          |
-| incident.responder.added             | `incident_responder`         | Sent when a responder has been added to an incident.                                      | `incidents.read`          |
-| incident.responder.replied           | `incident_responder`         | Sent when a responder replies to a request.                                               | `incidents.read`          |
-| incident.status_update_published     | `incident_status_update`     | Sent when a status update is added to an incident.                                        | `incidents.read`          |
-| incident.triggered                   | `incident`                   | Sent when an incident is newly created/triggered.                                         | `incidents.read`          |
-| incident.unacknowledged              | `incident`                   | Sent when an incident is unacknowledged.                                                  | `incidents.read`          |
-| incident.workflow.started            | `incident_workflow_instance` | Sent when an incident workflow starts.                                                    | `incident_workflows.read` |
-| incident.workflow.completed          | `incident_workflow_instance` | Sent when an incident workflow completes.                                                 | `incident_workflows.read` |
-| service.created                      | `service`                    | Sent when a service is created.                                                           | `services.read`           |
-| service.deleted                      | `service`                    | Sent when a service is deleted.                                                           | `services.read`           |
-| service.updated                      | `service`                    | Sent when a service is updated.                                                           | `services.read`           |
+| Event Type                            | `data.type`                  | Description                                                                               | Scoped OAuth requires     |
+|---------------------------------------| ---------------------------- |-------------------------------------------------------------------------------------------| ------------------------- |
+| incident.acknowledged                 | `incident`                   | Sent when an incident is acknowledged.                                                    | `incidents.read`          |
+| incident.annotated                    | `incident_note`              | Sent when a note is added to an incident.                                                 | `incidents.read`          |
+| incident.conference_bridge.updated    | `incident_conference_bridge` | Sent when an incident's conference bridge number and/or conference bridge url is updated. | `incidents.read`          |
+| incident.custom_field_values.updated  | `incident_field_values`      | Sent when an incident's custom fields values are updated.                                 | `incidents.read`          |
+| incident.delegated                    | `incident`                   | Sent when an incident has been reassigned to another escalation policy.                   | `incidents.read`          |
+| incident.escalated                    | `incident`                   | Sent when an incident has been escalated to another user in the same escalation level.    | `incidents.read`          |
+| incident.incident_type.changed        | `incident`                   | Sent when an incident has changed it’s incident type.                                     | `incidents.read`          |
+| incident.priority_updated             | `incident`                   | Sent when the priority of an incident has changed.                                        | `incidents.read`          |
+| incident.reassigned                   | `incident`                   | Sent when an incident has been reassigned to another user.                                | `incidents.read`          |
+| incident.reopened                     | `incident`                   | Sent when an incident is reopened.                                                        | `incidents.read`          |
+| incident.resolved                     | `incident`                   | Sent when an incident is resolved.                                                        | `incidents.read`          |
+| incident.responder.added              | `incident_responder`         | Sent when a responder has been added to an incident.                                      | `incidents.read`          |
+| incident.responder.replied            | `incident_responder`         | Sent when a responder replies to a request.                                               | `incidents.read`          |
+| incident.service_updated              | `incident`                   | Sent when the service of an incident has changed.                                         | `incidents.read`          |
+| incident.status_update_published      | `incident_status_update`     | Sent when a status update is added to an incident.                                        | `incidents.read`          |
+| incident.triggered                    | `incident`                   | Sent when an incident is newly created/triggered.                                         | `incidents.read`          |
+| incident.unacknowledged               | `incident`                   | Sent when an incident is unacknowledged.                                                  | `incidents.read`          |
+| incident.workflow.started             | `incident_workflow_instance` | Sent when an incident workflow starts.                                                    | `incident_workflows.read` |
+| incident.workflow.completed           | `incident_workflow_instance` | Sent when an incident workflow completes.                                                 | `incident_workflows.read` |
+| service.created                       | `service`                    | Sent when a service is created.                                                           | `services.read`           |
+| service.deleted                       | `service`                    | Sent when a service is deleted.                                                           | `services.read`           |
+| service.updated                       | `service`                    | Sent when a service is updated.                                                           | `services.read`           |
 
 ## Event Data Types
 
