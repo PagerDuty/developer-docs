@@ -80,6 +80,14 @@ There is a limit on the number of events that a service can accept at any given 
 
 If each of the events your monitoring system is sending is important, be sure to retry on a 429 response code, preferably with a backoff of a few minutes.
 
+<!-- theme:info -->
+> AIOps accounts receive significantly higher Events API rate limits, up to 10,000 events/min per integration key, upon request.  
+>  
+> If you’d like to take PagerDuty AIOps for a spin before activating a trial, you can do so with our [interactive product tour](https://pagerduty.navattic.com/265z0hdg). You can also activate a trial of PagerDuty AIOps depending on your PagerDuty account status:
+> - [Customers](https://support.pagerduty.com/main/docs/aiops#customers)
+> - [Prospective Customers](https://support.pagerduty.com/main/docs/aiops#prospective-customers)
+
+
 ### Size Limits
 
 Events API payloads are limited to **512 KB**
