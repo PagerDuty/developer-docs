@@ -7,7 +7,7 @@ tags: [webhooks]
 
 This page lists the IP addresses that PagerDuty uses to send webhooks in each of our service regions.
 
-The full list of IP addresses that our webhook notifications may come from is:
+The full list of IP addresses that our webhook notifications and workflow actions may come from is:
 
 ### US Service Region
 
