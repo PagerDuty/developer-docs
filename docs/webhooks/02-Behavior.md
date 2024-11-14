@@ -34,28 +34,31 @@ PagerDuty will retry sending a webhook in these cases:
   * No response / timeout
   * 5XX (server error) response
   * 429 (rate limit error) response
-  * Connection cannot be established (except in the case of TLS errors)
+  * Connection cannot be established (except for most TLS errors)
+  * TLS certificate expired errors
   * DNS errors / host name cannot be resolved
 
-Webhooks will be retried up to 4 times (total of 5 attempts) with exponential backoff over the course of about 20 minutes. While attempting to retry a failing webhook, subsequent webhooks for this extension will be enqueued for later delivery, up to a limit of 4000 webhooks.
-
-*Max tries per webhook:* 5
+Webhooks will be periodically retried for up to 48 hours. While attempting to retry a failing webhook, subsequent webhooks for this extension or subscription and resource ID will be queued for delivery.
 
 ### Permanent Errors
 
 PagerDuty will drop a webhook *without* a retry in these non-transient cases:
   * 4XX response from the server (except for 429)
-  * TLS errors when establishing a connection
+  * TLS errors when establishing a connection (except for expired certificates)
 
 ## Temporary Disablement
 
-After 3 consecutive webhooks are dropped due to delivery failure, the extension will be disabled for 24 hours and any other webhooks in the extension’s queue will be dropped. While an extension is disabled, no new webhooks will be enqueued for delivery. These webhooks will be dropped.
+After 3 consecutive webhooks are dropped due to delivery failure, the extension or subscription will be disabled for 24 hours and any other webhooks in its queue will be dropped. While an extension or subscription is disabled, no new webhooks will be enqueued for delivery. These webhooks will be dropped.
 
-### Re-enable An Extension
+### Re-enable An Extension or Subscription
 
 When an extension is disabled, it will appear this way on a Service’s integrations tab (under Extensions) or on the Configuration > Extensions page in the PagerDuty web app and can be manually re-enabled there.
 
 ![Screenshot of interface for Re-enabling webhook extensions in the PagerDuty web interface](../../assets/images/webhook-disabled.jpg)
+
+When a subscription is disabled, it will be tagged as "Needs Attention" on the webhooks dashboard. It can be easily re-enabled by clicking the "Enable" button on the subscription's settings page, or via the "Enable a webhook subscription" REST API endpoint.
+
+![Screenshot of interface for Re-enabling webhook subscriptions in the PagerDuty web interface](../../assets/images/webhook-subscription-disabled.png)
 
 ## Security
 
