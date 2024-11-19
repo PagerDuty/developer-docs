@@ -28,7 +28,7 @@ If you specify `http://` in your Endpoint URL, we will initiate a standard HTTP 
 
 PagerDuty expects a 2xx response within 5 seconds for Generic Webhooks and within 16 seconds for webhooks generated from Custom Incident Actions.
 
-### Retries (Server and Network Errors)
+### Temporary Errors and Retries
 
 PagerDuty will retry sending a webhook in these cases:
   * No response / timeout
@@ -38,7 +38,7 @@ PagerDuty will retry sending a webhook in these cases:
   * TLS certificate expired errors
   * DNS errors / host name cannot be resolved
 
-Webhooks will be periodically retried for up to 48 hours. While attempting to retry a failing webhook, subsequent webhooks for this extension or subscription and resource ID will be queued for delivery.
+Webhooks will be periodically retried for up to 48 hours. While attempting to retry a failing webhook, subsequent webhooks for this extension or subscription and resource ID will be queued for delivery. After 48 hours, the delivery will be considered a failure and the webhook will be dropped.
 
 ### Permanent Errors
 
@@ -48,7 +48,7 @@ PagerDuty will drop a webhook *without* a retry in these non-transient cases:
 
 ## Temporary Disablement
 
-After 3 consecutive webhooks are dropped due to delivery failure, the extension or subscription will be disabled for 24 hours and any other webhooks in its queue will be dropped. While an extension or subscription is disabled, no new webhooks will be enqueued for delivery. These webhooks will be dropped.
+After 3 consecutive webhooks are dropped due to delivery failure, whether from permanent errors or temporary errors that exhausted their retries, the extension or subscription will be disabled for 24 hours and any other webhooks in its queue will be dropped. While an extension or subscription is disabled, no new webhooks will be enqueued for delivery. These webhooks will be dropped.
 
 ### Re-enable An Extension or Subscription
 
