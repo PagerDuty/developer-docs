@@ -19,5 +19,5 @@ Certificate | Common Name | Start Date | End Date | Download
 #### Issuer Certificates
 Certificate Type | Common Name | Valid Until | Download
 ---------|----------|---------|---------
- Intermediate Certificate | 	DigiCert Global G2 TLS RSA SHA256 2020 CA1 | March 29th, 2031 | [link](https://cacerts.digicert.com/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crt.pem)
+ Intermediate Certificate | DigiCert Global G2 TLS RSA SHA256 2020 CA1 | March 29th, 2031 | [link](https://cacerts.digicert.com/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crt.pem)
  Root Certificate | DigiCert Global Root G2 | January 15th, 2038 | [link](https://cacerts.digicert.com/DigiCertGlobalRootG2.crt.pem)
