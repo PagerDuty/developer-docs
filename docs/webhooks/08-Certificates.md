@@ -11,10 +11,10 @@ It is our recommendation that customers configure their servers to trust the roo
 #### Client Certificates
 Certificate | Common Name | Start Date | End Date | Download
 ---------|----------|---------|---------|---------
- Upcoming US region certificate | webhooks.pagerduty.com | December 18th, 2024 | December 2025 | [link](../../assets/certificates/2025_webhooks_pagerduty_com.pem)
- Upcoming EU region certificate | webhooks.eu.pagerduty.com | December 18th, 2024 | December 2025 | [link](../../assets/certificates/2025_webhooks_eu_pagerduty_com.pem)
- Current US region certificate | webhooks.pagerduty.com | January 4th, 2024 | December 18th, 2024 | [link](../../assets/certificates/2024_webhooks_pagerduty_com.pem)
- Current EU region certificate | webhooks.eu.pagerduty.com | January 4th, 2024 | December 18th, 2024 | [link](../../assets/certificates/2024_webhooks_eu_pagerduty_com.pem)
+ Upcoming US region certificate | webhooks.pagerduty.com | December 18th, 2024 | December 2025 | [link](https://developer.pagerduty.com/certificates/2025_webhooks_pagerduty_com.pem)
+ Upcoming EU region certificate | webhooks.eu.pagerduty.com | December 18th, 2024 | December 2025 | [link](https://developer.pagerduty.com/certificates/2025_webhooks_eu_pagerduty_com.pem)
+ Current US region certificate | webhooks.pagerduty.com | January 4th, 2024 | December 18th, 2024 | [link](https://developer.pagerduty.com/certificates/2024_webhooks_pagerduty_com.pem)
+ Current EU region certificate | webhooks.eu.pagerduty.com | January 4th, 2024 | December 18th, 2024 | [link](https://developer.pagerduty.com/certificates/2024_webhooks_eu_pagerduty_com.pem)
 
 #### Issuer Certificates
 Certificate Type | Common Name | Valid Until | Download
