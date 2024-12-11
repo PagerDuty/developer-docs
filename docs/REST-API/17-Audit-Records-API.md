@@ -23,6 +23,8 @@ Services            | Integrations, Teams                 | December 2, 2020
 Teams               | Team membership changes             | December 2, 2020
 Users               | Contact methods, Notification rules | December 2, 2020
 
+Resources not outlined in the list of tracked resources may produce Audit Records in a best-effort method. As such they are not officially supported and should be used for reference only as PagerDuty cannot guarantee completeness.
+
 More resource types may be added to this list over time. If you don't see a resource type you're interested in, please [contact our Support Team](mailto:support@pagerduty.com) or your PagerDuty rep to let them know.
 
 ## API Endpoints
