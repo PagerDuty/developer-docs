@@ -97,7 +97,7 @@ Each webhook payload contains a single event object. This event object contains 
 | `event.event_type`    | String   | The type of the event. This usually provides a description of what happened (e.g. `incident.priority_updated`). |
 | `event.resource_type` | String   | The root resource type (leftmost part of the `event_type`) this event is about (currently `incident` or `service`). It can be different from the more specific `data.type` in the event payload.                                                    |
 | `event.occurred_at`   | DateTime | An ISO 8601 datetime indicating when the event occurred.                                                        |
-| `event.agent`         | Object or `null` | Indicates who or what initiated the event. |
+| `event.agent`         | Object or `null` | Indicates who or what initiated the event. A `null` value might indicate an event triggered via automation rather than a specific person. |
 | `event.client`        | Object   | Information about where the event was triggered.                                                                |
 | `event.data`          | Object   | Data specific to the `event_type` that occurred.                                                                |
 
