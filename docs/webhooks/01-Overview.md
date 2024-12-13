@@ -98,7 +98,7 @@ Each webhook payload contains a single event object. This event object contains 
 | `event.resource_type` | String   | The root resource type (leftmost part of the `event_type`) this event is about (currently `incident` or `service`). It can be different from the more specific `data.type` in the event payload.                                                    |
 | `event.occurred_at`   | DateTime | An ISO 8601 datetime indicating when the event occurred.                                                        |
 | `event.agent`         | a [Resource Reference](https://developer.pagerduty.com/docs/ZG9jOjExMDI5NTYw-resource-references) or `null` | Indicates who or what initiated the event. A `null` value might indicate an event triggered via automation rather than a specific person. |
-| `event.client`        | Object   | Information about where the event was triggered.                                                                |
+| `event.client`        | Object or `null` | Information about where the event was triggered.                                                                |
 | `event.data`          | Object   | Data specific to the `event_type` that occurred.                                                                |
 
 An example webhook payload for an `incident.priority_updated` event is shown below.
