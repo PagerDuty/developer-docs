@@ -164,7 +164,8 @@
         {
           "type": "item",
           "title": "Wrapped Entities",
-          "uri": "docs/REST-API/12-Wrapped-Entities.md"
+          "uri": "docs/REST-API/12-Wrapped-Entities.md",
+          "slug": "wrapped-entities"
         },
         {
           "type": "item",
