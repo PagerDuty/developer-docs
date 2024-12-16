@@ -279,6 +279,11 @@
           "title": "Rate Limits",
           "uri": "docs/events-API-v2/05-Rate-Limits.md",
           "slug": "events-api-rate-limits"
+        },
+        {
+          "type": "item",
+          "title": "Try out the API",
+          "uri": "https://developer.pagerduty.com/send-event-form/"
         }
       ]
     },
