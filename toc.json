@@ -3,7 +3,8 @@
     {
       "type": "item",
       "title": "Introduction",
-      "uri": "docs/Introduction.md"
+      "uri": "docs/Introduction.md",
+      "slug": "introduction"
     },
     {
       "type": "group",
@@ -12,22 +13,26 @@
         {
           "type": "item",
           "title": "API Client Libraries",
-          "uri": "docs/tool-libraries/01-Client-Libraries.md"
+          "uri": "docs/tool-libraries/01-Client-Libraries.md",
+          "slug": "api-client-libraries"
         },
         {
           "type": "item",
           "title": "API Tools & Code Samples",
-          "uri": "docs/tool-libraries/02-API-Tools-and-Code-Samples.md"
+          "uri": "docs/tool-libraries/02-API-Tools-and-Code-Samples.md",
+          "slug": "api-tools-and-code-samples"
         },
         {
           "type": "item",
           "title": "PagerDuty On-Prem Agent",
-          "uri": "docs/tool-libraries/03-On-Premise-Agent.md"
+          "uri": "docs/tool-libraries/03-On-Premise-Agent.md",
+          "slug": "on-premise-agents"
         },
         {
           "type": "item",
           "title": "Retrieving Incident Details",
-          "uri": "docs/tool-libraries/04-Retrieve-Incident-Details.md"
+          "uri": "docs/tool-libraries/04-Retrieve-Incident-Details.md",
+          "slug": "retrieve-incident-details"
         }
       ]
     },
@@ -38,67 +43,80 @@
         {
           "type": "item",
           "title": "App Overview",
-          "uri": "docs/app-integration-development/01-Overview.md"
+          "uri": "docs/app-integration-development/01-Overview.md",
+          "slug": "app-overview"
         },
         {
           "type": "item",
           "title": "Developer Account FAQ",
-          "uri": "docs/app-integration-development/02-Developer-Account.md"
+          "uri": "docs/app-integration-development/02-Developer-Account.md",
+          "slug": "developer-account-faq"
         },
         {
           "type": "item",
           "title": "Register an App",
-          "uri": "docs/app-integration-development/03-Register-an-App.md"
+          "uri": "docs/app-integration-development/03-Register-an-App.md",
+          "slug": "register-an-app"
         },
         {
           "type": "item",
           "title": "App Functionality Overview",
-          "uri": "docs/app-integration-development/04-App-Functionality.md"
+          "uri": "docs/app-integration-development/04-App-Functionality.md",
+          "slug": "app-functionality"
         },
         {
           "type": "item",
           "title": "API Pickers",
-          "uri": "docs/app-integration-development/05-API-Picker.md"
+          "uri": "docs/app-integration-development/05-API-Picker.md",
+          "slug": "api-picker"
         },
         {
           "type": "item",
           "title": "Events Integration Functionality",
-          "uri": "docs/app-integration-development/06-Events-Integration.md"
+          "uri": "docs/app-integration-development/06-Events-Integration.md",
+          "slug": "events-integration-functionality"
         },
         {
           "type": "item",
           "title": "Writing App Event Transformers",
-          "uri": "docs/app-integration-development/07-Writing-App-Event-Transformers.md"
+          "uri": "docs/app-integration-development/07-Writing-App-Event-Transformers.md",
+          "slug": "writing-app-event-transformers"
         },
         {
           "type": "item",
           "title": "OAuth Functionality",
-          "uri": "docs/app-integration-development/08-OAuth-Functionality.md"
+          "uri": "docs/app-integration-development/08-OAuth-Functionality.md",
+          "slug": "oauth-functionality"
         },
         {
           "type": "item",
           "title": "User OAuth Token via Code Grant",
-          "uri": "docs/app-integration-development/09-User-OAuth-Token-Code-Grant.md"
+          "uri": "docs/app-integration-development/09-User-OAuth-Token-Code-Grant.md",
+          "slug": "user-oauth-token-via-code-grant"
         },
         {
           "type": "item",
           "title": "User OAuth Token via PKCE",
-          "uri": "docs/app-integration-development/10-User-OAuth-Token-PKCE.md"
+          "uri": "docs/app-integration-development/10-User-OAuth-Token-PKCE.md",
+          "slug": "user-oauth-token-via-pkce"
         },
         {
           "type": "item",
           "title": "App OAuth Token",
-          "uri": "docs/app-integration-development/12-App-OAuth-Token.md"
+          "uri": "docs/app-integration-development/12-App-OAuth-Token.md",
+          "slug": "app-oauth-token"
         },
         {
           "type": "item",
           "title": "PagerDuty OpenID ID Token",
-          "uri": "docs/app-integration-development/11-PagerDuty-OpenId-Token.md"
+          "uri": "docs/app-integration-development/11-PagerDuty-OpenId-Token.md",
+          "slug": "pagerduty-openid-token"
         },
         {
           "type": "item",
           "title": "Publish an App",
-          "uri": "docs/app-integration-development/11-Publish-Your-App.md"
+          "uri": "docs/app-integration-development/11-Publish-Your-App.md",
+          "slug": "publish-an-app"
         }
       ]
     },
@@ -109,102 +127,122 @@
         {
           "type": "item",
           "title": "REST API Overview",
-          "uri": "docs/REST-API/01-Overview.md"
+          "uri": "docs/REST-API/01-Overview.md",
+          "slug": "rest-api-overview"
         },
         {
           "type": "item",
           "title": "Authentication",
-          "uri": "docs/REST-API/02-Authentication.md"
+          "uri": "docs/REST-API/02-Authentication.md",
+          "slug": "authentication"
         },
         {
           "type": "item",
           "title": "Versioning",
-          "uri": "docs/REST-API/03-Versioning.md"
+          "uri": "docs/REST-API/03-Versioning.md",
+          "slug": "versioning"
         },
         {
           "type": "item",
           "title": "Rate Limits",
-          "uri": "docs/REST-API/04-Rate-Limits.md"
+          "uri": "docs/REST-API/04-Rate-Limits.md",
+          "slug": "rest-api-rate-limits"
         },
         {
           "type": "item",
           "title": "Endpoints",
-          "uri": "docs/REST-API/05-Endpoints.md"
+          "uri": "docs/REST-API/05-Endpoints.md",
+          "slug": "endpoints"
         },
         {
           "type": "item",
           "title": "Types",
-          "uri": "docs/REST-API/06-Types.md"
+          "uri": "docs/REST-API/06-Types.md",
+          "slug": "types"
         },
         {
           "type": "item",
           "title": "Filtering",
-          "uri": "docs/REST-API/07-Filtering.md"
+          "uri": "docs/REST-API/07-Filtering.md",
+          "slug": "filtering"
         },
         {
           "type": "item",
           "title": "Sorting",
-          "uri": "docs/REST-API/08-Sorting.md"
+          "uri": "docs/REST-API/08-Sorting.md",
+          "slug": "sorting"
         },
         {
           "type": "item",
           "title": "Pagination",
-          "uri": "docs/REST-API/09-Pagination.md"
+          "uri": "docs/REST-API/09-Pagination.md",
+          "slug": "pagination"
         },
         {
           "type": "item",
           "title": "Resource Schemas",
-          "uri": "docs/REST-API/10-Resource-Schemas.md"
+          "uri": "docs/REST-API/10-Resource-Schemas.md",
+          "slug": "resource-schemas"
         },
         {
           "type": "item",
           "title": "Resource References",
-          "uri": "docs/REST-API/11-References.md"
+          "uri": "docs/REST-API/11-References.md",
+          "slug": "resource-references"
         },
         {
           "type": "item",
           "title": "Wrapped Entities",
-          "uri": "docs/REST-API/12-Wrapped-Entities.md"
+          "uri": "docs/REST-API/12-Wrapped-Entities.md",
+          "slug": "wrapped-entities"
         },
         {
           "type": "item",
           "title": "Includes",
-          "uri": "docs/REST-API/13-Includes.md"
+          "uri": "docs/REST-API/13-Includes.md",
+          "slug": "includes"
         },
         {
           "type": "item",
           "title": "Errors",
-          "uri": "docs/REST-API/14-Errors.md"
+          "uri": "docs/REST-API/14-Errors.md",
+          "slug": "errors"
         },
         {
           "type": "item",
           "title": "Incident Creation API",
-          "uri": "docs/REST-API/15-Incident-Creation-API.md"
+          "uri": "docs/REST-API/15-Incident-Creation-API.md",
+          "slug": "incident-creation-api"
         },
         {
           "type": "item",
           "title": "Global Event Rules API",
-          "uri": "docs/REST-API/16-Global-Event-Rules-API.md"
+          "uri": "docs/REST-API/16-Global-Event-Rules-API.md",
+          "slug": "global-event-rules-api"
         },
         {
           "type": "item",
           "title": "Audit Records API",
-          "uri": "docs/REST-API/17-Audit-Records-API.md"
+          "uri": "docs/REST-API/17-Audit-Records-API.md",
+          "slug": "audit-records-api"
         },
         {
           "type": "item",
           "title": "PagerDuty Condition Language (PCL)",
-          "uri": "docs/REST-API/18-PCL-Overview.md"
+          "uri": "docs/REST-API/18-PCL-Overview.md",
+          "slug": "pcl-overview"
         },
         {
           "type": "item",
           "title": "REST API IPs",
-          "uri": "docs/REST-API/19-REST-API-IPs.md"
+          "uri": "docs/REST-API/19-REST-API-IPs.md",
+          "slug": "rest-api-ips"
         },
         {
           "type": "item",
           "title": "Alert Grouping Settings API",
-          "uri": "docs/REST-API/20-Alert-Grouping-Settings-API.md"
+          "uri": "docs/REST-API/20-Alert-Grouping-Settings-API.md",
+          "slug": "alert-grouping-settings-api-faq"
         }
       ]
     },
@@ -215,32 +253,37 @@
         {
           "type": "item",
           "title": "Events API v2 Overview",
-          "uri": "docs/events-API-v2/01-Overview.md"
+          "uri": "docs/events-API-v2/01-Overview.md",
+          "slug": "events-api-v2-overview"
         },
         {
           "type": "item",
           "title": "Sending an Alert Event",
-          "uri": "docs/events-API-v2/02-Trigger-Events.md"
+          "uri": "docs/events-API-v2/02-Trigger-Events.md",
+          "slug": "send-alert-event"
         },
         {
           "type": "item",
           "title": "Sending a Change Event",
-          "uri": "docs/events-API-v2/03-Change-Events.md"
+          "uri": "docs/events-API-v2/03-Change-Events.md",
+          "slug": "send-change-event"
         },
         {
           "type": "item",
           "title": "Custom Change Event Transformer",
-          "uri": "docs/events-API-v2/04-Custom-Change-Event-Transformer.md"
+          "uri": "docs/events-API-v2/04-Custom-Change-Event-Transformer.md",
+          "slug": "custom-change-event-transformer"
         },
         {
           "type": "item",
           "title": "Rate Limits",
-          "uri": "docs/events-API-v2/05-Rate-Limits.md"
+          "uri": "docs/events-API-v2/05-Rate-Limits.md",
+          "slug": "events-api-rate-limits"
         },
         {
           "type": "item",
           "title": "Try out the API",
-          "uri": "/send-event-form/"
+          "uri": "https://developer.pagerduty.com/send-event-form/"
         }
       ]
     },
@@ -251,17 +294,20 @@
         {
           "type": "item",
           "title": "Events API v1 Overview",
-          "uri": "docs/events-API-v1/01-Overview.md"
+          "uri": "docs/events-API-v1/01-Overview.md",
+          "slug": "events-api-v1-overview"
         },
         {
           "type": "item",
           "title": "Send a v1 Event",
-          "uri": "docs/events-API-v1/02-Trigger-Events.md"
+          "uri": "docs/events-API-v1/02-Trigger-Events.md",
+          "slug": "send-v1-event"
         },
         {
           "type": "item",
           "title": "Custom Event Transformer",
-          "uri": "docs/events-API-v1/03-Custom-Event-Transformer.md"
+          "uri": "docs/events-API-v1/03-Custom-Event-Transformer.md",
+          "slug": "custom-event-transformer"
         }
       ]
     },
@@ -272,32 +318,38 @@
         {
           "type": "item",
           "title": "Overview",
-          "uri": "docs/webhooks/01-Overview.md"
+          "uri": "docs/webhooks/01-Overview.md",
+          "slug": "webhooks-overview"
         },
         {
           "type": "item",
           "title": "Behaviour",
-          "uri": "docs/webhooks/02-Behavior.md"
+          "uri": "docs/webhooks/02-Behavior.md",
+          "slug": "webhook-behavior"
         },
         {
           "type": "item",
           "title": "Mutual TLS",
-          "uri": "docs/webhooks/03-Mutual-TLS.md"
+          "uri": "docs/webhooks/03-Mutual-TLS.md",
+          "slug": "mutual-tls"
         },
         {
           "type": "item",
           "title": "Verifying Signatures",
-          "uri": "docs/webhooks/04-Signatures.md"
+          "uri": "docs/webhooks/04-Signatures.md",
+          "slug": "verifying-webhook-signatures"
         },
         {
           "type": "item",
           "title": "Public Certificates",
-          "uri": "docs/webhooks/08-Certificates.md"
+          "uri": "docs/webhooks/08-Certificates.md",
+          "slug": "webhook-tls-certificates"
         },
         {
           "type": "item",
           "title": "Webhook IPs",
-          "uri": "docs/webhooks/11-Webhook-IPs.md"
+          "uri": "docs/webhooks/11-Webhook-IPs.md",
+          "slug": "webhook-ips"
         }
       ]
     },
@@ -308,12 +360,14 @@
         {
           "type": "item",
           "title": "Sample Code Disclaimer",
-          "uri": "docs/legal/Sample-Code-Disclaimer.md"
+          "uri": "docs/legal/Sample-Code-Disclaimer.md",
+          "slug": "sample-code-disclaimer"
         },
         {
           "type": "item",
           "title": "PagerDuty Developer Agreement",
-          "uri": "docs/legal/Developer-Agreement.md"
+          "uri": "docs/legal/Developer-Agreement.md",
+          "slug": "pagerduty-developer-agreement"
         }
       ]
     }
