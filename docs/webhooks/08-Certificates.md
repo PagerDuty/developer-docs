@@ -6,7 +6,7 @@ tags: [webhooks]
 
 PagerDuty Webhooks provide client certificates when requested by a server (Mutual TLS).  
 
-It is our recommendation that customers configure their servers to keep an up-to-date certificate bundle that includes DigiCert root certificates in their local trust store. Customers choosing to rely on the PagerDuty client certificate are responsible for rotating to the new certificates at the appropriate time in order to avoid interrupted connectivity. PagerDuty webhook client certificates are rotated yearly. The current certificates are provided below.
+We recommend that customers configure their servers to keep an up-to-date certificate bundle that includes DigiCert root certificates in their local trust store. Customers relying on the PagerDuty client certificate are responsible for rotating to the new certificates at the appropriate time to avoid interrupted connectivity. PagerDuty webhook client certificates are rotated yearly. The current certificates are provided below.
 
 #### Client Certificates
 Certificate | Common Name | Start Date | End Date | Download
