@@ -44,4 +44,4 @@ Connecting to the PagerDuty REST API requires using [TLS (Transport Layer Securi
 
 Currently, our REST API supports TLS protocol versions 1.2.
 
-Our server certificate is signed by DigiCert. Client systems will need to have the **DigiCert Global Root CA** certificate in their local trust store (this is often already the case). CA certificates, if needed, can be [obtained from DigiCert](https://www.digicert.com/digicert-root-certificates.htm).
+Our server certificate is issued and signed by DigiCert. Client systems will need to have an up-to-date certificate bundle that includes DigiCert root certificates in their local trust store. CA certificates, if needed, can be obtained directly [from DigiCert](https://www.digicert.com/digicert-root-certificates.htm).

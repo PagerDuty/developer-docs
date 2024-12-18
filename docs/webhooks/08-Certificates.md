@@ -6,15 +6,14 @@ tags: [webhooks]
 
 PagerDuty Webhooks provide client certificates when requested by a server (Mutual TLS).  
 
-It is our recommendation that customers configure their servers to trust the root certificate listed below. Customers choosing to rely on the PagerDuty client certificate are responsible for rotating to the new certificates at the appropriate time in order to avoid interrupted connectivity. PagerDuty webhook client certificates are rotated yearly. The next certificate rotation will occur on **December 18th, 2024** for both the US and EU service regions. The current and upcoming certificates are provided below.
+We recommend that customers configure their servers to keep an up-to-date certificate bundle that includes DigiCert root certificates in their local trust store. Customers relying on the PagerDuty client certificate are responsible for rotating to the new certificates at the appropriate time to avoid interrupted connectivity. PagerDuty webhook client certificates are rotated yearly. The current certificates are provided below.
 
 #### Client Certificates
 Certificate | Common Name | Start Date | End Date | Download
 ---------|----------|---------|---------|---------
- Upcoming US region certificate | webhooks.pagerduty.com | December 18th, 2024 | December 2025 | [link](https://developer.pagerduty.com/certificates/2025_webhooks_pagerduty_com.pem)
- Upcoming EU region certificate | webhooks.eu.pagerduty.com | December 18th, 2024 | December 2025 | [link](https://developer.pagerduty.com/certificates/2025_webhooks_eu_pagerduty_com.pem)
- Current US region certificate | webhooks.pagerduty.com | January 4th, 2024 | December 18th, 2024 | [link](https://developer.pagerduty.com/certificates/2024_webhooks_pagerduty_com.pem)
- Current EU region certificate | webhooks.eu.pagerduty.com | January 4th, 2024 | December 18th, 2024 | [link](https://developer.pagerduty.com/certificates/2024_webhooks_eu_pagerduty_com.pem)
+ US region certificate | webhooks.pagerduty.com | December 18th, 2024 | November 2025 | [link](https://developer.pagerduty.com/certificates/2025_webhooks_pagerduty_com.pem)
+ EU region certificate | webhooks.eu.pagerduty.com | December 18th, 2024 | November 2025 | [link](https://developer.pagerduty.com/certificates/2025_webhooks_eu_pagerduty_com.pem)
+
 
 #### Issuer Certificates
 Certificate Type | Common Name | Valid Until | Download
