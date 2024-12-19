@@ -1,7 +1,6 @@
 ---
 tags: [webhooks]
 ---
-> Notice: This safelist of IP addresses will take effect May 5th, 2022 - 14:00 UTC
 
 # Webhook IPs
 
@@ -44,10 +43,3 @@ download: [plain](https://developer.pagerduty.com/ip-safelists/webhooks-eu-servi
     54.195.179.238
     34.250.91.200
     54.76.225.71
-
-
-Until May 5th, 2022 - the [`/webhook_ips`](https://support.pagerduty.com/docs/safelist-ips#webhooks) programmatic endpoint is the authoritative source.
-
-After May 5th, 2022 - the [`/webhook_ips`](https://support.pagerduty.com/docs/safelist-ips#webhooks) endpoint will no longer be updated, and this page should be used for all safelist updates.
-
-If you want total continuity in your firewall, you will need to safelist both sets of ip addresses some time before May 5th, 2022.
