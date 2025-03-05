@@ -10,7 +10,7 @@ tags: [rest-api]
 All REST API calls require authentication. In order to make successful requests to the REST API, you must provide a valid form of authorization.
 
 ### API Token Authentication
-The PagerDuty REST API supports authenticating via an account or user API token. Account API tokens have access to all of the data on an account, and can either be granted read-only access or full access to read, write, update, and delete. For PagerDuty accounts with [Advanced Permissions](https://support.pagerduty.com/docs/advanced-permissions), user API tokens have access to all of the data that the associated user account has access to.
+The PagerDuty REST API supports authenticating via an account or user API token. Account API tokens have access to all of the data on an account, can either be granted read-only access or full access to read, write, update, and delete, and are tied to the account rather than the user responsible for creating them. For PagerDuty accounts with [Advanced Permissions](https://support.pagerduty.com/docs/advanced-permissions), user API tokens have access to all of the data that the associated user account has access to.
 
 Only account administrators have the ability to [generate account API tokens](https://support.pagerduty.com/docs/using-the-api#section-generating-a-general-access-rest-api-key).
 
