@@ -57,6 +57,10 @@ Sent when an incident task is completed.
 
 `data.type` is [`incident_role_assignment`](#incident_role_assignment)
 
+### service.custom_field_values.updated
+
+`data.type` is [`service_field_values`](#service_field_values)
+
 Sent when an incident role is assigned or unassigned.
 
 ## Event Data Types
@@ -150,4 +154,52 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
       }
     ]
   }
+```
+
+### service_field_values
+```json
+{
+  "service": {
+    "html_url": "https://acme.pd-staging.com/services/PY0TW31",
+    "id": "PY0TW31",
+    "self": "https://api.pd-staging.com/services/PY0TW31",
+    "summary": null,
+    "type": "service_reference"
+  },
+  "custom_fields": [
+    {
+      "data_type": "string",
+      "field_type": "multi_value",
+      "id": "P0CU101",
+      "name": "string_multi_example_1",
+      "namespace": "services",
+      "type": "field_value",
+      "value": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "data_type": "string",
+      "field_type": "single_value",
+      "id": "P7DNIMB",
+      "name": "example_field",
+      "namespace": "services",
+      "type": "field_value",
+      "value": "Some new value"
+    }
+  ],
+  "changed_custom_fields": [
+    {
+      "data_type": "string",
+      "field_type": "single_value",
+      "id": "P7DNIMB",
+      "name": "example_field",
+      "namespace": "services",
+      "type": "field_value",
+      "value": "Some old value"
+    }
+  ],
+  "type": "service_field_values"
+}
 ```
