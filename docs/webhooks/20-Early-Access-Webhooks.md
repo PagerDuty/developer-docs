@@ -57,11 +57,13 @@ Sent when an incident task is completed.
 
 `data.type` is [`incident_role_assignment`](#incident_role_assignment)
 
+Sent when an incident role is assigned or unassigned.
+
 ### service.custom_field_values.updated
 
 `data.type` is [`service_field_values`](#service_field_values)
 
-Sent when an incident role is assigned or unassigned.
+Sent when an service's custom fields values are updated.
 
 ## Event Data Types
 
