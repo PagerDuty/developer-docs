@@ -12,7 +12,7 @@ This repository has a staging environment so you can see the changes before push
 
 ### Ownership
 
-These docs are owned by the #shaf-shared team and they will review and deploy any changes made- simply ask them via Slack when you open a pull request.
+These docs are owned by the #dev-ecosystem-and-public-apis team and they will review and deploy any changes made- simply ask them via Slack when you open a pull request.
 
 
 ## Markdown
