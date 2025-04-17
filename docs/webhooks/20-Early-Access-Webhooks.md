@@ -174,7 +174,6 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
       "field_type": "multi_value",
       "id": "P0CU101",
       "name": "string_multi_example_1",
-      "namespace": "services",
       "type": "field_value",
       "value": [
         "1",
@@ -186,7 +185,6 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
       "field_type": "single_value",
       "id": "P7DNIMB",
       "name": "example_field",
-      "namespace": "services",
       "type": "field_value",
       "value": "Some new value"
     }
@@ -197,7 +195,6 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
       "field_type": "single_value",
       "id": "P7DNIMB",
       "name": "example_field",
-      "namespace": "services",
       "type": "field_value",
       "value": "Some old value"
     }
