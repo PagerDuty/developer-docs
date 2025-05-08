@@ -45,7 +45,7 @@ Field Name                     | Type                | Description
 ~~`description`~~ (deprecated) | String              | This field is deprecated. Please use `title` instead. The contents will be identical. For incidents manually created in PagerDuty, the description is available in the first log entry in `channel.details`.
 `created_at`                   | DateTime            | The date/time the incident was first triggered.
 `status`                       | String              | The current status of the incident. One of `triggered`, `acknowledged`, or `resolved`
-`incident_key`                 | String              | The incident's de-duplication key.
+`incident_key`                 | Nullable<br/>String | The incident's de-duplication key.
 `html_url`                     | URL                 |
 `pending_actions`              | Array               | The list of `pending_actions` on the incident. A `pending_action` object contains a type of action which can be `escalate`, `unacknowledge`, `resolve` or `urgency_change`. A `pending_action` object contains `at`, the time at which the action will take place. An `urgency_change` `pending_action` will contain `to`, the urgency that the incident will change to.
 `service`                      | Object              | A representation of the PagerDuty service that the incident belongs to. See the webhook examples below for what the `service` object looks like.
