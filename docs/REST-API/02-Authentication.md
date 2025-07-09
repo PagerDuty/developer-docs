@@ -69,15 +69,14 @@ title: Python
 
 ```python
 /*
-  This example uses the PDPYRAS library for Python
+  This example uses the "pagerduty" library for Python
 
-  https://github.com/PagerDuty/pdpyras
+  https://github.com/PagerDuty/python-pagerduty
 */
 
-from pdpyras import APISession
-api_token = 'your-token-here'
-session = APISession(api_token)
-for user in session.iter_all('users'):
+from pagerduty import RestApiV2Client
+client = RestApiV2Client('your-token-here')
+for user in client.iter_all('users'):
     print(user['id'], user['email'], user['name'])
 ```
 
