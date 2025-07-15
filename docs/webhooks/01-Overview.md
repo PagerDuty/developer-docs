@@ -129,7 +129,7 @@ An example webhook payload for an `incident.priority_updated` event is shown bel
       "status": "triggered",
       "incident_key": "d3640fbd41094207a1c11e58e46b1662",
       "created_at": "2020-04-09T15:16:27Z",
-      "reopened_at": "2025-07-14T05:09:33Z",
+      "reopened_at": "2020-10-02T18:45:22Z",
       "title": "A little bump in the road",
       "service": {
         "html_url": "https://acme.pagerduty.com/services/PF9KMXH",
@@ -258,7 +258,7 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
   "status": "triggered",
   "incident_key": "d3640fbd41094207a1c11e58e46b1662",
   "created_at": "2020-04-09T15:16:27Z",
-  "reopened_at": "2025-07-14T05:09:33Z",
+  "reopened_at": "2020-10-02T18:45:22Z",
   "title": "A little bump in the road",
   "incident_type": {
     "name": "major"
