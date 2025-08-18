@@ -40,11 +40,22 @@ PagerDuty will retry sending a webhook in these cases:
 
 Webhooks will be periodically retried for up to 48 hours. While attempting to retry a failing webhook, subsequent webhooks for this extension or subscription and resource ID will be queued for delivery. After 48 hours, the delivery will be considered a failure and the webhook will be dropped.
 
+### OAuth Authentication Retries
+
+For webhooks using OAuth client authentication, additional retry behavior applies:
+
+* **Invalid OAuth Client**: If the OAuth client is deleted or invalid, the delivery is treated as a temporary error and retried normally
+* **401 Unauthorized Response**: When a webhook receives a 401 response, PagerDuty automatically attempts to refresh the OAuth token and immediately retries the delivery
+* **Token Refresh Success**: If token refresh succeeds, the webhook is retried within the same delivery attempt
+* **Token Refresh Failure**: If token refresh fails (OAuth server unavailable, network issues), this is treated as a temporary error and follows normal retry timing
+* **Second 401 After Refresh**: If a webhook receives another 401 response after a successful token refresh, this is treated as a permanent error and the webhook is dropped without further retries
+
 ### Permanent Errors
 
 PagerDuty will drop a webhook *without* a retry in these non-transient cases:
   * 4XX response from the server (except for 429)
   * TLS errors when establishing a connection (except for expired certificates)
+  * 401 response after successful OAuth token refresh (OAuth webhooks only)
 
 ## Temporary Disablement
 
@@ -70,6 +81,10 @@ We send a client TLS certificate with webhooks on request. You can use this to v
 <br/>
 
 [Learn how to secure PagerDuty's webhooks using TLS](../../docs/webhooks/03-Mutual-TLS.md)
+
+### OAuth Authentication
+
+PagerDuty supports OAuth 2.0 client credentials flow for webhook authentication. You can create OAuth clients and associate them with webhook subscriptions to automatically include OAuth bearer tokens in webhook requests.
 
 ### Webhook Signature Validation
 
