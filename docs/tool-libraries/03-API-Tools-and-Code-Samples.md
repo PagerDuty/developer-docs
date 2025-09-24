@@ -22,8 +22,6 @@ Please create a post in our [Developer forums](https://community.pagerduty.com/f
 ## PagerDuty CLI
 [PagerDuty CLI](https://github.com/martindstone/pagerduty-cli/wiki/PagerDuty-CLI-User-Guide) is a command-line interface for PagerDuty. It's intended to be easy to install and use, and good at common tasks for both administrators and responders. It uses the PagerDuty REST API to communicate with PagerDuty. It’s implemented in TypeScript and Node.js, using the wonderful oclif library.
 
-
-
 ## Get Involved
 
 Have you built any tools that use PagerDuty APIs? Let us know in our [Developer forums](https://community.pagerduty.com/forum/c/developer)!
