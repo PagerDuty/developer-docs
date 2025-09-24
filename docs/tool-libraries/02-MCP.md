@@ -12,7 +12,7 @@ Pull requests welcome!
 
 ## Remote MCP server
 
-You can also call our MCP API remotely.
+You can also call our [MCP API] remotely.
 
 Key URLs:
 
@@ -50,7 +50,15 @@ Here is a sample MCP configuration for Microsoft VSCode:
 }
 ```
 
+## Resources
+
+- [PagerDuty MCP API Reference][MCP API]
+- [pagerduty-mcp-server on Github][open-source MCP server]
+- [Model Context Protocol] documentation from Anthropic
+- [JSON-RPC] Protocol
+
   [Model Context Protocol]: https://modelcontextprotocol.io/specification/2025-06-18/basic
   [JSON-RPC]: https://www.jsonrpc.org/
-  [open-source MCP server]: https://github.com/PagerDuty/pagerduty-mcp-server
+  [open-source MCP server]: https://github.com/PagerDuty/pagerduty-mcp-server?tab=readme-ov-file#pagerdutys-official-mcp-server
   [authentication documentation]: https://developer.pagerduty.com/docs/rest-api-v2/authentication/
+  [MCP API]: https://developer.pagerduty.com/api-reference/83ebf88243817-mcp-endpoint
