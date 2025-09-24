@@ -15,10 +15,6 @@ Looking for ways to improve your workflow, or for inspiration and creative ways 
 
 Please create a post in our [Developer forums](https://community.pagerduty.com/forum/c/developer) if you have any requests for future samples.
 
-## PagerDuty MCP Server
-
-[PagerDuty MCP Server](https://github.com/pagerduty/pagerduty-mcp-server) allows your agentic systems to work with PagerDuty APIs.
-
 ## PagerDuty CLI
 [PagerDuty CLI](https://github.com/martindstone/pagerduty-cli/wiki/PagerDuty-CLI-User-Guide) is a command-line interface for PagerDuty. It's intended to be easy to install and use, and good at common tasks for both administrators and responders. It uses the PagerDuty REST API to communicate with PagerDuty. It’s implemented in TypeScript and Node.js, using the wonderful oclif library.
 
