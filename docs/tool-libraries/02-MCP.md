@@ -12,7 +12,8 @@ Pull requests welcome!
 
 ## Remote MCP server
 
-You can also call our [MCP API] remotely.
+You can also call our [MCP API] remotely. The MCP API supports the same authentication methods as the REST API,
+including API tokens and OAuth. See our [authentication documentation] for more information.
 
 Key URLs:
 
@@ -21,10 +22,7 @@ Key URLs:
 
 You can see the full list of tools by calling the `list/tools` method, or by browsing our [open-source MCP server].
 
-### Getting Started
-
-The MCP API supports the same authentication methods as the REST API, including API tokens and OAuth. See our
-[authentication documentation] for more information.
+### Sample configuration
 
 Here is a sample MCP configuration for Microsoft VSCode:
 
@@ -53,7 +51,7 @@ Here is a sample MCP configuration for Microsoft VSCode:
 ## Resources
 
 - [PagerDuty MCP API Reference][MCP API]
-- [pagerduty-mcp-server on Github][open-source MCP server]
+- [PagerDuty Official MCP Server][open-source MCP server]
 - [Model Context Protocol] documentation from Anthropic
 - [JSON-RPC] Protocol
 
