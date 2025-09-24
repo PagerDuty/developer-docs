@@ -14,7 +14,7 @@ Want to get started using PagerDuty APIs quickly and easily? PagerDuty creates, 
 |:-------------|:---------|:-----------------|:-----------|:-------------|
 | go-pagerduty | Golang | [PagerDuty/go-pagerduty](https://github.com/PagerDuty/go-pagerduty) | REST, Events v1, Events v2 | PagerDuty |
 | python-pagerduty | Python | [PagerDuty/python-pagerduty](https://github.com/PagerDuty/python-pagerduty) | REST, Events v2 | PagerDuty |
-| pagerduty-mcp-server | Python [Pagerduty/pagerduty-mcp-server](https://github.com/PagerDuty/pagerduty-mcp-server) | MCP | PagerDuty |
+| pagerduty-mcp-server | Python | [Pagerduty/pagerduty-mcp-server](https://github.com/PagerDuty/pagerduty-mcp-server) | MCP | PagerDuty |
 | PDJS | JavaScript | [PagerDuty/PDJS](https://github.com/PagerDuty/PDJS) | REST, Events v2 | PagerDuty |
 | PagerDuty Events Client for Java | Java | [dikhan/pagerduty-client](https://github.com/dikhan/pagerduty-client) | Events v2 | Community |
 | PagerDuty Event Client (Gradle) | Java | [comodal/pagerduty-client](https://github.com/comodal/pagerduty-client) | Events v2 | Community |
