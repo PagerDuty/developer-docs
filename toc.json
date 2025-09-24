@@ -18,9 +18,9 @@
         },
         {
           "type": "item",
-          "title": "MCP API",
+          "title": "MCP Tooling & Remote Server",
           "uri": "docs/tool-libraries/02-MCP.md",
-          "slug": "mcp-overview"
+          "slug": "mcp-tooling-remote-server"
         },
         {
           "type": "item",

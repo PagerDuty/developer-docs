@@ -20,7 +20,7 @@ Key URLs:
 
 You can see the full list of tools by calling the `list/tools` method, or by browsing our [open-source MCP server].
 
-## Getting Started
+### Getting Started
 
 The MCP API supports the same authentication methods as the REST API, including API tokens and OAuth. See our
 [authentication documentation] for more information.
