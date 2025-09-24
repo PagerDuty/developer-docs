@@ -15,8 +15,9 @@ Pull requests welcome!
 You can also call our MCP API remotely.
 
 Key URLs:
-    - MCP Base URL: `https://mcp.pagerduty.com/mcp`
-    - OAuth Metadata: `https://identity.pagerduty.com/global/oauth/anonymous/.well-known/openid-configuration`
+
+- MCP Base URL: `https://mcp.pagerduty.com/mcp`
+- OAuth Metadata: `https://identity.pagerduty.com/global/oauth/anonymous/.well-known/openid-configuration`
 
 You can see the full list of tools by calling the `list/tools` method, or by browsing our [open-source MCP server].
 
