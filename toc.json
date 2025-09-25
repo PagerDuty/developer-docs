@@ -18,20 +18,26 @@
         },
         {
           "type": "item",
+          "title": "MCP Tooling & Remote Server",
+          "uri": "docs/tool-libraries/02-MCP.md",
+          "slug": "mcp-tooling-remote-server"
+        },
+        {
+          "type": "item",
           "title": "API Tools & Code Samples",
-          "uri": "docs/tool-libraries/02-API-Tools-and-Code-Samples.md",
+          "uri": "docs/tool-libraries/03-API-Tools-and-Code-Samples.md",
           "slug": "api-tools-and-code-samples"
         },
         {
           "type": "item",
           "title": "PagerDuty On-Prem Agent",
-          "uri": "docs/tool-libraries/03-On-Premise-Agent.md",
+          "uri": "docs/tool-libraries/04-On-Premise-Agent.md",
           "slug": "on-premise-agents"
         },
         {
           "type": "item",
           "title": "Retrieving Incident Details",
-          "uri": "docs/tool-libraries/04-Retrieve-Incident-Details.md",
+          "uri": "docs/tool-libraries/05-Retrieve-Incident-Details.md",
           "slug": "retrieve-incident-details"
         }
       ]
