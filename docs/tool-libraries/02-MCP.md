@@ -2,12 +2,12 @@
 
 If you're looking to use MCP with PagerDuty, you've come to the right place!
 
-MCP (or [Model Context Protocol]) is designed to give agentic clients the tools they need to perform complex
+MCP (or [Model Context Protocol]) is designed to give agent-based clients the tools they need to perform complex
 interactions via public API, based on [JSON-RPC].
 
 ## Local MCP Server
 
-If you'd like to run our MCP server yourself, you can check out the instructions [in Github][open-source MCP server].
+If you'd like to run our MCP server yourself, you can check out the instructions [in GitHub][open-source MCP server].
 [Pull requests welcome][contributing]!
 
 ## Remote MCP Server
@@ -24,7 +24,7 @@ You can see the full list of tools by calling the `list/tools` method, or by bro
 
 ### Sample configuration
 
-Here is a sample MCP configuration for Microsoft VSCode:
+Here is a sample MCP configuration for Microsoft Visual Studio Code:
 
 ```json
 {
@@ -51,7 +51,7 @@ Here is a sample MCP configuration for Microsoft VSCode:
 ## Resources
 
 - [PagerDuty MCP API Reference][MCP API Reference]
-- [PagerDuty Official MCP Server][open-source MCP server]
+- [PagerDuty MCP Server Repository][open-source MCP server]
 - [Model Context Protocol] documentation from Anthropic
 - [JSON-RPC] Protocol
 
