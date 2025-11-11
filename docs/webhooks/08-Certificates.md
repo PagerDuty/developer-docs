@@ -11,8 +11,8 @@ We recommend that customers configure their servers to keep an up-to-date certif
 #### Client Certificates
 Certificate | Common Name | Start Date | End Date | Download
 ---------|----------|---------|---------|---------
- US region certificate | webhooks.pagerduty.com | November 6th, 2025 | December 7th 2026 | [link](https://developer.pagerduty.com/certificates/2025_webhooks_pagerduty_com.pem)
- EU region certificate | webhooks.eu.pagerduty.com | November 6th, 2025 | December 7th 2026 | [link](https://developer.pagerduty.com/certificates/2025_webhooks_eu_pagerduty_com.pem)
+ US region certificate | webhooks.pagerduty.com | November 6th, 2025 | December 7th 2026 | [link](https://developer.pagerduty.com/certificates/2026_webhooks_pagerduty_com.pem)
+ EU region certificate | webhooks.eu.pagerduty.com | November 6th, 2025 | December 7th 2026 | [link](https://developer.pagerduty.com/certificates/2026_webhooks_eu_pagerduty_com.pem)
 
 #### Issuer Certificates
 Certificate Type | Common Name | Valid Until | Download
