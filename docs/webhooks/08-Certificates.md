@@ -6,7 +6,7 @@ tags: [webhooks]
 
 PagerDuty Webhooks provide client certificates when requested by a server (Mutual TLS).  
 
-It is our recommendation that customers configure their servers to trust the root certificate listed below. Customers choosing to rely on the PagerDuty client certificate are responsible for rotating to the new certificates at the appropriate time in order to avoid interrupted connectivity. PagerDuty webhook client certificates are rotated yearly. The next certificate rotation will occur on **December 18th, 2024** for both the US and EU service regions. The current and upcoming certificates are provided below.
+It is our recommendation that customers configure their servers to trust the root certificate listed below. Customers choosing to rely on the PagerDuty client certificate are responsible for rotating to the new certificates at the appropriate time in order to avoid interrupted connectivity. PagerDuty webhook client certificates are rotated yearly. The next certificate rotation will occur on **December 9th, 2025** for both the US and EU service regions. The current and upcoming certificates are provided below.
 
 #### Client Certificates
 Certificate | Common Name | Start Date | End Date | Download
