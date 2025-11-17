@@ -93,27 +93,42 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
 
 ```json
 {
-  "name": "A thing that needs to be done",
-  "description": null,
-  "id": "PGR0VU2",
-  "summary": "A thing that needs to be done",
-  "type": "incident_task",
-  "status": "todo",
-  "assignees": [
-    {
-      "html_url": "https://acme.pagerduty.com/users/PIV35G6",
-      "id": "PIV35G6",
-      "self": "https://api.pagerduty.com/users/PIV35G6",
-      "summary": "User 661768438",
-      "type": "user_reference"
-    }
-  ],
-  "incident": {
-    "html_url": "https://acme.pagerduty.com/incidents/Q0SDD3HB6SGFTI",
-    "id": "Q0SDD3HB6SGFTI",
-    "self": "https://api.pagerduty.com/incidents/Q0SDD3HB6SGFTI",
-    "summary": null,
-    "type": "incident_reference"
+  "id": "2dd39544-ccd2-491d-9c5b-e4fb8be4259d",
+  "event_type": "incident.task.created",
+  "resource_type": "incident",
+  "occurred_at": "2021-06-01T21:30:42Z",
+  "agent": {
+    "html_url": "https://acme.pagerduty.com/users/PLH1HKV",
+    "id": "PLH1HKV",
+    "self": "https://api.pagerduty.com/users/PLH1HKV",
+    "summary": "User 10",
+    "type": "user_reference"
+  },
+  "client": null,
+  "data": {
+    "name": "A thing that needs to be done",
+    "description": null,
+    "id": "PGR0VU2",
+    "summary": "A thing that needs to be done",
+    "type": "incident_task",
+    "status": "todo",
+    "assignees": [
+      {
+        "html_url": "https://acme.pagerduty.com/users/PIV35G6",
+        "id": "PIV35G6",
+        "self": "https://api.pagerduty.com/users/PIV35G6",
+        "summary": "User 661768438",
+        "type": "user_reference"
+      }
+    ],
+    "incident": {
+      "html_url": "https://acme.pagerduty.com/incidents/Q0SDD3HB6SGFTI",
+      "id": "Q0SDD3HB6SGFTI",
+      "self": "https://api.pagerduty.com/incidents/Q0SDD3HB6SGFTI",
+      "summary": null,
+      "type": "incident_reference"
+    },
+    "changed_fields": []
   }
 }
 ```
