@@ -32,9 +32,9 @@ https://events.pagerduty.com/v2/enqueue
 
 Every alert event has a `dedup_key`: a string which identifies the alert triggered for the given event. The `dedup_key` can be specified when submitting the first trigger event that creates an alert. If omitted, it will be generated automatically by PagerDuty and returned in the Events API v2 response.
 
-Submitting subsequent events with the same `dedup_key` will result in those events being applied to an open alert matching that `dedup_key`. Once the alert is resolved, any further events with the same `dedup_key` will create a new alert (for `trigger` events) or be dropped (for `acknowledge` and `resolve` events). Alerts will only be created for events with an `event_action` of `trigger`. `Acknowledge` or `resolve` events without a currently open alert will not create a new one.
+Submitting subsequent events with the same `dedup_key` will result in those events being applied to an open alert matching that `dedup_key`. Once the alert is resolved, any further events with the same `dedup_key` will create a new alert (for `trigger` events) or be dropped (for `acknowledge` and `resolve` events). Alerts will only be created for events with an `event_action` of `trigger`. Acknowledge or resolve events without a currently open alert will not create a new one.
 
-Subsequent events for the same `dedup_key` will only apply to the open alert if the events are sent via the same `routing_key` as the original trigger event. Subsequent acknowledge or resolve events sent via a different `routing_key` from the original will be dropped.
+Subsequent events for the same `dedup_key` will only apply to the open alert if the events are sent via the same `routing_key` and routed to the same Service as the original trigger event. Subsequent acknowledge or resolve events will be dropped if they are either sent via a different `routing_key` or routed to a different Service compared the original trigger event.
 
 A trigger event sent without a `dedup_key` will always generate a new alert because the automatically generated `dedup_key` will be a unique [UUID](../../docs/REST-API/06-Types.md#uuid).
 
