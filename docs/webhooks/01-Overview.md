@@ -236,6 +236,9 @@ Outbound events are created when PagerDuty resources change in interesting ways.
 | incident.status_update_published      | `incident_status_update`     | Sent when a status update is added to an incident.                                        | `incidents.read`          |
 | incident.triggered                    | `incident`                   | Sent when an incident is newly created/triggered.                                         | `incidents.read`          |
 | incident.unacknowledged               | `incident`                   | Sent when an incident is unacknowledged.                                                  | `incidents.read`          |
+| incident.action_invocation.created    | `incident_action_invocation` | Sent when an incident action invocation is created.                                       | `incidents.read`          |
+| incident.action_invocation.terminated | `incident_action_invocation` | Sent when an incident action invocation is terminated.                                    | `incidents.read`          |
+| incident.action_invocation.updated    | `incident_action_invocation` | Sent when an incident action invocation is updated.                                       | `incidents.read`          |
 | incident.workflow.started             | `incident_workflow_instance` | Sent when an incident workflow starts.                                                    | `incident_workflows.read` |
 | incident.workflow.completed           | `incident_workflow_instance` | Sent when an incident workflow completes.                                                 | `incident_workflows.read` |
 | service.created                       | `service`                    | Sent when a service is created.                                                           | `services.read`           |
@@ -553,6 +556,32 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
 ```
 &nbsp;
 
+### incident_action_invocation
+
+```json
+{
+  "id": "01CELD6T9C2JS745I7CAK0LRRF",
+  "self": "https://api.pagerduty.com/automation/invocations/01CELD6T9C2JS745I7CAK0LRRF",
+  "html_url": "https://acme.pagerduty.com/rundeck-actions/actions/01CDYN0IRV4VG991K5FR73YNTW/invocations/01CELD6T9C2JS745I7CAK0LRRF/report",
+  "incident": {
+    "html_url": "https://acme.pagerduty.com/incidents/PBAZLIU",
+    "id": "PBAZLIU",
+    "self": "https://api.pagerduty.com/incidents/PBAZLIU",
+    "summary": "An Incident",
+    "type": "incident_reference"
+  },
+  "action": {
+    "html_url": "https://acme.pagerduty.com/rundeck-actions/actions/01CDYN0IRV4VG991K5FR73YNTW",
+    "id": "01CDYN0IRV4VG991K5FR73YNTW",
+    "self": "https://api.pagerduty.com/automation/actions/01CDYN0IRV4VG991K5FR73YNTW",
+    "summary": "A Helpful Action",
+    "type": "action_reference"
+  },
+  "state": "created",
+  "type": "incident_action_invocation"
+}
+```
+&nbsp;
 ## Early Access Events
 In addition to the events detailed on this page, we may occasionally have [Early Access events](20-Early-Access-Webhooks.md).
 These are subject to change at any moment, without notice.

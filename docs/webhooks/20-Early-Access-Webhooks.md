@@ -17,24 +17,6 @@ Early Access webhook events are provided here for informational purposes, but ar
 
 ## Event Types
 
-### incident.action_invocation.created
-
-`data.type` is [`incident_action_invocation`](#incident_action_invocation)
-
-Sent when an incident action invocation is created.
-
-### incident.action_invocation.updated
-
-`data.type` is [`incident_action_invocation`](#incident_action_invocation)
-
-Sent when an incident action invocation is updated.
-
-### incident.action_invocation.terminated
-
-`data.type` is [`incident_action_invocation`](#incident_action_invocation)
-
-Sent when an incident action invocation is terminated.
-
 ### incident.task.created
 
 `data.type` is [`incident_task`](#incident_task)
@@ -62,32 +44,6 @@ Sent when an incident role is assigned or unassigned.
 ## Event Data Types
 
 Depending on the `event.event_type`, of the webhook payload, the `event.data` field will contain one of the objects described in this section.
-
-### incident_action_invocation
-
-```json
-{
-  "id": "01CELD6T9C2JS745I7CAK0LRRF",
-  "self": "https://api.pagerduty.com/automation/invocations/01CELD6T9C2JS745I7CAK0LRRF",
-  "html_url": "https://acme.pagerduty.com/rundeck-actions/actions/01CDYN0IRV4VG991K5FR73YNTW/invocations/01CELD6T9C2JS745I7CAK0LRRF/report",
-  "incident": {
-    "html_url": "https://acme.pagerduty.com/incidents/PBAZLIU",
-    "id": "PBAZLIU",
-    "self": "https://api.pagerduty.com/incidents/PBAZLIU",
-    "summary": "An Incident",
-    "type": "incident_reference"
-  },
-  "action": {
-    "html_url": "https://acme.pagerduty.com/rundeck-actions/actions/01CDYN0IRV4VG991K5FR73YNTW",
-    "id": "01CDYN0IRV4VG991K5FR73YNTW",
-    "self": "https://api.pagerduty.com/automation/actions/01CDYN0IRV4VG991K5FR73YNTW",
-    "summary": "A Helpful Action",
-    "type": "action_reference"
-  },
-  "state": "created",
-  "type": "incident_action_invocation"
-}
-```
 
 ### incident_task
 
