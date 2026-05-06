@@ -136,15 +136,19 @@ See the [Events API v2 Overview page](../../docs/events-API-v2/01-Overview.md#re
 
 These properties can be used to attach informational assets to the incident record. Each element of these arrays is an [object](../../docs/REST-API/06-Types.md#object).
 
+<!-- theme:warning -->
+> ### Note
+> Events API v2 uses the top-level `images` and `links` arrays described below to attach images and hyperlinks to an alert. It does **not** accept the `contexts` array — that is a [v1-only](../../docs/events-API-v1/02-Trigger-Events.md#contexts) field. If you send a `contexts` array to the v2 endpoint, it will be ignored.
+
 #### The `images` Property
 
 This property is used to attach images to the incident. Each object in the list has the following properties:
 
-| Name   | Required | Description                                                                                        |
-| ------ | -------- | -------------------------------------------------------------------------------------------------- |
-| `src`  | Yes      | The source (URL) of the image being attached to the incident. This image must be served via HTTPS. |
-| `href` | No       | Optional URL; makes the image a clickable link.                                                    |
-| `alt`  | No       | Optional alternative text for the image.                                                           |
+| Name   | Required | Description                                                                                                                                                                                                                                                                                                          |
+| ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src`  | Yes      | The source (URL) of the image being attached to the incident. This image must be served via HTTPS, must be reachable by PagerDuty, and must be a direct link to the image file itself (e.g. `https://example.com/chart.png`) — page URLs that merely contain an image (e.g. `https://example.com/article`) will not render. |
+| `href` | No       | Optional URL; makes the image a clickable link.                                                                                                                                                                                                                                                                      |
+| `alt`  | No       | Optional alternative text for the image.                                                                                                                                                                                                                                                                             |
 
 #### The `links` Property
 

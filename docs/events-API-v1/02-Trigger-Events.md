@@ -157,6 +157,10 @@ title: 403 Rate Limited
 
 ## Contexts
 
+<!-- theme:warning -->
+> ### Note
+> The `contexts` array is specific to **Events API v1**. Events API v2 does not accept a `contexts` array; it uses separate top-level [`images`](../../docs/events-API-v2/02-Trigger-Events.md#the-images-property) and [`links`](../../docs/events-API-v2/02-Trigger-Events.md#the-links-property) arrays instead. See [Send an Alert Event](../../docs/events-API-v2/02-Trigger-Events.md) for the v2 equivalents.
+
 The `contexts` field is a JSON array of informational assets that can be attached to the incident. Every element of the array is a JSON object referred to as a `context`.
 
 Every `context` must have a `type`. There are a few different types of contexts supported; the fields allowed and required depend on the context type.
@@ -179,7 +183,7 @@ The `image` type is used to attach images to an incident. Images must be served 
 Name   | Required | Description
 ------ | -------- | -----------
 `type` | Yes      | The type of context being attached to the incident. For image contexts, this must be `image`.
-`src`  | Yes      | The source (URL) of the image being attached to the incident. This image must be served via HTTPS.
+`src`  | Yes      | The source (URL) of the image being attached to the incident. This image must be served via HTTPS, must be reachable by PagerDuty, and must be a direct link to the image file itself (e.g. `https://example.com/chart.png`) — page URLs that merely contain an image will not render.
 `href` | No       | Optional link for the image.
 `alt`  | No       | Optional alternative text for the image.
 
