@@ -355,13 +355,13 @@ Two shape details worth flagging:
 
 ### `include[]` behavior
 
-v3 makes more fields opt-in than v2 did. The published spec accepts exactly one `include[]` value: **`final_schedule`**.
+v3 makes more fields opt-in than v2 did. The only valid `include[]` value is **`final_schedule`**.
 
 ```
 ?include[]=final_schedule
 ```
 
-There is no documented `exclude[]` parameter on the v3 GET endpoint. Fields like `teams`, `escalation_policies`, `http_cal_url`, and `web_cal_url` are returned by default when the schedule has them.
+v3 has no `exclude[]` parameter on the GET endpoint. Fields like `teams`, `escalation_policies`, `http_cal_url`, and `web_cal_url` are returned by default when the schedule has them.
 
 ### The `final_schedule` field
 
