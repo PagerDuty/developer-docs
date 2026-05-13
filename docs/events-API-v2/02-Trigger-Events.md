@@ -136,13 +136,15 @@ See the [Events API v2 Overview page](../../docs/events-API-v2/01-Overview.md#re
 
 These properties can be used to attach informational assets to the incident record. Each element of these arrays is an [object](../../docs/REST-API/06-Types.md#object).
 
+> **Note:** Events API v2 uses the `images` array directly for attaching images to alerts. This is different from [Events API v1](../../docs/events-API-v1/02-Trigger-Events.md#image-context), which uses the `contexts` array with `type: "image"` objects. When migrating from v1 to v2, update your payload structure accordingly.
+
 #### The `images` Property
 
 This property is used to attach images to the incident. Each object in the list has the following properties:
 
 | Name   | Required | Description                                                                                        |
 | ------ | -------- | -------------------------------------------------------------------------------------------------- |
-| `src`  | Yes      | The source (URL) of the image being attached to the incident. This image must be served via HTTPS. |
+| `src`  | Yes      | The source (URL) of the image being attached to the incident. This image must be served via HTTPS. The URL must be publicly accessible by PagerDuty and must point directly to an image file (e.g., `.png`, `.jpg`, `.gif`), not to a web page containing an image. |
 | `href` | No       | Optional URL; makes the image a clickable link.                                                    |
 | `alt`  | No       | Optional alternative text for the image.                                                           |
 

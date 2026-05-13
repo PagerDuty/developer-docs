@@ -161,6 +161,8 @@ The `contexts` field is a JSON array of informational assets that can be attache
 
 Every `context` must have a `type`. There are a few different types of contexts supported; the fields allowed and required depend on the context type.
 
+> **Note:** Events API v1 uses the `contexts` array with typed objects (e.g., `type: "image"` or `type: "link"`) for attaching assets to incidents. This is different from [Events API v2](../../docs/events-API-v2/02-Trigger-Events.md#context-properties), which uses separate `images` and `links` arrays without a `type` field. When migrating to v2, update your payload structure accordingly.
+
 ### Link Context
 
 The `link` type is used to attach hyperlinks to an incident.
@@ -179,7 +181,7 @@ The `image` type is used to attach images to an incident. Images must be served 
 Name   | Required | Description
 ------ | -------- | -----------
 `type` | Yes      | The type of context being attached to the incident. For image contexts, this must be `image`.
-`src`  | Yes      | The source (URL) of the image being attached to the incident. This image must be served via HTTPS.
+`src`  | Yes      | The source (URL) of the image being attached to the incident. This image must be served via HTTPS. The URL must be publicly accessible by PagerDuty and must point directly to an image file (e.g., `.png`, `.jpg`, `.gif`), not to a web page containing an image.
 `href` | No       | Optional link for the image.
 `alt`  | No       | Optional alternative text for the image.
 
