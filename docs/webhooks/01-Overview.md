@@ -232,8 +232,12 @@ Outbound events are created when PagerDuty resources change in interesting ways.
 | incident.resolved                     | `incident`                   | Sent when an incident is resolved.                                                        | `incidents.read`          |
 | incident.responder.added              | `incident_responder`         | Sent when a responder has been added to an incident.                                      | `incidents.read`          |
 | incident.responder.replied            | `incident_responder`         | Sent when a responder replies to a request.                                               | `incidents.read`          |
+| incident.role.assigned                  | `incident_role_assignment`   | Sent when an incident role is assigned or unassigned.                                     | `incidents.read`          |
 | incident.service_updated              | `incident`                   | Sent when the service of an incident has changed.                                         | `incidents.read`          |
 | incident.status_update_published      | `incident_status_update`     | Sent when a status update is added to an incident.                                        | `incidents.read`          |
+| incident.task.completed               | `incident_task`              | Sent when an incident task is completed.                                                  | `incidents.read`          |
+| incident.task.created                 | `incident_task`              | Sent when an incident task is created.                                                    | `incidents.read`          |
+| incident.task.updated                 | `incident_task`              | Sent when an incident task is updated.                                                    | `incidents.read`          |
 | incident.triggered                    | `incident`                   | Sent when an incident is newly created/triggered.                                         | `incidents.read`          |
 | incident.unacknowledged               | `incident`                   | Sent when an incident is unacknowledged.                                                  | `incidents.read`          |
 | incident.action_invocation.created    | `incident_action_invocation` | Sent when an incident action invocation is created.                                       | `incidents.read`          |
@@ -401,6 +405,40 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
 }
 ```
 &nbsp;
+### incident_role_assignment
+```json
+{
+    "type": "incident_role_assignment",
+    "incident_role_assignments": [
+      {
+        "assignee": {
+          "html_url": "https://acme.pagerduty.com/users/P75B6QD",
+          "id": "P75B6QD",
+          "self": "https://api.pagerduty.com/users/P75B6QD",
+          "summary": "User 1810194",
+          "type": "user_reference"
+        },
+        "id": "af64b84c-137e-40c6-875c-5dd30a2afaaa",
+        "incident": {
+          "html_url": "https://acme.pagerduty.com/incidents/PBAZLIU",
+          "id": "PBAZLIU",
+          "self": "https://api.pagerduty.com/incidents/PBAZLIU",
+          "summary": null,
+          "type": "incident_reference"
+        },
+        "old_assignee": null,
+        "role": {
+          "id": "P8PQO4R",
+          "summary": "Role Display Name",
+          "type": "role_reference"
+        },
+        "status": "active",
+        "type": "role_assignment_reference"
+      }
+    ]
+  }
+```
+&nbsp;
 ### incident_status_update
 
 ```json
@@ -447,6 +485,35 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
   "message": "Please help me make the tests pass",
   "state": "pending",
   "type": "incident_responder"
+}
+```
+&nbsp;
+### incident_task
+
+```json
+{
+  "name": "A thing that needs to be done",
+  "description": null,
+  "id": "PGR0VU2",
+  "summary": "A thing that needs to be done",
+  "type": "incident_task",
+  "status": "todo",
+  "assignees": [
+    {
+      "html_url": "https://acme.pagerduty.com/users/PIV35G6",
+      "id": "PIV35G6",
+      "self": "https://api.pagerduty.com/users/PIV35G6",
+      "summary": "User 661768438",
+      "type": "user_reference"
+    }
+  ],
+  "incident": {
+    "html_url": "https://acme.pagerduty.com/incidents/Q0SDD3HB6SGFTI",
+    "id": "Q0SDD3HB6SGFTI",
+    "self": "https://api.pagerduty.com/incidents/Q0SDD3HB6SGFTI",
+    "summary": null,
+    "type": "incident_reference"
+  }
 }
 ```
 &nbsp;
