@@ -493,7 +493,7 @@ Depending on the `event.event_type`, of the webhook payload, the `event.data` fi
 ```json
 {
   "name": "A thing that needs to be done",
-  "description": null,
+  "description": "A description of the task",
   "id": "PGR0VU2",
   "summary": "A thing that needs to be done",
   "type": "incident_task",
