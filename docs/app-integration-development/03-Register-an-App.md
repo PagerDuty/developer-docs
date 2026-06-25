@@ -8,11 +8,11 @@ tags: [app-integration-development]
 
 When you log into a developer account, you'll be taken straight to the App Registration page. If you're on a PagerDuty customer account, follow these steps:
 
-**Note:** App Registration is available only to users with a base role of User or Manager (Advanced Permissions) and above.
+**Note:** App Registration is available only to users with a base role of Manager, Global Admin or Account Owner.
 
 1. Log in to your PagerDuty account.
 2. From the top menu, select **Integrations**.
-3. Select **App Registration** from the menu to navigate to the **My Apps** page.
+3. Select **Developer Tools**, then **App Registration** from the menu to navigate to the **My Apps** page.
 
 ![Screenshot of dev menu in Pagerduty](../../assets/images/app-registration-nav.png)
 
