@@ -26,7 +26,7 @@ The flow uses the following endpoints:
 How you configure the flow depends on whether your app can keep a `client_secret` secret:
 
 * A **confidential client** runs somewhere you control end to end — a server-side web app, a backend service, a CLI that reads credentials from a secure store. It authenticates to the Token Endpoint with its `client_secret`.
-* A **non-confidential client** cannot protect a secret because its code and configuration are distributed to users — a single page app running in the browser, or a native mobile or desktop app. It authenticates to the Token Endpoint with PKCE and no `client_secret`.
+* A **non-confidential client** cannot protect a secret because its code and configuration are distributed to users — a single page app running in the browser, or a native mobile or desktop app. It does not authenticate to the Token Endpoint and uses PKCE to maintain flow integrity.
 
 Which one you can build depends on the OAuth functionality your app uses:
 
