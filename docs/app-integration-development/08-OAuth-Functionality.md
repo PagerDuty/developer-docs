@@ -29,7 +29,7 @@ Classic User OAuth is selected on the **Configure OAuth 2.0** screen when you [a
 
 The access available to an application using Classic User OAuth is the intersection of the scopes granted to the application and the permissions of the user the application is acting on behalf of. Scopes in Classic User OAuth are limited to either `read` which allows read-only access to all resources available to the authorizing user, or `write` which allows read/write access to all resources available to the authorizing user.
 
-PagerDuty Apps with Classic User OAuth can be used with other PagerDuty accounts. Once a Classic User OAuth app has been registered, a user on any account can authorize the app regardless. [Publishing your app](11-Publish-Your-App.md) — having PagerDuty review it and list it for all customers to discover — is available and recommended.
+PagerDuty Apps with Classic User OAuth can be used with other PagerDuty accounts. Once a Classic User OAuth app has been registered, a user on any account can authorize the app. [Publishing your app](11-Publish-Your-App.md) — having PagerDuty review it and list it for all customers to discover — is available and recommended.
 
 Classic User OAuth is also the only OAuth functionality that supports non-confidential clients, such as a single page app or a native mobile app. See [Confidential vs non-confidential clients and PKCE](#confidential-vs-non-confidential-clients-and-pkce) below.
 
