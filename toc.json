@@ -96,15 +96,9 @@
         },
         {
           "type": "item",
-          "title": "User OAuth Token via Code Grant",
-          "uri": "docs/app-integration-development/09-User-OAuth-Token-Code-Grant.md",
-          "slug": "user-oauth-token-via-code-grant"
-        },
-        {
-          "type": "item",
-          "title": "User OAuth Token via PKCE",
-          "uri": "docs/app-integration-development/10-User-OAuth-Token-PKCE.md",
-          "slug": "user-oauth-token-via-pkce"
+          "title": "User OAuth Token",
+          "uri": "docs/app-integration-development/09-User-OAuth-Token.md",
+          "slug": "user-oauth-token"
         },
         {
           "type": "item",

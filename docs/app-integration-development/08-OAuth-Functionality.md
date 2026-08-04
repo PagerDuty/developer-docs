@@ -21,52 +21,60 @@ User API Keys are useful for scripts and personal projects but are also tied to 
 
 ### Classic User OAuth
 
-With Classic User OAuth the application is always acting as a PagerDuty User. The application must take the user through an OAuth 2.0 code flow to obtain their authorization and consent before being granted a user OAuth token. See [Obtaining a User OAuth Token via Code Grant](09-User-OAuth-Token-Code-Grant.md) and [Obtaining a User OAuth Token via PKCE](10-User-OAuth-Token-PKCE.md) for the two methods of obtaining these tokens. See below for a discussion of the differences between these two methods.
+With Classic User OAuth the application is always acting as a PagerDuty User. The application must take the user through an OAuth 2.0 authorization code flow to obtain their authorization and consent before being granted a user OAuth token. See [Obtaining a User OAuth Token](09-User-OAuth-Token.md) for the details of obtaining these tokens.
+
+Classic User OAuth is selected on the **Configure OAuth 2.0** screen when you [add OAuth functionality](04-App-Functionality.md#adding-functionality-to-your-app) to your app:
+
+![Selecting Classic User OAuth when configuring OAuth functionality](../../assets/images/add-classic-user-oauth-functionality.png)
 
 The access available to an application using Classic User OAuth is the intersection of the scopes granted to the application and the permissions of the user the application is acting on behalf of. Scopes in Classic User OAuth are limited to either `read` which allows read-only access to all resources available to the authorizing user, or `write` which allows read/write access to all resources available to the authorizing user.
 
-PagerDuty Apps with Classic User OAuth can be published for use with other PagerDuty accounts.
+PagerDuty Apps with Classic User OAuth can be used with other PagerDuty accounts. Once a Classic User OAuth app has been registered, a user on any account can authorize the app. [Publishing your app](11-Publish-Your-App.md) — having PagerDuty review it and list it for all customers to discover — is available and recommended.
+
+Classic User OAuth is also the only OAuth functionality that supports non-confidential clients, such as a single page app or a native mobile app. See [Confidential vs non-confidential clients and PKCE](#confidential-vs-non-confidential-clients-and-pkce) below.
 
 ### Scoped OAuth
 
-Scoped OAuth allows an application to act as the PagerDuty App itself by obtaining an app token using an OAuth 2.0 client credentials flow. Optionally, it can also act as a user after obtaining their authorization and consent. See [Obtaining an App OAuth Token](12-App-OAuth-Token.md), [Obtaining a User OAuth Token via Code Grant](09-User-OAuth-Token-Code-Grant.md) and [Obtaining a User OAuth Token via PKCE](10-User-OAuth-Token-PKCE.md) for the details of obtaining each type of token.
+Scoped OAuth is the newer of the two OAuth functionalities. An app with Scoped OAuth can obtain an app token, a user token, or both. See [Obtaining an App OAuth Token](12-App-OAuth-Token.md) and [Obtaining a User OAuth Token](09-User-OAuth-Token.md) for the details of each.
 
-The access available to an application using Scoped OAuth differs by token type:
-* With an app token, access is only limited by the scopes granted to the application. If the application has the `incidents.read` scope, it will be able to read all incidents on the account.
-* With a user token, access is the intersection of the scopes granted to the application and the permissions of the user. If an application has the `incidents.read` scope and is acting as user Pagey, it will only be able to read incidents that user Pagey has permission to see.
+Three things distinguish it from Classic User OAuth:
+
+**It is limited to a single account.** A Scoped OAuth app cannot currently be published for use with other PagerDuty accounts — it can only access the account that created it. If you are building an integration for many accounts, use Classic User OAuth.
+
+**Its scopes apply to individual resource types.** Rather than a single `read` or `write` scope covering everything the authorizing user can reach, Scoped OAuth grants access per resource type: `incidents.read` reads incidents and nothing else, while `incidents.write` can create, update, or delete an incident without being able to read existing ones. This lets you grant an app only the access it actually needs.
+
+**It can act as the app itself, not just as a user.** A Scoped OAuth app can obtain an app token through the OAuth 2.0 client credentials flow, with no user involved. This suits server-to-server work — responding to a webhook, running a scheduled job — and removes the need to maintain a service or bot user account just to hold credentials.
+
+The access a token actually has depends on its type:
+
+* With an **app token**, access is limited only by the scopes granted to the app. If the app has the `incidents.read` scope, it can read all incidents on the account.
+* With a **user token**, access is the intersection of the app's scopes and the user's permissions. If an app has the `incidents.read` scope and is acting as user Pagey, it can only read incidents that Pagey has permission to see.
 
 If a [REST API](/api-reference/) endpoint works with Scoped OAuth, the documentation for that endpoint will say "Scoped OAuth requires:" and list the required scope to access the endpoint.
 
-PagerDuty Apps with Scoped OAuth cannot currently be published to allow use with other PagerDuty accounts. The application is limited to accessing the PagerDuty account that created it.
+## Confidential vs non-confidential clients and PKCE
 
-### Understanding what type of OAuth functionality to use
+When an app is registered, it generates and presents a `client_secret`.
 
-#### Scoped OAuth offers improved security
-Scoped OAuth improves on Classic User OAuth by offering a set of scopes that individually grant access to read or write a single type of resource. For example, the `incidents.read` scope is only able to read incidents on an account. The `incidents.write` scope is able to create, update, or delete an incident but is not able to read existing incidents.
+* A **confidential client** runs somewhere you control end to end, such as a server-side web app or a backend service, and can securely store the `client_secret`.
+* A **non-confidential client** cannot protect the `client_secret` because its code is distributed to users, as with a single page app running in the browser or a native mobile app.
 
-#### Scoped OAuth can act as an app or as a user
-Scoped OAuth has the ability to act outside the context of a user as a PagerDuty App. This is useful in server-to-server flows where a user may not be involved. It also eliminates the need to manage service or bot user accounts. When configured with a redirect URI, Scoped OAuth applications can also act as a user after getting the user's authorization and consent.
+Proof Key for Code Exchange (PKCE) is a standard extension to the OAuth 2.0 framework, and is generally recommended with any authorization code grant.
 
-#### Only Classic User OAuth can be used with other PagerDuty accounts
-If you are building an integration on top of PagerDuty with the intention of publishing it for use with many PagerDuty accounts, then Classic User OAuth continues to be the right choice.
+Classic Apps can be used either confidentially or non-confidentially. PKCE must be used in the flow, if the `token` request will not include the `client_secret`.
 
-#### Scoped OAuth applications must be able to securely store the client secret
-PagerDuty Apps with Scoped OAuth have a `client_id` and `client_secret` that can be used to obtain app tokens without the involvement of a user. Applications using Scoped OAuth functionality must have a server-side component where the `client_secret` is properly secured. The `client_secret` should never be stored in the browser or passed in an insecure manner.
+Scoped Apps only support confidential clients. The `client_secret` must be included in the `token` request. PKCE is required.
 
-#### When to use the PKCE flow for user tokens
-For Classic User OAuth, there are two options for obtaining a user OAuth token with your app. [PKCE (Proof Key for Code Exchange)](12-App-OAuth-Token.md) is recommended and should work for all apps. The [authorization code grant](09-User-OAuth-Token-Code-Grant.md) flow is also supported, but is only recommended for server-side applications where you have control over the entire environment.
+| |Classic User OAuth|Scoped OAuth|
+|-|-|-|
+|**Confidential client**|Yes. PKCE is optional, and recommended.|Yes. PKCE is required.|
+|**Non-confidential client**|Yes. PKCE is required.|No.|
 
+PagerDuty Apps with Scoped OAuth have a `client_id` and `client_secret` that can be used to obtain app tokens without the involvement of a user, so they must have a server-side component where the `client_secret` is properly secured. The `client_secret` should never be stored in the browser or passed in an insecure manner. Scoped OAuth apps must also always use PKCE when obtaining a user token.
 
-| Choose A Flow For Your App   |      Server-side App*      |  Client-side App** |
-|:---------------------------------------------------------------------------------------|:-----|:----|
-| PKCE - Proof Key for Code Exchange **(Recommended)** |  Yes | Yes |
-| Authorization Code Grant |  Yes | No  |
+Classic User OAuth apps can be built as either kind of client. A non-confidential client omits the `client_secret` when calling the token endpoint, and must use PKCE to do so.
 
-**Server-side App* - an app running on a server which can securely store secrets, also known as a confidential client
-
-***Client-side App* - an app which runs in the browser or a native mobile app, also known as a public client
-
-PagerDuty Apps with Scoped OAuth are able to obtain user tokens [via authorization code grant](09-User-OAuth-Token-Code-Grant.md) or [via PKCE](10-User-OAuth-Token-PKCE.md). The PKCE flow is preferred and adds additional security. However, Scoped OAuth should never be used in a public client architecture.
+See [Obtaining a User OAuth Token](09-User-OAuth-Token.md) for how to implement the flow in each case.
 
 ## Token Lifetimes
 The tokens and user authorization involved in PagerDuty OAuth have a finite lifetime. This section describes the expiration of the various tokens for each type of PagerDuty OAuth.
