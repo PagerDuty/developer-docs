@@ -7,7 +7,7 @@ tags: [events-API-v2]
 
 <!-- theme:warning -->
 > ### Apps are the preferred way to create Event Transformers
-> [Create an app to get these new benefits:](../../docs/app-integration-development/06-Events-Integration.md#add-an-event-transformer)
+> [Create an app to get these new benefits:](../../docs/app-integration-development/05-Events-Integration.md#add-an-event-transformer)
 > * Use your Event Transformer on any PagerDuty service on your account
 > * Publish your Event Transformer as an integration for all PagerDuty users
 > * Syntax highlighting and linting to catch errors

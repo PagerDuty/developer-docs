@@ -2,10 +2,28 @@
 tags: [app-integration-development]
 ---
 
-# Developer Account FAQ
+# Developer Account
+
+A PagerDuty developer account is a free account for building and testing apps and integrations with PagerDuty. It exists for developers who do not otherwise have access to a paid PagerDuty account — if you already have a PagerDuty account, you do not need one, because every PagerDuty account can already use the developer tools.
+
+[Sign up for a developer account](/sign-up/), or go straight to [registering an app](04-Register-an-App.md) if you already have an account.
+
+## What you get
+
+Developer accounts are functionally the same as regular PagerDuty accounts, with two limits:
+
+|||
+|-|-|
+|**Users**|3 full users and 2 stakeholder users|
+|**Notifications**|Email and push only — SMS and voice/phone notifications are not available|
+|**Cost**|Free|
+
+Neither limit can be raised, and a developer account cannot be converted into a paid account. If you need more users, SMS or voice notifications, or an account for commercial use, purchase a paid PagerDuty account.
+
+## FAQ
 
 #### Do I need a developer account?
-If you already have a PagerDuty account, no. All PagerDuty accounts have access to our developer tools and you can get started [here](../../docs/app-integration-development/03-Register-an-App.md). 
+If you already have a PagerDuty account, no. All PagerDuty accounts have access to our developer tools and you can get started [here](04-Register-an-App.md).
 If you do not have a PagerDuty account then you can sign up for a Developer account [here](/sign-up/).
 
 #### How many users can I add to my developer account?
@@ -40,4 +58,4 @@ No, PagerDuty developer accounts are free!
 
 #### I have a question that wasn’t answered here.
 
-If you have questions about this process or your submission, please email apps@pagerduty.com as is mentioned here: https://developer.pagerduty.com/docs/251b5b1305fca-publish-your-app
+If you have questions about this process or your submission, please email apps@pagerduty.com as is mentioned on [Publish an App](08-Publish-Your-App.md).
