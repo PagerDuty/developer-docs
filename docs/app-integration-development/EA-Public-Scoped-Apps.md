@@ -45,11 +45,14 @@ To have your app installed on an account, give an admin on that account the foll
 https://app.pagerduty.com/oauth_apps/[app_id]
 ```
 
-The admin will be shown the app and the scopes it is requesting, and can install it for their account:
+The admin will be shown your app's name, the scopes it is requesting, and the kinds of token it can obtain. From
+here they can install it on their account:
 
-<!-- TODO: screenshot of the admin installation page -->
+![Screenshot of the app installation page an account admin sees](../../assets/images/public-scoped-app-install-page.png)
 
-Once the admin has completed the installation, users on that account can authorize your app through the
+Installing does not by itself grant your app any access. It permits users on that account to authorize your app —
+each user still completes the OAuth flow individually, as the page tells the admin. Once the admin has installed it,
+users on that account can authorize your app through the
 [user token flow](06-OAuth-Functionality.md#obtaining-a-user-oauth-token) as normal.
 
 ## How this differs from the rest of the docs
