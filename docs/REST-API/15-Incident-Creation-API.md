@@ -25,7 +25,7 @@ The Incident Creation API can be used to create incidents on a service. In order
 
 ## Making a Request
 
-Incidents created with the Incident Creation API can be updated with the existing [Incidents API update calls](https://api-reference.pagerduty.com/#!/Incidents/post_incidents).
+Incidents created with the Incident Creation API can be updated with the existing [Incidents API update calls](https://developer.pagerduty.com/api-reference/8a0e1aa2ec666-update-an-incident).
 
 The Incident Creation API also accepts other optional parameters:
 

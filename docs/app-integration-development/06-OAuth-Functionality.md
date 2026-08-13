@@ -198,7 +198,7 @@ For additional information about the user, account, and PagerDuty service region
 
 ### Using an Access Token
 
-Once obtained, access tokens can be used to make [REST API](https://api-reference.pagerduty.com) requests on behalf of the user.
+Once obtained, access tokens can be used to make [REST API](https://developer.pagerduty.com/api-reference/) requests on behalf of the user.
 
 When making an API request, include the version of the API in the `Accept` header. Access tokens must also be sent in the request as part of the `Authorization` header along with the `Bearer` token type, using this format:
 
