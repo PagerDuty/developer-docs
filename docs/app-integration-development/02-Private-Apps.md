@@ -8,9 +8,17 @@ tags: [app-integration-development]
 
 A private app is a PagerDuty App that is only used on the account that created it. You register it on your own account, and it works there and nowhere else.
 
-Private apps are not reviewed or published by PagerDuty. There is no distribution form to complete and no listing for other customers to discover — you build the app, add functionality to it, and start using it. This also means there is no review step standing between you and a change: edit the app and the change takes effect on your account.
+Private apps are not reviewed or published by PagerDuty. There is no distribution form to complete and no listing for other customers to discover — you build the app, add functionality to it, and start using it.
 
-An app is private when it uses **Scoped OAuth** for REST API access, which can only be granted on the account that registered the app. If you are building an integration for many PagerDuty accounts, use [Classic User OAuth](06-OAuth-Functionality.md#classic-user-oauth) instead, which any account's users can authorize and which can optionally be [published](08-Publish-Your-App.md).
+An app is private by default: its **App Type** is Private when you register it, and stays that way unless you change it and submit it for [review](08-Publish-Your-App.md). For REST API access, **Scoped OAuth** can only be granted on the account that registered the app, so a Scoped OAuth app is always private — the option to change its App Type is disabled.
+
+<!-- theme:info -->
+> ### Classic User OAuth does not respect the App Type
+> [Classic User OAuth](06-OAuth-Functionality.md#classic-user-oauth), the legacy OAuth functionality, ignores the Private App Type entirely. As soon as you register a Classic User OAuth client, a user on **any** PagerDuty account can authorize it and the app can act on their behalf — whether or not the app is marked Private.
+>
+> If you want OAuth functionality on an app that stays on your own account, use [Scoped OAuth](#scoped-oauth). If you want an app that works across accounts, Classic User OAuth is how you build it.
+
+A private app is not limited to REST API access: it can also have [Events Integration functionality](05-Events-Integration.md), which is a common way to reuse a single [Event Transformer](05-Events-Integration.md#add-an-event-transformer) across all of your services. An app with Events Integration functionality and no OAuth functionality can go either way — it stays private unless you submit it for [publication](08-Publish-Your-App.md) and it is approved.
 
 ## Why build a private app?
 
@@ -24,7 +32,7 @@ An app is private when it uses **Scoped OAuth** for REST API access, which can o
 
 Scoped OAuth is the REST API functionality behind a private app. Two things distinguish it from Classic User OAuth.
 
-**Its scopes apply to individual resource types.** Rather than a single `read` or `write` scope covering everything the authorizing user can reach, Scoped OAuth grants access per resource type: `incidents.read` reads incidents and nothing else, while `incidents.write` can create, update, or delete an incident without being able to read existing ones. This lets you grant an app only the access it actually needs.
+**Its scopes apply to individual resource types.** Rather than a single `read` or `write` scope covering everything the authorizing user can reach, Scoped OAuth grants access per resource type: `incidents.read` reads incidents and nothing else, while `incidents.write` can create, update, or delete an incident without being able to read existing ones. A different resource type is a separate grant entirely — an app that also needs to read services must be given `services.read`. This lets you grant an app only the access it actually needs.
 
 **It can act as the app itself, not just as a user.** A Scoped OAuth app can obtain an app token through the OAuth 2.0 client credentials flow, with no user involved.
 

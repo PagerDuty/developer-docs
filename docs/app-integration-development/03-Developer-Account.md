@@ -4,7 +4,7 @@ tags: [app-integration-development]
 
 # Developer Account
 
-A PagerDuty developer account is a free account for building and testing apps and integrations with PagerDuty. It exists for developers who do not otherwise have access to a paid PagerDuty account — if you already have a PagerDuty account, you do not need one, because every PagerDuty account can already use the developer tools.
+A PagerDuty developer account is a free account for building and managing apps and integrations with PagerDuty. It exists for developers who do not otherwise have access to a paid PagerDuty account, or who would rather not use their paid account for this.
 
 [Sign up for a developer account](/sign-up/), or go straight to [registering an app](04-Register-an-App.md) if you already have an account.
 
