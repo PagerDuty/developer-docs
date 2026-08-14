@@ -28,7 +28,7 @@ A private app can also have [Events Integration functionality](05-Events-Integra
 
 ## Scoped OAuth
 
-If an private app needs to access the PagerDuty REST API, it uses Scoped OAuth. An app with Scoped OAuth can obtain an app token, a user token, or both. The access a token has depends on its type:
+If a private app needs to access the PagerDuty REST API, it uses Scoped OAuth. An app with Scoped OAuth can obtain an app token, a user token, or both. The access a token has depends on its type:
 
 * With an **app token**, access is limited only by the scopes granted to the app. If the app has the `incidents.read` scope, it can read all incidents on the account.
 * With a **user token**, access is the intersection of the app's scopes and the user's permissions. If an app has the `incidents.read` scope and is acting as user Pagey, it can only read incidents that Pagey has permission to see.
