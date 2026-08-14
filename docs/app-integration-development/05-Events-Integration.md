@@ -88,8 +88,6 @@ An Event Transformer is an optional part of a PagerDuty app. It contains JavaScr
 
 Use an Event Transformer when a technical service you are connecting to PagerDuty is not capable of modifying its payload before they are sent to PagerDuty. An Event Transformer will allow you to connect it to PagerDuty without hosting an application or serverless function to transform the webhook payload.
 
-A [private app](02-Private-Apps.md) is a common way to reuse one: write the transform once on the app, then add that integration to every service on your account that receives the payload.
-
 ### Set up an Event Transformer
 
 1. Under **Transform Event Data** on the Events Integration functionality page, select Yes.

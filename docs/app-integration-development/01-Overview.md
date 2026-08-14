@@ -49,7 +49,7 @@ The REST API can also trigger and manage incidents, through the [/incidents endp
 There are two kinds of OAuth functionality:
 
 * [Classic User OAuth](06-OAuth-Functionality.md#classic-user-oauth) acts as a PagerDuty user via an authorization code grant, with a blanket `read` or `write` scope. A user on any account can authorize it as soon as it is registered, which makes it the choice for a cross-account integration.
-* [Scoped OAuth](02-Private-Apps.md) scopes access per resource type, and supports both the authorization code and client credentials grants, to act as a user or as the app itself, respectively. It only works on the account that created the app.
+* [Scoped OAuth](02-Private-Apps.md) scopes access per resource type, and supports both the authorization code and client credentials grants, to act as a user or as the app itself, respectively. It only works for users of the account that created the app.
 
 For chat integrations, see also [lita-pagerduty](https://github.com/PagerDuty/lita-pagerduty) and the [hubot library](https://github.com/hubot-scripts/hubot-pager-me).
 

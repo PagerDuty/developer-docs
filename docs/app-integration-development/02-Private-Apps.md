@@ -6,57 +6,41 @@ tags: [app-integration-development]
 
 ## What is a private app?
 
-A private app is a PagerDuty App that is only used on the account that created it. You register it on your own account, and it works there and nowhere else.
+A private app is a PagerDuty App that is only used on the account that created it. You register it on your own account, and it works there and nowhere else. Private apps are not reviewed or published by PagerDuty.
 
-Private apps are not reviewed or published by PagerDuty. There is no distribution form to complete and no listing for other customers to discover — you build the app, add functionality to it, and start using it.
+An app is private by default: its **App Type** is Private when you register it, and stays that way unless you change it and submit it for [review](08-Publish-Your-App.md). For REST API access, **Scoped OAuth** only works on the account that registered the app, so an app with Scoped OAuth functionality is always private — the option to change its App Type is disabled.
 
-An app is private by default: its **App Type** is Private when you register it, and stays that way unless you change it and submit it for [review](08-Publish-Your-App.md). For REST API access, **Scoped OAuth** can only be granted on the account that registered the app, so a Scoped OAuth app is always private — the option to change its App Type is disabled.
-
-<!-- theme:info -->
-> ### Classic User OAuth does not respect the App Type
-> [Classic User OAuth](06-OAuth-Functionality.md#classic-user-oauth), the legacy OAuth functionality, ignores the Private App Type entirely. As soon as you register a Classic User OAuth client, a user on **any** PagerDuty account can authorize it and the app can act on their behalf — whether or not the app is marked Private.
+<!-- theme:warning -->
+> ### App Type does not apply to Classic User OAuth
+> [Classic User OAuth](06-OAuth-Functionality.md#classic-user-oauth), the legacy OAuth functionality. Users can always use the OAuth authorization code flow with a Classic User OAuth app, regardless of its App Type.
 >
-> If you want OAuth functionality on an app that stays on your own account, use [Scoped OAuth](#scoped-oauth). If you want an app that works across accounts, Classic User OAuth is how you build it.
+> If you want OAuth functionality only for users in your account, use [Scoped OAuth](#scoped-oauth). If you want an app that works across accounts, use Classic User OAuth.
 
-A private app is not limited to REST API access: it can also have [Events Integration functionality](05-Events-Integration.md), which is a common way to reuse a single [Event Transformer](05-Events-Integration.md#add-an-event-transformer) across all of your services. An app with Events Integration functionality and no OAuth functionality can go either way — it stays private unless you submit it for [publication](08-Publish-Your-App.md) and it is approved.
+A private app can also have [Events Integration functionality](05-Events-Integration.md), which is a common way to reuse a single [Event Transformer](05-Events-Integration.md#add-an-event-transformer) across all of your services.
 
 ## Why build a private app?
 
-**Scoped access to the REST API for internal tooling.** Scoped OAuth grants access per resource type rather than handing over everything the authorizing user can reach. A script that closes stale incidents needs `incidents.write` and nothing else. See [Scoped OAuth](#scoped-oauth) below.
+**Scoped access to the REST API for internal tooling.** Scoped OAuth grants access per resource type rather than handing over everything the authorizing user can reach, the way a User API Key would. A script that closes stale incidents needs `incidents.write` and nothing else. See [Scoped OAuth](#scoped-oauth) below.
 
-**Acting as the app rather than as a person.** A private app can obtain an app token with no user involved, which suits server-to-server work like responding to a webhook or running a scheduled job. It removes the need to maintain a service or bot user account just to hold credentials, and the integration keeps working when people leave the team.
+**Acting as the app rather than as a person.** A Scoped OAuth app can obtain an app token with no user involved, which suits server-to-server work like responding to a webhook or running a scheduled job.
 
-**Writing one Event Transformer and reusing it everywhere.** This is a common reason to register a private app with [Events Integration functionality](05-Events-Integration.md). If some system sends you a payload that PagerDuty does not understand natively, you can write a single [Event Transformer](05-Events-Integration.md#add-an-event-transformer) on the app that converts that payload into the Events API v2 format — and then add that one integration to every PagerDuty service that receives the payload. The transform logic lives in one place instead of being duplicated per service, and editing it on the app updates the behavior for all of them.
+**Writing one Event Transformer and reusing it everywhere.** If some system sends you a payload that PagerDuty does not understand natively, you can write a single [Event Transformer](05-Events-Integration.md#add-an-event-transformer) on the app that converts that payload into the Events API v2 format — and then add that one integration to every PagerDuty service that receives the payload.
 
 ## Scoped OAuth
 
-Scoped OAuth is the REST API functionality behind a private app. Two things distinguish it from Classic User OAuth.
-
-**Its scopes apply to individual resource types.** Rather than a single `read` or `write` scope covering everything the authorizing user can reach, Scoped OAuth grants access per resource type: `incidents.read` reads incidents and nothing else, while `incidents.write` can create, update, or delete an incident without being able to read existing ones. A different resource type is a separate grant entirely — an app that also needs to read services must be given `services.read`. This lets you grant an app only the access it actually needs.
-
-**It can act as the app itself, not just as a user.** A Scoped OAuth app can obtain an app token through the OAuth 2.0 client credentials flow, with no user involved.
-
-An app with Scoped OAuth can obtain an app token, a user token, or both. The access a token has depends on its type:
+If an private app needs to access the PagerDuty REST API, it uses Scoped OAuth. An app with Scoped OAuth can obtain an app token, a user token, or both. The access a token has depends on its type:
 
 * With an **app token**, access is limited only by the scopes granted to the app. If the app has the `incidents.read` scope, it can read all incidents on the account.
 * With a **user token**, access is the intersection of the app's scopes and the user's permissions. If an app has the `incidents.read` scope and is acting as user Pagey, it can only read incidents that Pagey has permission to see.
 
-### Client requirements
+### User Tokens
 
-<!-- theme:warning -->
-> ### Scoped OAuth apps must secure a `client_secret`
-> Scoped OAuth only supports confidential clients — apps that run somewhere you control end to end, such as a server-side web app or a backend service. A single page app running in the browser or a native mobile app cannot protect a `client_secret` and cannot use Scoped OAuth. Use [Classic User OAuth](06-OAuth-Functionality.md#classic-user-oauth) for those.
+To obtain a **user token**, follow [Obtaining a User OAuth Token](06-OAuth-Functionality.md#obtaining-a-user-oauth-token) — the flow is the same one Classic User OAuth uses, with the following caveats specific to Scoped Apps:
 
-Two rules follow from this, and both apply to every Scoped OAuth app:
+* The `client_secret` must be sent on the token request. Scoped Apps do not support non-confidential clients.
+* PKCE must be used.
 
-* The `client_secret` must be sent on the token request.
-* **PKCE is required** when obtaining a user token. Unlike Classic User OAuth, where PKCE is recommended but optional for confidential clients, a Scoped OAuth app must always use it.
-
-To obtain a **user token**, follow [Obtaining a User OAuth Token](06-OAuth-Functionality.md#obtaining-a-user-oauth-token) — the flow is the same one Classic User OAuth uses, with the requirements above. To obtain an **app token**, see below.
-
-## Obtaining an App OAuth Token
-
-To act on a PagerDuty Account as a PagerDuty App, you must obtain an app token for that account. Applications are implicitly granted access to the account that created them.
+### App Tokens
 
 Before proceeding you should [register a PagerDuty App](04-Register-an-App.md) with Scoped OAuth functionality to obtain the `client_id`, `client_secret`, and scopes.
 
@@ -108,9 +92,9 @@ A `403 - Forbidden` response will be returned if the token does not contain the 
 or the API endpoint does not yet support API Scopes. When the token expires a `401 - Unauthorized` response will be returned
 and a new token must be obtained.
 
-## Which APIs support Scoped OAuth?
+## Which APIs require which scopes?
 
-Each endpoint that supports Scoped OAuth indicates the required scope in its description in our [API Reference](https://developer.pagerduty.com/api-reference/). For example, the list incidents endpoint requires the `incidents.read` scope.
+Every REST API endpoint supports Scoped OAuth access tokens. The required scope is in its description in our [API Reference](https://developer.pagerduty.com/api-reference/). For example, the list incidents endpoint requires the `incidents.read` scope.
 ![List incidents required scope](../../assets/images/list-incidents-required-scope.png)
 
 ## Token Lifetimes

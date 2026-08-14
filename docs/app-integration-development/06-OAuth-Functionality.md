@@ -6,9 +6,7 @@ tags: [app-integration-development]
 
 ## What is OAuth functionality?
 
-PagerDuty Apps can use OAuth functionality to obtain access tokens that allow the application to interact with the PagerDuty [REST API](/api-reference/) on behalf of a user or as the app itself.
-
-For example, an application with its own UI may wish to call the PagerDuty REST API _as a user_ to obtain data specific to that user. An application that receives PagerDuty webhooks or performs other server-side processing may wish to call back to the PagerDuty _as the app_ to obtain more information or update state.
+PagerDuty Apps can use OAuth functionality to obtain access tokens that allow the application to interact with the PagerDuty [REST API](/api-reference/).
 
 The capabilities and behavior differ based on whether you choose to use the Scoped OAuth or Classic User OAuth functionality.
 
@@ -21,7 +19,9 @@ User API Keys are useful for scripts and personal projects but are also tied to 
 
 ### Classic User OAuth
 
-With Classic User OAuth the application is always acting as a PagerDuty User. The application must take the user through an OAuth 2.0 authorization code flow to obtain their authorization and consent before being granted a user OAuth token. See [Obtaining a User OAuth Token](#obtaining-a-user-oauth-token) below for the details of obtaining these tokens.
+PagerDuty Apps with Classic User OAuth can be used with other PagerDuty accounts. Once a Classic User OAuth app has been created a user on any account can immediately authorize and use the app. [Publishing your app](08-Publish-Your-App.md) — having PagerDuty review it and list it for all customers to discover — is available and recommended.
+
+With Classic User OAuth the application is always acting as a PagerDuty user. The application must take the user through an OAuth 2.0 authorization code flow to obtain their authorization and consent before being granted a user OAuth token. See [Obtaining a User OAuth Token](#obtaining-a-user-oauth-token) below for the details of obtaining these tokens.
 
 Classic User OAuth is selected on the **Configure OAuth 2.0** screen when you [add OAuth functionality](04-Register-an-App.md#adding-oauth-functionality) to your app:
 
@@ -29,22 +29,16 @@ Classic User OAuth is selected on the **Configure OAuth 2.0** screen when you [a
 
 The access available to an application using Classic User OAuth is the intersection of the scopes granted to the application and the permissions of the user the application is acting on behalf of. Scopes in Classic User OAuth are limited to either `read` which allows read-only access to all resources available to the authorizing user, or `write` which allows read/write access to all resources available to the authorizing user.
 
-PagerDuty Apps with Classic User OAuth can be used with other PagerDuty accounts. Once a Classic User OAuth app has been registered, a user on any account can authorize the app. [Publishing your app](08-Publish-Your-App.md) — having PagerDuty review it and list it for all customers to discover — is available and recommended.
-
-Classic User OAuth is also the only OAuth functionality that supports non-confidential clients, such as a single page app or a native mobile app. See [Confidential vs non-confidential clients and PKCE](#confidential-vs-non-confidential-clients-and-pkce) below.
-
 ### Scoped OAuth
 
-Scoped OAuth grants access per resource type rather than as a blanket `read` or `write`, and can obtain a token that acts as the app itself rather than as a user. It is only available on the account that registered the app.
-
-Scoped OAuth is documented on [Private Apps](02-Private-Apps.md), along with the client credentials flow used to obtain an app token. Scoped OAuth apps obtain **user** tokens with the same flow described on this page, subject to the requirements in [Client requirements](02-Private-Apps.md#client-requirements).
+Scoped OAuth is only used for [Private Apps](02-Private-Apps.md) acting on the same account that created them.
 
 ## Confidential vs non-confidential clients and PKCE
 
 When an app is registered, it generates and presents a `client_secret`. How you configure the OAuth flow depends on whether your app can keep that secret:
 
-* A **confidential client** runs somewhere you control end to end — a server-side web app, a backend service, a CLI that reads credentials from a secure store. It authenticates to the Token Endpoint with its `client_secret`.
-* A **non-confidential client** cannot protect a secret because its code and configuration are distributed to users — a single page app running in the browser, or a native mobile or desktop app. It does not authenticate to the Token Endpoint and uses PKCE to maintain flow integrity.
+* A **confidential client** runs somewhere you control, e.g., a server-side web app. It authenticates to the Token Endpoint with its `client_secret`.
+* A **non-confidential client** cannot protect a secret because its code and configuration are distributed to users, e.g., a single page app running in the browser, or a native mobile or desktop app. It does not authenticate to the Token Endpoint and uses PKCE to maintain flow integrity.
 
 Which one you can build depends on the OAuth functionality your app uses:
 

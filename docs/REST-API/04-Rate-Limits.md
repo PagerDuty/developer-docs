@@ -25,7 +25,7 @@ User API Keys act as a PagerDuty User and are limited as such. Each user is allo
 
 **PagerDuty App - App OAuth Tokens**
 
-When a PagerDuty App [uses an app token](../../docs/app-integration-development/02-Private-Apps.md#obtaining-an-app-oauth-token) it is acting as the PagerDuty App. Each PagerDuty App is allowed 960 requests per minute against each PagerDuty Account it is authorized to access.
+When a PagerDuty App [uses an app token](../../docs/app-integration-development/02-Private-Apps.md#app-tokens) it is acting as the PagerDuty App. Each PagerDuty App is allowed 960 requests per minute against each PagerDuty Account it is authorized to access.
 
 **PagerDuty App - User OAuth Tokens**
 

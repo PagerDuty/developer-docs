@@ -4,7 +4,13 @@ tags: [app-integration-development]
 
 # Publish your App
 
-Once you are done building an app, you can publish it to share with all PagerDuty customers. Publishing is completely optional.
+Once you are done building your app, you can submit it for review to be published.
+
+Publishing is **required** for an app with [Events Integration](05-Events-Integration.md) functionality to work on accounts other than the one that created it. It also enables the [Simple Install Flow](05-Events-Integration.md#simple-install-flow-optional-but-recommended), and adds your app to the **Add Integrations** list in the Service Directory:
+
+![Screenshot of the Add Integrations list in the Service Directory](../../assets/images/add-integrations-service-directory.png)
+
+Publishing is **recommended** for an app with [Classic User OAuth](06-OAuth-Functionality.md#classic-user-oauth) functionality. Those apps already work across accounts as soon as they are registered, but publishing adds yours to our [integrations library](https://www.pagerduty.com/integrations/).
 
 ## Manage Distribution
 
