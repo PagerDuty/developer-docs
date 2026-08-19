@@ -33,7 +33,7 @@ There are two kinds of app functionality. An app can have either, or both.
 
 The Events API is asynchronous and designed for high volume. Events flow through PagerDuty's [Event Intelligence](https://www.pagerduty.com/platform/event-intelligence-and-automation/) features, which group, deduplicate, and triage them to reduce noise and speed up response.
 
-It can also send [change events](../../docs/events-API-v2/03-Change-Events.md) — informational signals about recent changes such as code deploys and system config changes, which are displayed in PagerDuty rather than triggering an incident.
+It can also send [Change Events](../../docs/events-API-v2/03-Change-Events.md) — informational signals about recent changes such as code deploys and system config changes, which are displayed in PagerDuty rather than triggering an incident.
 
 Two optional pieces come with it:
 
