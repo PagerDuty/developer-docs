@@ -16,7 +16,7 @@ An app allows customers to set up other web-enabled businesses to work with Page
 Apps are built by PagerDuty, our partners, our customers, system integrators, and the open source community! Any PagerDuty customer or developer with a [PagerDuty developer account](03-Developer-Account.md) has access to PagerDuty app development tools.
 
 #### Can my app be used by other PagerDuty accounts?
-Yes, apps can be created for either Private use (on your account only) or Public use which can be installed and used by other PagerDuty customers. See [Private Apps](02-Private-Apps.md) and [Publish an App](08-Publish-Your-App.md).
+Yes, apps can be created for either _private use_ (on your account only) or _public use_ which can be installed and used by other PagerDuty customers. See [Private Apps](02-Private-Apps.md) and [Publish an App](08-Publish-Your-App.md).
 
 ### Getting Started
 1. Not a PagerDuty customer? [Sign up for a developer account to get access to PagerDuty](https://developer.pagerduty.com/sign-up/).
