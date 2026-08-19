@@ -25,11 +25,11 @@ User API Keys act as a PagerDuty User and are limited as such. Each user is allo
 
 **PagerDuty App - App OAuth Tokens**
 
-When a PagerDuty App [uses an app token](../../docs/app-integration-development/08-OAuth-Functionality.md) it is acting as the PagerDuty App. Each PagerDuty App is allowed 960 requests per minute against each PagerDuty Account it is authorized to access.
+When a PagerDuty App [uses an app token](../../docs/app-integration-development/02-Private-Apps.md#app-tokens) it is acting as the PagerDuty App. Each PagerDuty App is allowed 960 requests per minute against each PagerDuty Account it is authorized to access.
 
 **PagerDuty App - User OAuth Tokens**
 
-When a PagerDuty App [uses a user token](../../docs/app-integration-development/08-OAuth-Functionality.md) it is acting as the PagerDuty User. Each PagerDuty App is allowed 960 requests per minute per User it is authorized to act as.
+When a PagerDuty App [uses a user token](../../docs/app-integration-development/06-OAuth-Functionality.md#obtaining-a-user-oauth-token) it is acting as the PagerDuty User. Each PagerDuty App is allowed 960 requests per minute per User it is authorized to act as.
 
 ### Operation specific limits
 In a few exceptional circumstances, individual REST API operations may apply additional limits. If an endpoint applies additional limits; it will be noted in the [REST API](/api-reference/) documentation for that endpoint. The `ratelimit-` response headers described later in this document will provide information to the client about the current status of the limit and when it resets.

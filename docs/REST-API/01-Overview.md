@@ -29,7 +29,7 @@ Only JSON is supported in the REST API. Other content types are currently not su
 
 Consult the topics on the left to learn more about the conventions of the REST API.
 
-If you're comfortable with the layout and structure of the API, or want to get started right away, head over to the [API Reference](https://api-reference.pagerduty.com/). The reference documentation contains a comprehensive set of REST API [endpoints](../../docs/REST-API/05-Endpoints.md), parameters, and responses. You'll be able to find the resources you need and try making requests right from your browser!
+If you're comfortable with the layout and structure of the API, or want to get started right away, head over to the [API Reference](https://developer.pagerduty.com/api-reference/). The reference documentation contains a comprehensive set of REST API [endpoints](../../docs/REST-API/05-Endpoints.md), parameters, and responses. You'll be able to find the resources you need and try making requests right from your browser!
 
 ### HTTP Request Headers
 The following headers should be set as applicable when making HTTP requests to the REST API:
@@ -37,7 +37,7 @@ The following headers should be set as applicable when making HTTP requests to t
 * `Accept`: to optionally specify a different API version than the version of the API token; see [Versioning](../../docs/REST-API/03-Versioning.md).
 * `Authorization`: required for all requests; see [Authentication](../../docs/REST-API/02-Authentication.md).
 * `Content-Type`: required when making a `POST` or `PUT` request. The MIME media type should be `application/json`.
-* `From`: the email address of the user to record as having taken the action. Should be used when [creating a user](https://api-reference.pagerduty.com/#!/Users/post_users) or when performing [Incident Creation](../../docs/REST-API/15-Incident-Creation-API.md) in the REST API.
+* `From`: the email address of the user to record as having taken the action. Should be used when [creating a user](https://developer.pagerduty.com/api-reference/4cb4fd0f5444a-create-a-user) or when performing [Incident Creation](../../docs/REST-API/15-Incident-Creation-API.md) in the REST API.
 
 ### TLS
 Connecting to the PagerDuty REST API requires using [TLS (Transport Layer Security)](https://en.wikipedia.org/wiki/Transport_Layer_Security).

@@ -19,7 +19,7 @@ Event Type       | Description | Example Events | Notifications can be sent? |
 
 *Note on ITSM and Ticketing:*
 
-Previously, the Events API was used to create PagerDuty incidents from ticketing systems and various other collaboration tools. Today, we recommend using the synchronous [Incidents API](https://api-reference.pagerduty.com/#!/Incidents/get_incidents) for this purpose.
+Previously, the Events API was used to create PagerDuty incidents from ticketing systems and various other collaboration tools. Today, we recommend using the synchronous [Incidents API](https://developer.pagerduty.com/api-reference/a7d81b0e9200f-create-an-incident) for this purpose.
 
 ## How Events Are Used In PagerDuty
 

@@ -8,7 +8,7 @@ The original details of any event sent from your monitoring tools to PagerDuty, 
 
 ## Introduction
 
-As noted on our [Log Entries API](https://api-reference.pagerduty.com/#!/Log_Entries/get_log_entries) documentation:
+As noted on our [Log Entries API](https://developer.pagerduty.com/api-reference/c661e065403b5-list-log-entries) documentation:
 
 > PagerDuty keeps a log of all the events that happen to an incident. These are exposed as log entries. Log entries give you more insight into how your team or organization is handling your incidents.
 
@@ -30,10 +30,10 @@ In both cases, we'll be making requests to the log entries API. We will need to 
 The two ways of getting the trigger log entry are as follows:
 
 1. **With just the incident number (or ID):**
-    1. Obtain the first trigger log entry (which initially triggered the incident) by [retrieving the incident via `GET /incidents/{id}`](https://api-reference.pagerduty.com/#!/Incidents/get_incidents_id), where `{id}` could be the ID or the incident number.
-    2.  From the `first_trigger_log_entry` property in the response, make a second `GET` request to the URL in its `self` property, which should lead to [the endpoint to retrieve an individual log entry, `/log_entries/{id}`](https://api-reference.pagerduty.com/#!/Log_Entries/get_log_entries_id)
+    1. Obtain the first trigger log entry (which initially triggered the incident) by [retrieving the incident via `GET /incidents/{id}`](https://developer.pagerduty.com/api-reference/005299ed43553-get-an-incident), where `{id}` could be the ID or the incident number.
+    2.  From the `first_trigger_log_entry` property in the response, make a second `GET` request to the URL in its `self` property, which should lead to [the endpoint to retrieve an individual log entry, `/log_entries/{id}`](https://developer.pagerduty.com/api-reference/81f365751e713-get-a-log-entry)
 2. **With the incident ID:** You can obtain all trigger log entries in one or more API calls by:
-    1. Use the [incident log entries endpoint at `/incidents/{id}/log_entries`](https://api-reference.pagerduty.com/#!/Incidents/get_incidents_id_log_entries), where `{id}` is the incident ID.
+    1. Use the [incident log entries endpoint at `/incidents/{id}/log_entries`](https://developer.pagerduty.com/api-reference/367602cbc1c28-list-log-entries-for-an-incident), where `{id}` is the incident ID.
     2. Use the first log entry in the array (`log_entries` property in the response), which should contain a `log_entry` type object whose `type` value is `trigger_log_entry`.
 
 Note that using the second method, it is possible to obtain subsequent alert data sent by the monitoring tool (after the incident was initially triggered) by iterating through all log entries and selecting the entries whose `type` value is `trigger_log_entry`.

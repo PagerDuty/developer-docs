@@ -2,31 +2,43 @@
 tags: [app-integration-development]
 ---
 
-# Obtaining a User OAuth Token
+# OAuth Functionality
 
-## About User OAuth Tokens
+## What is OAuth functionality?
 
-A user OAuth token lets your app act as a PagerDuty User: access is the intersection of the scopes granted to your app and the permissions of the user who authorized it.
+PagerDuty Apps can use OAuth functionality to obtain access tokens that allow the application to interact with the PagerDuty [REST API](/api-reference/).
 
-Both [Classic User OAuth and Scoped OAuth](08-OAuth-Functionality.md) obtain user tokens with the same flow — OAuth 2.0's [Authorization Code Grant](https://tools.ietf.org/html/rfc6749#section-4.1), using the [PKCE](https://oauth.net/2/pkce/) extension. The app sends the user to PagerDuty to log in and consent, PagerDuty redirects back with a short-lived authorization code, and the app exchanges that code for an access token.
+The capabilities and behavior differ based on whether you choose to use the Scoped OAuth or Classic User OAuth functionality.
 
-Before proceeding you should [register a PagerDuty App](03-Register-an-App.md) with Scoped OAuth or Classic User OAuth functionality to obtain the `client_id`, `client_secret`, and scopes.
+## OAuth or PagerDuty API key?
+A PagerDuty App with OAuth functionality is the preferred choice for both third-party integrations and long-lived applications. PagerDuty Apps with OAuth can be used by a single account building private software or developers building integrations used by many accounts.
 
-![Authorize an OAuth application](../../assets/images/oauth-authorize.png)
+User API Keys are useful for scripts and personal projects but are also tied to that single user. If the user leaves the account then the key is disabled and the application will no longer function properly. Account API Keys have full access to a PagerDuty account, and are very simple to use, however they don't have security-conscious features such as refresh flows, and are a little bit less user-friendly involving copying and pasting the raw secret value.
 
-The flow uses the following endpoints:
+## Types of OAuth functionality
 
-|||
-|-|-|
-|Authorization Endpoint|`https://identity.pagerduty.com/oauth/authorize`|
-|Token Endpoint        |`https://identity.pagerduty.com/oauth/token`|
+### Classic User OAuth
 
-## Confidential and Non-Confidential Clients
+PagerDuty Apps with Classic User OAuth can be used with other PagerDuty accounts. Once a Classic User OAuth app has been created a user on any account can immediately authorize and use the app. [Publishing your app](08-Publish-Your-App.md) — having PagerDuty review it and list it for all customers to discover — is available and recommended.
 
-How you configure the flow depends on whether your app can keep a `client_secret` secret:
+With Classic User OAuth the application is always acting as a PagerDuty user. The application must take the user through an OAuth 2.0 authorization code flow to obtain their authorization and consent before being granted a user OAuth token. See [Obtaining a User OAuth Token](#obtaining-a-user-oauth-token) below for the details of obtaining these tokens.
 
-* A **confidential client** runs somewhere you control end to end — a server-side web app, a backend service, a CLI that reads credentials from a secure store. It authenticates to the Token Endpoint with its `client_secret`.
-* A **non-confidential client** cannot protect a secret because its code and configuration are distributed to users — a single page app running in the browser, or a native mobile or desktop app. It does not authenticate to the Token Endpoint and uses PKCE to maintain flow integrity.
+Classic User OAuth is selected on the **Configure OAuth 2.0** screen when you [add OAuth functionality](04-Register-an-App.md#adding-oauth-functionality) to your app:
+
+![Selecting Classic User OAuth when configuring OAuth functionality](../../assets/images/add-classic-user-oauth-functionality.png)
+
+The access available to an application using Classic User OAuth is the intersection of the scopes granted to the application and the permissions of the user the application is acting on behalf of. Scopes in Classic User OAuth are limited to either `read` which allows read-only access to all resources available to the authorizing user, or `write` which allows read/write access to all resources available to the authorizing user.
+
+### Scoped OAuth
+
+Scoped OAuth is only used for [Private Apps](02-Private-Apps.md) acting on the same account that created them.
+
+## Confidential vs non-confidential clients and PKCE
+
+When an app is registered, it generates and presents a `client_secret`. How you configure the OAuth flow depends on whether your app can keep that secret:
+
+* A **confidential client** runs somewhere you control, e.g., a server-side web app. It authenticates to the Token Endpoint with its `client_secret`.
+* A **non-confidential client** cannot protect a secret because its code and configuration are distributed to users, e.g., a single page app running in the browser, or a native mobile or desktop app. It does not authenticate to the Token Endpoint and uses PKCE to maintain flow integrity.
 
 Which one you can build depends on the OAuth functionality your app uses:
 
@@ -46,7 +58,24 @@ PKCE (pronounced "pixie") stands for Proof Key for Code Exchange. It lets a clie
 
 Your app generates a one-time random `code_verifier`, sends the SHA-256 hash of it (the `code_challenge`) on the authorization request, and sends the original `code_verifier` on the token request. PagerDuty issues a token only if the two match. See [Generating a code verifier and challenge](#generating-a-code-verifier-and-challenge) for a JavaScript implementation.
 
-## Initiating the Access Grant : Leg 1 of 3
+## Obtaining a User OAuth Token
+
+A user OAuth token lets your app act as a PagerDuty User: access is the intersection of the scopes granted to your app and the permissions of the user who authorized it.
+
+Both Classic User OAuth and Scoped OAuth obtain user tokens with the same flow — OAuth 2.0's [Authorization Code Grant](https://tools.ietf.org/html/rfc6749#section-4.1), using the [PKCE](https://oauth.net/2/pkce/) extension. The app sends the user to PagerDuty to log in and consent, PagerDuty redirects back with a short-lived authorization code, and the app exchanges that code for an access token.
+
+Before proceeding you should [register a PagerDuty App](04-Register-an-App.md) with Scoped OAuth or Classic User OAuth functionality to obtain the `client_id`, `client_secret`, and scopes.
+
+![Authorize an OAuth application](../../assets/images/oauth-authorize.png)
+
+The flow uses the following endpoints:
+
+|||
+|-|-|
+|Authorization Endpoint|`https://identity.pagerduty.com/oauth/authorize`|
+|Token Endpoint        |`https://identity.pagerduty.com/oauth/token`|
+
+### Initiating the Access Grant : Leg 1 of 3
 
 Send a GET request to the Authorization Endpoint. The user will be required to a) log in with their credentials and b) authorize the permissions your app is requesting.
 
@@ -71,15 +100,15 @@ Without PKCE — Classic User OAuth confidential clients only:
 GET https://identity.pagerduty.com/oauth/authorize?client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&scope={SCOPE}&response_type=code
 ```
 
-## Obtaining an Access Grant : Leg 2 of 3
+### Obtaining an Access Grant : Leg 2 of 3
 
 Upon initiating an access grant there are three possibilities:
 
-### #1 User Cannot Log In (Flow Stopped)
+#### #1 User Cannot Log In (Flow Stopped)
 
 The flow ends without a valid user credential.
 
-### #2 User Logged In and Denied Permission to Client Application (Flow Stopped)
+#### #2 User Logged In and Denied Permission to Client Application (Flow Stopped)
 
 The flow ends with access denied. PagerDuty will redirect to the specified URI with `error` and `error_description` parameters:
 
@@ -87,7 +116,7 @@ The flow ends with access denied. PagerDuty will redirect to the specified URI w
 {REDIRECT_URI}?error=access_denied&error_description=The+resource+owner+or+authorization+server+denied+the+request.
 ```
 
-### #3 User Logged In and Approves Client Application Permission (Success)
+#### #3 User Logged In and Approves Client Application Permission (Success)
 
 If the user authorizes the app, PagerDuty will redirect to the specified URI with the `code` (authorization code) in the URL:
 
@@ -97,7 +126,7 @@ If the user authorizes the app, PagerDuty will redirect to the specified URI wit
 
 The authorization code is valid for 30 seconds.
 
-## Exchanging Auth Code For Access Token : Leg 3 of 3
+### Exchanging Auth Code For Access Token : Leg 3 of 3
 
 To exchange the authorization code for an access token, send a POST request to the Token Endpoint. The authorization code has a time to live of 30 seconds, and your POST request must be received within that time. The content type should be `application/x-www-form-urlencoded`.
 
@@ -110,7 +139,7 @@ Parameter       | Description | Required
 `client_secret` | A secret issued when the app is created. | Confidential clients
 `code_verifier` | The original one-time random verifier used to generate the `code_challenge` on the authorization request. | When using PKCE
 
-### Confidential clients
+#### Confidential clients
 
 Scoped OAuth apps send both a `client_secret` and a `code_verifier`:
 
@@ -127,7 +156,7 @@ curl -X POST https://identity.pagerduty.com/oauth/token \
 
 Classic User OAuth confidential clients may omit `code_verifier` if they did not send a `code_challenge` on the authorization request, though we recommend using PKCE.
 
-### Non-confidential clients
+#### Non-confidential clients
 
 Classic User OAuth non-confidential clients omit the `client_secret`, and `code_verifier` is required:
 
@@ -141,7 +170,7 @@ curl -X POST https://identity.pagerduty.com/oauth/token \
   -d "code_verifier={CODE_VERIFIER}"
 ```
 
-### The token response
+#### The token response
 
 The access token will be included in a JSON response. You may also want to take note of the ID token and the refresh token:
 
@@ -157,13 +186,13 @@ The access token will be included in a JSON response. You may also want to take 
 }
 ```
 
-Note that our access tokens do expire after a defined period of time — so you may want to make sure that you implement OAuth refresh to prevent users needing to re-authorize your app. See [Token Lifetimes](08-OAuth-Functionality.md#token-lifetimes) for the expiries that apply to each type of OAuth functionality.
+Note that our access tokens do expire after a defined period of time — so you may want to make sure that you implement OAuth refresh to prevent users needing to re-authorize your app. See [Token Lifetimes](#token-lifetimes) for the expiries that apply to each type of OAuth functionality.
 
-For additional information about the user, account, and PagerDuty service region where your app is now authorized, you can look at [cracking open our PagerDuty-signed ID token](11-PagerDuty-OpenId-Token.md). For example, the `aud` field will help your integration with data residency and processing guarantees if you have customers located in Europe.
+For additional information about the user, account, and PagerDuty service region where your app is now authorized, you can look at [cracking open our PagerDuty-signed ID token](07-PagerDuty-OpenId-Token.md). For example, the `aud` field will help your integration with data residency and processing guarantees if you have customers located in Europe.
 
-## Using an Access Token
+### Using an Access Token
 
-Once obtained, access tokens can be used to make [REST API](https://api-reference.pagerduty.com) requests on behalf of the user.
+Once obtained, access tokens can be used to make [REST API](https://developer.pagerduty.com/api-reference/) requests on behalf of the user.
 
 When making an API request, include the version of the API in the `Accept` header. Access tokens must also be sent in the request as part of the `Authorization` header along with the `Bearer` token type, using this format:
 
@@ -172,7 +201,7 @@ Authorization: Bearer pdus+_0XBPWQQ_b2b2060b-e7af-44a1-8ddf-9c56fedd8d4f
 Accept: application/vnd.pagerduty+json;version=2
 ```
 
-### Troubleshooting: API Call results in 403
+#### Troubleshooting: API Call results in 403
 
 This means that although the OAuth credentials are valid, the token does not have access to that particular resource. For example, if you have a token with the read scope and try to write to a resource, it will result in 403.
 
@@ -184,7 +213,7 @@ Valid scopes for Classic User OAuth:
 
 For Scoped OAuth, request the specific scopes configured on your app. If a [REST API](/api-reference/) endpoint works with Scoped OAuth, the documentation for that endpoint will say "Scoped OAuth requires:" and list the required scope.
 
-## Getting a new Access Token with a Refresh Token
+### Getting a new Access Token with a Refresh Token
 
 <!-- theme:warning -->
 > ### Securing credentials for non-confidential clients
@@ -218,7 +247,7 @@ A successful response will include a new access token and a new refresh token:
 }
 ```
 
-## Sample Code
+### Sample Code
 
 |Language|GitHub Repository|
 |-|-|
@@ -226,7 +255,7 @@ A successful response will include a new access token and a new refresh token:
 |Python 3|[pagerduty-oauth-sample-python](https://github.com/PagerDuty/pagerduty-oauth-sample-python)|
 |Javascript, single page app with PKCE|[pagerduty-bulk-user-mgr-sample](https://github.com/PagerDuty/pagerduty-bulk-user-mgr-sample)|
 
-### Generating a code verifier and challenge
+#### Generating a code verifier and challenge
 
 The `code_verifier` is a high-entropy random string, and the `code_challenge` is the Base64 URL encoded (without padding) SHA-256 digest of it. Since JavaScript's built-in Base64 operations are not Base64 URL encoded, we provide a generation mechanism here:
 
@@ -269,3 +298,30 @@ function base64UrlEncode(bytes) {
     .replace(/=+$/, "");
 }
 ```
+
+## Token Lifetimes
+
+The tokens and user authorization involved in PagerDuty OAuth have a finite lifetime.
+
+All Classic User OAuth clients have the following expiry settings:
+
+ - access token expiry of 30 days
+ - refresh token expiry of 210 days
+ - rolling refresh window of 3 years
+
+This means that if your Classic User OAuth app implements the refresh token flow, your customers will be able to use that app continuously with PagerDuty for three years, as long as there is some kind of activity with PagerDuty at least once every 210 days.
+
+For Scoped OAuth expiries, see [Token Lifetimes](02-Private-Apps.md#token-lifetimes) on Private Apps.
+
+## Revoking Tokens
+In the event you believe your application's OAuth tokens to be compromised, you may choose to revoke all tokens currently issued to the application via the [App Registration](04-Register-an-App.md) UI.
+
+The following options are available on the OAuth functionality Client screen of a PagerDuty App:
+
+![Screenshot of OAuth functionality danger zone](../../assets/images/oauth-danger-zone.png)
+
+The "Revoke All Tokens" operation will invalidate all OAuth tokens for the current application. In the event you believe your application's `client_secret` to be compromised, you may choose to delete OAuth functionality from the application and recreate it.
+
+<!-- theme:info -->
+> Deleting the OAuth functionality _does not_ automatically revoke existing tokens. If you wish to perform both operations, you must revoke
+> all tokens _before_ deleting the OAuth functionality.

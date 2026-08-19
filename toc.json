@@ -54,69 +54,51 @@
         },
         {
           "type": "item",
-          "title": "Developer Account FAQ",
-          "uri": "docs/app-integration-development/02-Developer-Account.md",
+          "title": "Private Apps",
+          "uri": "docs/app-integration-development/02-Private-Apps.md",
+          "slug": "private-apps"
+        },
+        {
+          "type": "item",
+          "title": "Developer Account",
+          "uri": "docs/app-integration-development/03-Developer-Account.md",
           "slug": "developer-account-faq"
         },
         {
           "type": "item",
           "title": "Register an App",
-          "uri": "docs/app-integration-development/03-Register-an-App.md",
+          "uri": "docs/app-integration-development/04-Register-an-App.md",
           "slug": "register-an-app"
         },
         {
           "type": "item",
-          "title": "App Functionality Overview",
-          "uri": "docs/app-integration-development/04-App-Functionality.md",
-          "slug": "app-functionality"
-        },
-        {
-          "type": "item",
-          "title": "API Pickers",
-          "uri": "docs/app-integration-development/05-API-Picker.md",
-          "slug": "api-picker"
-        },
-        {
-          "type": "item",
           "title": "Events Integration Functionality",
-          "uri": "docs/app-integration-development/06-Events-Integration.md",
+          "uri": "docs/app-integration-development/05-Events-Integration.md",
           "slug": "events-integration-functionality"
         },
         {
           "type": "item",
-          "title": "Writing App Event Transformers",
-          "uri": "docs/app-integration-development/07-Writing-App-Event-Transformers.md",
-          "slug": "writing-app-event-transformers"
-        },
-        {
-          "type": "item",
           "title": "OAuth Functionality",
-          "uri": "docs/app-integration-development/08-OAuth-Functionality.md",
+          "uri": "docs/app-integration-development/06-OAuth-Functionality.md",
           "slug": "oauth-functionality"
         },
         {
           "type": "item",
-          "title": "User OAuth Token",
-          "uri": "docs/app-integration-development/09-User-OAuth-Token.md",
-          "slug": "user-oauth-token"
-        },
-        {
-          "type": "item",
-          "title": "App OAuth Token",
-          "uri": "docs/app-integration-development/12-App-OAuth-Token.md",
-          "slug": "app-oauth-token"
-        },
-        {
-          "type": "item",
           "title": "PagerDuty OpenID ID Token",
-          "uri": "docs/app-integration-development/11-PagerDuty-OpenId-Token.md",
+          "uri": "docs/app-integration-development/07-PagerDuty-OpenId-Token.md",
           "slug": "pagerduty-openid-token"
         },
         {
           "type": "item",
           "title": "Publish an App",
-          "uri": "docs/app-integration-development/11-Publish-Your-App.md",
+          "uri": "docs/app-integration-development/08-Publish-Your-App.md",
           "slug": "publish-an-app"
+        },
+        {
+          "type": "item",
+          "title": "Public Scoped Apps (Early Access)",
+          "uri": "docs/app-integration-development/EA-Public-Scoped-Apps.md",
+          "slug": "public-scoped-apps"
         }
       ]
     },
