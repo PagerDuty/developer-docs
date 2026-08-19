@@ -37,7 +37,7 @@ It can also send [Change Events](../../docs/events-API-v2/03-Change-Events.md) â
 
 Two optional pieces come with it:
 
-* The [Simple Install Flow](05-Events-Integration.md#simple-install-flow-optional-but-recommended) lets your users connect to PagerDuty from inside your tool, instead of copying and pasting integration keys. [See Demo](https://acme.pagerduty.dev)
+* The [Simple Install Flow](05-Events-Integration.md#simple-install-flow-optional-but-recommended) lets your users connect to PagerDuty from inside your tool, instead of copying and pasting integration keys. See the demo [here](https://acme.pagerduty.dev).
 * An [Event Transformer](05-Events-Integration.md#add-an-event-transformer) converts a payload PagerDuty does not understand natively into the Events API v2 format.
 
 ### OAuth Integration
