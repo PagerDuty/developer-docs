@@ -25,7 +25,7 @@ Yes, apps can be created for either _private use_ (on your account only) or _pub
 
 ## App Functionality
 
-There are two kinds of app functionality. An app can have either, or both.
+There are two kinds of app functionality: Events Integration, or OAuth. An app can have either, or both.
 
 ### Events Integration
 
