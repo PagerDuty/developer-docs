@@ -29,7 +29,7 @@ There are two kinds of app functionality. An app can have either, or both.
 
 ### Events Integration
 
-[Events Integration](05-Events-Integration.md) sends machine events **from** your tool **to** PagerDuty over the asynchronous [Events API v2](../../docs/events-API-v2/01-Overview.md). This is the best way for a monitoring tool to connect with PagerDuty, and it can trigger, acknowledge, and resolve incidents.
+[Events Integration](05-Events-Integration.md) sends machine events **from** your tool **to** PagerDuty via the [v2 Events API](../../docs/events-API-v2/01-Overview.md). This is the best way for a monitoring tool to connect with PagerDuty, and it can trigger, acknowledge, and resolve incidents.
 
 The Events API is asynchronous and designed for high volume. Events flow through PagerDuty's [Event Intelligence](https://www.pagerduty.com/platform/event-intelligence-and-automation/) features, which group, deduplicate, and triage them to reduce noise and speed up response.
 
