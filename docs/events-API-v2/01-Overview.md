@@ -86,6 +86,8 @@ If each of the events your monitoring system is sending is important, be sure to
 > If you’d like to take PagerDuty AIOps for a spin before activating a trial, you can do so with our [interactive product tour](https://pagerduty.navattic.com/265z0hdg). You can also activate a trial of PagerDuty AIOps depending on your PagerDuty account status:
 > - [Customers](https://support.pagerduty.com/main/docs/aiops#customers)
 > - [Prospective Customers](https://support.pagerduty.com/main/docs/aiops#prospective-customers)
+>
+> For PDRP customers, this feature is branded **Signal Intelligence** in the PagerDuty product UI. The API field names and values (e.g. `aiops`) are unchanged.
 
 
 ### Size Limits
