@@ -8,13 +8,13 @@ Want to get started using PagerDuty APIs quickly and easily? PagerDuty creates, 
 
 <!-- theme:info -->
 > ### Community Support
+>
 > PagerDuty does not endorse or provide technical support for any API libraries or tools created and maintained by our user community.
 
 | Project Name | Language | GitHub Repo Link | Works with | Supported by |
-|:-------------|:---------|:-----------------|:-----------|:-------------|
+| :------------- | :--------- | :----------------- | :----------- | :------------- |
 | go-pagerduty | Golang | [PagerDuty/go-pagerduty](https://github.com/PagerDuty/go-pagerduty) | REST, Events v1, Events v2 | PagerDuty |
 | python-pagerduty | Python | [PagerDuty/python-pagerduty](https://github.com/PagerDuty/python-pagerduty) | REST, Events v2 | PagerDuty |
-| pagerduty-mcp-server | Python | [Pagerduty/pagerduty-mcp-server](https://github.com/PagerDuty/pagerduty-mcp-server) | MCP | PagerDuty |
 | PDJS | JavaScript | [PagerDuty/PDJS](https://github.com/PagerDuty/PDJS) | REST, Events v2 | PagerDuty |
 | PagerDuty Events Client for Java | Java | [dikhan/pagerduty-client](https://github.com/dikhan/pagerduty-client) | Events v2 | Community |
 | PagerDuty Event Client (Gradle) | Java | [comodal/pagerduty-client](https://github.com/comodal/pagerduty-client) | Events v2 | Community |
@@ -22,7 +22,6 @@ Want to get started using PagerDuty APIs quickly and easily? PagerDuty creates, 
 | PagerDuty::Connection | Ruby | [technicalpickles/pager_duty-connection](https://github.com/technicalpickles/pager_duty-connection) | REST | Community |
 | pagerduty gem | Ruby | [envato/pagerduty](https://github.com/envato/pagerduty) | Events v1 | Community |
 | PagerDuty Events Client for .NET | .NET | [Aldaviva/PagerDuty](https://github.com/Aldaviva/PagerDuty) | Events v2 | Community |
-
 
 ## Get Involved
 

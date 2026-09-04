@@ -7,14 +7,9 @@ performing complex interactions via an API, based on [JSON-RPC].
 
 PagerDuty's MCP server allows you to fetch and manage information in your PagerDuty account.
 
-## Local MCP Server
-
-If you'd like to run our MCP server yourself, you can check out the instructions [in GitHub][open-source MCP server].
-[Pull requests welcome][contributing]!
-
 ## Remote MCP Server
 
-You can also call our [Remote MCP Server][MCP API Reference]. This supports the same authentication methods as the REST API,
+You can call our [Remote MCP Server][MCP API Reference]. This supports the same authentication methods as the REST API,
 including API tokens and OAuth -- see our [authentication documentation] for more information.
 
 Key URLs:
@@ -22,7 +17,7 @@ Key URLs:
 - MCP Base URL: `https://mcp.pagerduty.com/mcp`
 - OAuth Metadata: `https://identity.pagerduty.com/global/oauth/anonymous/.well-known/openid-configuration`
 
-You can see the full list of tools by calling the `list/tools` method, or by browsing our [open-source MCP server].
+You can see the full list of tools by calling the `list/tools` method.
 
 ### Sample configuration
 
@@ -53,13 +48,10 @@ Here is a sample MCP configuration for Microsoft Visual Studio Code:
 ## Resources
 
 - [PagerDuty MCP API Reference][MCP API Reference]
-- [PagerDuty MCP Server Repository][open-source MCP server]
 - [Model Context Protocol] documentation from Anthropic
 - [JSON-RPC] documentation
 
   [Model Context Protocol]: https://modelcontextprotocol.io/specification/2025-06-18/basic
   [JSON-RPC]: https://www.jsonrpc.org/
-  [open-source MCP server]: https://github.com/PagerDuty/pagerduty-mcp-server?tab=readme-ov-file#pagerdutys-official-mcp-server
   [authentication documentation]: https://developer.pagerduty.com/docs/rest-api-v2/authentication/
   [MCP API Reference]: https://developer.pagerduty.com/api-reference/83ebf88243817-mcp-endpoint
-  [contributing]: https://github.com/PagerDuty/pagerduty-mcp-server/blob/main/CONTRIBUTING.md
