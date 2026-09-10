@@ -31,18 +31,7 @@ The access available to an application using Classic User OAuth is the intersect
 
 ### Scoped OAuth
 
-Scoped OAuth scopes access per resource type, rather than the blanket `read` or `write` of Classic User OAuth. An app
-with Scoped OAuth can obtain an **app token** through the client credentials grant, to act as the app itself, or a
-**user token** through the authorization code grant, to act as a PagerDuty user. See
-[Private Apps](02-Private-Apps.md#scoped-oauth) for scopes, the app token flow, and token lifetimes.
-
-A Scoped OAuth app is always a [confidential client](#confidential-vs-non-confidential-clients-and-pkce): it must send
-its `client_secret` on the token request and must use PKCE.
-
-A Scoped OAuth app works on the account that created it as soon as it is registered. To use it on other accounts, you
-must [publish it](08-Publish-Your-App.md#scoped-oauth-apps-on-other-accounts), and an admin on each account must
-install it. On other accounts your app can obtain **user tokens only**: the client credentials flow, which issues an
-app token with no user involved, only works on the account that created the app.
+Scoped OAuth is only used for [Private Apps](02-Private-Apps.md) acting on the same account that created them.
 
 ## Confidential vs non-confidential clients and PKCE
 

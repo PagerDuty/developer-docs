@@ -93,6 +93,12 @@
           "title": "Publish an App",
           "uri": "docs/app-integration-development/08-Publish-Your-App.md",
           "slug": "publish-an-app"
+        },
+        {
+          "type": "item",
+          "title": "Public Scoped Apps (Early Access)",
+          "uri": "docs/app-integration-development/EA-Public-Scoped-Apps.md",
+          "slug": "public-scoped-apps"
         }
       ]
     },
