@@ -96,8 +96,8 @@
         },
         {
           "type": "item",
-          "title": "Public Scoped Apps (Early Access)",
-          "uri": "docs/app-integration-development/EA-Public-Scoped-Apps.md",
+          "title": "Public Scoped Apps",
+          "uri": "docs/app-integration-development/09-Public-Scoped-Apps.md",
           "slug": "public-scoped-apps"
         }
       ]

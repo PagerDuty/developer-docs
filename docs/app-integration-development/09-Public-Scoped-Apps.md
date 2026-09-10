@@ -4,13 +4,6 @@ tags: [app-integration-development]
 
 # Public Scoped Apps
 
-<!-- theme: warning -->
-
-> ### Early Access
->
-> The features described on this page are in an [Early Access](https://www.pagerduty.com/early-access/) state and are
-> subject to change. Please reach out to us if you have any questions or need support.
-
 An app that uses Scoped OAuth is normally a [private app](02-Private-Apps.md): it only works on the account that
 created it. Public Scoped Apps extend Scoped OAuth so that a single app can be used across many PagerDuty accounts,
 as [Classic User OAuth](06-OAuth-Functionality.md#classic-user-oauth) apps can be today.
