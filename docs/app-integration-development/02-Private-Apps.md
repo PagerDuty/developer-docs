@@ -8,13 +8,13 @@ tags: [app-integration-development]
 
 A private app is a PagerDuty App that is only used on the account that created it. You register it on your own account, and it works there and nowhere else. Private apps are not reviewed or published by PagerDuty.
 
-An app is private by default: its **App Type** is Private when you register it, and stays that way unless you change it and submit it for [review](08-Publish-Your-App.md). For REST API access, **Scoped OAuth** only works on the account that registered the app, so an app with Scoped OAuth functionality is always private — the option to change its App Type is disabled.
+An app is private by default: its **App Type** is Private when you register it, and stays that way unless you change it and submit it for [review](08-Publish-Your-App.md). A **Scoped OAuth** app that has not been published only works on the account that registered it, so it is a private app until you [publish it](08-Publish-Your-App.md#scoped-oauth-apps-on-other-accounts).
 
 <!-- theme:warning -->
 > ### App Type does not apply to Classic User OAuth
-> [Classic User OAuth](06-OAuth-Functionality.md#classic-user-oauth), the legacy OAuth functionality. Users can always use the OAuth authorization code flow with a Classic User OAuth app, regardless of its App Type.
+> [Classic User OAuth](06-OAuth-Functionality.md#classic-user-oauth), the legacy OAuth functionality, works across accounts regardless of App Type: users on any account can use the OAuth authorization code flow with it as soon as it is registered.
 >
-> If you want OAuth functionality only for users in your account, use [Scoped OAuth](#scoped-oauth). If you want an app that works across accounts, use Classic User OAuth.
+> If you want OAuth functionality only for users in your account, use [Scoped OAuth](#scoped-oauth) and leave the App Type as Private.
 
 A private app can also have [Events Integration functionality](05-Events-Integration.md), which is a common way to reuse a single [Event Transformer](05-Events-Integration.md#add-an-event-transformer) across all of your services.
 
@@ -43,6 +43,8 @@ To obtain a **user token**, follow [Obtaining a User OAuth Token](06-OAuth-Funct
 ### App Tokens
 
 Before proceeding you should [register a PagerDuty App](04-Register-an-App.md) with Scoped OAuth functionality to obtain the `client_id`, `client_secret`, and scopes.
+
+App tokens are only issued for the account that created the app. On other accounts, a published Scoped OAuth app obtains [user tokens only](08-Publish-Your-App.md#scoped-oauth-apps-on-other-accounts).
 
 An app token is obtained by making an OAuth 2.0 client credentials request. Send a `POST` request to `https://identity.pagerduty.com/oauth/token` with a `Content-Type` of `application/x-www-form-urlencoded` and the following form parameters:
 
