@@ -11,8 +11,8 @@ It is our recommendation that customers configure their servers to trust the roo
 #### Client Certificates
 Certificate | Common Name | Start Date | End Date | Download
 ---------|----------|---------|---------|---------
- US region certificate | webhooks.pagerduty.com | December 16th, 2025 | October 2026 | [link](https://developer.pagerduty.com/certificates/2026_webhooks_pagerduty_com.pem)
- EU region certificate | webhooks.eu.pagerduty.com | December 16th, 2025 | October 2026 | [link](https://developer.pagerduty.com/certificates/2026_webhooks_eu_pagerduty_com.pem)
+ US region certificate | webhooks.pagerduty.com | December 16th, 2025 | November 2026 | [link](https://developer.pagerduty.com/certificates/2026_webhooks_pagerduty_com.pem)
+ EU region certificate | webhooks.eu.pagerduty.com | December 16th, 2025 | November 2026 | [link](https://developer.pagerduty.com/certificates/2026_webhooks_eu_pagerduty_com.pem)
 
 #### Issuer Certificates
 Certificate Type | Common Name | Valid Until | Download
