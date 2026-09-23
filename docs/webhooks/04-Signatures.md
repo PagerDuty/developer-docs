@@ -68,25 +68,22 @@ import hmac
 import hashlib
 ​
 ​class PagerDutyVerifier:
-    def __init__(self, key, version):
+    def __init__(self, key: str, version: str) -> None:
         self.key = key
         self.version = version
-​
-    def verify(self, payload, signatures):
-        comparisons = []
+
+    def verify(self, payload, signatures) -> bool:
         byte_key = self.key.encode("ASCII")
         signature = hmac.new(byte_key, payload.encode(), hashlib.sha256).hexdigest()
-        signatureWithVersion = self.version + "=" + signature
-        signatureList = signatures.split(",")
-​
-        for _signature in signatureList:
-            comparisons.append(hmac.compare_digest(signatureWithVersion, _signature))
-​
-        return any(comparisons)
+        signed_version = self.version + "=" + signature
+        signatures = signatures.split(",")
+
+        # Return boolean indicating whether signed version is legitimate.
+        return any(hmac.compare_digest(signed_version, item) for item in signatures)
 ​
 ​
-pagerdutyVerifier = PagerDutyVerifier(key, version)
-pagerdutyVerifier.verify(payload, signatures)
+pagerduty_verifier = PagerDutyVerifier(key, version)
+pagerduty_verifier.verify(payload, signatures)
 
 ```
 
