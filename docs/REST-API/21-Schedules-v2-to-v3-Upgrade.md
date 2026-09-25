@@ -114,7 +114,8 @@ curl -G https://api.pagerduty.com/v3/schedules \
   -H 'Authorization: Token token=YOUR_API_KEY' \
   -H 'Accept: application/vnd.pagerduty+json;version=2' \
   --data-urlencode 'limit=100' \
-  --data-urlencode 'offset=0'
+  --data-urlencode 'offset=0' \
+  --data-urlencode 'query=engineering'
 ```
 
 Response (abridged):
@@ -132,7 +133,8 @@ Response (abridged):
   ],
   "limit": 100,
   "offset": 0,
-  "more": false
+  "more": false,
+  "total": null
 }
 ```
 
@@ -141,19 +143,19 @@ Response (abridged):
 - **List items are reference-shaped.** Each item carries only `id`, `type`, `summary`, `self`, and `html_url`. Fields like `name`, `description`, and `time_zone` move to the detail endpoint.
 - **`type` is `schedule_v3_reference`** for items in a v3 list.
 - **`self` URL points at the v3 path** (`/v3/schedules/{id}`).
-- **No `query` parameter.** v2 supports `query=...` for substring filtering on the schedule name; v3's list endpoint does not. Filter client-side after fetching, or look up specific schedules by ID.
-- **No `include_legacy` parameter.** v3 returns only shift-based schedules — there's no public flag to widen the set.
-- **Pagination defaults differ.** v3's `limit` defaults to 100 (max 1000); v2's defaults to 25 (max 100). v3 also omits `total` from the response — only `limit`, `offset`, and `more` are returned.
+- **`include_legacy` widens the set.** By default v3 returns only shift-based schedules. With `include_legacy=true` it also returns layer-based schedules, with `type: schedule_reference`.
+- **Pagination limit is the same as v2.** v3's `limit` defaults to 25 (max 100). Like v2, `total` is `null` unless you send `total=true`.
 
 ### What stayed the same
 
 - IDs and `html_url` are stable across the two versions.
 - `limit` and `offset` query parameters work the same way (just with different defaults and caps).
+- The `query` parameter filters the list by schedule name, the same as in v2.
 - Pagination semantics (`more` flag, `offset`/`limit` cursoring) are unchanged.
 
 ### Upgrade tip
 
-There is no single endpoint that returns both layer-based and shift-based schedules. To see all schedules on the account, call both list endpoints:
+To see all schedules on the account in one list, call `GET /v3/schedules?include_legacy=true`. Or call both list endpoints:
 
 ```shell
 # layer-based schedules
@@ -773,7 +775,7 @@ for schedule in list_schedules():
 
 Four concrete changes between the v2-only and the hybrid script:
 
-1. **List both endpoints to enumerate every schedule.** `GET /schedules` returns only layer-based schedules; `GET /v3/schedules` returns only shift-based schedules. There is no single endpoint that returns both, so the script paginates each in turn and chains the results. Each list item's `type` field (`schedule_reference` for layer-based, `schedule_v3_reference` for shift-based) is the dispatch signal we use in step 2.
+1. **List both endpoints to enumerate every schedule.** `GET /schedules` returns only layer-based schedules; `GET /v3/schedules` returns only shift-based schedules. The script paginates each in turn and chains the results. (`GET /v3/schedules?include_legacy=true` also returns both kinds in one list.) Each list item's `type` field (`schedule_reference` for layer-based, `schedule_v3_reference` for shift-based) is the dispatch signal we use in step 2.
 
 2. **Branch on `schedule["type"]`.** Layer-based items have `type: "schedule_reference"` (or `"schedule"` in some contexts); shift-based items have `type: "schedule_v3_reference"`. The on-call query path differs by shape — there is no single endpoint that answers "who's on call" for both kinds — so you have to dispatch.
 
@@ -1040,4 +1042,4 @@ members = [
 - **Active event members are immutable.** v3 doesn't let you change the members of an event that's already producing shifts. To change *who's* on the rotation, you stop the running event and start a new one alongside it. `DELETE` is the cleanest way to stop the running event because it preserves history — shifts already produced keep their member assignments — and the deletion time becomes the implicit cutover.
 - **`empty_member` keeps the rotation's cadence intact.** Marking a position vacant is a normal rotation state in v3, not a hack. The rotation's other members continue producing shifts on the same weeks they would have anyway — replacing a user with `empty_member` does not shrink the cycle or shuffle anyone else's schedule. `final_schedule.computed_shift_assignments[]` surfaces the empty windows as `member.type = "empty_member"` so reporting and dashboards can flag the gap explicitly. (Compare with v2: dropping a user from `users[]` shrinks the rotation and changes everyone's on-call frequency.)
 - **Two phases, same shape.** Phase 1 swaps user → empty; Phase 2 swaps empty → user. Both use the same delete-then-POST pattern; the only difference is the `from` and `to` members in the new event's `members[]`.
-- **Future events can be edited in place.** If the event being changed has an `effective_since` in the future (it hasn't started producing shifts yet), `PUT` its members directly — no delete-and-recreate needed. The pattern above is the safe default that works regardless of timing.
+- **Future events can be edited in place.** If the event being changed has an `effective_since` in the future (it hasn't started producing shifts yet), `PUT` the event with the new members — no delete-and-recreate needed. A `PUT` replaces the full event: send every field from the `GET` response (`name`, `start_time`, `end_time`, `effective_since`, `recurrence`, `assignment_strategy`), not only the members. A partial body returns `400` with `must not be null`. The pattern above is the safe default that works regardless of timing.
