@@ -143,7 +143,7 @@ Response (abridged):
 - **`type` is `schedule_v3_reference`** for items in a v3 list.
 - **`self` URL points at the v3 path** (`/v3/schedules/{id}`).
 - **`include_legacy` widens the set.** By default v3 returns only shift-based schedules. With `include_legacy=true` it also returns layer-based schedules, with `type: schedule_reference`.
-- **Pagination limit is the same as v2.** v3's `limit` defaults to 25 (max 100); a larger value is reduced to 100, with no error. v3 also omits `total` from the response — only `limit`, `offset`, and `more` are returned.
+- **Pagination limit is the same as v2.** v3's `limit` defaults to 25 (max 100). v3 also omits `total` from the response — only `limit`, `offset`, and `more` are returned.
 
 ### What stayed the same
 
