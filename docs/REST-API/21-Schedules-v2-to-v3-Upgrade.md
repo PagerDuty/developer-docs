@@ -143,7 +143,7 @@ Response (abridged):
 - **`type` is `schedule_v3_reference`** for items in a v3 list.
 - **`self` URL points at the v3 path** (`/v3/schedules/{id}`).
 - **No `include_legacy` parameter.** v3 returns only shift-based schedules — there's no public flag to widen the set.
-- **Pagination defaults differ.** v3's `limit` defaults to 100 (max 1000); v2's defaults to 25 (max 100). v3 also omits `total` from the response — only `limit`, `offset`, and `more` are returned.
+- **Pagination limit is the same as v2.** v3's `limit` defaults to 25 (max 100); a larger value is reduced to 100, with no error. v3 also omits `total` from the response — only `limit`, `offset`, and `more` are returned.
 
 ### What stayed the same
 
