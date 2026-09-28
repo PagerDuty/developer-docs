@@ -94,56 +94,12 @@ OAuth authentication is useful when your webhook destination requires token-base
 
 Compared to static authentication methods, OAuth provides automatic token refresh and retry behavior: if a delivery receives a `401 Unauthorized` response, PagerDuty refreshes the token and immediately retries. See [OAuth Authentication Retries](../../docs/webhooks/02-Behavior.md#oauth-authentication-retries) for complete retry behavior.
 
-#### Creating an OAuth Client
+#### Setting Up OAuth Authentication
 
-Create an OAuth client using the OAuth Clients API (`POST /webhook_subscriptions/oauth_clients`) or from the Webhooks page in the PagerDuty web app. An OAuth client consists of:
+1. Create an OAuth client with your authorization server's client ID, client secret, and token URL, either from the Webhooks page in the PagerDuty web app or with the [Create an OAuth client](https://developer.pagerduty.com/api-reference/28ba8c17b59b6-create-an-o-auth-client) API. PagerDuty checks the credentials by requesting an access token when you create the client.
+2. Set the webhook subscription's `oauth_client_id` to the ID of the OAuth client when you [create](https://developer.pagerduty.com/api-reference/b3A6MjkyNDc4NA-create-a-webhook-subscription) or update the subscription. One OAuth client can be used by many webhook subscriptions.
 
-| Field           | Description                                                                                  |
-| --------------- | -------------------------------------------------------------------------------------------- |
-| `name`          | A friendly name for the OAuth client.                                                        |
-| `client_id`     | The client ID issued by your OAuth authorization server.                                     |
-| `client_secret` | The client secret issued by your OAuth authorization server. Redacted in API responses.       |
-| `token_url`     | The token endpoint on your authorization server that PagerDuty will request access tokens from. |
-| `grant_type`    | Must be `client_credentials`.                                                                |
-| `scope`         | Optional. Scopes to request from your authorization server, if it requires them.             |
-
-When an OAuth client is created or updated, PagerDuty validates the configuration by requesting an access token from the `token_url`. If a token cannot be obtained, the create or update request fails. Ensure your authorization server is reachable from the public internet and that the credentials are valid before creating the client.
-
-#### Associating an OAuth Client with a Webhook Subscription
-
-Reference the OAuth client by ID when creating or updating a webhook subscription:
-
-```json
-{
-  "webhook_subscription": {
-    "delivery_method": {
-      "type": "http_delivery_method",
-      "url": "https://example.com/receive_a_pagerduty_webhook"
-    },
-    "description": "Sends PagerDuty v3 webhook events with OAuth authentication.",
-    "events": ["incident.triggered", "incident.resolved"],
-    "filter": {
-      "id": "P393ZNQ",
-      "type": "service_reference"
-    },
-    "oauth_client_id": "AGMEB7F7YJYELCPG4Y5YWMYGXE",
-    "type": "webhook_subscription"
-  }
-}
-```
-
-A single OAuth client may be used by multiple webhook subscriptions. Deleting an OAuth client removes the association from any webhook subscriptions using it.
-
-#### Product Limits
-
-Each account may have a maximum of **10 OAuth clients**. Requests to create additional clients beyond this limit return a `400` error with error code `2019`.
-
-#### Permissions and Requirements
-
-- Managing OAuth clients requires the same permissions as managing webhook subscriptions.
-- For [Scoped OAuth](https://developer.pagerduty.com/docs/oauth-functionality) API access, listing and reading OAuth clients requires the `webhook_subscriptions.read` scope; creating, updating, and deleting them requires the `webhook_subscriptions.write` scope.
-- Only the `client_credentials` grant type is supported.
-- Your authorization server must implement the token endpoint per [RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749). If the token response omits `token_type`, PagerDuty assumes `Bearer`.
+Managing OAuth clients requires the admin or owner role, even though users with lower roles can manage webhook subscriptions for their own services. See the OAuth Clients endpoints in the [API Reference](https://developer.pagerduty.com/api-reference/28ba8c17b59b6-create-an-o-auth-client) for request details, permissions, and limits.
 
 ### More Details
 
