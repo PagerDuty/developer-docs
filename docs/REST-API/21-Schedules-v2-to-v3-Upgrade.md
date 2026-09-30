@@ -148,7 +148,7 @@ Response (abridged):
 ### What stayed the same
 
 - IDs and `html_url` are stable across the two versions.
-- `limit` and `offset` query parameters work the same way (just with different defaults and caps).
+- `limit` and `offset` query parameters work the same way, with the same default (25) and cap (100).
 - The `query` parameter filters the list by schedule name, the same as in v2.
 - Pagination semantics (`more` flag, `offset`/`limit` cursoring) are unchanged.
 
@@ -805,7 +805,7 @@ Two subtler changes worth calling out:
 
 What stays unchanged:
 
-- Pagination on `GET /schedules` (`limit`/`offset`/`more`). The defaults differ between v2 and v3 list endpoints (see the **List schedules** section above), but here we're using the v2 list, so v2 defaults apply.
+- Pagination on `GET /schedules` (`limit`/`offset`/`more`). The `limit` default (25) and cap (100) match the v3 list endpoint (see the **List schedules** section above).
 - Authentication. Both endpoints accept the same `Authorization: Token token=...` header and the same scoped OAuth tokens.
 - `GET /users/{id}`. User identity lookup is the same in both worlds; only the schedule endpoints fork.
 
@@ -1041,4 +1041,4 @@ members = [
 - **Active event members are immutable.** v3 doesn't let you change the members of an event that's already producing shifts. To change *who's* on the rotation, you stop the running event and start a new one alongside it. `DELETE` is the cleanest way to stop the running event because it preserves history — shifts already produced keep their member assignments — and the deletion time becomes the implicit cutover.
 - **`empty_member` keeps the rotation's cadence intact.** Marking a position vacant is a normal rotation state in v3, not a hack. The rotation's other members continue producing shifts on the same weeks they would have anyway — replacing a user with `empty_member` does not shrink the cycle or shuffle anyone else's schedule. `final_schedule.computed_shift_assignments[]` surfaces the empty windows as `member.type = "empty_member"` so reporting and dashboards can flag the gap explicitly. (Compare with v2: dropping a user from `users[]` shrinks the rotation and changes everyone's on-call frequency.)
 - **Two phases, same shape.** Phase 1 swaps user → empty; Phase 2 swaps empty → user. Both use the same delete-then-POST pattern; the only difference is the `from` and `to` members in the new event's `members[]`.
-- **Future events can be edited in place.** If the event being changed has an `effective_since` in the future (it hasn't started producing shifts yet), `PUT` the event with the new members — no delete-and-recreate needed. A `PUT` replaces the full event: send every field from the `GET` response (`name`, `start_time`, `end_time`, `effective_since`, `recurrence`, `assignment_strategy`), not only the members. A partial body returns `400` with `must not be null`. The pattern above is the safe default that works regardless of timing.
+- **Future events can be edited in place.** If the event being changed has an `effective_since` in the future (it hasn't started producing shifts yet), `PUT` the event with the new members — no delete-and-recreate needed. A `PUT` replaces the full event: send the required fields (`name`, `start_time`, `end_time`, `effective_since`, `recurrence`, `assignment_strategy`), not only the members. Also include any optional field you want to keep, such as `effective_until`. A partial body returns `400` with `must not be null`. The pattern above is the safe default that works regardless of timing.
