@@ -154,7 +154,7 @@ Response (abridged):
 
 ### Upgrade tip
 
-To see all schedules on the account in one list, call `GET /v3/schedules?include_legacy=true`. Or call both list endpoints:
+To see all schedules on the account, call both list endpoints:
 
 ```shell
 # layer-based schedules
