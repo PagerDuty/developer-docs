@@ -143,7 +143,6 @@ Response (abridged):
 - **List items are reference-shaped.** Each item carries only `id`, `type`, `summary`, `self`, and `html_url`. Fields like `name`, `description`, and `time_zone` move to the detail endpoint.
 - **`type` is `schedule_v3_reference`** for items in a v3 list.
 - **`self` URL points at the v3 path** (`/v3/schedules/{id}`).
-- **`include_legacy` widens the set.** By default v3 returns only shift-based schedules. With `include_legacy=true` it also returns layer-based schedules, with `type: schedule_reference`.
 - **Pagination limit is the same as v2.** v3's `limit` defaults to 25 (max 100). Like v2, `total` is `null` unless you send `total=true`.
 
 ### What stayed the same
@@ -775,7 +774,7 @@ for schedule in list_schedules():
 
 Four concrete changes between the v2-only and the hybrid script:
 
-1. **List both endpoints to enumerate every schedule.** `GET /schedules` returns only layer-based schedules; `GET /v3/schedules` returns only shift-based schedules. The script paginates each in turn and chains the results. (`GET /v3/schedules?include_legacy=true` also returns both kinds in one list.) Each list item's `type` field (`schedule_reference` for layer-based, `schedule_v3_reference` for shift-based) is the dispatch signal we use in step 2.
+1. **List both endpoints to enumerate every schedule.** `GET /schedules` returns only layer-based schedules; `GET /v3/schedules` returns only shift-based schedules. The script paginates each in turn and chains the results. Each list item's `type` field (`schedule_reference` for layer-based, `schedule_v3_reference` for shift-based) is the dispatch signal we use in step 2.
 
 2. **Branch on `schedule["type"]`.** Layer-based items have `type: "schedule_reference"` (or `"schedule"` in some contexts); shift-based items have `type: "schedule_v3_reference"`. The on-call query path differs by shape — there is no single endpoint that answers "who's on call" for both kinds — so you have to dispatch.
 
