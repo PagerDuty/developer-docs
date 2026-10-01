@@ -85,6 +85,9 @@ We send a client TLS certificate with webhooks on request. You can use this to v
 ### OAuth Authentication
 
 PagerDuty supports OAuth 2.0 client credentials flow for webhook authentication. You can create OAuth clients and associate them with webhook subscriptions to automatically include OAuth bearer tokens in webhook requests.
+<br/>
+
+[Learn how to set up OAuth authentication for webhooks](../../docs/webhooks/01-Overview.md#oauth-authentication)
 
 ### Webhook Signature Validation
 

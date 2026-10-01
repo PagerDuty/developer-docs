@@ -80,6 +80,27 @@ The `filter` of a webhook subscription determines which events will match and pr
 
 In the case of incident events, the different filter types will only produce webhooks for the incidents that are associated with the filter object. For example: a webhook subscription with a service filter would produce webhooks for all incidents belonging to the specified service.
 
+### OAuth Authentication
+
+PagerDuty can authenticate webhook deliveries to your endpoint using the [OAuth 2.0 client credentials flow](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4). When a webhook subscription is associated with an _OAuth client_, PagerDuty obtains an access token from your authorization server and includes it as a bearer token in the `Authorization` header of each webhook request.
+
+#### Purpose and Use Cases
+
+OAuth authentication is useful when your webhook destination requires token-based authentication rather than static credentials. Common use cases include:
+
+- Delivering webhooks to platforms that require OAuth for inbound requests, such as ServiceNow
+- Enterprise environments with security policies that prohibit static secrets (such as basic auth credentials in URLs or fixed custom headers)
+- Endpoints that need the ability to revoke or rotate credentials centrally on their own authorization server
+
+Compared to static authentication methods, OAuth provides automatic token refresh and retry behavior: if a delivery receives a `401 Unauthorized` response, PagerDuty refreshes the token and immediately retries. See [OAuth Authentication Retries](../../docs/webhooks/02-Behavior.md#oauth-authentication-retries) for complete retry behavior.
+
+#### Setting Up OAuth Authentication
+
+1. Create an OAuth client with your authorization server's client ID, client secret, and token URL, either from the Webhooks page in the PagerDuty web app or with the [Create an OAuth client](https://developer.pagerduty.com/api-reference/28ba8c17b59b6-create-an-o-auth-client) API. PagerDuty checks the credentials by requesting an access token when you create the client.
+2. Set the webhook subscription's `oauth_client_id` to the ID of the OAuth client when you [create](https://developer.pagerduty.com/api-reference/b3A6MjkyNDc4NA-create-a-webhook-subscription) or update the subscription. One OAuth client can be used by many webhook subscriptions.
+
+Managing OAuth clients requires the admin or owner role, even though users with lower roles can manage webhook subscriptions for their own services. See the OAuth Clients endpoints in the [API Reference](https://developer.pagerduty.com/api-reference/28ba8c17b59b6-create-an-o-auth-client) for request details, permissions, and limits.
+
 ### More Details
 
 Please see the full [Webhook Subscriptions API Reference](https://developer.pagerduty.com/api-reference/b3A6MjkyNDc4NA-create-a-webhook-subscription) for more details.
