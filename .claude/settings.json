@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(python3 -m json.tool:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr list:*)"
+    ]
+  },
+  "enabledPlugins": {
+    "organization-guidance@pagerduty-core-marketplace": true,
+    "organization-capabilities@pagerduty-core-marketplace": true,
+    "organization-workflows@pagerduty-core-marketplace": true
+  },
+  "extraKnownMarketplaces": {
+    "pagerduty-core-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "PagerDuty/pagerduty-core-marketplace"
+      }
+    }
+  }
+}

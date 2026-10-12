@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: developer-docs
+  description: PagerDuty developer docs published to developer.pagerduty.com through Stoplight
+  annotations:
+    github.com/team-slug: pagerduty/dev-ecosystem-and-public-apis
+    github.com/project-slug: pagerduty/developer-docs
+  links:
+    - title: Developer Docs Production
+      icon: docs
+      url: https://developer.pagerduty.com/docs
+    - title: Developer Docs Staging
+      icon: docs
+      url: https://developer-v2.pd-staging.com/docs
+    - url: https://github.com/PagerDuty/developer-docs/edit/main/catalog-info.yaml
+      title: Edit Links
+      icon: edit
+spec:
+  type: documentation
+  owner: dev-ecosystem-and-public-apis
+  lifecycle: production

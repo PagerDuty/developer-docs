@@ -1,0 +1,8 @@
+{
+  "exclude": [
+    "AGENTS.md",
+    "docs/README.md",
+    "catalog-info.yaml",
+    ".claude/**"
+  ]
+}

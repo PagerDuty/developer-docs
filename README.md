@@ -2,6 +2,8 @@
 
 This repo contains the docs that are hosted at: [developer.pagerduty.com/docs](https://developer.pagerduty.com/docs)
 
+For repo docs, see [docs/README.md](docs/README.md). Agents start at [AGENTS.md](AGENTS.md).
+
 ## Contributing
 
 **Everyone** is encouraged to write and modify Developer Docs. Simply edit the files and open a pull request.
