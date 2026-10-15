@@ -99,12 +99,15 @@ their name/description are shown below.
 | America/Caracas                | Caracas                      |
 | America/Chicago                | Central Time (US & Canada)   |
 | America/Chihuahua              | Chihuahua                    |
+| America/Cuiaba                 | Cuiaba                       |
 | America/Denver                 | Mountain Time (US & Canada)  |
+| America/Edmonton               | Edmonton                     |
 | America/Godthab                | Greenland                    |
 | America/Guatemala              | Central America              |
 | America/Guyana                 | Georgetown                   |
 | America/Halifax                | Atlantic Time (Canada)       |
 | America/Indiana/Indianapolis   | Indiana (East)               |
+| America/Inuvik                 | Inuvik                       |
 | America/Juneau                 | Alaska                       |
 | America/La_Paz                 | La Paz                       |
 | America/Lima                   | Lima                         |
@@ -123,6 +126,8 @@ their name/description are shown below.
 | America/Sao_Paulo              | Brasilia                     |
 | America/St_Johns               | Newfoundland                 |
 | America/Tijuana                | Tijuana                      |
+| America/Vancouver              | Vancouver                    |
+| America/Winnipeg               | Winnipeg                     |
 | Asia/Almaty                    | Almaty                       |
 | Asia/Baghdad                   | Baghdad                      |
 | Asia/Baku                      | Baku                         |
