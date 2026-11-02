@@ -54,8 +54,3 @@ Unfortunately, the user restrictions on developer accounts cannot be increased f
 #### Is there any cost for a developer account?
 
 No, PagerDuty developer accounts are free!
-
-
-#### I have a question that wasn’t answered here.
-
-If you have questions about this process or your submission, please email apps@pagerduty.com as is mentioned on [Publish an App](08-Publish-Your-App.md).
