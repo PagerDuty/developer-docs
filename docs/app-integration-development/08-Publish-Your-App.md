@@ -32,13 +32,11 @@ You can optionally publish your app for all PagerDuty users to discover and use.
 
 ![Screenshot of app submit](../../assets/images/publish.png)
 
-Once you submit, you will no longer be able to make updates to your app. If you need to make changes after you submit, please contact apps@pagerduty.com to get your app back into an editable draft state.
+Once you submit, you will no longer be able to make updates to your app.
 
 You should receive a confirmation email once your app is submitted for review.
 
 ## Review Process
-
-We aim to review your submission and approve or reply with feedback within 5 business days.
 
 **During the review process, we will:**
 * Test your app's functionality
@@ -46,8 +44,6 @@ We aim to review your submission and approve or reply with feedback within 5 bus
 * Ensure all required information is submitted and accurate for your listing (support contact, website links, etc)
 
 If we find issues with your submission or have questions, we will contact you at the email used for your PagerDuty account. The reviewer may ask for additional info or updates to your app or documentation before your submission is approved.
-
-If you have questions about this process or your submission, please email **apps@pagerduty.com**.
 
 ## Scoped OAuth apps on other accounts
 
