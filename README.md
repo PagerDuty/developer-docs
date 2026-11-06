@@ -1,33 +1,22 @@
-# Developer Docs
+# Developer Docs (retired)
 
-This repo contains the docs that are hosted at: [developer.pagerduty.com/docs](https://developer.pagerduty.com/docs)
+> **This repo is retired. Do not open pull requests here.**
+> The content of this repo now lives in the [pagerduty-docs](https://github.com/PagerDuty/pagerduty-docs) repo and is published at https://docs.pagerduty.com.
 
-## Contributing
+## What changed
 
-**Everyone** is encouraged to write and modify Developer Docs. Simply edit the files and open a pull request.
+- https://developer.pagerduty.com/docs is no longer served from this repo.
+- The pagerduty-docs redirector serves developer.pagerduty.com. It sends legacy `/docs/...` paths (301) to their new pages on docs.pagerduty.com.
+- Merges to `main` do not deploy anything.
+- The files in `docs/`, `assets/` and `toc.json` stay here only as history. They are not maintained.
 
-### Staging (for PD employees)
+## How to change the docs
 
-This repository has a staging environment so you can see the changes before pushing them up to our production website. If you'd like to see the changes there first, simply click the "Buildkite" step in your Pull Request and unblock the deploy step.
+1. Find the page on https://docs.pagerduty.com.
+2. Edit its source in [pagerduty-docs](https://github.com/PagerDuty/pagerduty-docs) and open a pull request there.
+3. For questions, ask the Dev Ecosystem and Public APIs team in [#ask-dev-ecosystem-and-public-apis](https://pagerduty.enterprise.slack.com/archives/C08E4D3RBJQ).
 
-### Ownership
+## Related
 
-These docs are owned by the #dev-ecosystem-and-public-apis team and they will review and deploy any changes made- simply ask them via Slack when you open a pull request.
-
-
-## Markdown
-The docs are written in simple markdown format with some flavour on top that [Stoplight](stoplight.io) provides to us.
-
-  - [Markdown Formatting](https://www.markdownguide.org/basic-syntax/)
-  - [Stoplight Markdown]( https://meta.stoplight.io/docs/studio/docs/Documentation/03a-stoplight-flavored-markdown.md)
-
-## Editing the "Sidebar"/Table of Contents
-Documents are hidden by default, to provide a link to a document via the Table of Contents you must edit the Table of Contents file: `toc.json`
-
-Documentation on how `toc.json` works can be [found here.](https://meta.stoplight.io/docs/platform/4.-documentation/d.table-of-contents.md)
-
-## File Naming
-There isn't a strict file naming convention. *However*, files have broadly been organized into 'topic' folder, and file names begin with the order they appear in the Table of Contents.
-
-## Deployment
-Simply merging to the `main` branch will deploy docs to production.
+- [developer-site](https://github.com/PagerDuty/developer-site) is retired too.
+- [captains-log](https://github.com/PagerDuty/captains-log) and [api-schema](https://github.com/PagerDuty/api-schema) stay active in their own repos.
